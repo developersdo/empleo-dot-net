@@ -12,6 +12,9 @@ using EmpleoDotNet.Models;
 
 namespace EmpleoDotNet.Controllers
 {
+    /// <summary>
+    /// Este es el controlador de cuentas de usuario
+    /// </summary>
     [Authorize]
     public class AccountController : Controller
     {
