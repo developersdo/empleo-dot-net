@@ -10,3 +10,7 @@ Es una iniciativa de Developers.DO y C#.DO  de crear un proyecto en github que s
 * Durante el hangout, no todos pueden participar en el video (hay un límite de 10 personas). Pero todos pueden colaborar en el widget de preguntas y respuestas.
 * Durante las sesiones interactivas, todos están invitados a hacer preguntas en el chat. El propósito no es dar una cátedra, sino programar algo real y que los participantes aclaren dudas. 
 * Luego de cada sesión se definirán Issues(feature nuevos, bugs, mejoras, etc.) para que todo el que quiera participar lo pueda hacer. 
+
+### Como Participo?
+
+Comienza revisando los [recursos sugeridos](#) :warning: o mira la lista de [sesiones previas](Sesiones.md)
