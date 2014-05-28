@@ -13,4 +13,4 @@ Es una iniciativa de Developers.DO y C#.DO  de crear un proyecto en github que s
 
 ### Como Participo?
 
-Comienza revisando los [recursos sugeridos](#) :warning: o mira la lista de [sesiones previas](sesiones.md)
+Comienza revisando los [recursos sugeridos](#) :warning: o mira la lista de [sesiones previas](Sesiones.md)
