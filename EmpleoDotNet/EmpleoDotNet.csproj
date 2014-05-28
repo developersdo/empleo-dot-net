@@ -164,11 +164,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Entities\Contact.cs" />
-    <Compile Include="Models\Entities\Entity.cs" />
-    <Compile Include="Models\Entities\JobOffer.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Identity\AccountViewModels.cs" />
+    <Compile Include="Models\EntityBase.cs" />
+    <Compile Include="Models\Identity\IdentityModels.cs" />
     <Compile Include="Models\JobCategory.cs" />
     <Compile Include="Models\JobOpportunity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
