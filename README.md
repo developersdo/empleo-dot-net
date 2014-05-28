@@ -15,7 +15,7 @@ Es una iniciativa de Developers.DO y C#.DO  de crear un proyecto en github que s
 
 Comienza revisando los [recursos sugeridos](#) :warning: o mira la lista de [sesiones previas](Sesiones.md)
 
-### Cuál es el roadpam?
+## Roadmap
 
 Pensamos dividir el desarrollo en tres etapas que permitan que participen personas con todo tipo de background en desarrollo:
 
