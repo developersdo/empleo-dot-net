@@ -17,12 +17,12 @@ namespace EmpleoDotNet.Models
         Sales = 7
     }
 
-    public class JobOpportunity
+    public class JobOpportunityModel
     {
         public string Name { get; set; }
         public string Description { get; set; }
         public eCategory Category { get; set; }
         public string Location { get; set; }
-        public Company Company { get; set; }        
+        public CompanyModel Company { get; set; }        
     }
 }
