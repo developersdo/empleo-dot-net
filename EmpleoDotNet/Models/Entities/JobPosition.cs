@@ -5,7 +5,7 @@ using System.Web;
 
 namespace EmpleoDotNet.Models.Entities
 {
-    public class JobOffer : Entity
+    public class JobPosition : Entity
     {
         public Int32 UserId { get; set; }
         public String Title { get; set; }
