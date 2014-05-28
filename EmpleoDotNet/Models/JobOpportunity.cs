@@ -5,7 +5,7 @@ using System.Web;
 
 namespace EmpleoDotNet.Models
 {
-    public enum eCategory
+    public enum Category
     {
         None = 0,
         GraphicDesign = 1,
@@ -17,12 +17,12 @@ namespace EmpleoDotNet.Models
         Sales = 7
     }
 
-    public class JobOpportunityModel
+    public class JobOpportunity
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public eCategory Category { get; set; }
+        public Category Category { get; set; }
         public string Location { get; set; }
-        public CompanyModel Company { get; set; }        
+        public Company Company { get; set; }        
     }
 }

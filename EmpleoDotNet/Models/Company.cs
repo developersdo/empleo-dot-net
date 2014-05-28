@@ -5,7 +5,7 @@ using System.Web;
 
 namespace EmpleoDotNet.Models
 {
-    public class CompanyModel
+    public class Company
     {
         public string Name { get; set; }
         public string Url { get; set; }
