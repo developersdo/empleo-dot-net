@@ -13,7 +13,10 @@ Es una iniciativa de Developers.DO y C#.DO  de crear un proyecto en github que s
 
 ### Como Participo?
 
-Comienza revisando los [recursos sugeridos](#) :warning: o mira la lista de [sesiones previas](Sesiones.md)
+* Comienza revisando los [recursos sugeridos](#) :warning: (pending to add) 
+* Mira la lista de [sesiones previas en Google Hangouts](Sesiones.md)
+* Entra al [chat del grupo si tienes preguntas puntuales](https://devsdo.hipchat.com/invite/117666/9247d052e13262bf1488993e2d04b259)
+* Si quieres colaborar puedes comenzar un [Pull Request](https://help.github.com/articles/using-pull-requests)
 
 ## Roadmap
 
