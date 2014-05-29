@@ -51,3 +51,6 @@ Pensamos dividir el desarrollo en tres etapas que permitan que participen person
 * User Stories that drive tests
 * Rewrite of the complete application 
 
+#### Etapa 4 - Mobile Services
+
+Una vez tengamos todo el codebase de forma organizada y con unit tests, entonces podemos exportar parte de la lógica a una aplicación mobile. El anuncio de [Xamarin Forms](xamarin.com/forms) es excelente noticia para nosotros, pues probablemente quiera decir que desarrollemos el app una sola vez con poco esfuerzo para las tres plataformas (iOS, Android y WP8)
