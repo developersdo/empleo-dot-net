@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace EmpleoDotNet.Controllers
 {
-    public class VacantesController : Controller
+    public class JobOpportunityController : Controller
     {
         // GET: Vacantes
         public ActionResult Index()
