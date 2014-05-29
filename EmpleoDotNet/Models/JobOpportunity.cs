@@ -1,28 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace EmpleoDotNet.Models
 {
-    public enum Category
-    {
-        None = 0,
-        GraphicDesign = 1,
-        WebDevelopment = 2,
-        MobileApplication = 3,
-        SoftwareDevelopment = 4,
-        SystemAdministrator = 5,
-        Networking = 6,
-        Sales = 7
-    }
-
     public class JobOpportunity
     {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public Category Category { get; set; }
-        public string Location { get; set; }
-        public Company Company { get; set; }        
+        public Int32 JobOpportunityId { get; set; }
+        public String Place { get; set; }
+        public JobCategory Category { get; set; }
+        public String Profile { get; set; }
+        public String RequirementsToApply { get; set; }
+        public String CompanyName { get; set; }
+        public String CompanyUrl { get; set; }
+        public String CompanyEmail { get; set; }
+        public Byte?[] CompanyLogo { get; set; }
+        public DateTime PublishedDate { get; set; }
     }
 }
