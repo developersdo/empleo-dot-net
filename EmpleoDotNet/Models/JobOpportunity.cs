@@ -2,9 +2,8 @@
 
 namespace EmpleoDotNet.Models
 {
-    public class JobOpportunity
+    public class JobOpportunity : EntityBase
     {
-        public Int32 JobOpportunityId { get; set; }
         public String Place { get; set; }
         public JobCategory Category { get; set; }
         public String Profile { get; set; }
