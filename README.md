@@ -17,7 +17,7 @@ Todo el conocimiento y decisiones que surgen a partir de discusiones se estará 
 
 * Comienza revisando los [recursos sugeridos](https://github.com/developersdo/empleo-dot-net/wiki/Lista-de-Recursos-de-Aprendizaje)
 * Mira la lista de [sesiones previas en Google Hangouts](https://github.com/developersdo/empleo-dot-net/wiki/Sesiones-de-Trabajo-Previas)
-* Entra al [chat del grupo si tienes preguntas puntuales](https://devsdo.hipchat.com/invite/117666/9247d052e13262bf1488993e2d04b259)
+* Entra al [chat del grupo si tienes preguntas puntuales](https://devsdo.hipchat.com/invite/117666/9247d052e13262bf1488993e2d04b259) (Si ya tienes una cuenta en hipchat, [entra aquí como invitado](http://www.hipchat.com/g0PQNEPIJ)) 
 * Si quieres colaborar puedes comenzar un [Pull Request](https://help.github.com/articles/using-pull-requests)
 
 ## Roadmap
