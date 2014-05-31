@@ -164,6 +164,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Migrations\201405302346332_AgregandoJobOpportunity.cs" />
     <Compile Include="Migrations\201405302346332_AgregandoJobOpportunity.Designer.cs">
       <DependentUpon>201405302346332_AgregandoJobOpportunity.cs</DependentUpon>
@@ -171,6 +172,10 @@
     <Compile Include="Migrations\201405302355507_CompanyNameWithShortLength.cs" />
     <Compile Include="Migrations\201405302355507_CompanyNameWithShortLength.Designer.cs">
       <DependentUpon>201405302355507_CompanyNameWithShortLength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405310304010_CambioNombreColumna.cs" />
+    <Compile Include="Migrations\201405310304010_CambioNombreColumna.Designer.cs">
+      <DependentUpon>201405310304010_CambioNombreColumna.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database.cs" />
@@ -247,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201405302355507_CompanyNameWithShortLength.resx">
       <DependentUpon>201405302355507_CompanyNameWithShortLength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405310304010_CambioNombreColumna.resx">
+      <DependentUpon>201405310304010_CambioNombreColumna.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
