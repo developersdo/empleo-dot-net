@@ -1,15 +1,35 @@
 ﻿@model EmpleoDotNet.Models.JobOpportunity
 
-<h1>Esto es una prueba de un detalle</h1>
+<br />
 
-Id: @Model.Id <br/>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h2 class="panel-title">
+            @Model.JobTitle
+        </h2>
+    </div>
+    <div class="panel-body">
+        <p>
+            @Model.CompanyName, @Model.Location <br />
+            <a href="@Model.CompanyUrl">@Model.CompanyUrl</a>
+        </p>
+        
+        <p>
+            @Model.RequirementsToApply            
+        </p>
+    </div>
+</div>
 
-<strong>
-    Titulo: @Model.JobTitle <br />
-</strong>
+<div class="jumbotron">
+    <h2>Para aplicar a esta posición</h2>
+    <h3>
+        Enviar CV a <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a>
+    </h3>
+</div>
 
-Localidad: @Model.Location <br/>
-Requerimientos: @Model.RequirementsToApply <br/>
+
+
+
 
 
 
