@@ -1,4 +1,5 @@
-﻿
+﻿@using EmpleoDotNet.Helpers
+@model ICollection<EmpleoDotNet.Models.JobOpportunity>
 @{
     ViewBag.Title = "Index";
 }
@@ -8,52 +9,35 @@
 
 <table class ="table table-striped">
     <tbody>
-        <tr>
-            <td>
-                <!-- Title -->
-                <strong>
-                    <a href ="#">Ingeniero de Software</a>
-                </strong>
-                <br/>
-                <!-- Company -->
-                <a href ="#">Developers Interprise Inc.</a>
+        
+        @foreach (var jobs in Model)
+        {
+            <tr>
+                <td>
+                    <!-- Title -->
+                    <strong>
+                        <a href ="@Url.Action("Detail", new{ jobs.Id })">@jobs.JobTitle</a>
+                    </strong>
+                    <br/>
+                    <!-- Company -->
+                    <a href ="#">@jobs.CompanyName</a>
                  
-            </td>
-            <!-- Job Category -->
-            <td>
-                <a href="#">Software Development</a>
-            </td>
-            <!-- Address -->
-            <td>
-                Ave. 27 de Febrero No. 32
-                <br/>
-                Santo Domingo, República Dominicana
-            </td>
-            <!-- Date -->
-            <td>
-                28 de Mayo 2014
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <strong>
-                    <a href="#">Arquitecto de Software</a>
-                </strong>
-                <br />
-                <a href="#">Good Patterns Inc</a>
-                 
-            </td>
-            <td>
-                <a href="#">Software Development</a>
-            </td>
-            <td>
-                Ave. Fantino Falco No. 32 Esq. Ortega y Gasset
-                <br />
-                Santo Domingo, República Dominicana
-            </td>
-            <td>28 de Mayo 2014</td>
-        </tr>
+                </td>
+                <!-- Job Category -->
+                <td>
+                    <a href="#">@jobs.Category.ToEnumDescription()</a>
+                </td>
+                <!-- Address -->
+                <td>
+                   @jobs.Location
+                </td>
+                <!-- Date -->
+                <td>
+                    @jobs.Created.ToShortDateString()
+                </td>
+            </tr>
+        }
+        
     </tbody>
 
 </table>

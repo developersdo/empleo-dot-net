@@ -38,11 +38,13 @@ namespace EmpleoDotNet.Migrations
                 Location = "Santo Domingo",
                 CompanyEmail = "prueba@developers.do",
                 CompanyUrl = "http://www.developers.do",
-                RequirementsToApply = "Debe saber programar Java",
+                RequirementsToApply = "Debe saber programar C#",
                 CompanyName = "Developer DO",
-                Created = DateTime.Now.AddDays(-2),
+                Created = DateTime.Now.AddDays(-3),
                 PublishedDate = DateTime.Now
             };
+
+
             context.JobOpportunities.AddOrUpdate(d => d.JobTitle,
                 oportunidad2);
 
