@@ -24,7 +24,7 @@ namespace EmpleoDotNet.Controllers
             if (!vmJobList.Any())
                 return RedirectToAction("Index", "Home");
 
-            return View(vmJobList.ToList());
+            return View(vmJobList);
         }
 
         public ActionResult Detail(int? id)
