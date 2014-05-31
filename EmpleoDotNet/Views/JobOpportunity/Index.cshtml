@@ -1,7 +1,7 @@
 ﻿@using EmpleoDotNet.Helpers
-@model ICollection<EmpleoDotNet.Models.JobOpportunity>
+@model IEnumerable<EmpleoDotNet.Models.JobOpportunity>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Listado de vacantes";
 }
 
 <h2>Lista de vacantes disponibles</h2>
@@ -10,25 +10,25 @@
 <table class ="table table-striped">
     <tbody>
         
-        @foreach (var jobs in Model)
+        @foreach (var job in Model)
         {
             <tr>
                 <td>
                     <strong>
-                        <a href ="@Url.Action("Detail", new{ jobs.Id })">@jobs.JobTitle</a>
+                        <a href ="@Url.Action("Detail", new{ job.Id })">@job.Title</a>
                     </strong>
                     <br/>
-                    <a href ="#">@jobs.CompanyName</a>
+                    <a href ="#">@job.CompanyName</a>
                  
                 </td>
                 <td>
-                    <a href="#">@jobs.Category.ToEnumDescription()</a>
+                    <a href="#">@job.Category.ToEnumDescription()</a>
                 </td>
                 <td>
-                   @jobs.Location
+                   @job.Location
                 </td>
                 <td>
-                    @jobs.Created.ToShortDateString()
+                    @job.Created.ToShortDateString()
                 </td>
             </tr>
         }

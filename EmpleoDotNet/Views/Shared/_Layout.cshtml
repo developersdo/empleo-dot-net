@@ -30,6 +30,14 @@
         </div>
     </div>
     <div class="container body-content">
+
+        @if (!String.IsNullOrEmpty(ViewBag.ErrorMessage))
+        {
+            <div class="alert alert-danger">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+
         @RenderBody()
         <hr />
         <footer>

@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using EmpleoDotNet.Models;
-using Microsoft.Owin.Security.Provider;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -24,20 +23,25 @@ namespace EmpleoDotNet.Controllers
             if (!vmJobList.Any())
                 return RedirectToAction("Index", "Home");
 
-            return View(vmJobList.ToList());
+            return View(vmJobList);
         }
 
         public ActionResult Detail(int? id)
         {
             if (!id.HasValue)
-                return View("Index");
+                return RedirectToAction("Index");
 
             var vm = _databaseContext.JobOpportunities
                         .FirstOrDefault(d => d.Id == id);
 
-            return vm == null 
-                ? View("Index") 
-                : View("Detail", vm);
+            if (vm == null)
+            {
+                ViewBag.ErrorMessage = "La vacante solicitada no existe. " +
+                                       "Por favor escoger una vacante válida del listado";
+                return View("Index");
+            }
+
+            return View("Detail", vm);
         }
     }
 }
