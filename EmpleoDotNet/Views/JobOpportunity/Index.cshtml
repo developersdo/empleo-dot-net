@@ -4,36 +4,45 @@
     ViewBag.Title = "Listado de vacantes";
 }
 
-<h2>Lista de vacantes disponibles</h2>
+<div class="row">
+    <div class="col-xs-8">
+        <h2>Lista de vacantes disponibles</h2>
+    </div>
+    <div class="cols-xs-4 pull-right">
+        <p>&nbsp;</p>
+        <a href="@Url.Action("New", "JobOpportunity")" class="btn btn-info">Nueva Vacante</a>
+    </div>
+</div>
 
+<div class="row">
+    <p>&nbsp;</p>
+    <table class="table table-striped">
+        <tbody>
 
-<table class ="table table-striped">
-    <tbody>
-        
-        @foreach (var job in Model)
-        {
-            <tr>
-                <td>
-                    <strong>
-                        <a href ="@Url.Action("Detail", new{ job.Id })">@job.Title</a>
-                    </strong>
-                    <br/>
-                    <a href ="#">@job.CompanyName</a>
-                 
-                </td>
-                <td>
-                    <a href="#">@job.Category.ToEnumDescription()</a>
-                </td>
-                <td>
-                   @job.Location
-                </td>
-                <td>
-                    @job.Created.ToShortDateString()
-                </td>
-            </tr>
-        }
-        
-    </tbody>
+            @foreach (var job in Model)
+            {
+                <tr>
+                    <td>
+                        <strong>
+                            <a href="@Url.Action("Detail", new{ job.Id })">@job.Title</a>
+                        </strong>
+                        <br />
+                        <a href="#">@job.CompanyName</a>
 
-</table>
+                    </td>
+                    <td>
+                        <a href="#">@job.Category.ToEnumDescription()</a>
+                    </td>
+                    <td>
+                        @job.Location
+                    </td>
+                    <td>
+                        @job.Created.ToShortDateString()
+                    </td>
+                </tr>
+            }
 
+        </tbody>
+
+    </table>
+</div>
