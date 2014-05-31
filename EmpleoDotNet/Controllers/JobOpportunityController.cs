@@ -18,7 +18,7 @@ namespace EmpleoDotNet.Controllers
         public ActionResult Index()
         {
             var vmJobList = _databaseContext.JobOpportunities
-                .OrderByDescending(e => e.Created)
+                .OrderByDescending(e => e.PublishedDate)
                 .ToList();
 
             if (!vmJobList.Any())
