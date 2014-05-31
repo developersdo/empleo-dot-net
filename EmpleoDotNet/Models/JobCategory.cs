@@ -1,10 +1,12 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace EmpleoDotNet.Models
 {
     /// <summary>
     /// Categoria de trabajo
     /// </summary>
+    [Flags]
     public enum JobCategory
     {
         /// <summary>
@@ -25,26 +27,26 @@ namespace EmpleoDotNet.Models
         /// <summary>
         /// Desarrollo Movil
         /// </summary>
-        MobileDevelopment = 3,
+        MobileDevelopment = 4,
         
         /// <summary>
         /// Dessarrollo de Software
         /// </summary>
-        SoftwareDevelopment = 4,
+        SoftwareDevelopment = 8,
         
         /// <summary>
         /// Administrador de Sistemas
         /// </summary>
-        SystemAdministrator = 5,
+        SystemAdministrator = 16,
         
         /// <summary>
         /// Redes
         /// </summary>
-        Networking = 6,
+        Networking = 32,
         
         /// <summary>
         /// IT Ventas
         /// </summary>
-        ItSales = 7
+        ItSales = 64
     }
 }
