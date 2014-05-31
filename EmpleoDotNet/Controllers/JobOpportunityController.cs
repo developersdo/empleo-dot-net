@@ -16,15 +16,20 @@ namespace EmpleoDotNet.Controllers
         public ActionResult Detail(int? id)
         {
             if (!id.HasValue)
-                return View("Index");
+                return RedirectToAction("Index");
 
             var context = new Database();
             var vm = context.JobOpportunities
                         .FirstOrDefault(d => d.Id == id);
 
-            return vm == null 
-                ? View("Index") 
-                : View("Detail", vm);
+            if (vm == null)
+            {
+                ViewBag.ErrorMessage = "La vacante solicitada no existe. " +
+                                       "Por favor escoger una vacante válida del listado";
+                return View("Index");
+            }
+
+            return View("Detail", vm);
         }
     }
 }
