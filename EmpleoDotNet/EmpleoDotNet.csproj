@@ -164,6 +164,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201405302346332_AgregandoJobOpportunity.cs" />
+    <Compile Include="Migrations\201405302346332_AgregandoJobOpportunity.Designer.cs">
+      <DependentUpon>201405302346332_AgregandoJobOpportunity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405302355507_CompanyNameWithShortLength.cs" />
+    <Compile Include="Migrations\201405302355507_CompanyNameWithShortLength.Designer.cs">
+      <DependentUpon>201405302355507_CompanyNameWithShortLength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Database.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />
     <Compile Include="Models\EntityBase.cs" />
     <Compile Include="Models\Identity\IdentityModels.cs" />
@@ -219,6 +229,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\JobOpportunity\Index.cshtml" />
+    <Content Include="Views\JobOpportunity\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -229,6 +240,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201405302346332_AgregandoJobOpportunity.resx">
+      <DependentUpon>201405302346332_AgregandoJobOpportunity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405302355507_CompanyNameWithShortLength.resx">
+      <DependentUpon>201405302355507_CompanyNameWithShortLength.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
