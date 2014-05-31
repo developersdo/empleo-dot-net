@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using EmpleoDotNet.Models;
+using EmpleoDotNet.ViewModel;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -13,7 +14,7 @@ namespace EmpleoDotNet.Controllers
             _databaseContext = new Database();
         }
 
-        // GET: Vacantes
+        // GET: /JobOpportunity/
         public ActionResult Index()
         {
             var vmJobList = _databaseContext.JobOpportunities
@@ -26,6 +27,7 @@ namespace EmpleoDotNet.Controllers
             return View(vmJobList);
         }
 
+        // GET: /JobOpportunity/Detail/4
         public ActionResult Detail(int? id)
         {
             if (!id.HasValue)
@@ -42,6 +44,12 @@ namespace EmpleoDotNet.Controllers
             }
 
             return View("Detail", vm);
+        }
+
+        // GET: /JobOpportunity/New
+        public ActionResult New()
+        {
+            return View("New", new NewJobOpportunityViewModel());
         }
     }
 }
