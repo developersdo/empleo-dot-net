@@ -14,24 +14,19 @@
         {
             <tr>
                 <td>
-                    <!-- Title -->
                     <strong>
                         <a href ="@Url.Action("Detail", new{ jobs.Id })">@jobs.JobTitle</a>
                     </strong>
                     <br/>
-                    <!-- Company -->
                     <a href ="#">@jobs.CompanyName</a>
                  
                 </td>
-                <!-- Job Category -->
                 <td>
                     <a href="#">@jobs.Category.ToEnumDescription()</a>
                 </td>
-                <!-- Address -->
                 <td>
                    @jobs.Location
                 </td>
-                <!-- Date -->
                 <td>
                     @jobs.Created.ToShortDateString()
                 </td>

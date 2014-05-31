@@ -14,33 +14,17 @@ namespace EmpleoDotNet.Controllers
             _databaseContext = new Database();
         }
 
-        public JobOpportunityController(Database databaseContext)
-        {
-            _databaseContext = databaseContext;
-        }
-
         // GET: Vacantes
         public ActionResult Index()
         {
             var vmJobList = _databaseContext.JobOpportunities
-                .ToList()
-                .Select(e => new JobOpportunity()
-                {
-                    Id = e.Id,
-                    JobTitle = e.JobTitle,
-                    Category = e.Category,
-                    CompanyName = e.CompanyName,
-                    Location = e.Location,
-                    Created = e.Created
-                })
-                .OrderByDescending(e => e.PublishedDate)
+                .OrderByDescending(e => e.Created)
                 .ToList();
-
 
             if (!vmJobList.Any())
                 return RedirectToAction("Index", "Home");
 
-            return View(vmJobList);
+            return View(vmJobList.ToList());
         }
 
         public ActionResult Detail(int? id)
