@@ -19,7 +19,7 @@ namespace EmpleoDotNet.Migrations
             var oportunidad1 = new Models.JobOpportunity
             {
                 Category = JobCategory.SoftwareDevelopment,
-                JobTitle = "Pega Blo Senior",
+                Title = "Pega Blo Senior",
                 Location = "Santo Domingo",
                 CompanyEmail = "prueba@developers.do",
                 CompanyUrl = "http://www.developers.do",
@@ -28,13 +28,13 @@ namespace EmpleoDotNet.Migrations
                 Created = DateTime.Now.AddDays(-2),
                 PublishedDate = DateTime.Now
             };
-            context.JobOpportunities.AddOrUpdate(d => d.JobTitle, 
+            context.JobOpportunities.AddOrUpdate(d => d.Title, 
                 oportunidad1);
 
             var oportunidad2 = new Models.JobOpportunity
             {
                 Category = JobCategory.SoftwareDevelopment,
-                JobTitle = "Pega Blo Junior",
+                Title = "Pega Blo Junior",
                 Location = "Santo Domingo",
                 CompanyEmail = "prueba@developers.do",
                 CompanyUrl = "http://www.developers.do",
@@ -43,7 +43,7 @@ namespace EmpleoDotNet.Migrations
                 Created = DateTime.Now.AddDays(-2),
                 PublishedDate = DateTime.Now
             };
-            context.JobOpportunities.AddOrUpdate(d => d.JobTitle,
+            context.JobOpportunities.AddOrUpdate(d => d.Title,
                 oportunidad2);
 
             //  This method will be called after migrating to the latest version.

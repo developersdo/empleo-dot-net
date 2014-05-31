@@ -8,7 +8,7 @@ namespace EmpleoDotNet.Models
         /// <summary>
         /// Titulo de la posición
         /// </summary>
-        public string JobTitle { get; set; }
+        public string Title { get; set; }
 
         /// <summary>
         /// Posición geográfica (donde es el trabajo)
