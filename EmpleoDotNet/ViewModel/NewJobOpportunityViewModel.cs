@@ -18,7 +18,7 @@ namespace EmpleoDotNet.ViewModel
 
         public JobCategory Category { get; set; }
 
-        public string RequirementsToApply { get; set; }
+        public string Description { get; set; }
    
         public string CompanyName { get; set; }
 
@@ -35,7 +35,7 @@ namespace EmpleoDotNet.ViewModel
                 Title = this.Title,
                 Location = this.Location,
                 Category = this.Category,
-                RequirementsToApply = this.RequirementsToApply,
+                Description = this.Description,
                 CompanyName = this.CompanyName,
                 CompanyUrl = this.CompanyUrl,
                 CompanyLogoUrl = this.CompanyLogoUrl,
