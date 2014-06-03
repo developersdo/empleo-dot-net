@@ -6,16 +6,20 @@
 <!-- Para más información de este layout revisar la documentación de Bootstrap http://getbootstrap.com/css/#forms -->
 @using (Html.BeginForm("New", "JobOpportunity", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
+    @Html.AntiForgeryToken()
+    
     <div class="form-group">
         @Html.LabelFor(m => m.Title, new { @class = "col-sm-2 control-label" })
         <div class="col-sm-10">
             @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Title)
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Location, new { @class = "col-sm-2 control-label" })
         <div class="col-sm-10">
             @Html.TextBoxFor(m => m.Location, new { @class = "form-control", placeholder = "Ej: Santo Domingo..." })
+            @Html.ValidationMessageFor(m => m.Location)
         </div>
     </div>
 
@@ -23,6 +27,7 @@
         @Html.LabelFor(m => m.RequirementsToApply, new { @class = "col-sm-2 control-label" })
         <div class="col-sm-10">
             @Html.TextAreaFor(m => m.RequirementsToApply, new { @class = "form-control"})
+            @Html.ValidationMessageFor(m => m.RequirementsToApply)
         </div>
     </div>
 
@@ -31,6 +36,7 @@
         @Html.LabelFor(m => m.Category, new { @class = "col-sm-2 control-label" })
         <div class="col-sm-10">
             @Html.EnumDropListFor(e => e.Category)
+            @Html.ValidationMessageFor(m => m.Category)
         </div>
     </div>
     
@@ -40,6 +46,7 @@
         @Html.LabelFor(m => m.CompanyName, new { @class = "col-sm-2 control-label" })
         <div class="col-sm-10">
             @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.CompanyName)
         </div>
     </div>
     
@@ -61,6 +68,7 @@
         @Html.LabelFor(m => m.CompanyEmail, new { @class = "col-sm-2 control-label" })
         <div class="col-sm-10">
             @Html.TextBoxFor(m => m.CompanyEmail, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.CompanyEmail)
         </div>
     </div>
     

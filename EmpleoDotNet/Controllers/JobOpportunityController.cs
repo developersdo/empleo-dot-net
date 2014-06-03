@@ -51,5 +51,19 @@ namespace EmpleoDotNet.Controllers
         {
             return View("New", new NewJobOpportunityViewModel());
         }
+
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult New(NewJobOpportunityViewModel job)
+        {
+            if (!ModelState.IsValid) 
+                return View(job);
+
+            _databaseContext.JobOpportunities.Add(job.ToEntity());
+
+            _databaseContext.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }

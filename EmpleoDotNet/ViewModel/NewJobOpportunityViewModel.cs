@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using EmpleoDotNet.Models;
 
 namespace EmpleoDotNet.ViewModel
@@ -26,7 +27,8 @@ namespace EmpleoDotNet.ViewModel
         [Display(Name = "Dirección Web")]
         public string CompanyUrl { get; set; }
 
-        [Required(ErrorMessage = "Debe especificar al menos una dirección de correo electrónica."), Display(Name = "Email")]
+        [Required(ErrorMessage = "Debe especificar al menos una dirección de correo electrónica."), Display(Name = "Email"),
+        EmailAddress(ErrorMessage = "Email invalido. Favor colocar un Email valido.")]
         public string CompanyEmail { get; set; }
 
 
@@ -43,7 +45,9 @@ namespace EmpleoDotNet.ViewModel
                 CompanyName = this.CompanyName,
                 CompanyUrl = this.CompanyUrl,
                 CompanyLogoUrl = this.CompanyLogoUrl,
-                CompanyEmail = this.CompanyEmail
+                CompanyEmail = this.CompanyEmail,
+                Created = DateTime.Now,
+                PublishedDate = DateTime.Now
             };
 
             return entity;
