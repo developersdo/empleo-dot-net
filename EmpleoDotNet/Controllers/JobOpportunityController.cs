@@ -56,8 +56,11 @@ namespace EmpleoDotNet.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult New(NewJobOpportunityViewModel job)
         {
-            if (!ModelState.IsValid) 
+            if (!ModelState.IsValid)
+            {
+                @ViewBag.ErrorMessage = "Han ocurrido errores de validación que no permiten continuar el proceso";
                 return View(job);
+            }
 
             _databaseContext.JobOpportunities.Add(job.ToEntity());
 

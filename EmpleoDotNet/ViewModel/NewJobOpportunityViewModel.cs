@@ -27,8 +27,8 @@ namespace EmpleoDotNet.ViewModel
         [Display(Name = "Dirección Web")]
         public string CompanyUrl { get; set; }
 
-        [Required(ErrorMessage = "Debe especificar al menos una dirección de correo electrónica."), Display(Name = "Email"),
-        EmailAddress(ErrorMessage = "Email invalido. Favor colocar un Email valido.")]
+        [Required(ErrorMessage = "El campo email es requerido")]
+        [Display(Name = "Email"), EmailAddress(ErrorMessage = "Email invalido.")]
         public string CompanyEmail { get; set; }
 
 
