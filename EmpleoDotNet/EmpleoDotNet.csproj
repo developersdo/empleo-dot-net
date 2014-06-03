@@ -177,6 +177,10 @@
     <Compile Include="Migrations\201405310304010_CambioNombreColumna.Designer.cs">
       <DependentUpon>201405310304010_CambioNombreColumna.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406030408364_CambiadoRequirementsToApplyADescription.cs" />
+    <Compile Include="Migrations\201406030408364_CambiadoRequirementsToApplyADescription.Designer.cs">
+      <DependentUpon>201406030408364_CambiadoRequirementsToApplyADescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />
@@ -257,6 +261,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201405310304010_CambioNombreColumna.resx">
       <DependentUpon>201405310304010_CambioNombreColumna.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406030408364_CambiadoRequirementsToApplyADescription.resx">
+      <DependentUpon>201406030408364_CambiadoRequirementsToApplyADescription.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
