@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace EmpleoDotNet.Models
@@ -13,25 +12,25 @@ namespace EmpleoDotNet.Models
         /// <summary>
         /// Ninguna
         /// </summary>
-        [Description("N/A")]
+        [Display(Name = "N/A")]
         None = 0,
 
         /// <summary>
         /// Diseño Grafico
         /// </summary>
-        [Description("Diseño Gráfico")]
+        [Display(Name = "Diseño Gráfico")]
         GraphicDesign = 1,
         
         /// <summary>
         /// Desarrollo Web
         /// </summary>
-        [Description("Desarrolo Web")]
+        [Display(Name = "Desarrolo Web")]
         WebDevelopment = 2,
         
         /// <summary>
         /// Desarrollo Movil
         /// </summary>
-        [Description("Desarrollo para Moviles")]
+        [Display(Name = "Desarrollo para Moviles")]
         MobileDevelopment = 4,
         
         /// <summary>
