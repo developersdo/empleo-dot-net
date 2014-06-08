@@ -32,15 +32,17 @@ namespace EmpleoDotNet.Helpers
 
 
 
-        public static IHtmlString EnumDropListFor<TModel, TEnum>(this HtmlHelper<TModel> helper,
-                                  Expression<Func<TModel, TEnum>> expression)
+        public static IHtmlString EnumDropListFor<TModel, TEnum>(
+                                  this HtmlHelper<TModel> helper,
+                                  Expression<Func<TModel, TEnum>> expression,
+                                  object htmlAttributes = null)
         {
             IEnumerable<object> values = null;
             IEnumerable<SelectListItem> items = null;
 
             var meta = ModelMetadata.FromLambdaExpression(expression, helper.ViewData);
 
-            var type = (meta.ModelType) ?? meta.ModelType;
+            var type = meta.ModelType ?? meta.ModelType;
 
             if (type != null)
                 values = Enum.GetValues(type).Cast<object>();
@@ -50,12 +52,11 @@ namespace EmpleoDotNet.Helpers
                     .Select(e => new SelectListItem
                 {
                     Text = e.GetType().GetField(e.ToString()).GetCustomAttribute<DisplayAttribute>().Name,
-                    Value =  ((int)e).ToString(CultureInfo.InvariantCulture),
+                    Value = ((int)e).ToString(CultureInfo.InvariantCulture),
                     Selected = e.Equals(meta.Model)
                 });
-
             
-            return helper.DropDownListFor(expression, items, string.Empty, null);
+            return helper.DropDownListFor(expression, items, string.Empty, htmlAttributes);
         }
 
     }
