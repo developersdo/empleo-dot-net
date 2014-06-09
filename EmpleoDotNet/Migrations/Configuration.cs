@@ -21,7 +21,7 @@ namespace EmpleoDotNet.Migrations
                 Location = "Santo Domingo",
                 CompanyEmail = "prueba@developers.do",
                 CompanyUrl = "http://www.developers.do",
-                RequirementsToApply = "Debe saber programar Java",
+                Description = "Debe saber programar Java",
                 CompanyName = "Developer DO",
                 Created = DateTime.Now.AddDays(-2),
                 PublishedDate = DateTime.Now
@@ -36,7 +36,7 @@ namespace EmpleoDotNet.Migrations
                 Location = "Santo Domingo",
                 CompanyEmail = "prueba@developers.do",
                 CompanyUrl = "http://www.developers.do",
-                RequirementsToApply = "Debe saber programar C#",
+                Description = "Debe saber programar C#",
                 CompanyName = "Developer DO",
                 Created = DateTime.Now.AddDays(-3),
                 PublishedDate = DateTime.Now

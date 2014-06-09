@@ -24,10 +24,10 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.RequirementsToApply, new { @class = "col-sm-2 control-label" })
+        @Html.LabelFor(m => m.Description, new { @class = "col-sm-2 control-label" })
         <div class="col-sm-10">
-            @Html.TextAreaFor(m => m.RequirementsToApply, new { @class = "form-control"})
-            @Html.ValidationMessageFor(m => m.RequirementsToApply)
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control"})
+            @Html.ValidationMessageFor(m => m.Description)
         </div>
     </div>
 

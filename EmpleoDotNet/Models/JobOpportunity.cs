@@ -23,7 +23,7 @@ namespace EmpleoDotNet.Models
         /// <summary>
         /// Descripción de los requerimientos necesarios para aplicar al trabajo
         /// </summary>
-        public string RequirementsToApply { get; set; }
+        public string Description { get; set; }
         
         /// <summary>
         /// Nombre de la compañía
