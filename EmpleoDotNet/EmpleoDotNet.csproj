@@ -190,6 +190,7 @@
     <Compile Include="Models\JobOpportunity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\JobOpportunitySearchViewModel.cs" />
     <Compile Include="ViewModel\NewJobOpportunityViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

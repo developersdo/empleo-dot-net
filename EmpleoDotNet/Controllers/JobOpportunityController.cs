@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using EmpleoDotNet.Models;
 using EmpleoDotNet.ViewModel;
@@ -15,16 +16,36 @@ namespace EmpleoDotNet.Controllers
         }
 
         // GET: /JobOpportunity/
-        public ActionResult Index()
+        public ActionResult Index(string selectedLocation = "")
         {
-            var vmJobList = _databaseContext.JobOpportunities
+            var jobList = _databaseContext.JobOpportunities
                 .OrderByDescending(e => e.PublishedDate)
                 .ToList();
 
-            if (!vmJobList.Any())
+            var locations = _databaseContext.JobOpportunities
+                .Select(d => d.Location)
+                .Distinct()
+                .ToList();
+
+            locations.Insert(0, "Todas las locaciones");
+
+            if (!String.IsNullOrEmpty(selectedLocation) 
+                && selectedLocation != "Todas las locaciones")
+            {
+                jobList = jobList
+                    .Where(j => j.Location == selectedLocation)
+                    .ToList();
+            }
+
+            var vm = new JobOpportunitySearchViewModel {
+                JobOpportunities = jobList,
+                Locations = locations
+            };
+
+            if (!vm.JobOpportunities.Any())
                 return RedirectToAction("Index", "Home");
 
-            return View(vmJobList);
+            return View(vm);
         }
 
         // GET: /JobOpportunity/Detail/4
