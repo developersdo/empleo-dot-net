@@ -56,12 +56,20 @@ namespace EmpleoDotNet.Helpers
 
             items = names.Zip(values, (name, value) => new SelectListItem()
             {
-                Text = name,
+                Text = GetDisplayName(type, name),
                 Value = value.ToString(CultureInfo.InvariantCulture),
                 Selected = value.Equals(meta.Model)
             });
 
             return helper.DropDownListFor(expression, items, string.Empty, htmlAttributes);
+        }
+
+        private static string GetDisplayName(Type type, string name)
+        {
+            var result = name;
+
+            var attribute = type.GetField(name).GetCustomAttributes<DisplayAttribute>(false).FirstOrDefault();
+            return attribute != null ? attribute.GetName() : result;
         }
 
     }
