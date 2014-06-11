@@ -43,6 +43,34 @@ namespace EmpleoDotNet.Migrations
             };
             context.JobOpportunities.AddOrUpdate(d => d.Title,
                 oportunidad2);
+
+            var oportunidad3 = new JobOpportunity() {
+                Category = JobCategory.Networking,
+                Title = "Gerente de IT",
+                Location = "Santiago",
+                CompanyEmail = "prueba@developers.do",
+                CompanyUrl = "http://www.developers.do",
+                Description = "Se necesita gerente de IT para multinacional",
+                CompanyName = "Developers DO Santiago",
+                Created = DateTime.Now.AddDays(-1),
+                PublishedDate = DateTime.Now
+            };
+            context.JobOpportunities.AddOrUpdate(d => d.Title,
+                oportunidad3);
+
+            var oportunidad4 = new JobOpportunity() {
+                Category = JobCategory.GraphicDesign,
+                Title = "Diseñador Gráfico Web",
+                Location = "Puerto Plata",
+                CompanyEmail = "prueba@developers.do",
+                CompanyUrl = "http://www.developers.do",
+                Description = "Se necesita diseñador que sepa HTML, CSS, Javascript y maneje Bootstrap",
+                CompanyName = "Developers DO PP",
+                Created = DateTime.Now.AddDays(-1),
+                PublishedDate = DateTime.Now
+            };
+            context.JobOpportunities.AddOrUpdate(d => d.Title,
+                oportunidad4);
         }
     }
 }

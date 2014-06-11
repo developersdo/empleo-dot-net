@@ -1,5 +1,5 @@
 ﻿@using EmpleoDotNet.Helpers
-@model IEnumerable<EmpleoDotNet.Models.JobOpportunity>
+@model EmpleoDotNet.ViewModel.JobOpportunitySearchViewModel
 @{
     ViewBag.Title = "Listado de vacantes";
 }
@@ -15,11 +15,29 @@
 </div>
 
 <div class="row">
+    @using (Html.BeginForm("Index", "JobOpportunity", FormMethod.Get))
+    {
+        <div class="col-xs-3">
+            @Html.DropDownListFor(d => d.SelectedLocation,
+                Model.Locations.Select(s => new SelectListItem {Text = s, Value = s}),
+                new {@class = "form-control"})
+        </div>
+        <div class="col-xs-3">
+            @*Aqui va el control de seleccion de Categorias*@
+        </div>
+        
+        <div class="col-xs-2">
+            <button type="Submit" class="btn btn-info">Filtrar</button>    
+        </div>
+    }
+</div>
+
+<div class="row">
     <p>&nbsp;</p>
     <table class="table table-striped">
         <tbody>
 
-            @foreach (var job in Model)
+            @foreach (var job in Model.JobOpportunities)
             {
                 <tr>
                     <td>
