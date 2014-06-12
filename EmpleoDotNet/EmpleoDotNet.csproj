@@ -185,11 +185,16 @@
     <Compile Include="Migrations\201406121304468_MetadataUnificationChange.Designer.cs">
       <DependentUpon>201406121304468_MetadataUnificationChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406121337429_ModificacionDePrimaryKey.cs" />
+    <Compile Include="Migrations\201406121337429_ModificacionDePrimaryKey.Designer.cs">
+      <DependentUpon>201406121337429_ModificacionDePrimaryKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />
     <Compile Include="Models\EntityBase.cs" />
     <Compile Include="Models\Identity\IdentityModels.cs" />
+    <Compile Include="Models\ISearchable.cs" />
     <Compile Include="Models\JobCategory.cs" />
     <Compile Include="Models\JobOpportunity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -272,6 +277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406121304468_MetadataUnificationChange.resx">
       <DependentUpon>201406121304468_MetadataUnificationChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406121337429_ModificacionDePrimaryKey.resx">
+      <DependentUpon>201406121337429_ModificacionDePrimaryKey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

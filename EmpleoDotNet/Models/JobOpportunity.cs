@@ -1,10 +1,18 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmpleoDotNet.Models
 {
-    public class JobOpportunity : EntityBase
+    public class JobOpportunity : EntityBase, ISearchable
     {
+        /// <summary>
+        /// Identificador unico de una oportunidad de trabajo.
+        /// </summary>
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
         /// <summary>
         /// Titulo de la posición
         /// </summary>
@@ -70,5 +78,6 @@ namespace EmpleoDotNet.Models
         /// </remarks>
         [Display(Name = "Fecha de Publicación")]
         public DateTime? PublishedDate { get; set; }
+
     }
 }

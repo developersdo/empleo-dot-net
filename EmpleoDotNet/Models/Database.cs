@@ -13,7 +13,8 @@ namespace EmpleoDotNet.Models
     /// </summary>
     public class Database : DbContext
     {
-        public Database() : base("EmpleoDotNetConn")
+        public Database()
+            : base("EmpleoDotNetConn")
         { }
 
         //Tablas
@@ -21,11 +22,12 @@ namespace EmpleoDotNet.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //TODO: Esto debe desenterrarse de aqui en el futuro y format parte de la metada de la entidad.
+            //Segun el diseño inicial, se deseaba que los PK todos se llamaran Id,
+            //Para mantener esta comodidad pero generar una DB apta para el mundo real,
+            //Cambiar Nombre de la columna.
             modelBuilder.Entity<JobOpportunity>()
-                        .HasKey(p=>p.Id)
                         .Property(p => p.Id)
-                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+                        .HasColumnName(string.Format("{0}Id", typeof(JobOpportunity).Name));
 
             base.OnModelCreating(modelBuilder);
         }
