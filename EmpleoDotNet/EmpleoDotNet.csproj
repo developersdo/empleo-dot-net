@@ -181,6 +181,10 @@
     <Compile Include="Migrations\201406030408364_CambiadoRequirementsToApplyADescription.Designer.cs">
       <DependentUpon>201406030408364_CambiadoRequirementsToApplyADescription.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406121304468_MetadataUnificationChange.cs" />
+    <Compile Include="Migrations\201406121304468_MetadataUnificationChange.Designer.cs">
+      <DependentUpon>201406121304468_MetadataUnificationChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />
@@ -265,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406030408364_CambiadoRequirementsToApplyADescription.resx">
       <DependentUpon>201406030408364_CambiadoRequirementsToApplyADescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406121304468_MetadataUnificationChange.resx">
+      <DependentUpon>201406121304468_MetadataUnificationChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
