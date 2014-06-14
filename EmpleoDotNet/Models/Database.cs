@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -12,10 +13,23 @@ namespace EmpleoDotNet.Models
     /// </summary>
     public class Database : DbContext
     {
-        public Database() : base("EmpleoDotNetConn")
+        public Database()
+            : base("EmpleoDotNetConn")
         { }
 
         //Tablas
         public DbSet<JobOpportunity> JobOpportunities { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            //Segun el diseño inicial, se deseaba que los PK todos se llamaran Id,
+            //Para mantener esta comodidad pero generar una DB apta para el mundo real,
+            //Cambiar Nombre de la columna.
+            modelBuilder.Entity<JobOpportunity>()
+                        .Property(p => p.Id)
+                        .HasColumnName(string.Format("{0}Id", typeof(JobOpportunity).Name));
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

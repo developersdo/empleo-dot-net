@@ -8,13 +8,6 @@ namespace EmpleoDotNet.Models
     /// </summary>
     public abstract class EntityBase
     {
-
-        /// <summary>
-        /// Las entidades deben poseer un identificador unico para poder realizar búsquedas
-        /// cuando trabajemos con colecciones.
-        /// </summary>
-        public int Id { get; set; }
-
         /// <summary>
         /// Las entidades deben poseer un campo con la fecha de creación para posibles 
         /// auditorias o como referencia en potenciales sesiones de debugging.

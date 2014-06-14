@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Web.ModelBinding;
 using EmpleoDotNet.Models;
 
 namespace EmpleoDotNet.ViewModel
@@ -7,37 +8,35 @@ namespace EmpleoDotNet.ViewModel
     /// <summary>
     /// ViewModel para crear una vacante nueva
     /// </summary>
+    [MetadataType(typeof(JobOpportunity))] //Includes Data Validations of Model
     public class NewJobOpportunityViewModel
     {
-        [Required(ErrorMessage = "El campo titulo es requerido."), Display(Name = "Titulo")]
+        public int Id { get; set; }
         public string Title { get; set; }
 
-        [Required(ErrorMessage = "El campo ubicación es requerido."), Display(Name = "Ubicación")]
         public string Location { get; set; }
 
-        [Required(ErrorMessage = "Debe elegir una categoria."), Display(Name = "Categoria")]
         public JobCategory Category { get; set; }
-
-        [Required(ErrorMessage = "Debe especificar al menos un requisito."), Display(Name = "Requisitos para aplicar")]
+        
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "El nombre de la empresa es requerido."), Display(Name = "Ubicación")]
         public string CompanyName { get; set; }
 
-        [Display(Name = "Dirección Web")]
         public string CompanyUrl { get; set; }
 
-        [Required(ErrorMessage = "El campo email es requerido")]
-        [Display(Name = "Email"), EmailAddress(ErrorMessage = "Email invalido.")]
         public string CompanyEmail { get; set; }
 
-
         public string CompanyLogoUrl { get; set; }
+
+        public DateTime Created { get { return DateTime.Now; } }
+        public DateTime PublishedDate { get { return DateTime.Now; } }
+
 
         public Models.JobOpportunity ToEntity()
         {
 
-            var entity = new JobOpportunity {
+            var entity = new JobOpportunity
+            {
                 Title = this.Title,
                 Location = this.Location,
                 Category = this.Category,
@@ -46,8 +45,8 @@ namespace EmpleoDotNet.ViewModel
                 CompanyUrl = this.CompanyUrl,
                 CompanyLogoUrl = this.CompanyLogoUrl,
                 CompanyEmail = this.CompanyEmail,
-                Created = DateTime.Now,
-                PublishedDate = DateTime.Now
+                Created = this.Created,
+                PublishedDate = this.PublishedDate
             };
 
             return entity;
