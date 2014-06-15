@@ -55,6 +55,12 @@ namespace EmpleoDotNet.Models
         /// IT Ventas
         /// </summary>
         [Display(Name = "IT Ventas")]
-        ItSales = 64
+        ItSales = 64,
+
+        /// <summary>
+        /// DBA
+        /// </summary>
+        [Display(Name = "Administrador de base de datos")]
+        DataBaseAdministrator = 128
     }
 }
