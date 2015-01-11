@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using EmpleoDotNet.Models;
 using EmpleoDotNet.ViewModel;
+using System.Collections.Generic;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -15,22 +16,36 @@ namespace EmpleoDotNet.Controllers
             _databaseContext = new Database();
         }
 
-        // GET: /JobOpportunity/
-        public ActionResult Index(string selectedLocation = "")
+        public IList<string> GetLocations()
+        {
+            var locations = _databaseContext.JobOpportunities
+            .Select(d => d.Location)
+            .Distinct()
+            .ToList();
+            return locations;
+        }
+
+        public IList<JobOpportunity> GetJobOpportunitiesByDateDesc()
         {
             var jobList = _databaseContext.JobOpportunities
                 .OrderByDescending(e => e.PublishedDate)
                 .ToList();
 
-            var locations = _databaseContext.JobOpportunities
-                .Select(d => d.Location)
-                .Distinct()
-                .ToList();
+            return jobList;
+        }
 
-            locations.Insert(0, "Todas las locaciones");
+        // GET: /JobOpportunity/
+        public ActionResult Index(string selectedLocation = "")
+        {
+            var jobList = GetJobOpportunitiesByDateDesc();
+
+            var locations = GetLocations();
+
+            var placeholderLocations = "Todas las locaciones";
+            locations.Insert(0, placeholderLocations);
 
             if (!String.IsNullOrEmpty(selectedLocation) 
-                && selectedLocation != "Todas las locaciones")
+                && !selectedLocation.Equals(placeholderLocations))
             {
                 jobList = jobList
                     .Where(j => j.Location == selectedLocation)
@@ -89,5 +104,7 @@ namespace EmpleoDotNet.Controllers
 
             return RedirectToAction("Index");
         }
+
+
     }
 }

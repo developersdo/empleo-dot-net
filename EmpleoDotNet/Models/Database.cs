@@ -31,5 +31,6 @@ namespace EmpleoDotNet.Models
 
             base.OnModelCreating(modelBuilder);
         }
+
     }
 }
