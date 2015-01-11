@@ -16,7 +16,7 @@ namespace EmpleoDotNet.Controllers
             _databaseContext = new Database();
         }
 
-        public IList<string> GetLocations()
+        private IList<string> GetLocations()
         {
             var locations = _databaseContext.JobOpportunities
             .Select(d => d.Location)
@@ -25,7 +25,7 @@ namespace EmpleoDotNet.Controllers
             return locations;
         }
 
-        public IList<JobOpportunity> GetJobOpportunitiesByDateDesc()
+        private IList<JobOpportunity> GetJobOpportunitiesByDateDesc()
         {
             var jobList = _databaseContext.JobOpportunities
                 .OrderByDescending(e => e.PublishedDate)
