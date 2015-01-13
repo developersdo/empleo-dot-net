@@ -19,7 +19,7 @@ namespace EmpleoDotNet.Models
 
         //Tablas
         public DbSet<JobOpportunity> JobOpportunities { get; set; }
-
+        public DbSet<Location> Locations { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //Segun el diseño inicial, se deseaba que los PK todos se llamaran Id,
@@ -28,6 +28,11 @@ namespace EmpleoDotNet.Models
             modelBuilder.Entity<JobOpportunity>()
                         .Property(p => p.Id)
                         .HasColumnName(string.Format("{0}Id", typeof(JobOpportunity).Name));
+
+            modelBuilder.Entity<Location>()
+                        .Property(p => p.Id)
+                        .HasColumnName(string.Format("{0}Id", typeof(Location).Name));
+
 
             base.OnModelCreating(modelBuilder);
         }
