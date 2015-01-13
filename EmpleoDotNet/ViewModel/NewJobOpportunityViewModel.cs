@@ -14,7 +14,7 @@ namespace EmpleoDotNet.ViewModel
         public int Id { get; set; }
         public string Title { get; set; }
 
-        public string Location { get; set; }
+        public Location Location { get; set; }
 
         public JobCategory Category { get; set; }
         
