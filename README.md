@@ -1,6 +1,8 @@
 empleo-dot-net
 ==============
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/developersdo/empleo-dot-net?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ### ¿Qué es esto?
 
 Es una iniciativa de Developers.DO y C#.DO  de crear un proyecto en github que sirva como "aprendizaje de la vida real" para quienes quieren aprender ASP.NET MVC.
