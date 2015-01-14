@@ -15,6 +15,20 @@ namespace EmpleoDotNet.Migrations
 
         protected override void Seed(Database context)
         {
+            #region Locations
+            var locationsList = new List<Location>
+            {
+                new Location { Name = "Santo Domingo" },
+                new Location { Name = "Santiago" },
+                new Location { Name = "Puerto Plata" }
+            };
+            foreach(var location in locationsList)
+            {
+                context.Locations.AddOrUpdate(d => d.Name,
+                                              location);
+            }
+            #endregion
+
             #region JobOpportunities
 
             var opportunitiesList = new List<JobOpportunity>
@@ -23,7 +37,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.SoftwareDevelopment,
                     Title = "Pega Blo Senior",
-                    Location = "Santo Domingo",
+                    Location = locationsList[0],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description = "Debe saber programar Java",
@@ -35,7 +49,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.SoftwareDevelopment,
                     Title = "Pega Blo Junior",
-                    Location = "Santo Domingo",
+                    Location = locationsList[0],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description = "Debe saber programar C#",
@@ -47,7 +61,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.Networking,
                     Title = "Gerente de IT",
-                    Location = "Santiago",
+                    Location = locationsList[1],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description = "Se necesita gerente de IT para multinacional",
@@ -59,7 +73,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.GraphicDesign,
                     Title = "Diseñador Gráfico Web",
-                    Location = "Puerto Plata",
+                    Location = locationsList[2],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description = "Se necesita diseñador que sepa HTML, CSS, Javascript y maneje Bootstrap",
@@ -71,7 +85,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.SoftwareDevelopment,
                     Title = "4 Vacantes, Desarrolladores",
-                    Location = "Santo Domingo",
+                    Location = locationsList[0],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -84,7 +98,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.MobileDevelopment,
                     Title = "Programador IOS",
-                    Location = "Santo Domingo",
+                    Location = locationsList[0],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -97,7 +111,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.MobileDevelopment,
                     Title = "Programador Android",
-                    Location = "Santo Domingo",
+                    Location = locationsList[0],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -110,7 +124,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.SoftwareDevelopment,
                     Title = "Programador/Desarrollador",
-                    Location = "Santo Domingo D.N.",
+                    Location = locationsList[0],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description = "Tecnologo de Software.",
@@ -122,7 +136,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.SoftwareDevelopment,
                     Title = "Programador",
-                    Location = "Santo Domingo",
+                    Location = locationsList[0],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -135,7 +149,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.WebDevelopment,
                     Title = "Programadores y disenadores Junior y Senior",
-                    Location = "Santo Domingo",
+                    Location = locationsList[0],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -148,7 +162,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.MobileDevelopment,
                     Title = "Mobile Developer Intern",
-                    Location = "Santo Domingo",
+                    Location = locationsList[0],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -161,7 +175,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.SoftwareDevelopment,
                     Title = "Backend python developer",
-                    Location = "Santo Domingo",
+                    Location = locationsList[0],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -174,7 +188,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.WebDevelopment,
                     Title = "Diseñador web Comunimas",
-                    Location = "Santo Domingo",
+                    Location = locationsList[0],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -187,7 +201,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.SoftwareDevelopment,
                     Title = "Programador PHP/C#.NET",
-                    Location = "Santo Domingo",
+                    Location = locationsList[0],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -200,7 +214,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.WebDevelopment,
                     Title = "Senior PHP Developer",
-                    Location = "Santo Domingo",
+                    Location = locationsList[0],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -213,7 +227,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.DataBaseAdministrator,
                     Title = "Programador Base de Datos",
-                    Location = "Santo Domingo",
+                    Location = locationsList[0],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -226,7 +240,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.MobileDevelopment,
                     Title = "Mobile y Web Developers",
-                    Location = "Santo Domingo",
+                    Location = locationsList[0],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -239,7 +253,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.WebDevelopment,
                     Title = "Programador web/Python",
-                    Location = "Santo Domingo",
+                    Location = locationsList[0],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -252,7 +266,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.SoftwareDevelopment,
                     Title = "programador C++ y programador C#",
-                    Location = "Santo Domingo",
+                    Location = locationsList[0],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description = "Conocimeinto en C++, c#, v isual studio. Sera para un trabajo temporal de 3 meses.",
@@ -264,7 +278,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.WebDevelopment,
                     Title = "Programador SENIOR .NET Indra",
-                    Location = "Santo Domingo",
+                    Location = locationsList[0],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description = "Ingenieros de Sistemas o Tecnologías de la Información (egresados) 5 años o más de experiencia en desarrollo .NET Conocimientos avanzados Java y SQL. Se ofrece contrato indefinido con jornada completa, seguro médico y bonificación. El salario será a convenir según la valía del candidato.",
@@ -276,7 +290,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.SoftwareDevelopment,
                     Title = "Programador C ++ y c#",
-                    Location = "Santo Domingo",
+                    Location = locationsList[0],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -289,7 +303,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.SoftwareDevelopment,
                     Title = "Programador Java",
-                    Location = "Santo Domingo",
+                    Location = locationsList[0],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -302,7 +316,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.WebDevelopment,
                     Title = "Programador web Tamontao",
-                    Location = "Puerto Plata",
+                    Location = locationsList[2],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description = "Programador web en lenguaje asp.net con mucho tiempo libre para trabajar.",
@@ -314,7 +328,7 @@ namespace EmpleoDotNet.Migrations
                 {
                     Category = JobCategory.SoftwareDevelopment,
                     Title = "Programador VB .net",
-                    Location = "Santo Domingo",
+                    Location = locationsList[0],
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =

@@ -4,6 +4,8 @@ using System.Web.Mvc;
 using EmpleoDotNet.Models;
 using EmpleoDotNet.ViewModel;
 using System.Collections.Generic;
+using EmpleoDotNet.Models.Repositories;
+using System.Text;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -15,31 +17,16 @@ namespace EmpleoDotNet.Controllers
         {
             _databaseContext = new Database();
         }
-
-        private IList<string> GetLocations()
-        {
-            var locations = _databaseContext.JobOpportunities
-            .Select(d => d.Location)
-            .Distinct()
-            .ToList();
-            return locations;
-        }
-
-        private IList<JobOpportunity> GetJobOpportunitiesByDateDesc()
-        {
-            var jobList = _databaseContext.JobOpportunities
-                .OrderByDescending(e => e.PublishedDate)
-                .ToList();
-
-            return jobList;
-        }
-
+        
         // GET: /JobOpportunity/
         public ActionResult Index(string selectedLocation = "")
         {
-            var jobList = GetJobOpportunitiesByDateDesc();
+            var jobRepository = new JobOpportunityRepository();
+            var locationRepository = new LocationRepository();
 
-            var locations = GetLocations();
+            var jobList = jobRepository.GetAllJobOpportunities();
+
+            var locations = locationRepository.GetAllLocationNames();
 
             var placeholderLocations = "Todas las locaciones";
             locations.Insert(0, placeholderLocations);
@@ -47,9 +34,9 @@ namespace EmpleoDotNet.Controllers
             if (!String.IsNullOrEmpty(selectedLocation) 
                 && !selectedLocation.Equals(placeholderLocations))
             {
-                jobList = jobList
-                    .Where(j => j.Location == selectedLocation)
-                    .ToList();
+                var locationArgument = locationRepository.GetLocationByName(selectedLocation);
+
+                jobList = jobRepository.GetAllJobOpportunitiesByLocation(locationArgument);
             }
 
             var vm = new JobOpportunitySearchViewModel {
@@ -85,7 +72,12 @@ namespace EmpleoDotNet.Controllers
         // GET: /JobOpportunity/New
         public ActionResult New()
         {
-            return View("New", new NewJobOpportunityViewModel());
+            var locationRepo = new LocationRepository();
+
+            var viewModel = new NewJobOpportunityViewModel();
+            viewModel.Locations = locationRepo.GetAllLocations();
+
+            return View("New", viewModel);
         }
 
 
@@ -94,6 +86,8 @@ namespace EmpleoDotNet.Controllers
         {
             if (!ModelState.IsValid)
             {
+                var locationRepo = new LocationRepository();
+                job.Locations = locationRepo.GetAllLocations();
                 @ViewBag.ErrorMessage = "Han ocurrido errores de validación que no permiten continuar el proceso";
                 return View(job);
             }
@@ -104,7 +98,5 @@ namespace EmpleoDotNet.Controllers
 
             return RedirectToAction("Index");
         }
-
-
     }
 }
