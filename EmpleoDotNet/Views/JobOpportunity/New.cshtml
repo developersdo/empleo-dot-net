@@ -16,10 +16,11 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Location, new { @class = "col-sm-2 control-label" })
+         @Html.LabelFor(m => m.Location, new { @class = "col-sm-2 control-label" })
         <div class="col-sm-10">
-            @Html.TextBoxFor(m => m.Location, new { @class = "form-control", placeholder = "Ej: Santo Domingo..." })
-            @Html.ValidationMessageFor(m => m.Location)
+            @Html.DropDownListFor(d => d.LocationId,
+                                    Model.Locations.Select(s => new SelectListItem { Text = s.Name, Value = s.Id.ToString() }),
+                                    new { @class = "form-control" })
         </div>
     </div>
 

@@ -23,8 +23,10 @@ namespace EmpleoDotNet.Models
         /// <summary>
         /// Posición geográfica (donde es el trabajo)
         /// </summary>
+        [Required(ErrorMessage = "La localidad es requerida")]
         [ForeignKey("Location")]
         public int LocationId { get; set; }
+        [Display(Name = "Localidad")]
         public Location Location { get; set; }
 
         /// <summary>

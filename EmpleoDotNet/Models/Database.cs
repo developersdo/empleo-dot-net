@@ -22,6 +22,7 @@ namespace EmpleoDotNet.Models
         public DbSet<Location> Locations { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+
             //Segun el diseño inicial, se deseaba que los PK todos se llamaran Id,
             //Para mantener esta comodidad pero generar una DB apta para el mundo real,
             //Cambiar Nombre de la columna.
@@ -33,6 +34,7 @@ namespace EmpleoDotNet.Models
                         .Property(p => p.Id)
                         .HasColumnName(string.Format("{0}Id", typeof(Location).Name));
 
+ 
 
             base.OnModelCreating(modelBuilder);
         }

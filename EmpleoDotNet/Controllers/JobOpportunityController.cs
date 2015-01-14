@@ -5,6 +5,7 @@ using EmpleoDotNet.Models;
 using EmpleoDotNet.ViewModel;
 using System.Collections.Generic;
 using EmpleoDotNet.Models.Repositories;
+using System.Text;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -71,7 +72,12 @@ namespace EmpleoDotNet.Controllers
         // GET: /JobOpportunity/New
         public ActionResult New()
         {
-            return View("New", new NewJobOpportunityViewModel());
+            var locationRepo = new LocationRepository();
+
+            var viewModel = new NewJobOpportunityViewModel();
+            viewModel.Locations = locationRepo.GetAllLocations();
+
+            return View("New", viewModel);
         }
 
 
@@ -80,6 +86,8 @@ namespace EmpleoDotNet.Controllers
         {
             if (!ModelState.IsValid)
             {
+                var locationRepo = new LocationRepository();
+                job.Locations = locationRepo.GetAllLocations();
                 @ViewBag.ErrorMessage = "Han ocurrido errores de validación que no permiten continuar el proceso";
                 return View(job);
             }
@@ -90,7 +98,5 @@ namespace EmpleoDotNet.Controllers
 
             return RedirectToAction("Index");
         }
-
-
     }
 }

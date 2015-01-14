@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Web.ModelBinding;
 using EmpleoDotNet.Models;
+using System.Collections.Generic;
 
 namespace EmpleoDotNet.ViewModel
 {
@@ -14,8 +15,9 @@ namespace EmpleoDotNet.ViewModel
         public int Id { get; set; }
         public string Title { get; set; }
 
+        public int LocationId { get; set; }
         public Location Location { get; set; }
-
+        public List<Location> Locations { get; set; }
         public JobCategory Category { get; set; }
         
         public string Description { get; set; }
@@ -38,6 +40,7 @@ namespace EmpleoDotNet.ViewModel
             var entity = new JobOpportunity
             {
                 Title = this.Title,
+                LocationId = this.LocationId,
                 Location = this.Location,
                 Category = this.Category,
                 Description = this.Description,

@@ -191,6 +191,10 @@
     <Compile Include="Migrations\201406121337429_ModificacionDePrimaryKey.Designer.cs">
       <DependentUpon>201406121337429_ModificacionDePrimaryKey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501132331025_AgregaLocation.cs" />
+    <Compile Include="Migrations\201501132331025_AgregaLocation.Designer.cs">
+      <DependentUpon>201501132331025_AgregaLocation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />
@@ -288,6 +292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406121337429_ModificacionDePrimaryKey.resx">
       <DependentUpon>201406121337429_ModificacionDePrimaryKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501132331025_AgregaLocation.resx">
+      <DependentUpon>201501132331025_AgregaLocation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
