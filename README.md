@@ -20,6 +20,9 @@ Todo el conocimiento y decisiones que surgen a partir de discusiones se estará 
 * Entra al [chat del grupo si tienes preguntas puntuales](https://devsdo.hipchat.com/invite/117666/9247d052e13262bf1488993e2d04b259) (Si ya tienes una cuenta en hipchat, [entra aquí como invitado](http://www.hipchat.com/g0PQNEPIJ)) 
 * Si quieres colaborar puedes comenzar un [Pull Request](https://help.github.com/articles/using-pull-requests)
 
+Tenemos un chat en Gitter: 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/developersdo/empleo-dot-net?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ## Roadmap
 
 Pensamos dividir el desarrollo en tres etapas que permitan que participen personas con todo tipo de background en desarrollo:
