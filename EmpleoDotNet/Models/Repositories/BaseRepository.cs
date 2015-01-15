@@ -1,27 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Web;
 
 namespace EmpleoDotNet.Models.Repositories
 {
     public class BaseRepository<T> where T : class
     {
-        protected DbContext context = new Models.Database();
-        protected DbSet<T> dbSet;
+        protected DbContext Context = new Models.Database();
+        protected DbSet<T> DbSet;
+
         public BaseRepository()
         {
-            dbSet = context.Set<T>();
+            DbSet = Context.Set<T>();
         }
-        protected T GetById(int id)
+        protected T GetById(int? id)
         {
-            return dbSet.Find(id);
+            return DbSet.Find(id);
         }
         protected IQueryable<T> GetAll()
         {
-            return dbSet;
+            return DbSet;
+        }
+
+        public void SaveChanges()
+        {
+            //TODO: Implement Unit of Work Pattern
+            //Esto permitirá que se pueda grabar de forma transaccional en la BD
+            Context.SaveChanges();
+        }
+
+        public void Add(T entity)
+        {
+            DbSet.Add(entity);
         }
     }
 }

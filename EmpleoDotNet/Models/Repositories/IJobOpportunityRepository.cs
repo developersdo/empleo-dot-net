@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace EmpleoDotNet.Models.Repositories
 {
@@ -10,6 +6,6 @@ namespace EmpleoDotNet.Models.Repositories
     {
         List<JobOpportunity> GetAllJobOpportunities();
         List<JobOpportunity> GetAllJobOpportunitiesByLocation(Location location);
-        JobOpportunity GetJobOpportunityById(int id);
+        JobOpportunity GetJobOpportunityById(int? id);
     }
 }

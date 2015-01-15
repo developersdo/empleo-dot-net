@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace EmpleoDotNet.Models.Repositories
 {
-    public class JobOpportunityRepository:BaseRepository<JobOpportunity>, IJobOpportunityRepository
+    public class JobOpportunityRepository : BaseRepository<JobOpportunity>, IJobOpportunityRepository
     {
         public List<JobOpportunity> GetAllJobOpportunities()
         {
@@ -13,6 +11,7 @@ namespace EmpleoDotNet.Models.Repositories
             var locations = locationRepo.GetAllLocations().ToDictionary(x=> x.Id);
 
             var jobOpportunities = GetAll().OrderByDescending(x => x.PublishedDate);
+            
             //Esto es para llenar la propiedad de navegación ya que EF solo llena el LocationId (no se porqué)
             foreach (var item in jobOpportunities)
                 item.Location = locations[item.LocationId];
@@ -27,7 +26,7 @@ namespace EmpleoDotNet.Models.Repositories
             return jobOpportunities;
         }
 
-        public JobOpportunity GetJobOpportunityById(int id)
+        public JobOpportunity GetJobOpportunityById(int? id)
         {
             return GetById(id);
         }
