@@ -23,9 +23,11 @@ namespace EmpleoDotNet.Models
         /// <summary>
         /// Posición geográfica (donde es el trabajo)
         /// </summary>
-        [Required(ErrorMessage = "El campo ubicación es requerido."), StringLength(int.MaxValue)]
-        [Display(Name = "Ubicación")]
-        public string Location { get; set; }
+        [Required(ErrorMessage = "La localidad es requerida")]
+        [ForeignKey("Location")]
+        public int LocationId { get; set; }
+        [Display(Name = "Localidad")]
+        public Location Location { get; set; }
 
         /// <summary>
         /// Categoria del trabajo
