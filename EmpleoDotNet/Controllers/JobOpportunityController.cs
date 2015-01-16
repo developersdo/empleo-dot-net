@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.Models.Repositories;
+using System.Collections.Generic;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -18,17 +19,19 @@ namespace EmpleoDotNet.Controllers
         }
         
         // GET: /JobOpportunity/
-        public ActionResult Index(string selectedLocation = "")
+        public ActionResult Index(int? selectedLocationId)
         {
             var jobList = _jobRepository.GetAllJobOpportunities();
-            var locations = _locationRepository.GetAllLocationNames();
 
             const string placeholderLocations = "Todas las locaciones";
-            locations.Insert(0, placeholderLocations);
-
-            if (!String.IsNullOrEmpty(selectedLocation) && !selectedLocation.Equals(placeholderLocations))
+            var locations = new List<Models.Location> { 
+                new Models.Location { Id = -1, Name = placeholderLocations }
+            };
+            locations.AddRange(_locationRepository.GetAllLocations());
+            
+            if (selectedLocationId != null && selectedLocationId >= 1)
             {
-                var locationArgument = _locationRepository.GetLocationByName(selectedLocation);
+                var locationArgument = _locationRepository.GetLocationById((int)selectedLocationId);
                 jobList = _jobRepository.GetAllJobOpportunitiesByLocation(locationArgument);
             }
 

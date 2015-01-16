@@ -8,9 +8,9 @@ namespace EmpleoDotNet.ViewModel
     public class JobOpportunitySearchViewModel
     {
         public IList<Models.JobOpportunity> JobOpportunities { get; set; }
+
+        public int? SelectedLocationId { get; set; }
         
-        public string SelectedLocation { get; set; }
-        
-        public IList<string> Locations { get; set; }
+        public IList<EmpleoDotNet.Models.Location> Locations { get; set; }
     }
 }
