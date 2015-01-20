@@ -5,6 +5,8 @@ namespace EmpleoDotNet.Models.Repositories
 {
     public class JobOpportunityRepository : BaseRepository<JobOpportunity>, IJobOpportunityRepository
     {
+      
+
         public List<JobOpportunity> GetAllJobOpportunities()
         {
             var locationRepo = new LocationRepository();
