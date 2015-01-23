@@ -41,6 +41,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -109,12 +115,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -167,33 +167,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\EnumHelper.cs" />
-    <Compile Include="Migrations\201405302346332_AgregandoJobOpportunity.cs" />
-    <Compile Include="Migrations\201405302346332_AgregandoJobOpportunity.Designer.cs">
-      <DependentUpon>201405302346332_AgregandoJobOpportunity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201405302355507_CompanyNameWithShortLength.cs" />
-    <Compile Include="Migrations\201405302355507_CompanyNameWithShortLength.Designer.cs">
-      <DependentUpon>201405302355507_CompanyNameWithShortLength.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201405310304010_CambioNombreColumna.cs" />
-    <Compile Include="Migrations\201405310304010_CambioNombreColumna.Designer.cs">
-      <DependentUpon>201405310304010_CambioNombreColumna.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406030408364_CambiadoRequirementsToApplyADescription.cs" />
-    <Compile Include="Migrations\201406030408364_CambiadoRequirementsToApplyADescription.Designer.cs">
-      <DependentUpon>201406030408364_CambiadoRequirementsToApplyADescription.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406121304468_MetadataUnificationChange.cs" />
-    <Compile Include="Migrations\201406121304468_MetadataUnificationChange.Designer.cs">
-      <DependentUpon>201406121304468_MetadataUnificationChange.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406121337429_ModificacionDePrimaryKey.cs" />
-    <Compile Include="Migrations\201406121337429_ModificacionDePrimaryKey.Designer.cs">
-      <DependentUpon>201406121337429_ModificacionDePrimaryKey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501132331025_AgregaLocation.cs" />
-    <Compile Include="Migrations\201501132331025_AgregaLocation.Designer.cs">
-      <DependentUpon>201501132331025_AgregaLocation.cs</DependentUpon>
+    <Compile Include="Migrations\201501202109450_databaseinitial.cs" />
+    <Compile Include="Migrations\201501202109450_databaseinitial.Designer.cs">
+      <DependentUpon>201501202109450_databaseinitial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database.cs" />
@@ -209,6 +185,7 @@
     <Compile Include="Models\Repositories\ILocationRepository.cs" />
     <Compile Include="Models\Repositories\JobOpportunityRepository.cs" />
     <Compile Include="Models\Repositories\LocationRepository.cs" />
+    <Compile Include="Models\UnitOfWork\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\JobOpportunitySearchViewModel.cs" />
@@ -217,6 +194,17 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\IconsSocial\Email.png" />
+    <Content Include="Content\IconsSocial\Facebook.png" />
+    <Content Include="Content\IconsSocial\Google.png" />
+    <Content Include="Content\IconsSocial\LinkedIn.png" />
+    <Content Include="Content\IconsSocial\Pinboard.png" />
+    <Content Include="Content\IconsSocial\Pinterest.png" />
+    <Content Include="Content\IconsSocial\Pocket.png" />
+    <Content Include="Content\IconsSocial\Reddit.png" />
+    <Content Include="Content\IconsSocial\Tumblr.png" />
+    <Content Include="Content\IconsSocial\Twitter.png" />
+    <Content Include="Content\IconsSocial\Wordpress.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -275,26 +263,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201405302346332_AgregandoJobOpportunity.resx">
-      <DependentUpon>201405302346332_AgregandoJobOpportunity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201405302355507_CompanyNameWithShortLength.resx">
-      <DependentUpon>201405302355507_CompanyNameWithShortLength.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201405310304010_CambioNombreColumna.resx">
-      <DependentUpon>201405310304010_CambioNombreColumna.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406030408364_CambiadoRequirementsToApplyADescription.resx">
-      <DependentUpon>201406030408364_CambiadoRequirementsToApplyADescription.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406121304468_MetadataUnificationChange.resx">
-      <DependentUpon>201406121304468_MetadataUnificationChange.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406121337429_ModificacionDePrimaryKey.resx">
-      <DependentUpon>201406121337429_ModificacionDePrimaryKey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501132331025_AgregaLocation.resx">
-      <DependentUpon>201501132331025_AgregaLocation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201501202109450_databaseinitial.resx">
+      <DependentUpon>201501202109450_databaseinitial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
