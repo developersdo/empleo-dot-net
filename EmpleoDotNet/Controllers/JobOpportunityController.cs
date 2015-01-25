@@ -76,13 +76,14 @@ namespace EmpleoDotNet.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var locationRepo = new LocationRepository();
-                job.Locations = locationRepo.GetAllLocations();
+                job.Locations = _locationRepository.GetAllLocations();
                 ViewBag.ErrorMessage = "Han ocurrido errores de validación que no permiten continuar el proceso";
                 return View(job);
             }
 
+            _locationRepository.Add(new Location {Name = "Las Guaranas"});
             _jobRepository.Add(job.ToEntity());
+
             _uow.SaveChanges();
 
             return RedirectToAction("Index");

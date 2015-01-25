@@ -161,6 +161,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EmpleoDotNetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobOpportunityController.cs" />
     <Compile Include="Global.asax.cs">
@@ -197,10 +198,12 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database.cs" />
+    <Compile Include="Models\EntityFrameworkUnitOfWork.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />
     <Compile Include="Models\EntityBase.cs" />
     <Compile Include="Models\Identity\IdentityModels.cs" />
     <Compile Include="Models\ISearchable.cs" />
+    <Compile Include="Models\IUnitOfWork.cs" />
     <Compile Include="Models\JobCategory.cs" />
     <Compile Include="Models\JobOpportunity.cs" />
     <Compile Include="Models\Location.cs" />
