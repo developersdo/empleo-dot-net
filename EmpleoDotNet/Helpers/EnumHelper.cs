@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
@@ -13,7 +14,7 @@ namespace EmpleoDotNet.Helpers
 {
     public static class EnumHelper
     {
-       
+
         /// <summary>
         /// Extensión para los enums que permite obtener el display name del mismo.
         /// </summary>
@@ -33,30 +34,42 @@ namespace EmpleoDotNet.Helpers
 
 
         public static IHtmlString EnumDropListFor<TModel, TEnum>(
-                                  this HtmlHelper<TModel> helper,
-                                  Expression<Func<TModel, TEnum>> expression,
-                                  object htmlAttributes = null)
+            this HtmlHelper<TModel> helper,
+            Expression<Func<TModel, TEnum>> expression,
+            object htmlAttributes = null)
         {
-            IEnumerable<object> values = null;
             IEnumerable<SelectListItem> items = null;
 
             var meta = ModelMetadata.FromLambdaExpression(expression, helper.ViewData);
 
             var type = meta.ModelType ?? meta.ModelType;
 
-            if (type != null)
-                values = Enum.GetValues(type).Cast<object>();
+            if (!typeof(Enum).IsAssignableFrom(type))
+            {
+                throw new ArgumentException("It is not Enum");
+            }
 
-            if (values != null)
-                items = values.Where(e => e.GetType().GetField(e.ToString()).GetCustomAttribute<DisplayAttribute>() != null)
-                    .Select(e => new SelectListItem
-                {
-                    Text = e.GetType().GetField(e.ToString()).GetCustomAttribute<DisplayAttribute>().Name,
-                    Value = ((int)e).ToString(CultureInfo.InvariantCulture),
-                    Selected = e.Equals(meta.Model)
-                });
-            
+            Debug.Assert(type != null, "type != null");
+
+            var names = Enum.GetNames(type);
+            var values = Enum.GetValues(type).Cast<int>();
+
+            items = names.Zip(values, (name, value) => new SelectListItem()
+            {
+                Text = GetDisplayName(type, name),
+                Value = value.ToString(CultureInfo.InvariantCulture),
+                Selected = value.Equals(meta.Model)
+            });
+
             return helper.DropDownListFor(expression, items, string.Empty, htmlAttributes);
+        }
+
+        private static string GetDisplayName(Type type, string name)
+        {
+            var result = name;
+
+            var attribute = type.GetField(name).GetCustomAttributes<DisplayAttribute>(false).FirstOrDefault();
+            return attribute != null ? attribute.GetName() : result;
         }
 
     }
