@@ -5,13 +5,20 @@ namespace EmpleoDotNet.Models.Repositories
 {
     public class BaseRepository<T> where T : class
     {
-        protected DbContext Context = new Models.Database();
+        protected DbContext Context;
         protected DbSet<T> DbSet;
 
         public BaseRepository()
         {
+            Context = new Models.Database();
             DbSet = Context.Set<T>();
         }
+
+        public BaseRepository(DbContext context)
+        {
+            Context = context;
+        }
+
         protected T GetById(int? id)
         {
             return DbSet.Find(id);

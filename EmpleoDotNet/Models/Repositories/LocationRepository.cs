@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -35,6 +36,11 @@ namespace EmpleoDotNet.Models.Repositories
             var location = GetAll().Where(x => x.Name.Equals(name))
                             .SingleOrDefault();
             return location;
+        }
+
+        public LocationRepository(DbContext context)
+        {
+            this.Context = context;
         }
     }
 }

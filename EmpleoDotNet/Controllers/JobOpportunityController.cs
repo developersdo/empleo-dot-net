@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using EmpleoDotNet.Models;
 using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.Models.Repositories;
 
 namespace EmpleoDotNet.Controllers
 {
-    public class JobOpportunityController : Controller
+    public class JobOpportunityController : EmpleoDotNetController
     {
         private readonly JobOpportunityRepository _jobRepository;
         private readonly LocationRepository _locationRepository;
 
         public JobOpportunityController()
         {
-            _jobRepository = new JobOpportunityRepository();
-            _locationRepository = new LocationRepository();
+            _jobRepository = new JobOpportunityRepository(_database);
+            _locationRepository = new LocationRepository(_database);
         }
         
         // GET: /JobOpportunity/
@@ -82,7 +83,7 @@ namespace EmpleoDotNet.Controllers
             }
 
             _jobRepository.Add(job.ToEntity());
-            _jobRepository.SaveChanges();
+            _uow.SaveChanges();
 
             return RedirectToAction("Index");
         }
