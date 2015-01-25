@@ -18,8 +18,8 @@
     @using (Html.BeginForm("Index", "JobOpportunity", FormMethod.Get))
     {
         <div class="col-xs-3">
-            @Html.DropDownListFor(d => d.SelectedLocation,
-                Model.Locations.Select(s => new SelectListItem {Text = s, Value = s}),
+            @Html.DropDownListFor(d => d.SelectedLocationId,
+                Model.Locations.Select(s => new SelectListItem { Text = s.Name, Value = s.Id.ToString() }),
                 new {@class = "form-control"})
         </div>
         <div class="col-xs-3">
