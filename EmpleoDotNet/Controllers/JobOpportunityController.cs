@@ -1,43 +1,42 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
-using EmpleoDotNet.Models.UnitOfWork;
+using EmpleoDotNet.Models;
 using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.Models.Repositories;
 
 namespace EmpleoDotNet.Controllers
 {
-    public class JobOpportunityController : Controller
+    public class JobOpportunityController : EmpleoDotNetController
     {
-        private readonly UnitOfWork _unitOfWork;
+        private readonly JobOpportunityRepository _jobRepository;
+        private readonly LocationRepository _locationRepository;
 
         public JobOpportunityController()
         {
-            _unitOfWork = new UnitOfWork();
+            _jobRepository = new JobOpportunityRepository(_database);
+            _locationRepository = new LocationRepository(_database);
         }
-
+        
         // GET: /JobOpportunity/
         public ActionResult Index(string selectedLocation = "")
         {
-            var jobList = _unitOfWork.JobOpportunityRepository.GetAllJobOpportunities();
-            var locations = _unitOfWork.LocationRepository.GetAllLocationNames();
+            var jobList = _jobRepository.GetAllJobOpportunities();
+            var locations = _locationRepository.GetAllLocationNames();
 
             const string placeholderLocations = "Todas las locaciones";
             locations.Insert(0, placeholderLocations);
 
             if (!String.IsNullOrEmpty(selectedLocation) && !selectedLocation.Equals(placeholderLocations))
             {
-                var locationArgument = _unitOfWork.LocationRepository.GetLocationByName(selectedLocation);
-
-                jobList = _unitOfWork.JobOpportunityRepository.GetAllJobOpportunitiesByLocation(locationArgument);
-
+                var locationArgument = _locationRepository.GetLocationByName(selectedLocation);
+                jobList = _jobRepository.GetAllJobOpportunitiesByLocation(locationArgument);
             }
 
             if (!jobList.Any())
                 return RedirectToAction("Index", "Home");
 
-            var vm = new JobOpportunitySearchViewModel
-            {
+            var vm = new JobOpportunitySearchViewModel {
                 JobOpportunities = jobList,
                 Locations = locations
             };
@@ -51,14 +50,14 @@ namespace EmpleoDotNet.Controllers
             if (!id.HasValue)
                 return RedirectToAction("Index");
 
-            var vm = _unitOfWork.JobOpportunityRepository.GetJobOpportunityById(id);
+            var vm = _jobRepository.GetJobOpportunityById(id);
 
-            if (vm != null)
+            if (vm != null) 
                 return View("Detail", vm);
-
-            ViewBag.ErrorMessage =
+            
+            ViewBag.ErrorMessage = 
                 "La vacante solicitada no existe. Por favor escoger una vacante válida del listado";
-
+            
             return View("Index");
         }
 
@@ -66,8 +65,7 @@ namespace EmpleoDotNet.Controllers
         public ActionResult New()
         {
             var viewModel = new NewJobOpportunityViewModel();
-
-            viewModel.Locations = _unitOfWork.LocationRepository.GetAllLocations();
+            viewModel.Locations = _locationRepository.GetAllLocations();
 
             return View("New", viewModel);
         }
@@ -78,21 +76,17 @@ namespace EmpleoDotNet.Controllers
         {
             if (!ModelState.IsValid)
             {
-                job.Locations = _unitOfWork.LocationRepository.GetAllLocations();
+                job.Locations = _locationRepository.GetAllLocations();
                 ViewBag.ErrorMessage = "Han ocurrido errores de validación que no permiten continuar el proceso";
                 return View(job);
             }
 
-            _unitOfWork.JobOpportunityRepository.Add(job.ToEntity());
-            _unitOfWork.JobOpportunityRepository.SaveChanges();
+            _locationRepository.Add(new Location {Name = "Las Guaranas"});
+            _jobRepository.Add(job.ToEntity());
+
+            _uow.SaveChanges();
 
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool dispose)
-        {
-            _unitOfWork.Dispose();
-            base.Dispose(dispose);
         }
     }
 }

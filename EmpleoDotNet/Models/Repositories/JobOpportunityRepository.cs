@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace EmpleoDotNet.Models.Repositories
@@ -7,7 +8,8 @@ namespace EmpleoDotNet.Models.Repositories
     {
         public List<JobOpportunity> GetAllJobOpportunities()
         {
-            var locationRepo = new LocationRepository();
+            //TODO: Este repositorio no debería instanciar otro
+            var locationRepo = new LocationRepository(Context);
             var locations = locationRepo.GetAllLocations().ToDictionary(x=> x.Id);
 
             var jobOpportunities = GetAll().OrderByDescending(x => x.PublishedDate);
@@ -29,6 +31,11 @@ namespace EmpleoDotNet.Models.Repositories
         public JobOpportunity GetJobOpportunityById(int? id)
         {
             return GetById(id);
+        }
+
+        public JobOpportunityRepository(DbContext context)
+        {
+            this.Context = context;
         }
     }
 }
