@@ -33,6 +33,8 @@ namespace EmpleoDotNet.ViewModel
         public DateTime Created { get { return DateTime.Now; } }
         public DateTime PublishedDate { get { return DateTime.Now; } }
 
+        public string Tag { get; set; }
+
 
         public Models.JobOpportunity ToEntity()
         {
@@ -49,7 +51,8 @@ namespace EmpleoDotNet.ViewModel
                 CompanyLogoUrl = this.CompanyLogoUrl,
                 CompanyEmail = this.CompanyEmail,
                 Created = this.Created,
-                PublishedDate = this.PublishedDate
+                PublishedDate = this.PublishedDate,
+                Tag = this.Tag.ToUpper()
             };
 
             return entity;

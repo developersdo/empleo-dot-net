@@ -20,6 +20,7 @@ namespace EmpleoDotNet.Models
         //Tablas
         public DbSet<JobOpportunity> JobOpportunities { get; set; }
         public DbSet<Location> Locations { get; set; }
+        public DbSet<Tags> Tags { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
@@ -33,6 +34,10 @@ namespace EmpleoDotNet.Models
             modelBuilder.Entity<Location>()
                         .Property(p => p.Id)
                         .HasColumnName(string.Format("{0}Id", typeof(Location).Name));
+
+            modelBuilder.Entity<Tags>()
+                        .Property(p => p.Id)
+                        .HasColumnName(string.Format("{0}Id", typeof(Tags).Name));
 
  
 

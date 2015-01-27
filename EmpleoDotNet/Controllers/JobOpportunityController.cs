@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.Models.Repositories;
+using EmpleoDotNet.Models;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -10,11 +11,13 @@ namespace EmpleoDotNet.Controllers
     {
         private readonly JobOpportunityRepository _jobRepository;
         private readonly LocationRepository _locationRepository;
+        private readonly TagsRepository _tagsRepository;
 
         public JobOpportunityController()
         {
             _jobRepository = new JobOpportunityRepository();
             _locationRepository = new LocationRepository();
+            _tagsRepository = new TagsRepository();
         }
         
         // GET: /JobOpportunity/
@@ -84,7 +87,28 @@ namespace EmpleoDotNet.Controllers
             _jobRepository.Add(job.ToEntity());
             _jobRepository.SaveChanges();
 
+            string[] tagsStrings = job.Tag.Split(' ', ',');
+            _tagsRepository.AddOrUpdateTag(tagsStrings);
+            _tagsRepository.SaveChanges();
+            
+
             return RedirectToAction("Index");
         }
+
+        public ActionResult ViewTags()
+        {
+            var tagsList = _tagsRepository.GetAllTags();
+
+            return View(tagsList);
+        }
+
+        public ActionResult JobsByTag(int id =1)
+        {
+            var tag = _tagsRepository.GetTagbByID(id);
+            var jobsByTag = _tagsRepository.GetJobOportunitiesByTag(tag.TagName);
+
+            return View(jobsByTag);
+        }
+
     }
 }

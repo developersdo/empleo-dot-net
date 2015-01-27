@@ -195,6 +195,10 @@
     <Compile Include="Migrations\201501132331025_AgregaLocation.Designer.cs">
       <DependentUpon>201501132331025_AgregaLocation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501270230432_addDataTags.cs" />
+    <Compile Include="Migrations\201501270230432_addDataTags.Designer.cs">
+      <DependentUpon>201501270230432_addDataTags.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />
@@ -207,8 +211,11 @@
     <Compile Include="Models\Repositories\BaseRepository.cs" />
     <Compile Include="Models\Repositories\IJobOpportunityRepository.cs" />
     <Compile Include="Models\Repositories\ILocationRepository.cs" />
+    <Compile Include="Models\Repositories\ITagsRepository.cs" />
     <Compile Include="Models\Repositories\JobOpportunityRepository.cs" />
     <Compile Include="Models\Repositories\LocationRepository.cs" />
+    <Compile Include="Models\Repositories\TagsRepository.cs" />
+    <Compile Include="Models\Tags.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\JobOpportunitySearchViewModel.cs" />
@@ -263,6 +270,8 @@
     <Content Include="Views\JobOpportunity\Index.cshtml" />
     <Content Include="Views\JobOpportunity\Detail.cshtml" />
     <Content Include="Views\JobOpportunity\New.cshtml" />
+    <Content Include="Views\JobOpportunity\ViewTags.cshtml" />
+    <Content Include="Views\JobOpportunity\JobsByTag.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -295,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501132331025_AgregaLocation.resx">
       <DependentUpon>201501132331025_AgregaLocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501270230432_addDataTags.resx">
+      <DependentUpon>201501270230432_addDataTags.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

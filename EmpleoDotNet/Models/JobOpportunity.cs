@@ -81,5 +81,16 @@ namespace EmpleoDotNet.Models
         [Display(Name = "Fecha de Publicación")]
         public DateTime? PublishedDate { get; set; }
 
+        /// <summary>
+        /// Tags
+        /// </summary>
+        /// <remarks>
+        /// Este campo string se utiliza para almacenar el conjunto de tags que se utilizara
+        /// para clasificar las oportunidades de trabajo. Ademas se usa para agregar nuevos tags al db
+        /// </remarks>
+        [Display(Name = "Etiquetas")]
+        public string Tag { get; set; }
+
+
     }
 }

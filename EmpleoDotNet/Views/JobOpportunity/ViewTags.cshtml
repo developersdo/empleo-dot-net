@@ -1,0 +1,40 @@
+﻿@model IEnumerable<EmpleoDotNet.Models.Tags>
+
+@{
+    ViewBag.Title = "ViewTags";
+}
+
+<h2>ViewTags</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TagName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TagCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Created)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TagName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TagCount)
+        </td>
+        <td>
+            @Html.ActionLink("Lista por tags", "JobsByTag",new  { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>
