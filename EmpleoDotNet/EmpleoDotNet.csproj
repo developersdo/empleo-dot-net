@@ -220,12 +220,24 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\IconsSocial\Email.png" />
+    <Content Include="Content\IconsSocial\Facebook.png" />
+    <Content Include="Content\IconsSocial\Google.png" />
+    <Content Include="Content\IconsSocial\LinkedIn.png" />
+    <Content Include="Content\IconsSocial\Pinboard.png" />
+    <Content Include="Content\IconsSocial\Pinterest.png" />
+    <Content Include="Content\IconsSocial\Pocket.png" />
+    <Content Include="Content\IconsSocial\Reddit.png" />
+    <Content Include="Content\IconsSocial\Tumblr.png" />
+    <Content Include="Content\IconsSocial\Twitter.png" />
+    <Content Include="Content\IconsSocial\Wordpress.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\IconsSocial\Thumbs.db" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -269,6 +281,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\UnitOfWork\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
