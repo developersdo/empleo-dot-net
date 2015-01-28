@@ -45,7 +45,7 @@ namespace EmpleoDotNet.Controllers
         }
 
         // GET: /JobOpportunity/Detail/4
-        public ActionResult Detail(int? id)
+         public ActionResult Detail(int? id)
         {
             if (!id.HasValue)
                 return RedirectToAction("Index");

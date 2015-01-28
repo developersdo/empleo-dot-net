@@ -40,3 +40,11 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+.share-buttons {
+    list-style: none;
+}
+
+    .share-buttons li {
+        display: inline;
+    }
