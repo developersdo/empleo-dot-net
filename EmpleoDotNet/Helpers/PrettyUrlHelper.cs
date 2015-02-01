@@ -1,25 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Text.RegularExpressions;
 
 namespace EmpleoDotNet.Helpers
 {
-    public class PrettyUrlHelper
+    public static class PrettyUrlHelper
     {
-        public static string Beautify(string str)
+        /// <summary>
+        ///     Sanitizes a URL
+        /// </summary>
+        /// <remarks>http://stackoverflow.com/questions/6716832/sanitizing-string-to-url-safe-format</remarks>
+        public static string SanitizeUrl(this string strThis)
         {
-            //TODO: Este método es solo una demostración. Hay que implementarlo mejor
-            return str.ToLower()
-                .Replace(".","")
-                .Replace(",", "")
-                .Replace(" ", "-")
-                .Replace("ñ", "n")
-                .Replace("á", "a")
-                .Replace("é", "e")
-                .Replace("í", "i")
-                .Replace("ó", "o")
-                .Replace("ú", "u");
+            if (strThis == null)
+                return null;
+
+            return Regex.Replace(strThis, @"[^A-Za-z0-9_~]+", "-");
         }
     }
 }

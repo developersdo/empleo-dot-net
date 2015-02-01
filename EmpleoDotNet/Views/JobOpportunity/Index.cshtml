@@ -48,7 +48,7 @@
                                              controller = "JobOpportunity",
                                              action = "Detail",
                                              id = job.Id,
-                                             description = PrettyUrlHelper.Beautify(job.Title)
+                                             description = job.Title.SanitizeUrl()
                                          })">@job.Title</a>
                         </strong>
 
