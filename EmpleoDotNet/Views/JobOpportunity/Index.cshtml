@@ -42,8 +42,16 @@
                 <tr>
                     <td>
                         <strong>
-                            <a href="@Url.Action("Detail", new{ job.Id })">@job.Title</a>
+                            <a href="@Url.RouteUrl(
+                                         "JobOpportunity-Pretty",
+                                         new {
+                                             controller = "JobOpportunity",
+                                             action = "Detail",
+                                             id = job.Id,
+                                             description = PrettyUrlHelper.Beautify(job.Title)
+                                         })">@job.Title</a>
                         </strong>
+
                         <br />
                         <a href="#">@job.CompanyName</a>
 

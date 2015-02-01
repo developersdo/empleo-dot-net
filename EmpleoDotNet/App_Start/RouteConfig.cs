@@ -13,11 +13,23 @@ namespace EmpleoDotNet
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
+            routes.MapRoute(
+                name: "JobOpportunity-Pretty",
+                url: "JobOpportunity/Detail/{id}/{description}",
+                defaults: new {
+                    controller = "JobOpportunity", action = "Detail", id = UrlParameter.Optional, description = UrlParameter.Optional
+                }
+            );
+
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            
         }
     }
 }
