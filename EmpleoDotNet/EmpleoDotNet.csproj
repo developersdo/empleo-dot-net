@@ -42,6 +42,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="RouteDebugger">
+      <HintPath>..\packages\routedebugger.2.1.4.0\lib\net40\RouteDebugger.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -168,6 +171,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\EnumHelper.cs" />
+    <Compile Include="Helpers\PrettyUrlHelper.cs" />
     <Compile Include="Migrations\201405302346332_AgregandoJobOpportunity.cs" />
     <Compile Include="Migrations\201405302346332_AgregandoJobOpportunity.Designer.cs">
       <DependentUpon>201405302346332_AgregandoJobOpportunity.cs</DependentUpon>
