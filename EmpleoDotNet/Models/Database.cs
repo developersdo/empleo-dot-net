@@ -15,7 +15,7 @@ namespace EmpleoDotNet.Models
     {
         public Database()
             : base("EmpleoDotNetConn")
-        { }
+        { this.Configuration.LazyLoadingEnabled = true; }
 
         //Tablas
         public DbSet<JobOpportunity> JobOpportunities { get; set; }

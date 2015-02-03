@@ -48,3 +48,9 @@ input[type="checkbox"].input-validation-error {
     .share-buttons li {
         display: inline;
     }
+
+/*Form styles*/
+.table tr:first-child {
+    background-color: #EEE;
+    border-bottom: 2px solid #DDD;
+}
