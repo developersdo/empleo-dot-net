@@ -19,7 +19,7 @@ namespace EmpleoDotNet.Controllers
         }
         
         // GET: /JobOpportunity/
-        public ActionResult Index(string selectedLocation = "")
+        public ActionResult Index(int? id, string selectedLocation)
         {
             var jobList = _jobRepository.GetAllJobOpportunities();
             var locations = _locationRepository.GetAllLocationNames();
