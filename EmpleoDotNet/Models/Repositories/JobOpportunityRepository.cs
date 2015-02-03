@@ -33,6 +33,14 @@ namespace EmpleoDotNet.Models.Repositories
             return GetById(id);
         }
 
+        public List<JobOpportunity> GetLatestJobOpporunity(int quantity)
+        {
+            return GetAll().OrderByDescending(m => m.PublishedDate)
+                .Include(m => m.Location)
+                .Take(quantity)
+                .ToList();
+        }
+
         public JobOpportunityRepository(DbContext context)
         {
             this.Context = context;
