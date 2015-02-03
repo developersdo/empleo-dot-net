@@ -24,51 +24,40 @@
         </div>
         <div class="col-xs-3">
             @*Aqui va el control de seleccion de Categorias*@
-        </div>
-        
-        <div class="col-xs-2">
-            <button type="Submit" class="btn btn-info">Filtrar</button>    
+            <button type="Submit" class="btn btn-info">Filtrar</button> 
         </div>
     }
 </div>
 
 <div class="row">
     <p>&nbsp;</p>
-    <table class="table table-striped">
-        <tbody>
-
-            @foreach (var job in Model.JobOpportunities)
-            {
-                <tr>
-                    <td>
-                        <strong>
-                            <a href="@Url.RouteUrl(
-                                         "JobOpportunity-Pretty",
-                                         new {
-                                             controller = "JobOpportunity",
-                                             action = "Detail",
-                                             id = job.Id,
-                                             description = job.Title.SanitizeUrl()
-                                         })">@job.Title</a>
-                        </strong>
-
-                        <br />
-                        <a href="#">@job.CompanyName</a>
-
-                    </td>
-                    <td>
-                        <a href="#">@job.Category.ToEnumDescription()</a>
-                    </td>
-                    <td>
-                        @job.Location.Name
-                    </td>
-                    <td>
-                        @job.Created.ToShortDateString()
-                    </td>
-                </tr>
-            }
-
-        </tbody>
-
+        <table class="table">
+        <tr>
+            <th>Publicación</th>
+            <th>Título</th>
+            <th>Categoria</th>
+            <th>Provincia</th>
+        </tr>
+        @foreach (var job in Model.JobOpportunities)
+        {
+            <tr>
+                <td>@job.PublishedDate.Value.ToString("dd/mm/yyyy")</td>
+                <td>
+                    <strong>@job.CompanyName</strong> |
+                    <a href="@Url.RouteUrl(
+                        "JobOpportunity-Pretty",
+                        new {
+                            controller = "JobOpportunity",
+                            action = "Detail",
+                            id = job.Id,
+                            description = job.Title.SanitizeUrl()
+                        })">
+                        @job.Title
+                    </a>
+                </td>
+                <td>@job.Category.ToEnumDescription()</td>
+                <td>@(job.Location != null ? job.Location.Name : "")</td>
+            </tr>
+        }
     </table>
 </div>

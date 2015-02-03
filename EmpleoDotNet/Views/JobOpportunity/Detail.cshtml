@@ -1,29 +1,36 @@
 ﻿@model EmpleoDotNet.Models.JobOpportunity
 
-<br />
+<div class="title">
+    <h1>@Model.Title
+        <span class="h3 text-color-lightgray"> @@ @Model.CompanyName</span>
+    </h1>
+</div>
+ 
+
 <div class="row">
     <div class="col-md-9">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h2 class="panel-title">
-                    @Model.Title
-                </h2>
+        <p>@Model.Description</p>
+    </div>
+    <div class="col-md-3">
+        <div class="company"> 
+            @{var imgUrl = !String.IsNullOrEmpty(@Model.CompanyLogoUrl) ? Model.CompanyLogoUrl : "http://www.acsu.buffalo.edu/~rslaine/imageNotFound.jpg";}
+            <div class="img" style="background-image:url('@imgUrl')"></div>
+            <div class="company-title">
+                <p>@Model.CompanyName</p>
+                <p>Santo Domingo</p>
             </div>
-            <div class="panel-body">
+            <div class="company-information">
                 <p>
-                    @Model.CompanyName, @Model.Location <br />
-                    <a href="@Model.CompanyUrl">@Model.CompanyUrl</a>
+                    <strong>Url :</strong>
+                    <a href="@Model.CompanyUrl" target="_blank">@Model.CompanyUrl</a>
                 </p>
-
                 <p>
-                    @Model.Description
+                    <strong>Correo :</strong>
+                    <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a>
                 </p>
             </div>
         </div>
-    </div>
-    <div class="col-md-3">
-        <div>
-            <h5 style="margin-left: 40px">Comparte esta oferta</h5>
+        <div class="information-block">
             <ul class="share-buttons">
                 <li><a href="https://www.facebook.com/sharer/sharer.php?u=&t=" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL)); return false;"><img src="~/Content/IconsSocial/Facebook.png"></a></li>
                 <li><a href="https://twitter.com/intent/tweet?source=&text=:%20" target="_blank" title="Tweet" onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + ':%20'  + encodeURIComponent(document.URL)); return false;"><img src="~/Content/IconsSocial/Twitter.png"></a></li>

@@ -235,6 +235,7 @@
     <Content Include="Content\IconsSocial\Tumblr.png" />
     <Content Include="Content\IconsSocial\Twitter.png" />
     <Content Include="Content\IconsSocial\Wordpress.png" />
+    <Content Include="Content\responsive.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -282,6 +283,7 @@
     <Content Include="Views\JobOpportunity\Index.cshtml" />
     <Content Include="Views\JobOpportunity\Detail.cshtml" />
     <Content Include="Views\JobOpportunity\New.cshtml" />
+    <Content Include="Views\Shared\_LastestJobs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
