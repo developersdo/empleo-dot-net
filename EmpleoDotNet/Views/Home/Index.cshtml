@@ -1,4 +1,5 @@
-﻿@model List<EmpleoDotNet.Models.JobOpportunity>
+﻿@using EmpleoDotNet.Helpers
+@model List<EmpleoDotNet.Models.JobOpportunity>
 @{
     ViewBag.Title = "Home Page";    
 }
@@ -29,7 +30,18 @@
     {
         <tr>
             <td>@job.PublishedDate.Value.ToString("dd/mm/yyyy")</td>
-            <td><strong>@job.CompanyName</strong> | @job.Title</td>
+            <td>
+                <strong>@job.CompanyName</strong> |
+                <a href="@Url.RouteUrl(
+                        "JobOpportunity-Pretty",
+                        new {
+                            controller = "JobOpportunity",
+                            action = "Detail",
+                            id = job.Id,
+                            description = job.Title.SanitizeUrl()
+                        })">@job.Title
+                </a>                
+            </td>
             <td>@job.Category</td>
             <td>@(job.Location != null ? job.Location.Name : "")</td>
         </tr>
