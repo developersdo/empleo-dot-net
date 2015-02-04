@@ -7,6 +7,7 @@ using EmpleoDotNet.Models.Repositories;
 
 namespace EmpleoDotNet.Controllers
 {
+      
     public class JobOpportunityController : EmpleoDotNetController
     {
         private readonly JobOpportunityRepository _jobRepository;
@@ -43,7 +44,7 @@ namespace EmpleoDotNet.Controllers
 
             return View(vm);
         }
-
+       
         // GET: /JobOpportunity/Detail/4
          public ActionResult Detail(int? id)
         {
