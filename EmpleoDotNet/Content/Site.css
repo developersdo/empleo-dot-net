@@ -16,6 +16,44 @@ textarea {
     max-width: 280px;
 }
 
+/*Page Structure Styles*/
+.title {
+    border-bottom: 1px solid #E6E6E6;
+    margin-bottom: 20px;
+}
+
+.title * {
+    display:inline-block;
+}
+.row {margin-bottom: 10px;}
+.company-info {
+    display:inline-block;
+    padding: 5px;
+}
+
+.company-info .img {
+    height: 100px; 
+}
+
+.company-section {
+    text-align: center;
+    padding: 20px 0px 5px 0;
+}
+.company-field:first-child {
+    padding-bottom:5px;
+}
+
+/*General Purpose Styles*/
+.bold-600 {font-weight:600;}
+.bold-800 {font-weight:800;}
+.font-size-large {font-size: 20px;}
+.text-color-lightgray {color:#D1CBCB;}
+.text-color-gray {color:#818181;}
+.light-border {border: 1px solid #D1CBCB; }
+.light-border-botton {border-bottom: 1px solid #E6E6E6;}
+.bgcolor-gray {background-color: #EEE;}
+.img{background-size: contain; background-repeat: no-repeat; background-position: center; }
+
 /* styles for validation helpers */
 .field-validation-error {
     color: #b94a48;
@@ -49,7 +87,7 @@ input[type="checkbox"].input-validation-error {
         display: inline;
     }
 
-/*Form styles*/
+/*Table styles*/
 .table tr:first-child {
     background-color: #EEE;
     border-bottom: 2px solid #DDD;

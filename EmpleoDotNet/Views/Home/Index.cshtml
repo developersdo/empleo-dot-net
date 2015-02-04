@@ -31,8 +31,8 @@
         <tr>
             <td>@job.PublishedDate.Value.ToString("dd/mm/yyyy")</td>
             <td>
-                <strong>@job.CompanyName</strong> |
-                <a href="@Url.RouteUrl(
+                <span class="bold-600">@job.CompanyName</span> |
+                <a class="bold-600" href="@Url.RouteUrl(
                         "JobOpportunity-Pretty",
                         new {
                             controller = "JobOpportunity",
