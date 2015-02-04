@@ -15,18 +15,6 @@ namespace EmpleoDotNet
            //habilita el atributo de rutas en el controlador
              routes.MapMvcAttributeRoutes();
 
-           /* routes.MapRoute(
-              name: "JobOpportunity-Pretty",
-              url: "{controller}/{id}/{description}",
-              defaults: new
-              {
-                  controller = "JobOpportunity",
-                  action = "Detail",
-                  id = UrlParameter.Optional,
-                  description = UrlParameter.Optional
-              }
-          );*/
-
              routes.MapRoute(
                              "JobOpportunity-Pretty",
                              "JobOpportunity/{id}/{description}",
