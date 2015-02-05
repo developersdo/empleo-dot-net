@@ -25,9 +25,19 @@ textarea {
 .title * {
     display:inline-block;
 }
+
+.title > h1 {
+    position:relative;
+    top:10px;    
+    margin:0 0 5px 0;    
+    width: 87%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .row {margin-bottom: 10px;}
 .company-info {
-    display:inline-block;
     padding: 5px;
 }
 
@@ -81,6 +91,7 @@ input[type="checkbox"].input-validation-error {
 
 .share-buttons {
     list-style: none;
+    padding:0;
 }
 
     .share-buttons li {

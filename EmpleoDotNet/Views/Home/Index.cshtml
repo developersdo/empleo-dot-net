@@ -42,7 +42,7 @@
                         })">@job.Title
                 </a>                
             </td>
-            <td>@job.Category</td>
+            <td>@job.Category.ToEnumDescription()</td>
             <td>@(job.Location != null ? job.Location.Name : "")</td>
         </tr>
     }
