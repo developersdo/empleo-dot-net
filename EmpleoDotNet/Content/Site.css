@@ -17,41 +17,48 @@ textarea {
 }
 
 /*Page Structure Styles*/
+.row {margin-bottom: 10px;}
 .title {
     border-bottom: 1px solid #E6E6E6;
     margin-bottom: 20px;
 }
 
-.title * {
-    display:inline-block;
-}
+    .title * {
+        display:inline-block;
+    }
 
-.title > h1 {
-    position:relative;
-    top:10px;    
-    margin:0 0 5px 0;    
-    width: 87%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
+    .title > h1 {
+        position:relative;
+        top:10px;
+        width:100%;
+        margin:0 0 5px 0;            
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 
-.row {margin-bottom: 10px;}
+    .title .right {
+        float:right;
+        position:relative;
+        top:15px;
+        z-index:50;
+    }
+
 .company-info {
     padding: 5px;
 }
 
-.company-info .img {
-    height: 100px; 
-}
+    .company-info .img {
+        height: 100px; 
+    }
 
-.company-section {
-    text-align: center;
-    padding: 20px 0px 5px 0;
-}
-.company-field:first-child {
-    padding-bottom:5px;
-}
+    .company-section {
+        text-align: center;
+        padding: 20px 0px 5px 0;
+    }
+    .company-field:first-child {
+        padding-bottom:5px;
+    }
 
 /*General Purpose Styles*/
 .bold-600 {font-weight:600;}

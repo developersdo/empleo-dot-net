@@ -4,14 +4,6 @@
     <h1>@Model.Title
         <span class="h3 text-color-lightgray"> @@ @Model.CompanyName</span>
     </h1>
-    <div>
-        <ul class="share-buttons">
-            <li><a href="https://www.facebook.com/sharer/sharer.php?u=&t=" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL)); return false;"><img src="~/Content/IconsSocial/Facebook.png"></a></li>
-            <li><a href="https://twitter.com/intent/tweet?source=&text=:%20" target="_blank" title="Tweet" onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + ':%20'  + encodeURIComponent(document.URL)); return false;"><img src="~/Content/IconsSocial/Twitter.png"></a></li>
-            <li><a href="https://plus.google.com/share?url=" target="_blank" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=' + encodeURIComponent(document.URL)); return false;"><img src="~/Content/IconsSocial/Google.png"></a></li>
-            <li><a href="http://www.linkedin.com/shareArticle?mini=true&url=&title=&summary=&source=" target="_blank" title="Share on LinkedIn" onclick="window.open('http://www.linkedin.com/shareArticle?mini=true&url=' + encodeURIComponent(document.URL) + '&title=' +  encodeURIComponent(document.title)); return false;"><img src="~/Content/IconsSocial/LinkedIn.png"></a></li>
-        </ul>
-    </div>
 </div>
  
 
@@ -20,8 +12,9 @@
         <p>@Model.Description</p>
     </div>
     <div class="col-md-3">
-        <div class="company-info light-border">     
-            <div class="img" style="background-image:url('//i.stack.imgur.com/3P3Jxm.png')"></div>
+        <div class="company-info light-border"> 
+            @{var img = !String.IsNullOrEmpty(@Model.CompanyLogoUrl) ? Model.CompanyLogoUrl : "http://www.acsu.buffalo.edu/~rslaine/imageNotFound.jpg";}
+            <div class="img" style="background-image:url('@img')"></div>
             <div class="company-section bgcolor-gray">
                 <p class="bold-600 font-size-large">@Model.CompanyName</p>
                 <p class="text-color-gray">Santo Domingo</p>
@@ -36,6 +29,14 @@
                     <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a>
                 </p>
             </div>
+        </div>
+        <div class="company-section">
+            <ul class="share-buttons right">
+                <li><a href="https://www.facebook.com/sharer/sharer.php?u=&t=" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&t=' + encodeURIComponent(document.URL)); return false;"><img src="~/Content/IconsSocial/Facebook.png"></a></li>
+                <li><a href="https://twitter.com/intent/tweet?source=&text=:%20" target="_blank" title="Tweet" onclick="window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(document.title) + ':%20'  + encodeURIComponent(document.URL)); return false;"><img src="~/Content/IconsSocial/Twitter.png"></a></li>
+                <li><a href="https://plus.google.com/share?url=" target="_blank" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=' + encodeURIComponent(document.URL)); return false;"><img src="~/Content/IconsSocial/Google.png"></a></li>
+                <li><a href="http://www.linkedin.com/shareArticle?mini=true&url=&title=&summary=&source=" target="_blank" title="Share on LinkedIn" onclick="window.open('http://www.linkedin.com/shareArticle?mini=true&url=' + encodeURIComponent(document.URL) + '&title=' +  encodeURIComponent(document.title)); return false;"><img src="~/Content/IconsSocial/LinkedIn.png"></a></li>
+            </ul>
         </div>
     </div>
 </div>
