@@ -1,12 +1,14 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿
+ 
+@{
+    ViewBag.Title = "Home Page";    
 }
 
 <div class="jumbotron">
     <h1>Empleo Dot Net</h1>
     <p class="lead">
         Empleo Dot Net es una iniciativa de Developers.DO. Es un portal de empleos creado por la comunidad
-        para aprneder técnicas de desarrollo de sistema de código libre usando tecnología de Microsoft
+        para aprender técnicas de desarrollo de sistema de código libre usando tecnología de Microsoft
     </p>
     <p>
         <a href="@Url.Action("Index", "JobOpportunity")" class="btn btn-info btn-large">Ver Vacantes</a>
@@ -17,3 +19,6 @@
     </p>
 </div>
 
+<section>
+    @Html.Action("LatestJob","JobOpportunity")
+</section>

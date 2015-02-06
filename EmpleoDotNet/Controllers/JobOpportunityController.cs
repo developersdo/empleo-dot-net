@@ -17,7 +17,7 @@ namespace EmpleoDotNet.Controllers
             _jobRepository = new JobOpportunityRepository(_database);
             _locationRepository = new LocationRepository(_database);
         }
-        
+
         // GET: /JobOpportunity/
         public ActionResult Index(string selectedLocation = "")
         {
@@ -36,7 +36,8 @@ namespace EmpleoDotNet.Controllers
             if (!jobList.Any())
                 return RedirectToAction("Index", "Home");
 
-            var vm = new JobOpportunitySearchViewModel {
+            var vm = new JobOpportunitySearchViewModel
+            {
                 JobOpportunities = jobList,
                 Locations = locations
             };
@@ -45,19 +46,19 @@ namespace EmpleoDotNet.Controllers
         }
 
         // GET: /JobOpportunity/Detail/4
-         public ActionResult Detail(int? id)
+        public ActionResult Detail(int? id)
         {
             if (!id.HasValue)
                 return RedirectToAction("Index");
 
             var vm = _jobRepository.GetJobOpportunityById(id);
 
-            if (vm != null) 
+            if (vm != null)
                 return View("Detail", vm);
-            
-            ViewBag.ErrorMessage = 
+
+            ViewBag.ErrorMessage =
                 "La vacante solicitada no existe. Por favor escoger una vacante válida del listado";
-            
+
             return View("Index");
         }
 
@@ -81,12 +82,20 @@ namespace EmpleoDotNet.Controllers
                 return View(job);
             }
 
-            _locationRepository.Add(new Location {Name = "Las Guaranas"});
+            _locationRepository.Add(new Location { Name = "Las Guaranas" });
             _jobRepository.Add(job.ToEntity());
 
             _uow.SaveChanges();
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult LatestJob()
+        { 
+            var latestJobOpportunities = _jobRepository.GetLatestJobOpporunity(10);
+
+            return PartialView("_Jobs", latestJobOpportunities);
+        }
+
     }
 }

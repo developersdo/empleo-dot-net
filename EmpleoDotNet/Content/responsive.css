@@ -1,0 +1,10 @@
+﻿@media screen and (max-width: 991px){
+    .col-md-9{ float:left; }
+    .col-md-3{ float:right; }    
+}
+
+@media screen and (max-width: 568px){
+    .col-md-9, .col-md-3{
+        float:none;
+    }
+}
