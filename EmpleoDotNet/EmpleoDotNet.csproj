@@ -283,6 +283,7 @@
     <Content Include="Views\JobOpportunity\Index.cshtml" />
     <Content Include="Views\JobOpportunity\Detail.cshtml" />
     <Content Include="Views\JobOpportunity\New.cshtml" />
+    <Content Include="Views\Shared\_LastestJobs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

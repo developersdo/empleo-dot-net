@@ -17,10 +17,8 @@ namespace EmpleoDotNet.Controllers
         }
 
         public ActionResult Index()
-        {
-            var latestJobOpportunities = _jobRepository.GetLatestJobOpporunity(10);
-
-            return View(latestJobOpportunities);
+        { 
+            return View();
         }
 
         public ActionResult About()

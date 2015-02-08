@@ -1,0 +1,34 @@
+﻿
+@using EmpleoDotNet.Helpers
+@model List<EmpleoDotNet.Models.JobOpportunity>
+
+<table class="table">
+    <tr>
+        <th>Publicación</th>
+        <th>Título</th>
+        <th>Categoria</th>
+        <th>Provincia</th>
+    </tr>
+    @foreach (var job in Model)
+    {
+        <tr>
+            <td>@job.PublishedDate.Value.ToString("dd/mm/yyyy")</td>
+            <td>
+                <span class="bold-600">@job.CompanyName</span> |
+                <a class="bold-600" href="@Url.RouteUrl(
+                        "JobOpportunity-Pretty",
+                        new {
+                            controller = "JobOpportunity",
+                            action = "Detail",
+                            id = job.Id,
+                            description = job.Title.SanitizeUrl()
+                        })">
+                    @job.Title
+                    </a>
+                </td>
+                <td>@job.Category.ToEnumDescription()</td>
+                <td>@(job.Location != null ? job.Location.Name : "")</td>
+            </tr>
+    }
+</table>
+

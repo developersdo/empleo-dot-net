@@ -88,5 +88,12 @@ namespace EmpleoDotNet.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult LastestsJob()
+        {
+            var latestJobOpportunities = _jobRepository.GetLatestJobOpporunity(10);
+
+            return PartialView("_LastestJobs", latestJobOpportunities);
+        }
     }
 }
