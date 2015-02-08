@@ -12,8 +12,6 @@ namespace EmpleoDotNet
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-           //habilita el atributo de rutas en el controlador
-             routes.MapMvcAttributeRoutes();
 
              routes.MapRoute(
                              "JobOpportunity-Pretty",
