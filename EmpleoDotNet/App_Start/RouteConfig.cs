@@ -15,12 +15,10 @@ namespace EmpleoDotNet
 
 
             routes.MapRoute(
-                name: "JobOpportunity-Pretty",
-                url: "JobOpportunity/Detail/{id}/{description}",
-                defaults: new {
-                    controller = "JobOpportunity", action = "Detail", id = UrlParameter.Optional, description = UrlParameter.Optional
-                }
-            );
+                            "JobOpportunity-Pretty",
+                            "JobOpportunity/{id}/{description}",
+                            new { controller = "JobOpportunity", action = "Detail" }
+                           );
 
 
             routes.MapRoute(
