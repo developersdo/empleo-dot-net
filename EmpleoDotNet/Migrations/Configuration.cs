@@ -22,7 +22,7 @@ namespace EmpleoDotNet.Migrations
                 new Location { Name = "Santiago" },
                 new Location { Name = "Puerto Plata" }
             };
-            foreach(var location in locationsList)
+            foreach (var location in locationsList)
             {
                 context.Locations.AddOrUpdate(d => d.Name,
                                               location);
@@ -345,6 +345,21 @@ namespace EmpleoDotNet.Migrations
                     jobOpportunity);
             }
             #endregion
+
+            #region Tags
+            var tagsList = new List<Tag>
+            {
+                new Tag {Name = "Developer",Created = DateTime.Now.AddDays(-3)},
+                new Tag {Name = "Jobs",Created = DateTime.Now.AddDays(-3)},
+                new Tag {Name = "Desing",Created = DateTime.Now.AddDays(-3)},
+            };
+
+            foreach (var tag in tagsList)
+            {
+                context.Tags.AddOrUpdate(a => a.Name, tag);
+            }
+            #endregion
+ 
         }
     }
 }

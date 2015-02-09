@@ -200,6 +200,10 @@
     <Compile Include="Migrations\201501132331025_AgregaLocation.Designer.cs">
       <DependentUpon>201501132331025_AgregaLocation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502091617590_agregantoTagEntity.cs" />
+    <Compile Include="Migrations\201502091617590_agregantoTagEntity.Designer.cs">
+      <DependentUpon>201502091617590_agregantoTagEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\EntityFrameworkUnitOfWork.cs" />
@@ -318,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501132331025_AgregaLocation.resx">
       <DependentUpon>201501132331025_AgregaLocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502091617590_agregantoTagEntity.resx">
+      <DependentUpon>201502091617590_agregantoTagEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
