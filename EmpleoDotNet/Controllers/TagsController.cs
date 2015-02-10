@@ -57,7 +57,7 @@ namespace EmpleoDotNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Created")] Tag tag)
+        public ActionResult Create(Tag tag)
         {
             if (ModelState.IsValid)
             {
