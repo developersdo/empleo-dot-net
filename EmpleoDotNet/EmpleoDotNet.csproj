@@ -167,6 +167,7 @@
     <Compile Include="Controllers\EmpleoDotNetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobOpportunityController.cs" />
+    <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -211,6 +212,7 @@
     <Compile Include="Models\EntityBase.cs" />
     <Compile Include="Models\Identity\IdentityModels.cs" />
     <Compile Include="Models\ISearchable.cs" />
+    <Compile Include="Models\Repositories\ITagRepository.cs" />
     <Compile Include="Models\IUnitOfWork.cs" />
     <Compile Include="Models\JobCategory.cs" />
     <Compile Include="Models\JobOpportunity.cs" />
@@ -220,6 +222,7 @@
     <Compile Include="Models\Repositories\ILocationRepository.cs" />
     <Compile Include="Models\Repositories\JobOpportunityRepository.cs" />
     <Compile Include="Models\Repositories\LocationRepository.cs" />
+    <Compile Include="Models\Repositories\TagRepository.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -289,6 +292,11 @@
     <Content Include="Views\JobOpportunity\Detail.cshtml" />
     <Content Include="Views\JobOpportunity\New.cshtml" />
     <Content Include="Views\Shared\_LastestJobs.cshtml" />
+    <Content Include="Views\Tags\Create.cshtml" />
+    <Content Include="Views\Tags\Delete.cshtml" />
+    <Content Include="Views\Tags\Details.cshtml" />
+    <Content Include="Views\Tags\Edit.cshtml" />
+    <Content Include="Views\Tags\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

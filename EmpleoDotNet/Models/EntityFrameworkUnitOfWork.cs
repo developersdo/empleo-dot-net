@@ -19,5 +19,6 @@ namespace EmpleoDotNet.Models
         {
             _dbContext = context;
         }
+         
     }
 }
