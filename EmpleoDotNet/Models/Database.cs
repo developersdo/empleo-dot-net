@@ -19,11 +19,13 @@ namespace EmpleoDotNet.Models
 
         //Tablas
         public DbSet<JobOpportunity> JobOpportunities { get; set; }
+
         public DbSet<Location> Locations { get; set; }
+
+        public DbSet<Tag> Tags { get; set; } 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
             //Segun el diseño inicial, se deseaba que los PK todos se llamaran Id,
             //Para mantener esta comodidad pero generar una DB apta para el mundo real,
             //Cambiar Nombre de la columna.

@@ -1,0 +1,28 @@
+﻿@model EmpleoDotNet.Models.Tag
+
+@{
+    ViewBag.Title = "Delete";
+}
+  
+<h3>Seguro que quieres eliminar este tag?</h3>
+<div>
+     <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>  
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Ver Lista", "Index")
+        </div>
+    }
+</div>

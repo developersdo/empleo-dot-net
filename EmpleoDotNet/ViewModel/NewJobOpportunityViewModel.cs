@@ -33,6 +33,8 @@ namespace EmpleoDotNet.ViewModel
         public DateTime Created { get { return DateTime.Now; } }
         public DateTime PublishedDate { get { return DateTime.Now; } }
 
+        //para la relacion many to many con los tags
+        public List<Tag> Tags { get; set; } 
 
         public Models.JobOpportunity ToEntity()
         {
