@@ -35,6 +35,7 @@ namespace EmpleoDotNet.Models.Repositories
 
         public void Update(Tag tag)
         {
+            tag.Created = DateTime.Now;
             Context.Entry(tag).State = EntityState.Modified;
         }
 

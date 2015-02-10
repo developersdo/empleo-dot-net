@@ -61,6 +61,8 @@ namespace EmpleoDotNet.Controllers
         {
             if (ModelState.IsValid)
             {
+                //todo: mejorar esto.
+                tag.Created = DateTime.Now;
                 _tagRepository.Add(tag);
                 _uow.SaveChanges();
                 return RedirectToAction("Index");
