@@ -20,7 +20,7 @@ namespace EmpleoDotNet.Models
         //Tablas
         public DbSet<JobOpportunity> JobOpportunities { get; set; }
         public DbSet<Location> Locations { get; set; }
-
+        public DbSet<Tag> Tags { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
