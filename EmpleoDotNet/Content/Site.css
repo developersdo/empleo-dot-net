@@ -15,6 +15,7 @@ select,
 textarea {
     max-width: 280px;
 }
+.img{background-size: contain; background-repeat: no-repeat; background-position: center; }
 
 /*Page Structure Styles*/
 .row {margin-bottom: 10px;}
@@ -44,32 +45,49 @@ textarea {
         z-index:50;
     }
 
-.company-info {
+.company {
     padding: 5px;
+    border: 1px solid #D1CBCB;
 }
-
-    .company-info .img {
+   
+    .company .img {
         height: 100px; 
     }
 
-    .company-section {
+    .company > div {
         text-align: center;
         padding: 20px 0px 5px 0;
     }
-    .company-field:first-child {
-        padding-bottom:5px;
+
+.company-title {
+    background-color: #EEE;
+    border:none;
+}
+
+    .company-title p {
+        color: #818181;
     }
 
-/*General Purpose Styles*/
-.bold-600 {font-weight:600;}
-.bold-800 {font-weight:800;}
-.font-size-large {font-size: 20px;}
-.text-color-lightgray {color:#D1CBCB;}
-.text-color-gray {color:#818181;}
-.light-border {border: 1px solid #D1CBCB; }
-.light-border-botton {border-bottom: 1px solid #E6E6E6;}
-.bgcolor-gray {background-color: #EEE;}
-.img{background-size: contain; background-repeat: no-repeat; background-position: center; }
+    .company-title p:first-child {
+        font-weight:600;
+        font-size:20px;
+        color:black;
+    }
+
+.company-information {
+    padding-bottom:5px;
+}
+
+    .company-information > *:not(:last-child) {
+        padding-bottom:10px;
+        border-bottom: 1px solid #E6E6E6;
+    }
+
+.information-block {
+    text-align: center;
+    padding: 20px 0px 5px 0;    
+}       
+
 
 /* styles for validation helpers */
 .field-validation-error {
