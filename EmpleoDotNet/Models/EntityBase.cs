@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmpleoDotNet.Models
 {
@@ -8,6 +10,13 @@ namespace EmpleoDotNet.Models
     /// </summary>
     public abstract class EntityBase
     {
+        /// <summary>
+        /// Identificador unico para cada entidad
+        /// </summary>
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
         /// <summary>
         /// Las entidades deben poseer un campo con la fecha de creación para posibles 
         /// auditorias o como referencia en potenciales sesiones de debugging.

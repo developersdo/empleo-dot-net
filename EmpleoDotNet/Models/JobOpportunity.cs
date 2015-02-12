@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -6,13 +7,7 @@ namespace EmpleoDotNet.Models
 {
     public class JobOpportunity : EntityBase, ISearchable
     {
-        /// <summary>
-        /// Identificador unico de una oportunidad de trabajo.
-        /// </summary>
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
+        #region Property
         /// <summary>
         /// Titulo de la posición
         /// </summary>
@@ -26,9 +21,7 @@ namespace EmpleoDotNet.Models
         [Required(ErrorMessage = "La localidad es requerida")]
         [ForeignKey("Location")]
         public int LocationId { get; set; }
-        [Display(Name = "Localidad")]
-        public Location Location { get; set; }
-
+ 
         /// <summary>
         /// Categoria del trabajo
         /// </summary>
@@ -80,6 +73,14 @@ namespace EmpleoDotNet.Models
         /// </remarks>
         [Display(Name = "Fecha de Publicación")]
         public DateTime? PublishedDate { get; set; }
+        #endregion
+
+        #region Navegation Properties
+        public List<Tag> Tags { get; set; }
+
+        [Display(Name = "Localidad")]
+        public Location Location { get; set; }
+        #endregion
 
     }
 }
