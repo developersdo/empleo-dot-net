@@ -1,0 +1,133 @@
+﻿// Variables
+@bgGray:#EEE;
+@defaultBorderColor: #E6E6E6;
+@errorColor: #b94a48;
+@textColor: #000;
+@subtitleColor: #818181;
+
+/*General Rules*/
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+input,select,textarea {
+    max-width: 280px;
+}
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.img{background-size: contain; background-repeat: no-repeat; background-position: center; }
+
+/*Page Structure Styles*/
+.row {margin-bottom: 10px;}
+.title {
+    border-bottom: 1px solid @defaultBorderColor;
+    margin-bottom: 20px;
+
+    * {
+        display:inline-block;
+    }
+
+    > h1 {
+        position:relative;
+        top:10px;
+        width:100%;
+        margin:0 0 5px 0;            
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        span{
+            color:@subtitleColor;
+        }
+    }
+
+    .right {
+        float:right;
+        position:relative;
+        top:15px;
+        z-index:50;
+    }
+
+}
+.company {
+    padding: 5px;
+    border: 1px solid @defaultBorderColor;
+   
+    .img {
+        height: 100px; 
+    }
+
+    > div {
+        padding: 20px 0px 5px 0;
+        text-align: center;
+        
+    }
+}
+
+.company-title {
+    background-color: @bgGray;
+    border:none;
+
+    p {
+        color: @subtitleColor;
+    }
+
+    p:first-child {
+        font-weight:600;
+        font-size:20px;
+        color:@textColor;
+    }
+}
+
+.company-information {
+    padding-bottom:5px;
+
+    > *:not(:last-child) {
+        padding-bottom:10px;
+        border-bottom: 1px solid @defaultBorderColor;
+    }
+}
+
+.information-block {
+    padding: 20px 0px 5px 0;
+    text-align: center; 
+}       
+
+
+/* styles for validation helpers */
+.field-validation-error, .validation-summary-errors {
+    color: @errorColor;
+}
+
+.field-validation-valid, .validation-summary-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid @errorColor;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+
+.share-buttons {
+    list-style: none;
+    padding:0;
+
+    li {
+        display: inline;
+    }
+}
+
+/*Table styles*/
+.table tr:first-child {
+    background-color: @bgGray;
+    border-bottom: 2px solid @defaultBorderColor;
+}
