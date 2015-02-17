@@ -167,6 +167,7 @@
     <Compile Include="Controllers\EmpleoDotNetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobOpportunityController.cs" />
+    <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -204,9 +205,18 @@
     <Compile Include="Migrations\201502160631338_AgregandoTagEntity.Designer.cs">
       <DependentUpon>201502160631338_AgregandoTagEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502172340352_AgregandoEstadoRegistro.cs" />
+    <Compile Include="Migrations\201502172340352_AgregandoEstadoRegistro.Designer.cs">
+      <DependentUpon>201502172340352_AgregandoEstadoRegistro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201503190204490_AgregandoEstadoTagEntity.cs" />
+    <Compile Include="Migrations\201503190204490_AgregandoEstadoTagEntity.Designer.cs">
+      <DependentUpon>201503190204490_AgregandoEstadoTagEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\EntityFrameworkUnitOfWork.cs" />
+    <Compile Include="Models\EstadoRegistro.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />
     <Compile Include="Models\EntityBase.cs" />
     <Compile Include="Models\Identity\IdentityModels.cs" />
@@ -292,6 +302,11 @@
     <Content Include="Views\JobOpportunity\Detail.cshtml" />
     <Content Include="Views\JobOpportunity\New.cshtml" />
     <Content Include="Views\Shared\_LastestJobs.cshtml" />
+    <Content Include="Views\Tag\Create.cshtml" />
+    <Content Include="Views\Tag\Delete.cshtml" />
+    <Content Include="Views\Tag\Details.cshtml" />
+    <Content Include="Views\Tag\Edit.cshtml" />
+    <Content Include="Views\Tag\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -329,6 +344,12 @@
     <EmbeddedResource Include="Migrations\201502160631338_AgregandoTagEntity.resx">
       <DependentUpon>201502160631338_AgregandoTagEntity.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502172340352_AgregandoEstadoRegistro.resx">
+      <DependentUpon>201502172340352_AgregandoEstadoRegistro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503190204490_AgregandoEstadoTagEntity.resx">
+      <DependentUpon>201503190204490_AgregandoEstadoTagEntity.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -344,7 +365,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>18661</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

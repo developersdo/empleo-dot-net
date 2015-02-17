@@ -28,6 +28,8 @@ namespace EmpleoDotNet.Migrations
                                               location);
             }
             #endregion
+            //This triggers the save to the database making entity framework assign the correct Id's to the locationsList
+            context.SaveChanges();
 
             #region JobOpportunities
 

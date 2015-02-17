@@ -78,7 +78,7 @@ namespace EmpleoDotNet.Models
         #endregion
 
         #region Navegation Properties
-        public List<Tag> Tags { get; set; }
+        public ICollection<Tag> Tags { get; set; }
 
         [Display(Name = "Localidad")]
         public Location Location { get; set; }
