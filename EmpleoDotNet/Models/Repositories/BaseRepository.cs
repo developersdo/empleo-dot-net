@@ -11,12 +11,13 @@ namespace EmpleoDotNet.Models.Repositories
         public BaseRepository()
         {
             Context = new Models.Database();
-            DbSet = Context.Set<T>();
+            
         }
 
         public BaseRepository(DbContext context)
         {
             Context = context;
+            DbSet = Context.Set<T>();
         }
 
         protected T GetById(int? id)
