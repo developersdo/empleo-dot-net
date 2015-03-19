@@ -11,7 +11,7 @@ namespace EmpleoDotNet.Models.Repositories
         public BaseRepository()
         {
             Context = new Models.Database();
-            
+            DbSet = Context.Set<T>();
         }
 
         public BaseRepository(DbContext context)
