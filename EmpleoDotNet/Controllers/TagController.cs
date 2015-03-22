@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using EmpleoDotNet.Models;
 using EmpleoDotNet.Models.Repositories;
+using EmpleoDotNet.Models.Repositories.Validations;
 using EmpleoDotNet.ViewModel;
 
 namespace EmpleoDotNet.Controllers
@@ -15,10 +16,12 @@ namespace EmpleoDotNet.Controllers
     public class TagController : EmpleoDotNetController
     {
         private readonly TagRepository _tagRepository;
+        private readonly TagValidator _tagValidator;
 
         public TagController()
         {
             _tagRepository = new TagRepository(_database); 
+            _tagValidator = new TagValidator(_database);
         }
 
         // GET: Tag
@@ -31,14 +34,13 @@ namespace EmpleoDotNet.Controllers
         public ActionResult Details(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+           
             Tag tag = _tagRepository.GetTagById(id.Value);
+
             if (tag == null)
-            {
                 return HttpNotFound();
-            }
+            
             return View(tag);
         }
 
@@ -53,34 +55,43 @@ namespace EmpleoDotNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Created,Opportunities")] Tag tag)
+        public ActionResult Create([Bind(Include = "Id,Name,Created,Opportunities")] TagViewModel vm)
         {
             if (ModelState.IsValid)
-            { 
-                tag.Estado = EstadoRegistro.Creado;
-                tag.Created = DateTime.Now;
+            {
+                var existTag = _tagValidator.ValidateName(vm.Name);
 
-                _tagRepository.Add(tag);
-                _uow.SaveChanges();
-                return RedirectToAction("Index");
+                if (!existTag)
+                {
+                    vm.Estado = EstadoRegistro.Creado;
+                    vm.Created = DateTime.Now;
+                    _tagRepository.Add(vm.ToEntity());
+
+                    _uow.SaveChanges();
+
+                    return RedirectToAction("Index"); 
+                }
+
+                ViewBag.ErrorMessage = "Este tag ya existe!";
             }
 
-            return View(tag);
+            return View(vm);
         }
 
         // GET: Tag/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Tag tag = _tagRepository.GetTagById(id.Value);
+            
+            var tag = _tagRepository.GetTagById(id.Value);
+
+            var vm = new TagViewModel();
+
             if (tag == null)
-            {
                 return HttpNotFound();
-            }
-            return View(tag);
+
+            return View(vm.ToViewModel(tag));
         }
 
         // POST: Tag/Edit/5
@@ -88,30 +99,35 @@ namespace EmpleoDotNet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Created")] Tag tag)
+        public ActionResult Edit([Bind(Include = "Id,Name,Created")] TagViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                tag.Created = DateTime.Now;
-                _tagRepository.Update(tag);
-                _uow.SaveChanges();
-                return RedirectToAction("Index");
+                var existTag = _tagValidator.ValidateName(vm.Name);
+                if (!existTag)
+                {
+                    vm.Created = DateTime.Now;
+                    _tagRepository.Update(vm.ToEntity());
+                    _uow.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                ViewBag.ErrorMessage = "Este tag ya exite!";
             }
-            return View(tag);
+            return View(vm);
         }
 
         // GET: Tag/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            
             Tag tag = _tagRepository.GetTagById(id.Value);
+
             if (tag == null)
-            {
                 return HttpNotFound();
-            }
+            
             return View(tag);
         }
 

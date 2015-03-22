@@ -33,6 +33,7 @@ namespace EmpleoDotNet.Models.Repositories
             tag.Estado = EstadoRegistro.Borrado;
             Update(tag);
         }
+         
         #endregion
     }
 }

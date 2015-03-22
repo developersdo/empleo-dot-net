@@ -50,7 +50,7 @@ namespace EmpleoDotNet.ViewModel
                 CompanyLogoUrl = this.CompanyLogoUrl,
                 CompanyEmail = this.CompanyEmail,
                 Created = this.Created,
-                PublishedDate = this.PublishedDate,
+                PublishedDate = this.PublishedDate
             };
 
             return entity;

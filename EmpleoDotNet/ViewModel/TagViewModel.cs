@@ -10,13 +10,16 @@ namespace EmpleoDotNet.ViewModel
     [MetadataType(typeof(Tag))]
     public class TagViewModel
     {
+        #region Properties
         public int Id { get; set; }
         public string Name { get; set; } 
         public EstadoRegistro Estado { get; set; }
-        public DateTime Created {
-            get { return DateTime.Now; }
-        }
-        public IList<JobOpportunity> Opportunities { get; set; } 
+        public DateTime Created{get; set; }
+
+        public IList<JobOpportunity> Opportunities { get; set; }
+        #endregion
+
+        #region Methods
         public Tag ToEntity()
         {
             var tag = new Tag
@@ -29,5 +32,16 @@ namespace EmpleoDotNet.ViewModel
             return tag;
         }
 
+        public TagViewModel ToViewModel(Tag tag)
+        {
+            var vm = new TagViewModel
+            {
+                Estado = tag.Estado,
+                Name = tag.Name,
+                Created = tag.Created
+            };
+            return vm;
+        }
+      #endregion
     }
 }
