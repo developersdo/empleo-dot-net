@@ -17,6 +17,7 @@ namespace EmpleoDotNet.Models.Repositories
         public BaseRepository(DbContext context)
         {
             Context = context;
+            DbSet = Context.Set<T>();
         }
 
         protected T GetById(int? id)
@@ -39,5 +40,11 @@ namespace EmpleoDotNet.Models.Repositories
         {
             DbSet.Add(entity);
         }
+
+        public void Update(T entity)
+        {
+            Context.Entry(entity).State = EntityState.Modified;
+        } 
+       
     }
 }

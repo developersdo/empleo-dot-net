@@ -16,10 +16,15 @@ namespace EmpleoDotNet.Models
         [MaxLength(50, ErrorMessage = "Este campo no puede contener mas de 50 caracteres")]
         [Display(Name = "Nombre")]
         public string Name { get; set; }
+
+        /// <summary>
+        /// Estado del registro
+        /// </summary> 
+        public EstadoRegistro Estado { get; set; }
         #endregion
 
         #region Navegation Properties
-        public List<JobOpportunity> Opportunities { get; set; } 
+        public ICollection<JobOpportunity> Opportunities { get; set; } 
         #endregion
     }
 }
