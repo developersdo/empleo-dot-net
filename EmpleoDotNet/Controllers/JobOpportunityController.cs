@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using EmpleoDotNet.Models;
@@ -17,26 +18,38 @@ namespace EmpleoDotNet.Controllers
             _jobRepository = new JobOpportunityRepository(_database);
             _locationRepository = new LocationRepository(_database);
         }
-        
+
         // GET: /JobOpportunity/
-        public ActionResult Index(string selectedLocation = "")
+        public ActionResult Index(string selectedLocation = "", JobCategory category = JobCategory.None)
         {
-            var jobList = _jobRepository.GetAllJobOpportunities();
             var locations = _locationRepository.GetAllLocationNames();
 
             const string placeholderLocations = "Todas las locaciones";
+            
             locations.Insert(0, placeholderLocations);
+
+            List<JobOpportunity> jobList; 
 
             if (!String.IsNullOrEmpty(selectedLocation) && !selectedLocation.Equals(placeholderLocations))
             {
                 var locationArgument = _locationRepository.GetLocationByName(selectedLocation);
-                jobList = _jobRepository.GetAllJobOpportunitiesByLocation(locationArgument);
+
+                jobList = category == JobCategory.None 
+                    ? _jobRepository.GetAllJobOpportunitiesByLocation(locationArgument) 
+                    : _jobRepository.GetAllJobOpportunitiesByLocationAndJobCategory(locationArgument, category);
+            }
+            else
+            {
+                jobList = category == JobCategory.None
+                    ? _jobRepository.GetAllJobOpportunities()
+                    : _jobRepository.GetAllJobOpportunitiesByJobCategory(category);
             }
 
             if (!jobList.Any())
                 return RedirectToAction("Index", "Home");
 
-            var vm = new JobOpportunitySearchViewModel {
+            var vm = new JobOpportunitySearchViewModel
+            {
                 JobOpportunities = jobList,
                 Locations = locations
             };
@@ -45,19 +58,19 @@ namespace EmpleoDotNet.Controllers
         }
 
         // GET: /JobOpportunity/Detail/4
-         public ActionResult Detail(int? id)
+        public ActionResult Detail(int? id)
         {
             if (!id.HasValue)
                 return RedirectToAction("Index");
 
             var vm = _jobRepository.GetJobOpportunityById(id);
 
-            if (vm != null) 
+            if (vm != null)
                 return View("Detail", vm);
-            
-            ViewBag.ErrorMessage = 
+
+            ViewBag.ErrorMessage =
                 "La vacante solicitada no existe. Por favor escoger una vacante válida del listado";
-            
+
             return View("Index");
         }
 
@@ -81,7 +94,7 @@ namespace EmpleoDotNet.Controllers
                 return View(job);
             }
 
-            _locationRepository.Add(new Location {Name = "Las Guaranas"});
+            _locationRepository.Add(new Location { Name = "Las Guaranas" });
             _jobRepository.Add(job.ToEntity());
 
             _uow.SaveChanges();

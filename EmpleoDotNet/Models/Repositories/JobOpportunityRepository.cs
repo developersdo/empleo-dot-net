@@ -6,6 +6,16 @@ namespace EmpleoDotNet.Models.Repositories
 {
     public class JobOpportunityRepository : BaseRepository<JobOpportunity>, IJobOpportunityRepository
     {
+        /// <summary>
+        /// JobOportunities con su respectiva Location utilizando Eager Loading
+        /// </summary>
+        /// <returns></returns>
+        private IQueryable<JobOpportunity> GetAllWithLocation()
+        {
+            return GetAll()
+                .Include(j => j.Location);
+        }
+
         public List<JobOpportunity> GetAllJobOpportunities()
         {
             //TODO: Este repositorio no debería instanciar otro
@@ -44,6 +54,26 @@ namespace EmpleoDotNet.Models.Repositories
         public JobOpportunityRepository(DbContext context)
         {
             this.Context = context;
+        }
+
+        public List<JobOpportunity> GetAllJobOpportunitiesByJobCategory(JobCategory category)
+        {
+            var jobList = GetAllWithLocation()
+                .Where(j => j.Category == category)
+                .OrderByDescending(j => j.PublishedDate)
+                .ToList();
+
+            return jobList;
+        }
+
+        public List<JobOpportunity> GetAllJobOpportunitiesByLocationAndJobCategory(Location location, JobCategory category)
+        {
+            var jobList = GetAllWithLocation()
+                .Where(j => j.Category == category)
+                .Where(j => j.LocationId == location.Id)
+                .ToList();
+
+            return jobList;
         }
     }
 }
