@@ -20,7 +20,8 @@ namespace EmpleoDotNet.Controllers
         }
 
         // GET: /JobOpportunity/
-        public ActionResult Index(string selectedLocation = "", JobCategory category = JobCategory.None)
+        // TODO: Hacer que el método sea más thin.
+        public ActionResult Index(string selectedLocation = "", JobCategory jobCategory = JobCategory.None)
         {
             var locations = _locationRepository.GetAllLocationNames();
 
@@ -34,15 +35,15 @@ namespace EmpleoDotNet.Controllers
             {
                 var locationArgument = _locationRepository.GetLocationByName(selectedLocation);
 
-                jobList = category == JobCategory.None 
+                jobList = jobCategory == JobCategory.None 
                     ? _jobRepository.GetAllJobOpportunitiesByLocation(locationArgument) 
-                    : _jobRepository.GetAllJobOpportunitiesByLocationAndJobCategory(locationArgument, category);
+                    : _jobRepository.GetAllJobOpportunitiesByLocationAndJobCategory(locationArgument, jobCategory);
             }
             else
             {
-                jobList = category == JobCategory.None
+                jobList = jobCategory == JobCategory.None
                     ? _jobRepository.GetAllJobOpportunities()
-                    : _jobRepository.GetAllJobOpportunitiesByJobCategory(category);
+                    : _jobRepository.GetAllJobOpportunitiesByJobCategory(jobCategory);
             }
 
             if (!jobList.Any())

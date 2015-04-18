@@ -59,5 +59,33 @@ namespace EmpleoDotNet.Helpers
             return helper.DropDownListFor(expression, items, string.Empty, htmlAttributes);
         }
 
+        // TODO: Buscar forma más elegante de hacer esto, overloading de "EnumDropListFor" o algo.
+        public static IHtmlString EnumDropListForUsingNameAsValue<TModel, TEnum>(
+                                  this HtmlHelper<TModel> helper,
+                                  Expression<Func<TModel, TEnum>> expression,
+                                  object htmlAttributes = null)
+        {
+            IEnumerable<object> values = null;
+            IEnumerable<SelectListItem> items = null;
+
+            var meta = ModelMetadata.FromLambdaExpression(expression, helper.ViewData);
+
+            var type = meta.ModelType ?? meta.ModelType;
+
+            if (type != null)
+                values = Enum.GetValues(type).Cast<object>();
+
+            if (values != null)
+                items = values.Where(e => e.GetType().GetField(e.ToString()).GetCustomAttribute<DisplayAttribute>() != null)
+                    .Select(e => new SelectListItem
+                    {
+                        Text = e.GetType().GetField(e.ToString()).GetCustomAttribute<DisplayAttribute>().Name,
+                        // Usar el Enum Name como valor para el select
+                        Value = e.ToString(),
+                        Selected = e.Equals(meta.Model)
+                    });
+
+            return helper.DropDownListFor(expression, items, string.Empty, htmlAttributes);
+        }
     }
 }
