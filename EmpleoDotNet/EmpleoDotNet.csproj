@@ -204,6 +204,10 @@
     <Compile Include="Migrations\201502160631338_AgregandoTagEntity.Designer.cs">
       <DependentUpon>201502160631338_AgregandoTagEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503190155287_AgregandoEstadoTagEntity.cs" />
+    <Compile Include="Migrations\201503190155287_AgregandoEstadoTagEntity.Designer.cs">
+      <DependentUpon>201503190155287_AgregandoEstadoTagEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Database.cs" />
     <Compile Include="Models\EntityFrameworkUnitOfWork.cs" />
@@ -328,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502160631338_AgregandoTagEntity.resx">
       <DependentUpon>201502160631338_AgregandoTagEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503190155287_AgregandoEstadoTagEntity.resx">
+      <DependentUpon>201503190155287_AgregandoEstadoTagEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
