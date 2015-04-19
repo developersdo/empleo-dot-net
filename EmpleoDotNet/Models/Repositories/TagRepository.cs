@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -17,6 +18,11 @@ namespace EmpleoDotNet.Models.Repositories
         {
             var tag = GetAll().FirstOrDefault(a => a.Id == id);
             return tag;
+        }
+
+        public TagRepository(DbContext context):base(context)
+        {
+            
         }
     }
 }

@@ -17,6 +17,7 @@ namespace EmpleoDotNet.Models.Repositories
         public BaseRepository(DbContext context)
         {
             Context = context;
+            DbSet = Context.Set<T>();
         }
 
         protected T GetById(int? id)

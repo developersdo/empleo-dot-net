@@ -38,9 +38,9 @@ namespace EmpleoDotNet.Models.Repositories
             return location;
         }
 
-        public LocationRepository(DbContext context)
+        public LocationRepository(DbContext context):base(context)
         {
-            this.Context = context;
+            
         }
     }
 }

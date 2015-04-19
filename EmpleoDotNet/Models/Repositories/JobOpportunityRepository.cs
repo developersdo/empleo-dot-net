@@ -41,9 +41,9 @@ namespace EmpleoDotNet.Models.Repositories
                 .ToList();
         }
 
-        public JobOpportunityRepository(DbContext context)
+        public JobOpportunityRepository(DbContext context):base(context)
         {
-            this.Context = context;
+            
         }
     }
 }
