@@ -10,13 +10,9 @@ namespace EmpleoDotNet.Models.Repositories
         {
             //TODO: Este repositorio no debería instanciar otro
             var locationRepo = new LocationRepository(Context);
-            var locations = locationRepo.GetAllLocations().ToDictionary(x=> x.Id);
 
-            var jobOpportunities = GetAll().OrderByDescending(x => x.PublishedDate);
-            
-            //Esto es para llenar la propiedad de navegación ya que EF solo llena el LocationId (no se porqué)
-            foreach (var item in jobOpportunities)
-                item.Location = locations[item.LocationId];
+            var jobOpportunities = GetAll().Include(j => j.Location)
+                .OrderByDescending(x => x.PublishedDate);          
 
             return jobOpportunities.ToList();
         }
@@ -26,6 +22,14 @@ namespace EmpleoDotNet.Models.Repositories
             var jobOpportunities = GetAllJobOpportunities().Where(x => x.LocationId == location.Id).ToList();
 
             return jobOpportunities;
+        }
+        public List<JobOpportunity> GetAllJobOpportunitiesByLocationId(int? locationId)
+        {
+            var jobOpportunities = GetAll().Include(x => x.Location)
+                .Where(j => j.LocationId == locationId
+                || locationId == null);
+            
+            return jobOpportunities.ToList();
         }
 
         public JobOpportunity GetJobOpportunityById(int? id)

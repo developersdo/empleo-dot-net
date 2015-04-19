@@ -19,29 +19,15 @@ namespace EmpleoDotNet.Controllers
         }
         
         // GET: /JobOpportunity/
-        public ActionResult Index(string selectedLocation = "")
+        public ActionResult Index(int? LocationId)
         {
-            var jobList = _jobRepository.GetAllJobOpportunities();
-            var locations = _locationRepository.GetAllLocationNames();
+            var jobList = _jobRepository.GetAllJobOpportunitiesByLocationId(LocationId);
 
-            const string placeholderLocations = "Todas las locaciones";
-            locations.Insert(0, placeholderLocations);
+            var locations = _locationRepository.GetAllLocations();
 
-            if (!String.IsNullOrEmpty(selectedLocation) && !selectedLocation.Equals(placeholderLocations))
-            {
-                var locationArgument = _locationRepository.GetLocationByName(selectedLocation);
-                jobList = _jobRepository.GetAllJobOpportunitiesByLocation(locationArgument);
-            }
+            ViewBag.LocationId = new SelectList(locations, "Id", "Name", LocationId);
 
-            if (!jobList.Any())
-                return RedirectToAction("Index", "Home");
-
-            var vm = new JobOpportunitySearchViewModel {
-                JobOpportunities = jobList,
-                Locations = locations
-            };
-
-            return View(vm);
+            return View(jobList);
         }
 
         // GET: /JobOpportunity/Detail/4
