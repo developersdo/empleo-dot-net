@@ -1,5 +1,5 @@
 ﻿@using EmpleoDotNet.Helpers
-@model IEnumerable<EmpleoDotNet.Models.JobOpportunity>
+@model IEnumerable<EmpleoDotNet.ViewModel.JobOpportunityIndexViewModel>
 @{
     ViewBag.Title = "Listado de vacantes";
 }
@@ -53,8 +53,8 @@
                         @job.Title
                     </a>
                 </td>
-                <td>@job.Category.ToEnumDescription()</td>
-                <td>@job.Location.Name </td>
+                <td>@job.Category</td>
+                <td>@job.Location </td>
             </tr>
         }
     </table>

@@ -4,6 +4,8 @@ using System.Web.Mvc;
 using EmpleoDotNet.Models;
 using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.Models.Repositories;
+using System.Collections.Generic;
+using AutoMapper;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -27,7 +29,10 @@ namespace EmpleoDotNet.Controllers
 
             ViewBag.LocationId = new SelectList(locations, "Id", "Name", LocationId);
 
-            return View(jobList);
+            Mapper.CreateMap<JobOpportunity, JobOpportunityIndexViewModel>();
+            var vm = Mapper.Map<IEnumerable<JobOpportunityIndexViewModel>>(jobList);
+            
+            return View(vm);
         }
 
         // GET: /JobOpportunity/Detail/4
