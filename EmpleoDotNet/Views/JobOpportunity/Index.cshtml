@@ -39,7 +39,7 @@
         @foreach (var job in Model)
         {
             <tr>
-                <td>@job.PublishedDate.Value.ToString("dd/mm/yyyy")</td>
+                <td><p data-utcdate="@job.PublishedDate.Value.ToString("s")"></p></td>
                 <td>
                     <strong>@job.CompanyName</strong> |
                     <a href="@Url.RouteUrl(
@@ -59,3 +59,7 @@
         }
     </table>
 </div>
+
+
+
+ 

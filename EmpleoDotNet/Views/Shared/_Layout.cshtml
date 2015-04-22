@@ -48,5 +48,13 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+    $(function () {
+        $('[data-utcdate]').each(function () {
+            var d = moment($(this).attr('data-utcdate'));
+            $(this).html(moment(d).fromNow());
+        });
+    });
+    </script>
 </body>
 </html>
