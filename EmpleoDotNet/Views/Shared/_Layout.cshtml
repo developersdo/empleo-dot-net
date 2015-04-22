@@ -52,7 +52,7 @@
     $(function () {
         $('[data-utcdate]').each(function () {
             var d = moment($(this).attr('data-utcdate'));
-            $(this).html(moment(d).fromNow());
+            $(this).html(moment(d).locale('es').fromNow());
         });
     });
     </script>
