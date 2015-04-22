@@ -14,7 +14,7 @@ namespace EmpleoDotNet.ViewModel
         public string CompanyName { get; set; }
         public string Title { get; set; }
         public string Category { get; set; }
-        public string Location { get; set; }
+        public Location Location { get; set; }
         public IEnumerable<Tag> Tags { get; set; }
         #endregion
     }
