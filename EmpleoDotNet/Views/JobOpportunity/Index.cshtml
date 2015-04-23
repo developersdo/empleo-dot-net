@@ -1,5 +1,5 @@
 ﻿@using EmpleoDotNet.Helpers
-@model EmpleoDotNet.ViewModel.JobOpportunitySearchViewModel
+@model IEnumerable<EmpleoDotNet.ViewModel.JobOpportunityIndexViewModel>
 @{
     ViewBag.Title = "Listado de vacantes";
 }
@@ -17,10 +17,8 @@
 <div class="row">
     @using (Html.BeginForm("Index", "JobOpportunity", FormMethod.Get))
     {
-        <div class="col-xs-3">
-            @Html.DropDownListFor(d => d.SelectedLocation,
-                Model.Locations.Select(s => new SelectListItem {Text = s, Value = s}),
-                new {@class = "form-control"})
+        <div class="col-xs-3">            
+            @Html.DropDownList("LocationId", null, "Todas las ciudades", htmlAttributes: new { @class = "form-control" })
         </div>
         <div class="col-xs-3">
             @*Aqui va el control de seleccion de Categorias*@
@@ -38,10 +36,10 @@
             <th>Categoria</th>
             <th>Provincia</th>
         </tr>
-        @foreach (var job in Model.JobOpportunities)
+        @foreach (var job in Model)
         {
             <tr>
-                <td>@job.PublishedDate.Value.ToString("dd/mm/yyyy")</td>
+                <td><p data-utcdate="@job.PublishedDate.Value.ToString("s")"></p></td>
                 <td>
                     <strong>@job.CompanyName</strong> |
                     <a href="@Url.RouteUrl(
@@ -55,9 +53,13 @@
                         @job.Title
                     </a>
                 </td>
-                <td>@job.Category.ToEnumDescription()</td>
-                <td>@(job.Location != null ? job.Location.Name : "")</td>
+                <td>@job.Category</td>
+                <td>@job.Location.Name </td>
             </tr>
         }
     </table>
 </div>
+
+
+
+ 
