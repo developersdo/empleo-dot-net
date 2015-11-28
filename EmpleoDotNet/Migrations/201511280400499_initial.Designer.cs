@@ -7,13 +7,13 @@ namespace EmpleoDotNet.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class CambioNombreColumna : IMigrationMetadata
+    public sealed partial class initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CambioNombreColumna));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201405310304010_CambioNombreColumna"; }
+            get { return "201511280400499_initial"; }
         }
         
         string IMigrationMetadata.Source

@@ -11,9 +11,9 @@ namespace EmpleoDotNet.Models
     /// Representa a la base de datos. 
     /// Define los mappings a las tablas
     /// </summary>
-    public class Database : DbContext
+    public class EmpleadoContext : DbContext
     {
-        public Database()
+        public EmpleadoContext()
             : base("EmpleoDotNetConn")
         { this.Configuration.LazyLoadingEnabled = true; }
 
@@ -22,6 +22,7 @@ namespace EmpleoDotNet.Models
         public DbSet<Location> Locations { get; set; } 
         public DbSet<Tag> Tags { get; set; }
 
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
@@ -35,8 +36,6 @@ namespace EmpleoDotNet.Models
             modelBuilder.Entity<Location>()
                         .Property(p => p.Id)
                         .HasColumnName(string.Format("{0}Id", typeof(Location).Name));
-
- 
 
             base.OnModelCreating(modelBuilder);
         }

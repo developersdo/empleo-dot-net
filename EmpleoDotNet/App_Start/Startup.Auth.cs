@@ -29,8 +29,8 @@ namespace EmpleoDotNet
             //   consumerSecret: "");
 
             //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            //   appId: "BLAH",
+            // appSecret: "BLAH");
 
             //app.UseGoogleAuthentication();
         }

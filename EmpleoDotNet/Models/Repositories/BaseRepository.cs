@@ -10,7 +10,7 @@ namespace EmpleoDotNet.Models.Repositories
 
         public BaseRepository()
         {
-            Context = new Models.Database();
+            Context = new Models.EmpleadoContext();
             DbSet = Context.Set<T>();
         }
 

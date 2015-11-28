@@ -11,7 +11,7 @@ namespace EmpleoDotNet.Controllers
 
         public EmpleoDotNetController()
         {
-            _database = new Models.Database();
+            _database = new Models.EmpleadoContext();
             _uow = new EntityFrameworkUnitOfWork(_database);
         }
     }
