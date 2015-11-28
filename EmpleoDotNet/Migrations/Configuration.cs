@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Data.Entity;
 using EmpleoDotNet.Models;
 
 namespace EmpleoDotNet.Migrations
@@ -6,14 +7,14 @@ namespace EmpleoDotNet.Migrations
     using System;
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Database>
+    internal sealed class Configuration : DbMigrationsConfiguration<EmpleadoContext>
     {
-        public Configuration()
+        public Configuration()                   
         {
-            AutomaticMigrationsEnabled = false;
+             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Database context)
+        protected override void Seed(EmpleadoContext context)
         {
             #region Locations
             var locationsList = new List<Location>
