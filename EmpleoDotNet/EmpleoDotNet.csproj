@@ -193,12 +193,15 @@
     <Compile Include="Migrations\201511291800125_AddApprovedField.Designer.cs">
       <DependentUpon>201511291800125_AddApprovedField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201511300307344_AddEntityModels.cs" />
+    <Compile Include="Migrations\201511300307344_AddEntityModels.Designer.cs">
+      <DependentUpon>201511300307344_AddEntityModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EmpleadoContext.cs" />
     <Compile Include="Models\EntityFrameworkUnitOfWork.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />
     <Compile Include="Models\EntityBase.cs" />
-    <Compile Include="Models\Identity\IdentityModels.cs" />
     <Compile Include="Models\ISearchable.cs" />
     <Compile Include="Models\IUnitOfWork.cs" />
     <Compile Include="Models\JobCategory.cs" />
@@ -299,6 +302,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511291800125_AddApprovedField.resx">
       <DependentUpon>201511291800125_AddApprovedField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511300307344_AddEntityModels.resx">
+      <DependentUpon>201511300307344_AddEntityModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
