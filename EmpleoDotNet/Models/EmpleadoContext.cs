@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
@@ -36,6 +37,12 @@ namespace EmpleoDotNet.Models
             modelBuilder.Entity<Location>()
                         .Property(p => p.Id)
                         .HasColumnName(string.Format("{0}Id", typeof(Location).Name));
+
+            modelBuilder.Entity<IdentityUserRole>().ToTable("UserRolesJoin").HasKey(m => new { m.UserId, m.RoleId });
+            modelBuilder.Entity<IdentityUserLogin>().ToTable("Logins").HasKey(m => m.UserId);
+            modelBuilder.Entity<IdentityUserClaim>().ToTable("Claims").HasKey(m => m.Id);
+            modelBuilder.Entity<IdentityRole>().ToTable("Roles").HasKey(m => m.Id);
+            modelBuilder.Entity<IdentityUser>().ToTable("Users").HasKey(m => m.Id);
 
             base.OnModelCreating(modelBuilder);
         }

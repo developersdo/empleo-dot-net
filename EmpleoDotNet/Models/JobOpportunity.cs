@@ -75,6 +75,12 @@ namespace EmpleoDotNet.Models
         [Display(Name = "Fecha de Publicación")]
         public DateTime? PublishedDate { get; set; }
 
+        /// <summary>
+        /// Flag que representa si el trabajo ha sido aprovado o no para mostrarse en la pantalla principal de empleos.
+        /// </summary>
+        [Display (Name = "Aprobado")]
+        public bool Approved { get; set; }
+
         #endregion
 
         #region Navegation Properties
