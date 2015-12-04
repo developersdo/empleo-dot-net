@@ -1,9 +1,10 @@
 ﻿// Variables
 @bgGray:#EEE;
 @defaultBorderColor: #E6E6E6;
-@errorColor: #b94a48;
+@errorColor: #E85F5F;
 @textColor: #000;
 @subtitleColor: #818181;
+@successColor: #89C189;
 
 /*General Rules*/
 body {
@@ -21,6 +22,10 @@ input,select,textarea {
 }
 
 .img{background-size: contain; background-repeat: no-repeat; background-position: center; }
+
+/*Icon Updates*/
+.glyphicon-remove{color:@errorColor}
+.glyphicon-ok{color:@successColor}
 
 /*Page Structure Styles*/
 .row {margin-bottom: 10px;}
@@ -127,7 +132,15 @@ input[type="checkbox"].input-validation-error {
 }
 
 /*Table styles*/
+.total {
+    text-align:right;
+    .description{
+        font-weight:600;
+    }
+}
 .table tr:first-child {
     background-color: @bgGray;
     border-bottom: 2px solid @defaultBorderColor;
 }
+
+.table .btn{ display:inline !important;}
