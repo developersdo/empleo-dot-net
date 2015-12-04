@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace EmpleoDotNet.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class AdministrationController : EmpleoDotNetController
     {
         private readonly JobOpportunityRepository _jobRepository;

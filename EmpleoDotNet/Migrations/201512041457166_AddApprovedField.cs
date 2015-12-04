@@ -7,12 +7,12 @@ namespace EmpleoDotNet.Migrations
     {
         public override void Up()
         {
-            AlterColumn("dbo.JobOpportunities", "Approved", c => c.Boolean());
+            AddColumn("dbo.JobOpportunities", "Approved", c => c.Boolean());
         }
         
         public override void Down()
         {
-            AlterColumn("dbo.JobOpportunities", "Approved", c => c.Boolean(nullable: false));
+            DropColumn("dbo.JobOpportunities", "Approved");
         }
     }
 }
