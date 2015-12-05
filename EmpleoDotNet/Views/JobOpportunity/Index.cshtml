@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Listado de vacantes";
 }
-
 <div class="row">
     <div class="col-xs-8">
         <h2>Lista de vacantes disponibles</h2>
@@ -13,29 +12,29 @@
         <a href="@Url.Action("New", "JobOpportunity")" class="btn btn-info">Nueva Vacante</a>
     </div>
 </div>
-
 <div class="row">
     @using (Html.BeginForm("Index", "JobOpportunity", FormMethod.Get))
     {
         <div class="col-xs-3">
             @Html.DropDownListFor(d => d.SelectedLocation,
-                Model.Locations.Select(s => new SelectListItem {Text = s, Value = s}),
-                new {@class = "form-control"})
+                Model.Locations.Select(s => new SelectListItem { Text = s, Value = s }),
+                new { @class = "form-control" })
         </div>
         <div class="col-xs-3">
-            @*Aqui va el control de seleccion de Categorias*@
-            <button type="Submit" class="btn btn-info">Filtrar</button> 
+            @Html.EnumDropListForUsingNameAsValue(d => d.JobCategory, new { @class = "form-control" })
+        </div>
+        <div class="col-xs-3">
+            <button type="Submit" class="btn btn-info">Filtrar</button>
         </div>
     }
 </div>
-
 <div class="row">
     <p>&nbsp;</p>
-        <table class="table">
+    <table class="table">
         <tr>
             <th>Publicación</th>
             <th>Título</th>
-            <th>Categoria</th>
+            <th>Categoría</th>
             <th>Provincia</th>
         </tr>
         @foreach (var job in Model.JobOpportunities)
@@ -45,17 +44,17 @@
                 <td>
                     <strong>@job.CompanyName</strong> |
                     <a href="@Url.RouteUrl(
-                        "JobOpportunity-Pretty",
-                        new {
-                            controller = "JobOpportunity",
-                            action = "Detail",
-                            id = job.Id,
-                            description = job.Title.SanitizeUrl()
-                        })">
+                                 "JobOpportunity-Pretty",
+                                 new {
+                                     controller = "JobOpportunity",
+                                     action = "Detail",
+                                     id = job.Id,
+                                     description = job.Title.SanitizeUrl()
+                                 })">
                         @job.Title
                     </a>
                 </td>
-                <td>@job.Category.ToEnumDescription()</td>
+                <td>@Html.ActionLink(job.Category.ToEnumDescription(), "Index", new { jobCategory = job.Category })</td>
                 <td>@(job.Location != null ? job.Location.Name : "")</td>
             </tr>
         }

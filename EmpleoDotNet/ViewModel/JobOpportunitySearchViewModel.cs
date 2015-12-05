@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using EmpleoDotNet.Models;
 
 namespace EmpleoDotNet.ViewModel
 {
@@ -12,5 +13,7 @@ namespace EmpleoDotNet.ViewModel
         public string SelectedLocation { get; set; }
         
         public IList<string> Locations { get; set; }
+
+        public JobCategory JobCategory { get; set; }
     }
 }
