@@ -8,15 +8,10 @@
     <div class="col-xs-8">
         <h2>Lista de vacantes pendientes de aprobación</h2>
     </div>
-    @*<div class="cols-xs-4 pull-right">
-        <p>&nbsp;</p>
-        <a href="@Url.Action("New", "JobOpportunity")" class="btn btn-info">Nueva Vacante</a>
-    </div>*@
 </div>
 
 
 <div class="row">
-    <p>&nbsp;</p>
     <p class="total">
         <span class="description">Total por aprobación:</span>
         <span class="value">@Model.Count()</span>
@@ -48,9 +43,9 @@
                 </td>
                 <td>@job.Category.ToEnumDescription()</td>
                 <td>@(job.Location != null ? job.Location.Name : "")</td>
-                <td class="text-center">
-                    <a class="approve-job glyphicon glyphicon-ok" href="#" style="margin:0 5px"></a>
-                    <a class="discard-job glyphicon glyphicon-remove" href="#" style="margin:0 5px"></a>
+                <td class="text-center button-column">
+                    <a class="approve-job glyphicon glyphicon-ok" href="#"></a>
+                    <a class="discard-job glyphicon glyphicon-remove" href="#"></a>
                 </td>
             </tr>
         }
