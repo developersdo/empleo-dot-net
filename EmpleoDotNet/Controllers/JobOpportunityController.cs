@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
-using EmpleoDotNet.Helpers;
 using EmpleoDotNet.Models;
 using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.Models.Repositories;
@@ -66,23 +65,24 @@ namespace EmpleoDotNet.Controllers
         public ActionResult New()
         {
             var viewModel = new NewJobOpportunityViewModel();
+            viewModel.Locations = _locationRepository.GetAllLocations();
 
-            LoadLocations(viewModel);
-
-            return View(viewModel);
+            return View("New", viewModel);
         }
 
+
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult New(NewJobOpportunityViewModel model)
+        public ActionResult New(NewJobOpportunityViewModel job)
         {
             if (!ModelState.IsValid)
             {
-                LoadLocations(model);
+                job.Locations = _locationRepository.GetAllLocations();
                 ViewBag.ErrorMessage = "Han ocurrido errores de validación que no permiten continuar el proceso";
-                return View(model);
+                return View(job);
             }
 
-            _jobRepository.Add(model.ToEntity());
+            _locationRepository.Add(new Location {Name = "Las Guaranas"});
+            _jobRepository.Add(job.ToEntity());
 
             _uow.SaveChanges();
 
@@ -94,13 +94,6 @@ namespace EmpleoDotNet.Controllers
             var latestJobOpportunities = _jobRepository.GetLatestJobOpporunity(10);
 
             return PartialView("_LastestJobs", latestJobOpportunities);
-        }
-
-        private void LoadLocations(NewJobOpportunityViewModel viewModel)
-        {
-            var locations = _locationRepository.GetAllLocations();
-
-            viewModel.Locations = locations.ToSelectList(x => x.Id, x => x.Name);
         }
     }
 }

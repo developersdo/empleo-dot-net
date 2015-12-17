@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmpleoDotNet.Models
 {
@@ -8,14 +10,11 @@ namespace EmpleoDotNet.Models
     /// </summary>
     public abstract class EntityBase
     {
-        protected EntityBase()
-        {
-            Created = DateTime.Today;
-        }
-
         /// <summary>
         /// Identificador unico de una entidad.
         /// </summary>
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         /// <summary>

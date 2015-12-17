@@ -7,95 +7,76 @@
 @using (Html.BeginForm("New", "JobOpportunity", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-
-    <div id="opportunity-info">
-        
-        <h4>Información principal del puesto</h4>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Título</label>
-            <div class="col-sm-10">
-                @Html.TextBoxFor(m => m.Title, new {@class = "form-control"})
-                @Html.ValidationMessageFor(m => m.Title)
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Localidad</label>
-            <div class="col-sm-10">
-                @Html.DropDownListFor(d => d.SelectedLocationId, Model.Locations, new {@class = "form-control", id = "location-id"})
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Descripción del Puesto</label>
-            <div class="col-sm-10">
-                @Html.TextAreaFor(m => m.Description, new {@class = "form-control"})
-                @Html.ValidationMessageFor(m => m.Description)
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Categoría</label>
-            <div class="col-sm-10">
-                @Html.EnumDropListFor(e => e.Category, new {@class = "form-control", id = "category"})
-                @Html.ValidationMessageFor(m => m.Category)
-            </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.Title, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Title)
         </div>
     </div>
-
-    <div id="company-info">
-        <h4>Información de la Empresa</h4>
-
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Nombre</label>
-            <div class="col-sm-10">
-                @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.CompanyName)
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Web Site</label>
-            <div class="col-sm-10">
-                @Html.TextBoxFor(m => m.CompanyUrl, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Logo</label>
-            <div class="col-sm-10">
-                @Html.TextBoxFor(m => m.CompanyLogoUrl, new { @class = "form-control" })
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">E-Mail</label>
-            <div class="col-sm-10">
-                @Html.TextBoxFor(m => m.CompanyEmail, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.CompanyEmail)
-            </div>
+    <div class="form-group">
+         @Html.LabelFor(m => m.Location, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.DropDownListFor(d => d.LocationId,
+                                    Model.Locations.Select(s => new SelectListItem { Text = s.Name, Value = s.Id.ToString() }),
+                                    new { @class = "form-control" })
         </div>
     </div>
 
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-primary">Crear Vacante</button>
+        @Html.LabelFor(m => m.Description, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control"})
+            @Html.ValidationMessageFor(m => m.Description)
         </div>
     </div>
-}
 
-@section styles{
-    @Styles.Render("~/bundles/select2Style")
+    
+      <div class="form-group">
+        @Html.LabelFor(m => m.Category, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.EnumDropListFor(e => e.Category, new {@class = "form-control"})
+            @Html.ValidationMessageFor(m => m.Category)
+        </div>
+    </div>
+    
+    <h4>Información de la empresa</h4>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.CompanyName, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.CompanyName)
+        </div>
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.CompanyUrl, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.CompanyUrl, new { @class = "form-control" })
+        </div>
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.CompanyLogoUrl, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.CompanyLogoUrl, new { @class = "form-control" })
+        </div>
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.CompanyEmail, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.CompanyEmail, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.CompanyEmail)
+        </div>
+    </div>
+    
 
-    <style>
-        #company-info {
-            margin-top: 50px;
-        }
-
-        #opportunity-info {
-            margin-top: 50px;
-        }
-    </style>
-}
-
-@section scripts{
-    @Scripts.Render("~/bundles/select2Script")
-
-    <script>
-        $('select').select2();
-    </script>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Enviar</button>
+        </div>
+    </div>
 }
