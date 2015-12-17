@@ -55,7 +55,7 @@ namespace EmpleoDotNet.ViewModel
                 CompanyUrl = CompanyUrl,
                 CompanyLogoUrl = CompanyLogoUrl,
                 CompanyEmail = CompanyEmail,
-                PublishedDate = DateTime.Today
+                PublishedDate = DateTime.Now
             };
 
             return entity;

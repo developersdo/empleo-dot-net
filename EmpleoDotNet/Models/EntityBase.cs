@@ -10,7 +10,7 @@ namespace EmpleoDotNet.Models
     {
         protected EntityBase()
         {
-            Created = DateTime.Today;
+            Created = DateTime.Now;
         }
 
         /// <summary>
