@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using EmpleoDotNet.Models;
 
@@ -54,6 +55,7 @@ namespace EmpleoDotNet.ViewModel
                 CompanyUrl = CompanyUrl,
                 CompanyLogoUrl = CompanyLogoUrl,
                 CompanyEmail = CompanyEmail,
+                PublishedDate = DateTime.Today
             };
 
             return entity;

@@ -23,7 +23,7 @@ namespace EmpleoDotNet.Models
         
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.AddFromAssembly(Assembly.GetCallingAssembly());
+            modelBuilder.Configurations.AddFromAssembly(Assembly.GetExecutingAssembly());
 
             ConfigureIdentityTables(modelBuilder);
         }

@@ -1,8 +1,7 @@
 ﻿namespace EmpleoDotNet.Models
 {
-    public class Location : ISearchable
+    public class Location : EntityBase
     {
-        public int Id { get; set; }
         public string Name { get; set; }
     }
 }

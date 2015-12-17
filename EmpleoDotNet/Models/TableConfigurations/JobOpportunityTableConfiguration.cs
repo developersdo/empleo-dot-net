@@ -5,7 +5,7 @@ namespace EmpleoDotNet.Models.TableConfigurations
     /// <summary>
     /// Table configuration de la Tabla JobOpportunity
     /// </summary>
-    public class JobOpportunityTableConfiguration : BaseTableConfiguration<JobOpportunity>
+    public class JobOpportunityTableConfiguration : TableConfiguration<JobOpportunity>
     {
         public JobOpportunityTableConfiguration()
         {
