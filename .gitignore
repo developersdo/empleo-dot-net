@@ -175,3 +175,6 @@ FakesAssemblies/
 
 # Roslyn compiler
 EmpleoDotNet.sln.ide
+
+#Visual Studio 2015 IIS Express path
+/.vs
