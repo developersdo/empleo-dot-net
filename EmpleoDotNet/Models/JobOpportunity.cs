@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace EmpleoDotNet.Models
 {
-    public class JobOpportunity : EntityBase, ISearchable
+    public class JobOpportunity : EntityBase
     { 
         #region Property
         /// <summary>
