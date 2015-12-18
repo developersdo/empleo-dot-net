@@ -22,8 +22,12 @@ namespace EmpleoDotNet.Models
         public DbSet<JobOpportunity> JobOpportunities { get; set; }
         public DbSet<Location> Locations { get; set; } 
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<IdentityUserRole> UserRoles { get; set; }
+        public DbSet<IdentityUserLogin> Logins { get; set; }
+        public DbSet<IdentityUserClaim> Claims { get; set; }
+        public DbSet<IdentityRole> Roles { get; set; }
+        public DbSet<IdentityUser> Users { get; set; }
 
-        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
