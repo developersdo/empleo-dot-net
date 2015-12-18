@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Glimpse.Mvc.AlternateType
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,7 +7,7 @@
     <title>@ViewBag.Title - Empleo Dot Net</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    @RenderSection("styles", required: false)
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
