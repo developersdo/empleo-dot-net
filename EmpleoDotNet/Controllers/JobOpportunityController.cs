@@ -3,8 +3,10 @@ using System.Linq;
 using System.Web.Mvc;
 using EmpleoDotNet.Helpers;
 using EmpleoDotNet.Models;
+using EmpleoDotNet.Models.Dto;
 using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.Models.Repositories;
+using PagedList;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -20,29 +22,30 @@ namespace EmpleoDotNet.Controllers
         }
         
         // GET: /JobOpportunity/
-        public ActionResult Index(string selectedLocation = "")
+        public ActionResult Index(int selectedLocation = 0, int page = 1, int pageSize = 15)
         {
-            var jobList = _jobRepository.GetAllJobOpportunities();
-            var locations = _locationRepository.GetAllLocationNames();
+            var locations = _locationRepository.GetAllLocations();
 
-            const string placeholderLocations = "Todas las locaciones";
-            locations.Insert(0, placeholderLocations);
+            locations.Insert(0, new Location { Id = 0, Name = "Todas las locaciones" });
 
-            if (!String.IsNullOrEmpty(selectedLocation) && !selectedLocation.Equals(placeholderLocations))
+            var viewModel = new JobOpportunitySearchViewModel
             {
-                var locationArgument = _locationRepository.GetLocationByName(selectedLocation);
-                jobList = _jobRepository.GetAllJobOpportunitiesByLocation(locationArgument);
-            }
-
-            if (!jobList.Any())
-                return RedirectToAction("Index", "Home");
-
-            var vm = new JobOpportunitySearchViewModel {
-                JobOpportunities = jobList,
-                Locations = locations
+                Locations = locations.ToSelectList(l => l.Id, l => l.Name, selectedLocation),
+                SelectedLocation = selectedLocation
             };
 
-            return View(vm);
+            var jobOpportunities =
+                _jobRepository.GetAllJobOpportunitiesByLocationPaged(new JobOpportunityPagingParameter
+                {
+                    SelectedLocation = selectedLocation,
+                    PageSize = pageSize,
+                    Page = page
+                });
+
+            viewModel.Result = jobOpportunities;
+            ViewBag.SelectedLocation = selectedLocation;
+
+            return View(viewModel);
         }
 
         // GET: /JobOpportunity/Detail/4

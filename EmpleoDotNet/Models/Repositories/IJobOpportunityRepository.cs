@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using EmpleoDotNet.Models.Dto;
+using PagedList;
 
 namespace EmpleoDotNet.Models.Repositories
 {
@@ -8,6 +9,6 @@ namespace EmpleoDotNet.Models.Repositories
         List<JobOpportunity> GetAllJobOpportunities();
         List<JobOpportunity> GetAllJobOpportunitiesByLocation(Location location);
         JobOpportunity GetJobOpportunityById(int? id);
-        PagedResult<JobOpportunity> GetAllJobOpportunitiesByLocationPaged(JobOpportunityPagingParameter parameter);
+        IPagedList<JobOpportunity> GetAllJobOpportunitiesByLocationPaged(JobOpportunityPagingParameter parameter);
     }
 }
