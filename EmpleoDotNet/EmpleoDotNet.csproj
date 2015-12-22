@@ -205,6 +205,8 @@
       <DependentUpon>201512170522237_NewJobOpportunityModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Dto\PagedResult.cs" />
+    <Compile Include="Models\Dto\JobOpportunityPagingParameter.cs" />
     <Compile Include="Models\EmpleadoContext.cs" />
     <Compile Include="Models\EntityFrameworkUnitOfWork.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />

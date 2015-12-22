@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using EmpleoDotNet.Models.Dto;
 
 namespace EmpleoDotNet.Models.Repositories
 {
@@ -31,6 +32,56 @@ namespace EmpleoDotNet.Models.Repositories
         public JobOpportunity GetJobOpportunityById(int? id)
         {
             return GetById(id);
+        }
+
+        /// <summary>
+        /// Obtener una lista de Trabajos paginada por Ubicacion.
+        /// </summary>
+        /// <param name="parameter">Objeto con los parametros necesarios para realizar la consulta.</param>
+        /// <returns>Objeto que representa una lista de datos paginados</returns>
+        public PagedResult<JobOpportunity> GetAllJobOpportunitiesByLocationPaged(JobOpportunityPagingParameter parameter)
+        {
+            var result = new PagedResult<JobOpportunity>();
+
+            if (parameter.Page <= 0)
+            {
+                parameter.Page = 1;
+                result.Page = 1;
+            }
+            else
+                result.Page = parameter.Page;
+
+            if (parameter.PageSize <= 0)
+            {
+                parameter.PageSize = 15;
+                result.PageSize = 15;
+            }
+            else
+                result.PageSize = parameter.PageSize;
+
+            if (parameter.SelectedLocation <= 0)
+            {
+                result.ItemCount = DbSet.Count();
+
+                result.Items = DbSet.Include(x => x.Location)
+                    .OrderBy(x => x.Id)
+                    .Skip(parameter.PageSize*(parameter.Page - 1))
+                    .Take(parameter.PageSize)
+                    .ToList();
+            }
+            else
+            {
+                result.ItemCount = DbSet.Count(x => x.LocationId.Equals(parameter.SelectedLocation));
+
+                result.Items = DbSet.Include(x => x.Location)
+                    .Where(x => x.LocationId.Equals(parameter.SelectedLocation))
+                    .OrderBy(x => x.Id)
+                    .Skip(parameter.PageSize * (parameter.Page - 1))
+                    .Take(parameter.PageSize)
+                    .ToList();
+            }
+
+            return result;
         }
 
         public List<JobOpportunity> GetLatestJobOpporunity(int quantity)
