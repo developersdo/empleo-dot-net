@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web.Mvc;
+using EmpleoDotNet.Models;
+using EmpleoDotNet.Models.Dto;
+using PagedList;
 
 namespace EmpleoDotNet.ViewModel
 {
     public class JobOpportunitySearchViewModel
     {
-        public IList<Models.JobOpportunity> JobOpportunities { get; set; }
+        public int SelectedLocation { get; set; }
         
-        public string SelectedLocation { get; set; }
-        
-        public IList<string> Locations { get; set; }
+        public SelectList Locations { get; set; }
+
+        public IPagedList<JobOpportunity> Result { get; set; }
     }
 }

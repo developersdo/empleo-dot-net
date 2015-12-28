@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using EmpleoDotNet.Models.Dto;
+using PagedList;
 
 namespace EmpleoDotNet.Models.Repositories
 {
@@ -31,6 +33,40 @@ namespace EmpleoDotNet.Models.Repositories
         public JobOpportunity GetJobOpportunityById(int? id)
         {
             return GetById(id);
+        }
+
+        /// <summary>
+        /// Obtener una lista de Trabajos paginada por Ubicacion.
+        /// </summary>
+        /// <param name="parameter">Objeto con los parametros necesarios para realizar la consulta.</param>
+        /// <returns>Objeto que representa una lista de datos paginados</returns>
+        public IPagedList<JobOpportunity> GetAllJobOpportunitiesByLocationPaged(JobOpportunityPagingParameter parameter)
+        {
+            IPagedList<JobOpportunity> result;
+
+            if (parameter.Page <= 0)
+                parameter.Page = 1;
+
+            if (parameter.PageSize <= 0)
+                parameter.PageSize = 15;
+
+            var jobs = DbSet;
+
+            if (parameter.SelectedLocation <= 0)
+            {
+                result = jobs.Include(x => x.Location)
+                    .OrderBy(x => x.Id)
+                    .ToPagedList(parameter.Page, parameter.PageSize);
+            }
+            else
+            {
+                result = DbSet.Include(x => x.Location)
+                    .Where(x => x.LocationId.Equals(parameter.SelectedLocation))
+                    .OrderBy(x => x.Id)
+                    .ToPagedList(parameter.Page, parameter.PageSize);
+            }
+
+            return result;
         }
 
         public List<JobOpportunity> GetLatestJobOpporunity(int quantity)
