@@ -3,51 +3,121 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Empleo Dot Net</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>@ViewBag.Title - Emplea.do</title>
     @Styles.Render("~/bundles/styles")
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/bundles/theme/css")
     @RenderSection("styles", required: false)
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("EmpleoDotNet", "Index", "Home", null, new { @class = "navbar-brand" })
+<body id="home">
+    <!-- ============ NAVBAR START ============ -->
+
+    <div class="fm-container">
+        <!-- Menu -->
+        <div class="menu">
+            <div class="button-close text-right">
+                <a class="fm-button"><i class="fa fa-close fa-2x"></i></a>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+            <ul class="nav">
+                <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li><a href="@Url.Action("Index", "JobOpportunity")">Encuentra una Vacante</a></li>
+                <li><a href="@Url.Action("New", "JobOpportunity")">Crear una Vacante</a></li>
+            </ul>
         </div>
+        <!-- end Menu -->
     </div>
-    <div class="container body-content">
+
+    <!-- ============ NAVBAR END ============ -->
+
+    <header>
+        <div id="header-background"></div>
+        <div class="container">
+            <div class="pull-left">
+                <div><a href="@Url.Action("Index", "Home")"><i class="fa fa-users fa-2x"></i> Emplea.do</a></div>
+            </div>
+            <div id="menu-open" class="pull-right">
+                <a class="fm-button"><i class="fa fa-bars fa-lg"></i></a>
+            </div>
+            @*<div id="searchbox" class="pull-right">
+                <form>
+                    <div class="form-group">
+                        <label class="sr-only" for="searchfield">Searchbox</label>
+                        <input type="text" class="form-control" id="searchfield" placeholder="Type keywords and press enter">
+            </div>
+                </form>
+            </div>*@
+            @*<div id="search" class="pull-right">
+                <a><i class="fa fa-search fa-lg"></i></a>
+            </div>*@
+        </div>
+    </header>
+
+    <div>
+
+        <!-- ============ PAGE LOADER START ============ -->
+        <div id="loader">
+            <i class="fa fa-cog fa-4x fa-spin"></i>
+    </div>
+        <!-- ============ PAGE LOADER END ============ -->
+
 
         @if (!String.IsNullOrEmpty(ViewBag.ErrorMessage))
         {
+            <section id="jobs">
+                <div class="container">
+                    <div class="row">
             <div class="alert alert-danger">
                 @ViewBag.ErrorMessage
             </div>
+                    </div>
+                </div>    
+            </section>
         }
 
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - EmpleoDotNet</p>
-        </footer>
     </div>
+
+        <footer>
+        <div id="prefooter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6" id="newsletter">
+                        <h2>Emplea.do</h2>
+                        @*<form class="form-inline">
+                            <div class="form-group">
+                                <label class="sr-only" for="newsletter-email">Email address</label>
+                                <input type="email" class="form-control" id="newsletter-email" placeholder="Email address">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Sign up</button>
+                        </form>*@
+                    </div>
+                    @*<div class="col-sm-6" id="social-networks">
+                        <h2>Get in touch</h2>
+                        <a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+                        <a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
+                        <a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+        <div id="credits">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-sm-12">
+                        &copy; @DateTime.Today.Year Emplea.do<br>
+                        Made with  <i class="fa fa-heart fa-inverse"></i>   by   <a href="https://github.com/developersdo/empleo-dot-net" target="_blank">Developers.do</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/theme/js")
     @RenderSection("scripts", required: false)
+    <script src="~/Scripts/app.js"></script>
 </body>
 </html>

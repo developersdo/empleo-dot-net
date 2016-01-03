@@ -31,6 +31,37 @@ namespace EmpleoDotNet
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/responsive.css"));
+            
+            RegisterTemplate(bundles);
+        }
+
+        private static void RegisterTemplate(BundleCollection bundles)
+        {
+            RegisterTemplateStyles(bundles);
+            RegisterTemplateScripst(bundles);
+        }
+
+        private static void RegisterTemplateScripst(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/bundles/theme/js").Include("~/Scripts/theme/*.js",
+                "~/Scripts/theme/waypoints.min.js",
+                "~/Scripts/theme/scrollReveal.min.js",
+                "~/Scripts/theme/retina.min.js",
+                "~/Scripts/theme/owl.carousel.min.js",
+                "~/Scripts/theme/jquery.nouislider.all.min.js",
+                "~/Scripts/theme/jquery.counterup.min.js",
+                "~/Scripts/theme/jquery.ba-cond.min.js",
+                "~/Scripts/theme/bootstrap3-wysihtml5.all.min.js",
+                "~/Scripts/theme/instafedd.min.js",
+                "~/Scripts/theme/jflickrfeed.min.js"));
+        }
+
+        private static void RegisterTemplateStyles(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/bundles/theme/css")
+                .Include("~/Content/css/theme/*.css",
+                "~/Content/css/theme/font.awsome.min.css"));
+            
         }
     }
 }

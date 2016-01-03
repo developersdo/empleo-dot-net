@@ -7,72 +7,86 @@
     var selectedLocation = Model.SelectedLocation;
 }
 
-<div class="row">
-    <div class="col-xs-8">
-        <h2>Lista de vacantes disponibles</h2>
-    </div>
-    <div class="cols-xs-4 pull-right">
-        <p>&nbsp;</p>
-        <a href="@Url.Action("New", "JobOpportunity")" class="btn btn-info">Nueva Vacante</a>
-    </div>
-</div>
-
-<div class="row">
-    @using (Html.BeginForm("Index", "JobOpportunity", FormMethod.Get))
-    {
-        <div class="col-xs-3">
-            @Html.DropDownListFor(d => d.SelectedLocation,
-                Model.Locations,
-                new {@class = "form-control", id = "location"})
+<section id="title">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <h1>Encuentra un Trabajo</h1>
+                <h4>No hay mejor lugar para comenzar</h4>
+            </div>
         </div>
-        <div class="col-xs-3">
-            @*Aqui va el control de seleccion de Categorias*@
-            <button type="Submit" class="btn btn-primary">Filtrar</button>
-        </div>
-    }
-</div>
+    </div>
+</section>
 
-<div class="row">
-    <p>&nbsp;</p>
-    <table class="table">
-        <tr>
-            <th>Publicación</th>
-            <th>Título</th>
-            <th>Categoria</th>
-            <th>Provincia</th>
-        </tr>
-        @foreach (var job in Model.Result)
-        {
-            <tr>
-                <td>
-                    @if (job.PublishedDate != null)
+<section id="jobs">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10">
+                @*Pagination*@
+                @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
+               {
+                   selectedLocation,
+                   page,
+                   Model.Result.PageSize
+               }))
+                <div class="jobs">
+
+                    @foreach (var jobOpportunity in Model.Result)
                     {
-                        @job.PublishedDate.Value.ToString("dd/mm/yyyy")
-                    }</td>
-                <td>
-                    <strong>@job.CompanyName</strong> |
-                    <a href="@Url.RouteUrl(
-                                 "JobOpportunity-Pretty",
-                                 new
-                                 {
-                                     controller = "JobOpportunity",
-                                     action = "Detail",
-                                     id = job.Id,
-                                     description = job.Title.SanitizeUrl()
-                                 })">
-                        @job.Title
-                    </a>
-                </td>
-                <td>@job.Category.ToEnumDescription()</td>
-                <td>@(job.Location != null ? job.Location.Name : "")</td>
-            </tr>
-        }
-    </table>
-    @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
-    {
-        selectedLocation,
-        page,
-        Model.Result.PageSize
-    }))
-    Mostrando @Model.Result.FirstItemOnPage al @Model.Result.LastItemOnPage de @Model.Result.TotalItemCount Trabajos
-</div>
+                        <a href="@Url.Action("Detail", "JobOpportunity", new {id = jobOpportunity.Id})" class="featured">
+                            <div class="row" onclick="onJobOpportunityDetailClick(this);" data-url="@Url.Action("Detail", "JobOpportunity", new {id = jobOpportunity.Id})">
+                                <div class="col-md-1 hidden-sm hidden-xs">
+                                    <img src="@jobOpportunity.CompanyLogoUrl" width="60" height="60" alt="" class="img-responsive" onclick="onJobOpportunityDetailClick(this);" data-url="@Url.Action("Detail", "JobOpportunity", new {id = jobOpportunity.Id})"/>
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
+                                    <h5>@jobOpportunity.Title</h5>
+                                    <p><strong>@jobOpportunity.CompanyName</strong> | @jobOpportunity.CompanyEmail</p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
+                                    <p>
+                                        <strong>@jobOpportunity.Location.Name</strong>
+                                    </p>
+                                    <p class="hidden-xs">@jobOpportunity.Created.ToShortDateString()</p>
+                                </div>
+                                <div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
+                                    <p class="badge freelance">@jobOpportunity.Category</p>
+                                    <p>
+                                        
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                </div>
+                @*Pagination*@
+                @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
+                {
+                    selectedLocation,
+                    page,
+                    Model.Result.PageSize
+                }))
+            </div>
+            <div class="col-sm-2" id="sidebar">
+                <div class="sidebar-widget" id="jobsearch">
+                    <h2>Filtros</h2>
+                    @using (Html.BeginForm("Index", "JobOpportunity", FormMethod.Get))
+                    {
+                        <h5>Localidad</h5>
+                        @Html.DropDownListFor(d => d.SelectedLocation,
+                            Model.Locations,
+                            new { @class = "form-control", id = "location" })
+                        <br/>
+                        <button type="Submit" class="btn btn-primary">Filtrar</button>
+                    }
+                    <br/>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <hr>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
