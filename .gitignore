@@ -175,3 +175,4 @@ FakesAssemblies/
 
 # Roslyn compiler
 EmpleoDotNet.sln.ide
+.vs/config/applicationhost.config
