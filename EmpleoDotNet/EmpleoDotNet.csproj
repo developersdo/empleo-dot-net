@@ -42,6 +42,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="dotless.Core, Version=1.5.2.0, Culture=neutral, PublicKeyToken=96b446c9e63eae34, processorArchitecture=MSIL">
+      <HintPath>..\packages\dotless.1.5.2\lib\dotless.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Glimpse.AspNet, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Glimpse.AspNet.1.8.0\lib\net45\Glimpse.AspNet.dll</HintPath>
       <Private>True</Private>
@@ -174,9 +178,11 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\LessTransform.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdministrationController.cs" />
     <Compile Include="Controllers\EmpleoDotNetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobOpportunityController.cs" />
@@ -189,13 +195,13 @@
     <Compile Include="Migrations\201511280400499_initial.Designer.cs">
       <DependentUpon>201511280400499_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201511291800125_AddApprovedField.cs" />
-    <Compile Include="Migrations\201511291800125_AddApprovedField.Designer.cs">
-      <DependentUpon>201511291800125_AddApprovedField.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201511300307344_AddEntityModels.cs" />
     <Compile Include="Migrations\201511300307344_AddEntityModels.Designer.cs">
       <DependentUpon>201511300307344_AddEntityModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512041457166_AddApprovedField.cs" />
+    <Compile Include="Migrations\201512041457166_AddApprovedField.Designer.cs">
+      <DependentUpon>201512041457166_AddApprovedField.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EmpleadoContext.cs" />
@@ -238,11 +244,11 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\Site.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Empleo.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -254,7 +260,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -283,6 +291,7 @@
     <Content Include="Views\JobOpportunity\Detail.cshtml" />
     <Content Include="Views\JobOpportunity\New.cshtml" />
     <Content Include="Views\Shared\_LastestJobs.cshtml" />
+    <Content Include="Views\Administration\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -300,11 +309,11 @@
     <EmbeddedResource Include="Migrations\201511280400499_initial.resx">
       <DependentUpon>201511280400499_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511291800125_AddApprovedField.resx">
-      <DependentUpon>201511291800125_AddApprovedField.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511300307344_AddEntityModels.resx">
       <DependentUpon>201511300307344_AddEntityModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512041457166_AddApprovedField.resx">
+      <DependentUpon>201512041457166_AddApprovedField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

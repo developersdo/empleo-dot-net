@@ -1,0 +1,57 @@
+﻿@using EmpleoDotNet.Helpers
+@model IEnumerable<EmpleoDotNet.Models.JobOpportunity>
+@{
+    ViewBag.Title = "Administración";
+}
+
+<div class="row">
+    <div class="col-xs-8">
+        <h2>Lista de vacantes pendientes de aprobación</h2>
+    </div>
+</div>
+
+
+<div class="row">
+    <p class="total">
+        <span class="description">Total por aprobación:</span>
+        <span class="value">@Model.Count()</span>
+    </p>
+    <table class="table">
+        <tr>
+            <th>Publicación</th>
+            <th>Título</th>
+            <th>Categoria</th>
+            <th>Provincia</th>
+            <th></th>
+        </tr>
+        @foreach (var job in Model)
+        {
+            <tr data-job="@job.Id">
+                <td>@job.PublishedDate.Value.ToString("dd/mm/yyyy")</td>
+                <td>
+                    <strong>@job.CompanyName</strong> |
+                    <a href="@Url.RouteUrl(
+                        "JobOpportunity-Pretty",
+                        new {
+                            controller = "JobOpportunity",
+                            action = "Detail",
+                            id = job.Id,
+                            description = job.Title.SanitizeUrl()
+                        })">
+                        @job.Title
+                    </a>
+                </td>
+                <td>@job.Category.ToEnumDescription()</td>
+                <td>@(job.Location != null ? job.Location.Name : "")</td>
+                <td class="text-center button-column">
+                    <a class="approve-job glyphicon glyphicon-ok" href="#"></a>
+                    <a class="discard-job glyphicon glyphicon-remove" href="#"></a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/custom")
+}

@@ -6,6 +6,11 @@ namespace EmpleoDotNet.Models.Repositories
 {
     public class JobOpportunityRepository : BaseRepository<JobOpportunity>, IJobOpportunityRepository
     {
+        public JobOpportunityRepository(DbContext context) : base(context)
+        {
+
+        }
+
         public List<JobOpportunity> GetAllJobOpportunities()
         {
             //TODO: Este repositorio no debería instanciar otro
@@ -41,9 +46,18 @@ namespace EmpleoDotNet.Models.Repositories
                 .ToList();
         }
 
-        public JobOpportunityRepository(DbContext context):base(context)
+        public IEnumerable<JobOpportunity> GetJobsPendingForApproval()
         {
-            
+            return GetAll().Where(m => m.Approved == null);
+        }
+
+        public void CanShowOnJobBoard(int jobId, bool canShow)
+        {
+            var job = GetJobOpportunityById(jobId);
+            if (job == null) return;
+
+            job.Approved = canShow;
+            Context.SaveChanges();
         }
     }
 }

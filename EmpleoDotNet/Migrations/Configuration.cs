@@ -1,9 +1,12 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using EmpleoDotNet.Models;
+using Microsoft.AspNet.Identity;
 
 namespace EmpleoDotNet.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity.Migrations;
 
@@ -373,6 +376,41 @@ namespace EmpleoDotNet.Migrations
             }; 
               
             tagList.ForEach(tags => context.Tags.AddOrUpdate(a=>a.Name, tags));
+            #endregion
+
+            #region Users
+            var roleStore = new RoleStore<IdentityRole>(context);
+            var roleManager = new RoleManager<IdentityRole>(roleStore);
+            var userStore = new UserStore<IdentityUser>(context);
+            var userManager = new UserManager<IdentityUser>(userStore);
+            var userId = Guid.NewGuid().ToString();
+
+            // Add admin role
+            var role = roleManager.FindByName("admin");
+            if (role == null)
+            {
+                role = new IdentityRole("admin");
+                roleManager.Create(role);
+            }
+
+            // Create admin user
+            var user = userManager.FindByName("admin");
+            if (user == null)
+            {
+                user = new IdentityUser()
+                {
+                    Id = userId,
+                    UserName = "admin",
+                    PasswordHash = new PasswordHasher().HashPassword("admin"),
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                    Roles = { new IdentityUserRole { RoleId = role.Id, UserId = userId } }
+                };
+
+                context.Users.Add(user);
+                context.SaveChanges();
+            }
+            
+
             #endregion
         }
     }
