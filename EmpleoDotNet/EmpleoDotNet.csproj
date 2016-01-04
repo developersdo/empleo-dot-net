@@ -197,10 +197,6 @@
     <Compile Include="Migrations\201511300307344_AddEntityModels.Designer.cs">
       <DependentUpon>201511300307344_AddEntityModels.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201601041706282_ApprovedFieldNullable.cs" />
-    <Compile Include="Migrations\201601041706282_ApprovedFieldNullable.Designer.cs">
-      <DependentUpon>201601041706282_ApprovedFieldNullable.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EmpleadoContext.cs" />
     <Compile Include="Models\EntityFrameworkUnitOfWork.cs" />
@@ -309,9 +305,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511300307344_AddEntityModels.resx">
       <DependentUpon>201511300307344_AddEntityModels.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601041706282_ApprovedFieldNullable.resx">
-      <DependentUpon>201601041706282_ApprovedFieldNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
