@@ -58,7 +58,7 @@ namespace EmpleoDotNet
 
         private static void RegisterTemplateStyles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/theme/css")
+            bundles.Add(new StyleBundle("~/bundles/theme/css")
                 .Include("~/Content/css/theme/*.css",
                 "~/Content/css/theme/font.awsome.min.css"));
             
