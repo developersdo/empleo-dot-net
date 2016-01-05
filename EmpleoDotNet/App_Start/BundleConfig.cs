@@ -60,7 +60,7 @@ namespace EmpleoDotNet
         {
             bundles.Add(new StyleBundle("~/bundles/theme/css")
                 .Include("~/Content/css/theme/*.css",
-                "~/Content/css/theme/font.awsome.min.css"));
+                "~/Content/css/theme/font-awesome.min.css"));
             
         }
     }
