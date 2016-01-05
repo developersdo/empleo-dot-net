@@ -26,14 +26,10 @@ namespace EmpleoDotNet
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
                       "~/Scripts/empleo.js"));
 
-            var styleBundle = new StyleBundle("~/Content/css").Include(
+            BundleTable.Bundles.Add(new LessBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/responsive.css",
-                      "~/Content/site.less");
-
-            styleBundle.Transforms.Add(new LessTransform(HttpRuntime.AppDomainAppPath + "/Content/"));
-            styleBundle.Transforms.Add(new CssMinify());
-            bundles.Add(styleBundle);
+                      "~/Content/site.less"));
         }
     }
 }
