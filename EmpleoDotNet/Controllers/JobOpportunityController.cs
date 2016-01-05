@@ -26,7 +26,7 @@ namespace EmpleoDotNet.Controllers
         {
             var locations = _locationRepository.GetAllLocations();
 
-            locations.Insert(0, new Location { Id = 0, Name = "Todas las locaciones" });
+            locations.Insert(0, new Location { Id = 0, Name = "Todas" });
 
             var viewModel = new JobOpportunitySearchViewModel
             {
@@ -49,15 +49,32 @@ namespace EmpleoDotNet.Controllers
         }
 
         // GET: /JobOpportunity/Detail/4
-         public ActionResult Detail(int? id)
+        public ActionResult Detail(int? id)
         {
             if (!id.HasValue)
                 return RedirectToAction("Index");
 
             var vm = _jobRepository.GetJobOpportunityById(id);
 
-            if (vm != null) 
+            if (vm != null)
+            {
+                var relatedJobs =
+                    _jobRepository.GetAllJobOpportunities()
+                        .Where(
+                            x =>
+                                x.Id != vm.Id &&
+                                (x.CompanyName == vm.CompanyName && x.CompanyEmail == vm.CompanyEmail &&
+                                 x.CompanyUrl == vm.CompanyUrl)).Select(jobOpportunity => new RelatedJobDto()
+                                 {
+                                     Title = jobOpportunity.Title,
+                                     Url = "/JobOpportunity/Detail/" + jobOpportunity.Id
+                                 }).ToList();
+
+                ViewBag.RelatedJobs = relatedJobs;
+
                 return View("Detail", vm);
+            }
+                
             
             ViewBag.ErrorMessage = 
                 "La vacante solicitada no existe. Por favor escoger una vacante válida del listado";

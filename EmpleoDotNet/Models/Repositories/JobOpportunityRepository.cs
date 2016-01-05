@@ -32,7 +32,9 @@ namespace EmpleoDotNet.Models.Repositories
 
         public JobOpportunity GetJobOpportunityById(int? id)
         {
-            return GetById(id);
+            if (!id.HasValue) return null;
+
+            return DbSet.Include(x => x.Location).FirstOrDefault(x => x.Id.Equals(id.Value));
         }
 
         /// <summary>
@@ -55,14 +57,14 @@ namespace EmpleoDotNet.Models.Repositories
             if (parameter.SelectedLocation <= 0)
             {
                 result = jobs.Include(x => x.Location)
-                    .OrderBy(x => x.Id)
+                    .OrderByDescending(x => x.Id)
                     .ToPagedList(parameter.Page, parameter.PageSize);
             }
             else
             {
                 result = DbSet.Include(x => x.Location)
                     .Where(x => x.LocationId.Equals(parameter.SelectedLocation))
-                    .OrderBy(x => x.Id)
+                    .OrderByDescending(x => x.Id)
                     .ToPagedList(parameter.Page, parameter.PageSize);
             }
 
