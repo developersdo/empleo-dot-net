@@ -28,7 +28,7 @@ namespace EmpleoDotNet
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/bundles/styles").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap.min.css",
                       "~/Content/site.css",
                       "~/Content/responsive.css"));
             
@@ -59,9 +59,12 @@ namespace EmpleoDotNet
         private static void RegisterTemplateStyles(BundleCollection bundles)
         {
             bundles.Add(new StyleBundle("~/bundles/theme/css")
-                .Include("~/Content/css/theme/*.css",
-                "~/Content/css/theme/font-awesome.min.css"));
-            
+                .Include("~/Content/css/theme/jquery.flexmenu.css",
+                "~/Content/css/theme/owl.carousel.css",
+                "~/Content/css/theme/animate.css",
+                "~/Content/css/theme/jquery.fancybox.css", 
+                "~/Content/css/theme/jquery.nouislider.css",
+                "~/Content/css/theme/style.css"));
         }
     }
 }

@@ -263,6 +263,8 @@
     <Content Include="Content\css\select2.min.css" />
     <Content Include="Content\css\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\css\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\css\theme\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\css\theme\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\IconsSocial\Email.png" />
     <Content Include="Content\IconsSocial\Facebook.png" />
     <Content Include="Content\IconsSocial\Google.png" />
@@ -310,6 +312,17 @@
     <Content Include="Content\css\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\css\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\css\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\css\theme\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\css\theme\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\css\theme\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\css\theme\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\css\theme\fonts\FontAwesome.otf" />
+    <Content Include="Content\css\theme\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\css\theme\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\css\theme\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\css\theme\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Properties\PublishProfiles\empleadotests - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\empleadotests - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\az.js" />
     <Content Include="Scripts\i18n\bg.js" />
@@ -421,7 +434,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\UnitOfWork\" />
-    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
