@@ -256,10 +256,6 @@
     <Compile Include="ViewModel\RelatedJobDto.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Empleodotnet.mdf" />
-    <Content Include="App_Data\Empleodotnet_log.ldf">
-      <DependentUpon>Empleodotnet.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -438,6 +434,7 @@
     <Content Include="Views\Credits\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Models\UnitOfWork\" />
   </ItemGroup>
   <ItemGroup>
