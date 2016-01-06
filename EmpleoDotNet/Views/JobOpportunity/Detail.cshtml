@@ -1,5 +1,4 @@
-﻿@using System.Collections
-@using EmpleoDotNet.Models
+﻿@using EmpleoDotNet.Helpers
 @using EmpleoDotNet.ViewModel
 @model EmpleoDotNet.Models.JobOpportunity
 @{
@@ -12,7 +11,7 @@
                 <h1>@Model.Title</h1>
                 <h4>
                     <span><i class="fa fa-map-marker"></i>@Model.Location.Name</span>
-                    <span><i class="fa fa-cog"></i>@Model.Category</span>
+                    <span><i class="fa fa-cog"></i>@Model.Category.ToEnumDescription()</span>
                 </h4>
             </div>
         </div>
