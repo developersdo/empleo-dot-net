@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<section id="contributors">
+    <div class="container">
+
+        <div class="row text-center" id="contributorsList">
+            <h3>Traido a ustedes gracias a las contribuciones de:</h3>
+        </div>
+
+    @section scripts
+    {
+            <script type="text/javascript">
+                function SortByContributions(a, b) {
+                    return ((a.contributions < b.contributions) ? -1 : ((a.contributions > b.contributions) ? 1 : 0));
+                }
+                $(document).ready(function () {
+                    $.getJSON("https://api.github.com/repos/developersdo/empleo-dot-net/contributors", function (data) {
+                        var arr = data.sort(SortByContributions);
+                        $(arr).each(function (i, e) {
+                            var contributorDiv = "<a href='" + e.html_url + "'>";
+                            contributorDiv += '<img style="margin:15px" class="img-circle" src="' + e.avatar_url + '" width="150" height="150" />';
+                            contributorDiv += "</a>";
+                            $("#contributorsList").append(contributorDiv);
+                        });
+                    });
+                });
+            </script>
+        }
+    </div>
+</section>
