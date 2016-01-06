@@ -200,6 +200,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CreditsController.cs" />
     <Compile Include="Controllers\EmpleoDotNetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobOpportunityController.cs" />
@@ -430,13 +431,16 @@
     <Content Include="Views\JobOpportunity\Detail.cshtml" />
     <Content Include="Views\JobOpportunity\New.cshtml" />
     <Content Include="Views\Shared\_LastestJobs.cshtml" />
+    <Content Include="Views\Credits\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\UnitOfWork\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
