@@ -31,7 +31,7 @@
             </div>
             <div class="col-sm-4" id="sidebar">
                 <div class="sidebar-widget" id="share">
-                    <h2>Compartir esta vacante</h2>
+                    <h2>Compartir</h2>
                     <ul>
                         <li><a href="https://www.facebook.com/sharer/sharer.php?u=@Request.Url"><i class="fa fa-facebook"></i></a></li>
                         <li><a href="https://twitter.com/home?status=@Request.Url"><i class="fa fa-twitter"></i></a></li>
@@ -50,7 +50,7 @@
                 <hr>
                 
                     <div class="sidebar-widget" id="company-jobs">
-                        <h2>Mas vacantes de esta compañia</h2>
+                        <h2>Mas empleos de esta compañia</h2>
                         <ul>
                             @foreach (var jobOpportunity in (List<RelatedJobDto>)ViewBag.RelatedJobs)
                             {
