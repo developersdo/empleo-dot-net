@@ -4,6 +4,13 @@
 @{
     ViewBag.Title = "Nuevo Empleo";
 }
+@section styles{
+    <style>
+        #Description {
+            height: 200px;
+    }
+    </style>
+}
 
 @using (Html.BeginForm("New", "JobOpportunity", FormMethod.Post, new {role = "form"}))
 {
@@ -39,11 +46,6 @@
                         @Html.EnumDropListFor(e => e.Category, new {@class = "form-control", id = "category"})
                         @Html.ValidationMessageFor(m => m.Category)
                     </div>
-                    <div class="form-group" id="job-description-group">
-                        <label for="Description">Descripcion del Puesto</label>
-                        @Html.TextAreaFor(m => m.Description, new {@class = "form-control"})
-                        @Html.ValidationMessageFor(m => m.Description)
-                    </div>
                 </div>
 
                 @*Company Details*@
@@ -68,10 +70,19 @@
                         @Html.TextBoxFor(m => m.CompanyLogoUrl, new {@class = "form-control", placeholder = "http://companyx.com/logo.png"})
                     </div>
                 </div>
+            </div>
 
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group" id="job-description-group">
+                        <h2>Descripcion del Puesto</h2>
+                        @Html.TextAreaFor(m => m.Description, new {@class = "form-control"})
+                        @Html.ValidationMessageFor(m => m.Description)
+                    </div>
+                </div>
                 <div class="form-group">
                     <div class="col-sm-10">
-                        <button type="submit" class="btn btn-primary">Crear Empleo</button>
+                        <button type="submit" class="btn btn-primary btn-lg">Crear Empleo</button>
                     </div>
                 </div>
             </div>

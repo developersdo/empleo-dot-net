@@ -24,7 +24,7 @@
             <div class="col-sm-8">
                 <article>
                     <h2>Detalles del Puesto</h2>
-                    <p>@Model.Description</p>
+                    @Html.Raw(Model.Description)
                     <h3>Como aplicar</h3>
                     <p>Enviar CV <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a> </p>
                 </article>
@@ -45,7 +45,7 @@
                     <a href="@Model.CompanyUrl"><img src="@Model.CompanyLogoUrl" alt="" class="img-responsive">
                     </a>
                     <h5>@Model.CompanyName</h5>
-                    <p><a href="@Model.CompanyUrl" class="btn btn-primary">Read more</a></p>
+                    <p><a href="@Model.CompanyUrl" class="btn btn-primary">Mas sobre esta compañia</a></p>
                 </div>
                 <hr>
                 
