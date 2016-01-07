@@ -430,6 +430,7 @@
     <Content Include="Views\JobOpportunity\New.cshtml" />
     <Content Include="Views\Shared\_LastestJobs.cshtml" />
     <Content Include="Views\Credits\Index.cshtml" />
+    <Content Include="Views\Shared\_GoogleAnalytics.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
