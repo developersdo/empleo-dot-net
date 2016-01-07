@@ -58,6 +58,8 @@ namespace EmpleoDotNet.Controllers
 
             if (vm != null)
             {
+                vm.Description = JobOpportunityDescriptionBuilder.BuildDescription(vm.Description);
+
                 var relatedJobs =
                     _jobRepository.GetAllJobOpportunities()
                         .Where(
