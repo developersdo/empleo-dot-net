@@ -3,7 +3,7 @@
 
 @model EmpleoDotNet.ViewModel.JobOpportunitySearchViewModel
 @{
-    ViewBag.Title = "Listado de vacantes";
+    ViewBag.Title = "Listado de Empleos";
     var selectedLocation = Model.SelectedLocation;
 }
 
@@ -42,14 +42,14 @@
                                     <h5>@jobOpportunity.Title</h5>
                                     <p><strong>@jobOpportunity.CompanyName</strong> | @jobOpportunity.CompanyEmail</p>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
+                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 job-location">
                                     <p>
                                         <strong>@jobOpportunity.Location.Name</strong>
                                     </p>
                                     <p class="hidden-xs">@jobOpportunity.Created.ToShortDateString()</p>
                                 </div>
-                                <div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-                                    <p class="badge freelance">@jobOpportunity.Category</p>
+                                <div class="pull-left col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
+                                    <p class="badge">@jobOpportunity.Category.ToEnumDescription()</p>
                                     <p>
                                         
                                     </p>

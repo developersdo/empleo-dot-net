@@ -178,3 +178,6 @@ EmpleoDotNet.sln.ide
 
 #Visual Studio 2015 IIS Express path
 /.vs
+
+#Azure publish profile
+*.pubxml

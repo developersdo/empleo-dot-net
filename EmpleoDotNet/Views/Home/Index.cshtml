@@ -14,7 +14,7 @@
                 <div class="slide-content">
                     <h2>Buscas un trabajo?</h2>
                     <h3>No existe un mejor lugar para comenzar!</h3>
-                    <p><a href="@Url.Action("Index", "JobOpportunity")" class="btn btn-lg btn-default">Encuentra una Vacante</a>
+                    <p><a href="@Url.Action("Index", "JobOpportunity")" class="btn btn-lg btn-default">Encuentra un Empleo</a>
                     </p>
                 </div>
             </div>
@@ -26,8 +26,7 @@
                 <div class="tint"></div>
                 <div class="slide-content">
                     <h2>Necesitas un colaborador?</h2>
-                    <h3>Tenemos candidatos perfectos</h3>
-                    <p><a href="@Url.Action("New", "JobOpportunity")" class="btn btn-lg btn-default">Crea una Vacante</a>
+                    <p><a href="@Url.Action("New", "JobOpportunity")" class="btn btn-lg btn-default">Crea una Empleo</a>
                     </p>
                 </div>
             </div>
@@ -63,7 +62,7 @@
                                 <h5>@jobOpportunity.Title</h5>
                                 <p><strong>@jobOpportunity.CompanyName</strong>  |  @jobOpportunity.CompanyEmail</p>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
+                            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 job-location">
                                 <p>
                                     <strong>@jobOpportunity.Location.Name</strong>
                                 </p>
@@ -73,7 +72,7 @@
                                 <p class="job-salary">
                                     <strong></strong>
                                 </p>
-                                <p class="badge">@jobOpportunity.Category</p>
+                                <p class="badge">@jobOpportunity.Category.ToEnumDescription()</p>
                             </div>
                         </div>
                     </a>

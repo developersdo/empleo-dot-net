@@ -1,5 +1,4 @@
-﻿@using System.Collections
-@using EmpleoDotNet.Models
+﻿@using EmpleoDotNet.Helpers
 @using EmpleoDotNet.ViewModel
 @model EmpleoDotNet.Models.JobOpportunity
 @{
@@ -12,7 +11,7 @@
                 <h1>@Model.Title</h1>
                 <h4>
                     <span><i class="fa fa-map-marker"></i>@Model.Location.Name</span>
-                    <span><i class="fa fa-cog"></i>@Model.Category</span>
+                    <span><i class="fa fa-cog"></i>@Model.Category.ToEnumDescription()</span>
                 </h4>
             </div>
         </div>
@@ -32,7 +31,7 @@
             </div>
             <div class="col-sm-4" id="sidebar">
                 <div class="sidebar-widget" id="share">
-                    <h2>Compartir esta vacante</h2>
+                    <h2>Compartir</h2>
                     <ul>
                         <li><a href="https://www.facebook.com/sharer/sharer.php?u=@Request.Url"><i class="fa fa-facebook"></i></a></li>
                         <li><a href="https://twitter.com/home?status=@Request.Url"><i class="fa fa-twitter"></i></a></li>
@@ -43,15 +42,15 @@
                 <hr>
                 <div class="sidebar-widget" id="company">
                     <h2>Sobre la compañia</h2>
-                    <p><img src="@Model.CompanyLogoUrl" alt="" class="img-responsive">
-                    </p>
+                    <a href="@Model.CompanyUrl"><img src="@Model.CompanyLogoUrl" alt="" class="img-responsive">
+                    </a>
                     <h5>@Model.CompanyName</h5>
                     <p><a href="@Model.CompanyUrl" class="btn btn-primary">Read more</a></p>
                 </div>
                 <hr>
                 
                     <div class="sidebar-widget" id="company-jobs">
-                        <h2>Mas vacantes de esta compañia</h2>
+                        <h2>Mas empleos de esta compañia</h2>
                         <ul>
                             @foreach (var jobOpportunity in (List<RelatedJobDto>)ViewBag.RelatedJobs)
                             {
