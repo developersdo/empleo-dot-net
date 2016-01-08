@@ -1,6 +1,4 @@
-﻿using System.Data.Entity.ModelConfiguration;
-
-namespace EmpleoDotNet.Models.TableConfigurations
+﻿namespace EmpleoDotNet.Models.TableConfigurations
 {
     /// <summary>
     /// Table configuration de la Tabla JobOpportunity
