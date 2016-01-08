@@ -217,6 +217,7 @@
     </Compile>
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\EnumerableExtensions.cs" />
+    <Compile Include="Helpers\QueryableExtensions.cs" />
     <Compile Include="Helpers\JobOpportunityDescriptionBuilder.cs" />
     <Compile Include="Helpers\PrettyUrlHelper.cs" />
     <Compile Include="Migrations\201511280400499_initial.cs" />

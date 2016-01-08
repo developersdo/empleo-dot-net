@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using EmpleoDotNet.Helpers;
 using EmpleoDotNet.Models.Dto;
 using PagedList;
 
@@ -42,9 +43,9 @@ namespace EmpleoDotNet.Models.Repositories
         /// </summary>
         /// <param name="parameter">Objeto con los parametros necesarios para realizar la consulta.</param>
         /// <returns>Objeto que representa una lista de datos paginados</returns>
-        public IPagedList<JobOpportunity> GetAllJobOpportunitiesByLocationPaged(JobOpportunityPagingParameter parameter)
+        public IPagedList<JobOpportunity> GetAllJobOpportunitiesByLocationAndFilterPaged(JobOpportunityPagingParameter parameter)
         {
-            IPagedList<JobOpportunity> result;
+            IPagedList<JobOpportunity> result = null;
 
             if (parameter.Page <= 0)
                 parameter.Page = 1;
@@ -52,20 +53,28 @@ namespace EmpleoDotNet.Models.Repositories
             if (parameter.PageSize <= 0)
                 parameter.PageSize = 15;
 
-            var jobs = DbSet;
+            var jobs = DbSet.Include(x => x.Location).OrderByDescending(x => x.Id);
 
             if (parameter.SelectedLocation <= 0)
             {
-                result = jobs.Include(x => x.Location)
-                    .OrderByDescending(x => x.Id)
-                    .ToPagedList(parameter.Page, parameter.PageSize);
+                if (!string.IsNullOrWhiteSpace(parameter.Keyword))
+                    result = jobs.FullTextSearch(parameter.Keyword)
+                        .ToPagedList(parameter.Page, parameter.PageSize);
+                else
+                    result = jobs.ToPagedList(parameter.Page, parameter.PageSize);
             }
             else
             {
-                result = DbSet.Include(x => x.Location)
-                    .Where(x => x.LocationId.Equals(parameter.SelectedLocation))
-                    .OrderByDescending(x => x.Id)
-                    .ToPagedList(parameter.Page, parameter.PageSize);
+                if (!string.IsNullOrWhiteSpace(parameter.Keyword))
+                    result = jobs.Where(x => x.LocationId.Equals(parameter.SelectedLocation))
+                        .FullTextSearch(parameter.Keyword)
+                        .ToPagedList(parameter.Page, parameter.PageSize);
+                else
+                {
+                    result = jobs
+                        .Where(x => x.LocationId.Equals(parameter.SelectedLocation))
+                        .ToPagedList(parameter.Page, parameter.PageSize);
+                }
             }
 
             return result;
