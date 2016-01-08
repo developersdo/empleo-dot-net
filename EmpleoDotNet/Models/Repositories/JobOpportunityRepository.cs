@@ -71,7 +71,7 @@ namespace EmpleoDotNet.Models.Repositories
             return result;
         }
 
-        public List<JobOpportunity> GetLatestJobOpporunity(int quantity)
+        public List<JobOpportunity> GetLatestJobOpportunity(int quantity)
         {
             return GetAll().OrderByDescending(m => m.PublishedDate)
                 .Include(m => m.Location)
