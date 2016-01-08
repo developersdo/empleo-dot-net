@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
-using System.Runtime.InteropServices;
 
 namespace EmpleoDotNet.Models.TableConfigurations
 {
@@ -17,7 +16,7 @@ namespace EmpleoDotNet.Models.TableConfigurations
             Para mantener esta comodidad pero generar una DB apta para el mundo real 
             Cambiar Nombre de la columna.*/
             HasKey(x => x.Id);
-            Property(x => x.Id).HasColumnName(string.Format("{0}Id", typeof (T).Name)).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            Property(x => x.Id).HasColumnName($"{typeof (T).Name}Id").HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
         }
     }
 }
