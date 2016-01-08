@@ -160,10 +160,7 @@ namespace EmpleoDotNet.Controllers
             {
                 // User does not have a password so remove any validation errors caused by a missing OldPassword field
                 ModelState state = ModelState["OldPassword"];
-                if (state != null)
-                {
-                    state.Errors.Clear();
-                }
+                state?.Errors.Clear();
 
                 if (ModelState.IsValid)
                 {
