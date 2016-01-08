@@ -12,5 +12,7 @@ namespace EmpleoDotNet.ViewModel
         public SelectList Locations { get; set; }
 
         public IPagedList<JobOpportunity> Result { get; set; }
+
+        public string Keyword { get; set; }
     }
 }
