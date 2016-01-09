@@ -1,12 +1,10 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using EmpleoDotNet.Helpers;
 using EmpleoDotNet.Models;
 using EmpleoDotNet.Models.Dto;
 using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.Models.Repositories;
-using PagedList;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -115,7 +113,7 @@ namespace EmpleoDotNet.Controllers
 
         public ActionResult LastestsJob()
         {
-            var latestJobOpportunities = _jobRepository.GetLatestJobOpporunity(10);
+            var latestJobOpportunities = _jobRepository.GetLatestJobOpportunity(10);
 
             return PartialView("_LastestJobs", latestJobOpportunities);
         }

@@ -1,8 +1,4 @@
 ﻿using EmpleoDotNet.Models.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace EmpleoDotNet.Controllers
@@ -18,7 +14,7 @@ namespace EmpleoDotNet.Controllers
 
         public ActionResult Index()
         {
-            var model = _jobRepository.GetLatestJobOpporunity(7);
+            var model = _jobRepository.GetLatestJobOpportunity(7);
             return View(model);
         }
 
