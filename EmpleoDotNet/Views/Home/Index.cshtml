@@ -53,8 +53,8 @@
             <div class="jobs">
                 @foreach (var jobOpportunity in Model)
                 {
-                    <a href="@Url.Action("Detail", "JobOpportunity", new {id = jobOpportunity.Id})" class="featured">
-                        <div class="row" onclick="onJobOpportunityDetailClick(this);" data-url="@Url.Action("Detail", "JobOpportunity", new { id = jobOpportunity.Id})">
+                    <a href="@Url.Action("Detail", "JobOpportunity", new {id = jobOpportunity.Id})" class="featured" target="_blank">
+                        <div class="row">
                             <div class="col-md-1 hidden-sm hidden-xs">
                                 <img src="@jobOpportunity.CompanyLogoUrl" width="60" height="60" alt="" class="img-responsive" onclick="onJobOpportunityDetailClick(this);" data-url="@Url.Action("Detail", "JobOpportunity", new { id = jobOpportunity.Id})"/>
                             </div>

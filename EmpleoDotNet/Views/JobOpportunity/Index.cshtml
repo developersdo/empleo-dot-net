@@ -39,30 +39,30 @@
 
                         @foreach (var jobOpportunity in Model.Result)
                         {
-                                <a href="@Url.Action("Detail", "JobOpportunity", new {id = jobOpportunity.Id})" class="featured">
-                                    <div class="row" onclick="onJobOpportunityDetailClick(this);" data-url="@Url.Action("Detail", "JobOpportunity", new {id = jobOpportunity.Id})">
-                                        <div class="col-md-1 hidden-sm hidden-xs">
-                                            <img src="@jobOpportunity.CompanyLogoUrl" width="60" height="60" alt="" class="img-responsive" onclick="onJobOpportunityDetailClick(this);" data-url="@Url.Action("Detail", "JobOpportunity", new {id = jobOpportunity.Id})" />
-                                        </div>
-                                        <div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-                                            <h5>@jobOpportunity.Title</h5>
-                                            <p><strong>@jobOpportunity.CompanyName</strong> | @jobOpportunity.CompanyEmail</p>
-                                        </div>
-                                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 job-location">
-                                            <p>
-                                                <strong>@jobOpportunity.Location.Name</strong>
-                                            </p>
-                                            <p class="hidden-xs">@jobOpportunity.Created.ToShortDateString()</p>
-                                        </div>
-                                        <div class="pull-left col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-                                            <p class="badge">@jobOpportunity.Category.ToEnumDescription()</p>
-                                            <p>
-
-                                            </p>
-                                        </div>
+                            <a href="@Url.Action("Detail", "JobOpportunity", new {id = jobOpportunity.Id})" class="featured" target="_blank">
+                                <div class="row">
+                                    <div class="col-md-1 hidden-sm hidden-xs">
+                                        <img src="@jobOpportunity.CompanyLogoUrl" width="60" height="60" alt="" class="img-responsive" onclick="onJobOpportunityDetailClick(this);" data-url="@Url.Action("Detail", "JobOpportunity", new {id = jobOpportunity.Id})" />
                                     </div>
-                                </a>
-                            }
+                                    <div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
+                                        <h5>@jobOpportunity.Title</h5>
+                                        <p><strong>@jobOpportunity.CompanyName</strong> | @jobOpportunity.CompanyEmail</p>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 job-location">
+                                        <p>
+                                            <strong>@jobOpportunity.Location.Name</strong>
+                                        </p>
+                                        <p class="hidden-xs">@jobOpportunity.Created.ToShortDateString()</p>
+                                    </div>
+                                    <div class="pull-left col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
+                                        <p class="badge">@jobOpportunity.Category.ToEnumDescription()</p>
+                                        <p>
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        }
                         </div>
                         @*Pagination*@
                         @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
