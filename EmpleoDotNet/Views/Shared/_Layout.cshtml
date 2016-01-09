@@ -15,12 +15,12 @@
 
     @{ 
         var ogTitle = String.IsNullOrEmpty(@ViewBag.Title) ? "Emplea.do" : @ViewBag.Title + " - Emplea.do";
-        var ogDescription = String.IsNullOrEmpty(ViewBag.Description) ? "Puestos de trabajo" : ViewBag.Description;
+        var ogDescription = String.IsNullOrEmpty(ViewBag.Description) ? "La mejor manera de encontrar un trabajo como desarrollador de software" : ViewBag.Description;
     }
     <meta property="og:title" content="@ogTitle">
     <meta property="og:description" content="@ogDescription">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://emplea.do">
+    <meta property="og:url" content="@Request.Url.AbsoluteUri">
     <meta property="og:image" content="@ViewBag.ImageUrl">
 </head>
 <body id="home">
