@@ -287,6 +287,7 @@
     <Content Include="Content\IconsSocial\Tumblr.png" />
     <Content Include="Content\IconsSocial\Twitter.png" />
     <Content Include="Content\IconsSocial\Wordpress.png" />
+    <Content Include="Content\img\find-a-job.jpg" />
     <Content Include="Content\img\post-a-job.jpg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\responsive.css" />
