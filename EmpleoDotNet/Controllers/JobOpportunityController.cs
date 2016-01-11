@@ -1,12 +1,10 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using EmpleoDotNet.Helpers;
 using EmpleoDotNet.Models;
 using EmpleoDotNet.Models.Dto;
 using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.Models.Repositories;
-using PagedList;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -22,7 +20,7 @@ namespace EmpleoDotNet.Controllers
         }
         
         // GET: /JobOpportunity/
-        public ActionResult Index(int selectedLocation = 0, int page = 1, int pageSize = 15)
+        public ActionResult Index(int selectedLocation = 0, string keyWord = "", int page = 1, int pageSize = 15)
         {
             var locations = _locationRepository.GetAllLocations();
 
@@ -31,15 +29,17 @@ namespace EmpleoDotNet.Controllers
             var viewModel = new JobOpportunitySearchViewModel
             {
                 Locations = locations.ToSelectList(l => l.Id, l => l.Name, selectedLocation),
-                SelectedLocation = selectedLocation
+                SelectedLocation = selectedLocation,
+                Keyword = keyWord
             };
 
             var jobOpportunities =
-                _jobRepository.GetAllJobOpportunitiesByLocationPaged(new JobOpportunityPagingParameter
+                _jobRepository.GetAllJobOpportunitiesByLocationAndFilterPaged(new JobOpportunityPagingParameter
                 {
                     SelectedLocation = selectedLocation,
                     PageSize = pageSize,
-                    Page = page
+                    Page = page,
+                    Keyword = keyWord
                 });
 
             viewModel.Result = jobOpportunities;
@@ -113,7 +113,7 @@ namespace EmpleoDotNet.Controllers
 
         public ActionResult LastestsJob()
         {
-            var latestJobOpportunities = _jobRepository.GetLatestJobOpporunity(10);
+            var latestJobOpportunities = _jobRepository.GetLatestJobOpportunity(10);
 
             return PartialView("_LastestJobs", latestJobOpportunities);
         }
