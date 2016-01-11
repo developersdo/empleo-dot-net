@@ -11,6 +11,11 @@
     <link href="~/Content/css/theme/font-awesome.min.css" rel="stylesheet" />
     @Styles.Render("~/bundles/theme/css")
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:700" rel="stylesheet"/>
+    <style>
+        #menu-action-icon {
+            margin-right: 18px;
+        }
+    </style>
     @RenderSection("styles", required: false)
 
     @{ 
@@ -48,22 +53,12 @@
         <div id="header-background"></div>
         <div class="container">
             <div class="pull-left">
-                <div><a href="@Url.Action("Index", "Home")"><i class="fa fa-users fa-2x"></i> Emplea.do { beta }</a></div>
+
+                <div>
+                    <a id="menu-action-icon" class="fm-button"><i class="fa fa-bars fa-lg"></i></a>
+                    <span><a href="@Url.Action("Index", "Home")"><i class="fa fa-users fa-2x"></i> Emplea.do { beta }</a></span>
+                </div>
             </div>
-            <div id="menu-open" class="pull-right">
-                <a class="fm-button"><i class="fa fa-bars fa-lg"></i></a>
-            </div>
-            @*<div id="searchbox" class="pull-right">
-                <form>
-                    <div class="form-group">
-                        <label class="sr-only" for="searchfield">Searchbox</label>
-                        <input type="text" class="form-control" id="searchfield" placeholder="Type keywords and press enter">
-            </div>
-                </form>
-            </div>*@
-            @*<div id="search" class="pull-right">
-                <a><i class="fa fa-search fa-lg"></i></a>
-            </div>*@
         </div>
     </header>
 
