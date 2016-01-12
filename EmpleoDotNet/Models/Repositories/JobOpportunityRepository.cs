@@ -43,7 +43,7 @@ namespace EmpleoDotNet.Models.Repositories
         /// </summary>
         /// <param name="parameter">Objeto con los parametros necesarios para realizar la consulta.</param>
         /// <returns>Objeto que representa una lista de datos paginados</returns>
-        public IPagedList<JobOpportunity> GetAllJobOpportunitiesByLocationAndFilterPaged(JobOpportunityPagingParameter parameter)
+        public IPagedList<JobOpportunity> GetAllJobOpportunitiesPagedByFilters(JobOpportunityPagingParameter parameter)
         {
             IPagedList<JobOpportunity> result = null;
 
@@ -53,7 +53,12 @@ namespace EmpleoDotNet.Models.Repositories
             if (parameter.PageSize <= 0)
                 parameter.PageSize = 15;
 
-            var jobs = DbSet.Include(x => x.Location).OrderByDescending(x => x.Id);
+            var jobs = DbSet.Include(x => x.Location);
+
+            if (parameter.JobCategory != JobCategory.All)
+                jobs = jobs.Where(x => x.Category == parameter.JobCategory);
+
+            jobs = jobs.OrderByDescending(x => x.Id);
 
             if (parameter.SelectedLocation <= 0)
             {

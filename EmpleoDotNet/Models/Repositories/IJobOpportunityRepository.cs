@@ -9,6 +9,6 @@ namespace EmpleoDotNet.Models.Repositories
         List<JobOpportunity> GetAllJobOpportunities();
         List<JobOpportunity> GetAllJobOpportunitiesByLocation(Location location);
         JobOpportunity GetJobOpportunityById(int? id);
-        IPagedList<JobOpportunity> GetAllJobOpportunitiesByLocationAndFilterPaged(JobOpportunityPagingParameter parameter);
+        IPagedList<JobOpportunity> GetAllJobOpportunitiesPagedByFilters(JobOpportunityPagingParameter parameter);
     }
 }

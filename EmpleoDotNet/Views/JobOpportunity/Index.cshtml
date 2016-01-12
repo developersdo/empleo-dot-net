@@ -88,7 +88,10 @@
                             Model.Locations,
                             new { @class = "form-control", id = "location" })    
                         </div>
-                        
+                        <div class="form-group">
+                            <h5>Categoría</h5>
+                            @Html.EnumDropListFor(x => x.JobCategory, new { @class = "form-control"})
+                        </div>
                         <br/>
                         <button type="Submit" class="btn btn-primary">Filtrar</button>
                     }

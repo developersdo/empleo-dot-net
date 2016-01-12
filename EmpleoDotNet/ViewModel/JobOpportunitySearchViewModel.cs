@@ -14,5 +14,6 @@ namespace EmpleoDotNet.ViewModel
         public IPagedList<JobOpportunity> Result { get; set; }
 
         public string Keyword { get; set; }
+        public JobCategory JobCategory { get; set; }
     }
 }
