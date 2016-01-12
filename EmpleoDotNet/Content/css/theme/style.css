@@ -932,6 +932,18 @@ header {
 			top: 0;
 		}
 
+    @media (max-width: 480px) {
+        .job-location:before, 
+        .candidate-location:before {
+            color: #14b1bb;
+            content: "\f041";
+            font-family: "FontAwesome";
+            left: 17px;
+            position: absolute;
+            top: 0;
+            margin-top: 47px;
+        }
+    }
 	.job-dates {
 		padding-left: 37px;
 		position: relative;

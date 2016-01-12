@@ -78,7 +78,7 @@
                 <div class="col-sm-12">
                     <div class="form-group" id="job-description-group">
                         <h2>Descripcion del Puesto</h2>
-                        @Html.TextAreaFor(m => m.Description, new {@class = "form-control"})
+                        @Html.TextAreaFor(m => m.Description, new {@class = "form-control textarea" })
                         @Html.ValidationMessageFor(m => m.Description)
                     </div>
                 </div>
