@@ -30,7 +30,7 @@ namespace EmpleoDotNet.Models
         /// <summary>
         /// Desarrollo Web
         /// </summary>
-        [Display(Name = "Desarrolo Web")]
+        [Display(Name = "Desarrollo Web")]
         WebDevelopment = 2,
         
         /// <summary>

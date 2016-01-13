@@ -6,9 +6,9 @@
     public class JobOpportunityPagingParameter
     {
         public string Keyword { get; set; }
-        public int SelectedLocation { get; set; }
-        public int PageSize { get; set; }
-        public int Page { get; set; }
-        public JobCategory JobCategory { get; set; }
+        public int SelectedLocation { get; set; } = 0;
+        public int PageSize { get; set; } = 15;
+        public int Page { get; set; } = 1;
+        public JobCategory JobCategory { get; set; } = JobCategory.All;
     }
 }

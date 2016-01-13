@@ -20,7 +20,7 @@ namespace EmpleoDotNet.Controllers
         }
         
         // GET: /JobOpportunity/
-        public ActionResult Index(int selectedLocation = 0, JobCategory jobCategory = JobCategory.All, string keyWord = "", int page = 1, int pageSize = 15)
+        public ActionResult Index(JobOpportunityPagingParameter model)
         {
             var locations = _locationRepository.GetAllLocations();
 
@@ -28,25 +28,18 @@ namespace EmpleoDotNet.Controllers
 
             var viewModel = new JobOpportunitySearchViewModel
             {
-                Locations = locations.ToSelectList(l => l.Id, l => l.Name, selectedLocation),
-                SelectedLocation = selectedLocation,
-                JobCategory = jobCategory,
-                Keyword = keyWord
+                Locations = locations.ToSelectList(l => l.Id, l => l.Name, model.SelectedLocation),
+                SelectedLocation = model.SelectedLocation,
+                JobCategory = model.JobCategory,
+                Keyword = model.Keyword
             };
 
             var jobOpportunities =
                 _jobRepository.GetAllJobOpportunitiesPagedByFilters(
-                    new JobOpportunityPagingParameter
-                {
-                    SelectedLocation = selectedLocation,
-                    PageSize = pageSize,
-                    Page = page,
-                    Keyword = keyWord,
-                    JobCategory = jobCategory
-                });
+                    model);
 
             viewModel.Result = jobOpportunities;
-            ViewBag.SelectedLocation = selectedLocation;
+            ViewBag.SelectedLocation = model.SelectedLocation;
 
             return View(viewModel);
         }
