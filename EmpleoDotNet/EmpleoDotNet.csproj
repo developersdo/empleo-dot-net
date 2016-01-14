@@ -237,6 +237,10 @@
     <Compile Include="Migrations\201512170522237_NewJobOpportunityModel.Designer.cs">
       <DependentUpon>201512170522237_NewJobOpportunityModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601142153385_JobOpportunityIsRemoteField.cs" />
+    <Compile Include="Migrations\201601142153385_JobOpportunityIsRemoteField.Designer.cs">
+      <DependentUpon>201601142153385_JobOpportunityIsRemoteField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Dto\PagedResult.cs" />
     <Compile Include="Models\Dto\JobOpportunityPagingParameter.cs" />
@@ -468,6 +472,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512170522237_NewJobOpportunityModel.resx">
       <DependentUpon>201512170522237_NewJobOpportunityModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601142153385_JobOpportunityIsRemoteField.resx">
+      <DependentUpon>201601142153385_JobOpportunityIsRemoteField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
