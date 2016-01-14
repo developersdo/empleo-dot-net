@@ -11,17 +11,23 @@
     <link href="~/Content/css/theme/font-awesome.min.css" rel="stylesheet" />
     @Styles.Render("~/bundles/theme/css")
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:700" rel="stylesheet"/>
+    <style>
+        #menu-action-icon {
+            margin-right: 18px;
+        }
+    </style>
     @RenderSection("styles", required: false)
 
     @{ 
         var ogTitle = String.IsNullOrEmpty(@ViewBag.Title) ? "Emplea.do" : @ViewBag.Title + " - Emplea.do";
         var ogDescription = String.IsNullOrEmpty(ViewBag.Description) ? "La mejor manera de encontrar un trabajo como desarrollador de software" : ViewBag.Description;
+        var ogImage = String.IsNullOrEmpty(ViewBag.ImageUrl) ? new Uri(Request.Url, Url.Content("~/Content/img/logo-empleado.png")) : ViewBag.ImageUrl;
     }
     <meta property="og:title" content="@ogTitle">
     <meta property="og:description" content="@ogDescription">
     <meta property="og:type" content="website">
     <meta property="og:url" content="@Request.Url.AbsoluteUri">
-    <meta property="og:image" content="@ViewBag.ImageUrl">
+    <meta property="og:image" content="@ogImage">
 </head>
 <body id="home">
     <!-- ============ NAVBAR START ============ -->
@@ -48,22 +54,12 @@
         <div id="header-background"></div>
         <div class="container">
             <div class="pull-left">
-                <div><a href="@Url.Action("Index", "Home")"><i class="fa fa-users fa-2x"></i> Emplea.do { beta }</a></div>
+
+                <div>
+                    <a id="menu-action-icon" class="fm-button"><i class="fa fa-bars fa-lg"></i></a>
+                    <span><a href="@Url.Action("Index", "Home")"><i class="fa fa-users fa-2x"></i> Emplea.do { beta }</a></span>
+                </div>
             </div>
-            <div id="menu-open" class="pull-right">
-                <a class="fm-button"><i class="fa fa-bars fa-lg"></i></a>
-            </div>
-            @*<div id="searchbox" class="pull-right">
-                <form>
-                    <div class="form-group">
-                        <label class="sr-only" for="searchfield">Searchbox</label>
-                        <input type="text" class="form-control" id="searchfield" placeholder="Type keywords and press enter">
-            </div>
-                </form>
-            </div>*@
-            @*<div id="search" class="pull-right">
-                <a><i class="fa fa-search fa-lg"></i></a>
-            </div>*@
         </div>
     </header>
 

@@ -58,8 +58,6 @@ namespace EmpleoDotNet.Controllers
 
             if (vm != null)
             {
-                vm.Description = JobOpportunityDescriptionBuilder.BuildDescription(vm.Description);
-
                 var relatedJobs =
                     _jobRepository.GetAllJobOpportunities()
                         .Where(
@@ -95,6 +93,7 @@ namespace EmpleoDotNet.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult New(NewJobOpportunityViewModel model)
         {
             if (!ModelState.IsValid)
