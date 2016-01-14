@@ -15,17 +15,10 @@
 			var scroll = $(window).scrollTop();
 			if (scroll > 50) {
 			    $("#header-background").slideDown(300);
-			    if (!isHomePage()) $("header > .container a").css("color", "#fff");
 			} else {
 			    $("#header-background").slideUp(300);
-			    if (!isHomePage()) $("header > .container a").css("color", "#14b1bb");
 			}
 		});
-
-
-		function isHomePage() {
-		    return window.location.pathname === "/";
-		}
 
 	    // ====================================================================
 
