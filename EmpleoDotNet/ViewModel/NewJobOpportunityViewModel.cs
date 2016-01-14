@@ -43,6 +43,7 @@ namespace EmpleoDotNet.ViewModel
         [Display(Name = "Logo")]
         public string CompanyLogoUrl { get; set; }
 
+        public bool IsRemote { get; set; }
         public JobOpportunity ToEntity()
         {
             var entity = new JobOpportunity
@@ -55,7 +56,8 @@ namespace EmpleoDotNet.ViewModel
                 CompanyUrl = CompanyUrl,
                 CompanyLogoUrl = CompanyLogoUrl,
                 CompanyEmail = CompanyEmail,
-                PublishedDate = DateTime.Now
+                PublishedDate = DateTime.Now,
+                IsRemote = IsRemote
             };
 
             return entity;
