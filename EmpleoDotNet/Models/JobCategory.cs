@@ -10,6 +10,12 @@ namespace EmpleoDotNet.Models
     public enum JobCategory
     {
         /// <summary>
+        /// Todas
+        /// </summary>
+        [Display(Name = "Todas")]
+        All = -1,
+
+        /// <summary>
         /// Ninguna
         /// </summary>
         [Display(Name = "N/A")]
@@ -24,7 +30,7 @@ namespace EmpleoDotNet.Models
         /// <summary>
         /// Desarrollo Web
         /// </summary>
-        [Display(Name = "Desarrolo Web")]
+        [Display(Name = "Desarrollo Web")]
         WebDevelopment = 2,
         
         /// <summary>
