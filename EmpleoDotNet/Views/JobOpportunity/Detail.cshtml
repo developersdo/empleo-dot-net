@@ -46,24 +46,27 @@
                 <hr>
                 <div class="sidebar-widget" id="company">
                     <h2>Sobre la compañia</h2>
-                    <a href="@Model.CompanyUrl"><img src="@Model.CompanyLogoUrl" alt="" class="img-responsive">
+                    <a href="@Model.CompanyUrl">
+                        <img src="@Model.CompanyLogoUrl" alt="" class="img-responsive">
                     </a>
                     <h5>@Model.CompanyName</h5>
                     <p><a href="@Model.CompanyUrl" class="btn btn-primary">Mas sobre esta compañia</a></p>
-                </div>
+                </div>       
                 <hr>
-                
-                    <div class="sidebar-widget" id="company-jobs">
-                        <h2>Mas empleos de esta compañia</h2>
-                        <ul>
-                            @foreach (var jobOpportunity in (List<RelatedJobDto>)ViewBag.RelatedJobs)
-                            {
-                                <li><a href="@jobOpportunity.Url">@jobOpportunity.Title</a></li>
-                            }
-                        </ul>
-                    </div>
-                
-                
+                <div class="sidebar-widget" id="company-jobs">
+                    <h2>Mas empleos de esta compañia</h2>
+                    <ul>
+                        @foreach (var jobOpportunity in (List<RelatedJobDto>)ViewBag.RelatedJobs)
+                        {
+                        <li><a href="@jobOpportunity.Url">@jobOpportunity.Title</a></li>
+                        }
+                    </ul>
+                </div>
+
+                <hr>
+                <div class="sidebar-widget" id="viewCout">
+                    <h2>Visitas Realizadas @Model.ViewCount.ToString("N0")</h2>
+                </div>
             </div>
         </div>
     </div>

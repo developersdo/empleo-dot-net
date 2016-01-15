@@ -68,6 +68,8 @@ namespace EmpleoDotNet.Controllers
 
                 ViewBag.RelatedJobs = relatedJobs;
 
+                _jobRepository.UpdateViewCount(vm.Id);
+
                 return View("Detail", vm);
             }
                 

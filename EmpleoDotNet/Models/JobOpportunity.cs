@@ -60,6 +60,8 @@ namespace EmpleoDotNet.Models
         /// </summary>
         public bool Approved { get; set; }
 
+        public int ViewCount { get; set; }
+
         #endregion
 
         #region Navegation Properties
