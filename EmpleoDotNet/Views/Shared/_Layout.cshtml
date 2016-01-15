@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using System.Reflection
+@using EmpleoDotNet.Helpers
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -116,7 +118,9 @@
                 <div class="row">
                     <div class="col-sm-12">
                         &copy; @DateTime.Today.Year Emplea.do<br>
-                        Made with  <i class="fa fa-heart fa-inverse"></i>   by   <a href="https://github.com/developersdo/empleo-dot-net" target="_blank">Developers.do</a>
+                        Made with <i class="fa fa-heart fa-inverse"></i> by
+                        <a href="https://github.com/developersdo/empleo-dot-net" target="_blank">Developers.do</a>
+                        <br/><span>ver. @Html.AssemblyVersion()</span>
                     </div>
                 </div>
             </div>
