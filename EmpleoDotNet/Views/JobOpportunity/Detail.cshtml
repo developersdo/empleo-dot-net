@@ -29,6 +29,12 @@
                     <article>
                         @Html.Raw(Model.Description)
                     </article>
+                    @if (Model.IsRemote)
+                    {
+                        <p class="badge full-time">
+                            Remoto
+                        </p>
+                    }
                     <h3>Como aplicar</h3>
                     <p>Enviar CV <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a> </p>
                 </article>

@@ -44,7 +44,10 @@
                     <div class="form-group" id="job-category-group">
                         <label for="Category">Categoría</label>
                         @Html.EnumDropListFor(e => e.Category, new {@class = "form-control", id = "category"})
-                        @Html.ValidationMessageFor(m => m.Category)
+                    </div>
+                    <div class="form-group">
+                        @Html.CheckBoxFor(m => m.IsRemote)
+                        <label for="IsRemote">Remoto?</label>
                     </div>
                 </div>
 

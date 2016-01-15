@@ -60,6 +60,11 @@ namespace EmpleoDotNet.Models
         /// </summary>
         public bool Approved { get; set; }
 
+        /// <summary>
+        /// Flag que representa si el trabajo es Remoto o no
+        /// </summary>
+        public bool IsRemote { get; set; }
+
         #endregion
 
         #region Navegation Properties

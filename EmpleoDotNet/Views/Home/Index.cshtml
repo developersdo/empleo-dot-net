@@ -69,9 +69,13 @@
                                 <p class="hidden-xs">@jobOpportunity.Created.ToShortDateString()</p>
                             </div>
                             <div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-                                <p class="job-salary">
-                                    <strong></strong>
-                                </p>
+                                @if (jobOpportunity.IsRemote)
+                                {
+                                    <p class="badge full-time">
+                                        Remoto
+                                    </p>
+                                    <br/>
+                                }
                                 <p class="badge">@jobOpportunity.Category.ToEnumDescription()</p>
                             </div>
                         </div>
