@@ -24,7 +24,10 @@
             <div class="col-sm-9">
                 @if (!Model.Result.Any() && (!string.IsNullOrWhiteSpace(Model.Keyword) || Model.SelectedLocation > 0))
                 {
-                    <h5>No se encontraron resultados para esta busqueda.</h5>
+                    <div>
+                        <h5>No se encontraron resultados para esta busqueda.</h5>
+                        <hr />
+                    </div>
                 }
                 else
                 {
@@ -35,6 +38,10 @@
                        page,
                        Model.Result.PageSize
                    }))
+                    <div>
+                        <h5>@Model.Result.Count Empleos disponibles para esta busqueda.</h5>
+                        <hr/>
+                    </div>
                     <div class="jobs">
 
                         @foreach (var jobOpportunity in Model.Result)
@@ -42,7 +49,7 @@
                             <a href="@Url.Action("Detail", "JobOpportunity", new {id = jobOpportunity.Id})" class="featured" target="_blank">
                                 <div class="row">
                                     <div class="col-md-1 hidden-sm hidden-xs">
-                                        <img src="@jobOpportunity.CompanyLogoUrl" width="60" height="60" alt="" class="img-responsive" onclick="onJobOpportunityDetailClick(this);" data-url="@Url.Action("Detail", "JobOpportunity", new {id = jobOpportunity.Id})" />
+                                        <img src="@jobOpportunity.CompanyLogoUrl" width="60" height="60" alt="" class="img-responsive" onclick="onJobOpportunityDetailClick(this);" data-url="@Url.Action("Detail", "JobOpportunity", new {id = jobOpportunity.Id})"/>
                                     </div>
                                     <div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
                                         <h5>@jobOpportunity.Title</h5>
@@ -63,7 +70,12 @@
                                 </div>
                             </a>
                         }
-                        </div>
+                    </div>
+                    <br/>
+                    <div>
+                        <h5>@Model.Result.Count Empleos disponibles para esta busqueda.</h5>
+                        <hr />
+                    </div>
                         @*Pagination*@
                         @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
                        {
