@@ -113,7 +113,7 @@ p {
 
 hr {
 	border-top: 1px solid #e7e7e7;
-	margin: 60px 0;
+	/*margin: 60px 0;*/
 }
 
 .img-responsive,
@@ -671,10 +671,6 @@ header {
 
 	/* 4.2. PAGINATION
 	---------------------------------------------------------------*/
-
-	.pagination {
-		margin-top: 50px;
-	}
 
 		.pagination li a {
 			border-radius: 3px;
