@@ -5,6 +5,7 @@ using EmpleoDotNet.Models;
 using EmpleoDotNet.Models.Dto;
 using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.Models.Repositories;
+using System.Web;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -18,7 +19,7 @@ namespace EmpleoDotNet.Controllers
             _jobRepository = new JobOpportunityRepository(_database);
             _locationRepository = new LocationRepository(_database);
         }
-        
+
         // GET: /JobOpportunity/
         public ActionResult Index(JobOpportunityPagingParameter model)
         {
@@ -67,16 +68,21 @@ namespace EmpleoDotNet.Controllers
                                  }).ToList();
 
                 ViewBag.RelatedJobs = relatedJobs;
-
-                _jobRepository.UpdateViewCount(vm.Id);
+                var cookieView = "JobView" + vm.Id.ToString();
+                if (HttpContext.Request[cookieView] == null)
+                {
+                    _jobRepository.UpdateViewCount(vm.Id);
+                    vm.ViewCount++;
+                    HttpContext.Response.SetCookie(new HttpCookie(cookieView, vm.Id.ToString()));
+                }
 
                 return View("Detail", vm);
             }
-                
-            
-            ViewBag.ErrorMessage = 
+
+
+            ViewBag.ErrorMessage =
                 "La vacante solicitada no existe. Por favor escoger una vacante válida del listado";
-            
+
             return View("Index");
         }
 
