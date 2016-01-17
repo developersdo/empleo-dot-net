@@ -25,7 +25,7 @@
                 @if (!Model.Result.Any() && (!string.IsNullOrWhiteSpace(Model.Keyword) || Model.SelectedLocation > 0))
                 {
                     <div>
-                    <h5>No se encontraron resultados para esta busqueda.</h5>
+                        <h5>No se encontraron resultados para esta busqueda.</h5>
                         <hr />
                     </div>
                 }
@@ -33,14 +33,14 @@
                 {
                     @*Pagination*@
                     @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
-                   {
-                       selectedLocation,
-                       page,
-                       Model.Result.PageSize
-                   }))
+               {
+                   selectedLocation,
+                   page,
+                   Model.Result.PageSize
+               }))
                     <div>
                         <h5>@Model.Result.Count Empleos disponibles para esta busqueda.</h5>
-                        <hr/>
+                        <hr />
                     </div>
                     <div class="jobs">
 
@@ -49,7 +49,7 @@
                             <a href="@Url.Action("Detail", "JobOpportunity", new {id = jobOpportunity.Id})" class="featured" target="_blank">
                                 <div class="row">
                                     <div class="col-md-1 hidden-sm hidden-xs">
-                                        <img src="@jobOpportunity.CompanyLogoUrl" width="60" height="60" alt="" class="img-responsive" onclick="onJobOpportunityDetailClick(this);" data-url="@Url.Action("Detail", "JobOpportunity", new {id = jobOpportunity.Id})"/>
+                                        <img src="@jobOpportunity.CompanyLogoUrl" width="60" height="60" alt="" class="img-responsive" onclick="onJobOpportunityDetailClick(this);" data-url="@Url.Action("Detail", "JobOpportunity", new {id = jobOpportunity.Id})" />
                                     </div>
                                     <div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
                                         <h5>@jobOpportunity.Title</h5>
@@ -75,19 +75,19 @@
                                 </div>
                             </a>
                         }
-                        </div>
-                    <br/>
-                    <div>
-                        <h5>@Model.Result.Count Empleos disponibles para esta busqueda.</h5>
-                        <hr />
                     </div>
+                        <br />
+                        <div>
+                            <h5>@Model.Result.Count Empleos disponibles para esta busqueda.</h5>
+                            <hr />
+                        </div>
                         @*Pagination*@
                         @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
-                       {
-                           selectedLocation,
-                           page,
-                           Model.Result.PageSize
-                       }))
+                   {
+                       selectedLocation,
+                       page,
+                       Model.Result.PageSize
+                   }))
                 }
             </div>
             <div class="col-sm-3" id="sidebar">
@@ -103,7 +103,7 @@
                             <h5>Localidad</h5>
                             @Html.DropDownListFor(d => d.SelectedLocation,
                             Model.Locations,
-                            new { @class = "form-control", id = "location" })    
+                            new { @class = "form-control", id = "location" })
                         </div>
                         <div class="form-group">
                             <h5>Categoría</h5>

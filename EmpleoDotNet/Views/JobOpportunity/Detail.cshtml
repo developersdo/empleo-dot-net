@@ -5,7 +5,9 @@
     ViewBag.Title = Model.Title;
     ViewBag.Description = Model.Description;
     ViewBag.ImageUrl = Model.CompanyLogoUrl;
+    List<RelatedJobDto> relatedJobs = ViewBag.RelatedJobs
 }
+
 <section id="title">
     <div class="container">
         <div class="row">
@@ -57,20 +59,20 @@
                     </a>
                     <h5>@Model.CompanyName</h5>
                     <p><a href="@Model.CompanyUrl" class="btn btn-primary">Mas sobre esta compañia</a></p>
-                </div>       
+                </div>
                 <hr>
                 <div class="sidebar-widget" id="company-jobs">
-                    <h2>Mas empleos de esta compañia</h2>
+                    <h2>Más empleos de esta compañia</h2>
                     <ul>
-                        @foreach (var jobOpportunity in (List<RelatedJobDto>)ViewBag.RelatedJobs)
+                        @foreach (var jobOpportunity in relatedJobs)
                         {
-                        <li><a href="@jobOpportunity.Url">@jobOpportunity.Title</a></li>
+                            <li><a href="@jobOpportunity.Url">@jobOpportunity.Title</a></li>
                         }
                     </ul>
                 </div>
 
                 <hr>
-                <div class="sidebar-widget" id="viewCout">
+                <div class="sidebar-widget" id="view-count">
                     <h2>Visitas Realizadas</h2>
                     <h3>@Model.ViewCount.ToString("N0")</h3>
                 </div>
