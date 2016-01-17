@@ -181,3 +181,4 @@ EmpleoDotNet.sln.ide
 
 #Azure publish profile
 *.pubxml
+*.tss
