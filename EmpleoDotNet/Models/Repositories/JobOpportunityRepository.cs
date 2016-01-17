@@ -95,7 +95,7 @@ namespace EmpleoDotNet.Models.Repositories
 
         public void UpdateViewCount(int id)
         {
-            Context.Database.ExecuteSqlCommand("update JobOpportunities set ViewCount = ViewCount + 1 where JobOpportunityId = @p0",  id);
+            Context.Database.ExecuteSqlCommand("update dbo.JobOpportunities set ViewCount = ViewCount + 1 where JobOpportunityId = @p0",  id);
         }
 
         public JobOpportunityRepository(DbContext context) : base(context)
