@@ -210,6 +210,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CreditsController.cs" />
     <Compile Include="Controllers\EmpleoDotNetController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobOpportunityController.cs" />
     <Compile Include="Global.asax.cs">
@@ -292,6 +293,7 @@
     <Content Include="Content\IconsSocial\Tumblr.png" />
     <Content Include="Content\IconsSocial\Twitter.png" />
     <Content Include="Content\IconsSocial\Wordpress.png" />
+    <Content Include="Content\img\pinedax.png" />
     <Content Include="Content\img\find-a-job.jpg" />
     <Content Include="Content\img\logo-empleado.png" />
     <Content Include="Content\img\post-a-job.jpg" />
@@ -418,6 +420,7 @@
     <Content Include="Scripts\theme\settings.js" />
     <Content Include="Scripts\theme\waypoints.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Error\Http404.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -448,6 +451,11 @@
     <Content Include="Views\Shared\_LastestJobs.cshtml" />
     <Content Include="Views\Credits\Index.cshtml" />
     <Content Include="Views\Shared\_GoogleAnalytics.cshtml" />
+    <Content Include="Views\Error\Http500.cshtml" />
+    <Content Include="Views\Error\Global.cshtml" />
+    <Content Include="Views\Error\Http401.cshtml" />
+    <Content Include="Views\Error\Http400.cshtml" />
+    <Content Include="Views\Error\Http403.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "401";
+}
+
+<section id="title">
+    <div class="row text-center">
+        <div class="col-sm-12">
+            <div>
+                <h1>No tienes permiso para pasar por aqui</h1>
+                <h4>si sigues intentando, conoceras ese moyeto que ta' abajo.</h4>
+                <br/>
+                <p class="http-error">HTTP ERROR 401 (UNAUTHORIZED)</p>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center">
+        <img width="600" height="400" src="~/Content/img/pinedax.png" />
+    </div>
+    <br />
+    <div class="row text-center">
+        <a class="btn btn-primary" href="@Url.Action("Index", "JobOpportunity")">Encuentra mas trabajos</a>
+    </div>
+    <br />
+</section>
