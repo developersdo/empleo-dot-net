@@ -5,9 +5,12 @@ using System.Reflection;
 
 namespace EmpleoDotNet.Helpers
 {
+    /// <summary>
+    /// TODO: Si sacamos estas extensiones de otro sitio, 
+    /// sería bueno poner los enlaces de donde lo sacamos para referencia
+    /// </summary>
     public static class QueryableExtensions
     {
-        
          /// <summary>
          /// Searches in all string properties for the specifed search key.
          /// It is also able to search for several words. If the searchKey is for example 'John Travolta' then
@@ -41,7 +44,9 @@ namespace EmpleoDotNet.Helpers
 
             var containsMethod = typeof(string).GetMethod("Contains", new[] { typeof(string) });
 
-            var publicProperties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly).Where(p => p.PropertyType == typeof(string));
+            var publicProperties = typeof(T)
+                .GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
+                .Where(p => p.PropertyType == typeof(string));
 
             var searchKeyParts = exactMatch ? new[] { searchKey } : searchKey.Split(' ');
 
@@ -51,8 +56,8 @@ namespace EmpleoDotNet.Helpers
                 from searchKeyPart in searchKeyParts
                 let searchKeyExpression = Expression.Constant(searchKeyPart)
                 select Expression.Call(nameProperty, containsMethod, searchKeyExpression))
-                .Aggregate<Expression, Expression>(null,
-                    (current, callContainsMethod) =>
+                    .Aggregate<Expression, Expression>(null, 
+                        (current, callContainsMethod) =>
                         current == null ? callContainsMethod : Expression.Or(current, callContainsMethod));
 
             var whereCallExpression = Expression.Call(

@@ -10,8 +10,7 @@ namespace EmpleoDotNet.Helpers
         {
             var result = new StringBuilder();
 
-            var splitedDescription = rawDescription.Split(new[] { Environment.NewLine },
-                StringSplitOptions.None);
+            var splitedDescription = rawDescription.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
 
             foreach (var line in splitedDescription)
             {
@@ -25,17 +24,16 @@ namespace EmpleoDotNet.Helpers
                 @"((http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?)",
                 "<a target='_blank' href='$1'>$1</a>");
 
-                if (line.Contains("http"))
-                    result.AppendLine(BuildHtmlTag("p", lineWithLink));
-                else
-                    result.AppendLine(BuildHtmlTag("p", line));
+                result.AppendLine(line.Contains("http") 
+                    ? BuildHtmlTag("p", lineWithLink) 
+                    : BuildHtmlTag("p", line));
             }
 
             return result.ToString();
         }
         private static string BuildHtmlTag(string tag, string value)
         {
-            return string.Format("<{0}>{1}</{0}>", tag, value);
+            return $"<{tag}>{value}</{tag}>";
         }
     }
 }
