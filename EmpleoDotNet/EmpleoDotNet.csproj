@@ -241,6 +241,10 @@
     <Compile Include="Migrations\201601142153385_JobOpportunityIsRemoteField.Designer.cs">
       <DependentUpon>201601142153385_JobOpportunityIsRemoteField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601151826173_AddViewCountPropertyToJobOpportunity.cs" />
+    <Compile Include="Migrations\201601151826173_AddViewCountPropertyToJobOpportunity.Designer.cs">
+      <DependentUpon>201601151826173_AddViewCountPropertyToJobOpportunity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Dto\PagedResult.cs" />
     <Compile Include="Models\Dto\JobOpportunityPagingParameter.cs" />
@@ -476,6 +480,9 @@
     <EmbeddedResource Include="Migrations\201601142153385_JobOpportunityIsRemoteField.resx">
       <DependentUpon>201601142153385_JobOpportunityIsRemoteField.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601151826173_AddViewCountPropertyToJobOpportunity.resx">
+      <DependentUpon>201601151826173_AddViewCountPropertyToJobOpportunity.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -491,7 +498,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>18661</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
