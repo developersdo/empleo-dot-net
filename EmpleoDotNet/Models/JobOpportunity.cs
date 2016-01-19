@@ -66,7 +66,7 @@ namespace EmpleoDotNet.Models
         public bool IsRemote { get; set; }
 
         /// <summary>
-        /// Contador de visitas realizadas a una publicacion
+        /// Contador de visitas realizadas a una publicación
         /// </summary>
         public int ViewCount { get; set; }
 

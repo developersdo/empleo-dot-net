@@ -68,12 +68,12 @@ namespace EmpleoDotNet.Controllers
                                  }).ToList();
 
                 ViewBag.RelatedJobs = relatedJobs;
-                var cookieView = "JobView" + vm.Id.ToString();
-                if (HttpContext.Request[cookieView] == null)
+                var cookieView = $"JobView{vm.Id}";
+                if (!CookieHelper.Exists(cookieView))
                 {
                     _jobRepository.UpdateViewCount(vm.Id);
                     vm.ViewCount++;
-                    HttpContext.Response.SetCookie(new HttpCookie(cookieView, vm.Id.ToString()));
+                    CookieHelper.Set(cookieView, vm.Id.ToString());
                 }
 
                 return View("Detail", vm);
