@@ -1,46 +1,32 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using EmpleoDotNet.Helpers;
-using EmpleoDotNet.Models;
 using EmpleoDotNet.Models.Dto;
-using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.Models.Repositories;
+using EmpleoDotNet.Services;
+using EmpleoDotNet.ViewModel;
 
 namespace EmpleoDotNet.Controllers
 {
     public class JobOpportunityController : EmpleoDotNetController
     {
-        private readonly JobOpportunityRepository _jobRepository;
-        private readonly LocationRepository _locationRepository;
+        private readonly LocationService _locationService;
+        private readonly JobOpportunityService _jobOpportunityService;
 
         public JobOpportunityController()
         {
-            _jobRepository = new JobOpportunityRepository(_database);
-            _locationRepository = new LocationRepository(_database);
+            _locationService = new LocationService();
+            _jobOpportunityService = new JobOpportunityService();
         }
         
         // GET: /JobOpportunity/
         public ActionResult Index(JobOpportunityPagingParameter model)
         {
-            var locations = _locationRepository.GetAllLocations();
+            var viewModel = GetSearchViewModel(model);
 
-            locations.Insert(0, new Location { Id = 0, Name = "Todas" });
-
-            var viewModel = new JobOpportunitySearchViewModel
-            {
-                Locations = locations.ToSelectList(l => l.Id, l => l.Name, model.SelectedLocation),
-                SelectedLocation = model.SelectedLocation,
-                JobCategory = model.JobCategory,
-                Keyword = model.Keyword,
-                IsRemote = model.IsRemote
-            };
-
-            var jobOpportunities =
-                _jobRepository.GetAllJobOpportunitiesPagedByFilters(
-                    model);
+            var jobOpportunities = _jobOpportunityService.GetAllJobOpportunitiesPagedByFilters(model);
 
             viewModel.Result = jobOpportunities;
-            ViewBag.SelectedLocation = model.SelectedLocation;
 
             return View(viewModel);
         }
@@ -51,28 +37,16 @@ namespace EmpleoDotNet.Controllers
             if (!id.HasValue)
                 return RedirectToAction("Index");
 
-            var vm = _jobRepository.GetJobOpportunityById(id);
+            var vm = _jobOpportunityService.GetJobOpportunityById(id);
 
             if (vm != null)
             {
-                var relatedJobs =
-                    _jobRepository.GetAllJobOpportunities()
-                        .Where(
-                            x =>
-                                x.Id != vm.Id &&
-                                (x.CompanyName == vm.CompanyName && x.CompanyEmail == vm.CompanyEmail &&
-                                 x.CompanyUrl == vm.CompanyUrl)).Select(jobOpportunity => new RelatedJobDto()
-                                 {
-                                     Title = jobOpportunity.Title,
-                                     Url = "/JobOpportunity/Detail/" + jobOpportunity.Id
-                                 }).ToList();
-
-                ViewBag.RelatedJobs = relatedJobs;
+                ViewBag.RelatedJobs = 
+                    _jobOpportunityService.GetCompanyRelatedJobs(id.Value, vm.CompanyName, vm.CompanyEmail, vm.CompanyUrl);
 
                 return View("Detail", vm);
             }
                 
-            
             ViewBag.ErrorMessage = 
                 "La vacante solicitada no existe. Por favor escoger una vacante válida del listado";
             
@@ -100,25 +74,37 @@ namespace EmpleoDotNet.Controllers
                 return View(model);
             }
 
-            _jobRepository.Add(model.ToEntity());
-
-            _uow.SaveChanges();
+            _jobOpportunityService.CreateNewJobOpportunity(model.ToEntity());
 
             return RedirectToAction("Index");
         }
 
-        public ActionResult LastestsJob()
-        {
-            var latestJobOpportunities = _jobRepository.GetLatestJobOpportunity(10);
-
-            return PartialView("_LastestJobs", latestJobOpportunities);
-        }
-
         private void LoadLocations(NewJobOpportunityViewModel viewModel)
         {
-            var locations = _locationRepository.GetAllLocations();
+            var locations = _locationService.GetAllLocations();
 
             viewModel.Locations = locations.ToSelectList(x => x.Id, x => x.Name);
+        }
+
+        /// <summary>
+        /// Transform JobOpportunityPagingParameter into JobOpportunitySearchViewModel with Locations
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        private JobOpportunitySearchViewModel GetSearchViewModel(JobOpportunityPagingParameter model)
+        {
+            var locations = _locationService.GetLocationsWithDefault();
+
+            var viewModel = new JobOpportunitySearchViewModel
+            {
+                Locations = locations.ToSelectList(l => l.Id, l => l.Name, model.SelectedLocation),
+                SelectedLocation = model.SelectedLocation,
+                JobCategory = model.JobCategory,
+                Keyword = model.Keyword,
+                IsRemote = model.IsRemote
+            };
+
+            return viewModel;
         }
     }
 }

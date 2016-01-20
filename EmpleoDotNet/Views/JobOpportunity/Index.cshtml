@@ -4,7 +4,6 @@
 @model EmpleoDotNet.ViewModel.JobOpportunitySearchViewModel
 @{
     ViewBag.Title = "Listado de Empleos";
-    var selectedLocation = Model.SelectedLocation;
 }
 
 @Html.Partial("_FindJobsPartial", Model)
@@ -23,7 +22,7 @@
                 {
                     @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
                     {
-                        selectedLocation,
+                        Model.SelectedLocation,
                         page,
                         Model.Result.PageSize
                     }))
@@ -75,7 +74,7 @@
                         @*Pagination*@
                     @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
                     {
-                        selectedLocation,
+                        Model.SelectedLocation,
                         page,
                         Model.Result.PageSize
                     }))
