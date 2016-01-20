@@ -265,6 +265,8 @@
     <Compile Include="Models\TableConfigurations\LocationTableConfiguration.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\JobOpportunityService.cs" />
+    <Compile Include="Services\LocationService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\JobOpportunitySearchViewModel.cs" />
     <Compile Include="ViewModel\NewJobOpportunityViewModel.cs" />
@@ -281,6 +283,7 @@
     <Content Include="Content\css\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\css\theme\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\css\theme\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\findJob.css" />
     <Content Include="Content\IconsSocial\Email.png" />
     <Content Include="Content\IconsSocial\Facebook.png" />
     <Content Include="Content\IconsSocial\Google.png" />
@@ -448,6 +451,7 @@
     <Content Include="Views\Shared\_LastestJobs.cshtml" />
     <Content Include="Views\Credits\Index.cshtml" />
     <Content Include="Views\Shared\_GoogleAnalytics.cshtml" />
+    <Content Include="Views\Shared\_FindJobsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
