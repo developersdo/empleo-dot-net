@@ -31,7 +31,8 @@ namespace EmpleoDotNet.Controllers
                 Locations = locations.ToSelectList(l => l.Id, l => l.Name, model.SelectedLocation),
                 SelectedLocation = model.SelectedLocation,
                 JobCategory = model.JobCategory,
-                Keyword = model.Keyword
+                Keyword = model.Keyword,
+                IsRemote = model.IsRemote
             };
 
             var jobOpportunities =

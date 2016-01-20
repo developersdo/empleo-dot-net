@@ -7,43 +7,35 @@
     var selectedLocation = Model.SelectedLocation;
 }
 
-<section id="title">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 text-center">
-                <h1>Encuentra un Trabajo</h1>
-                <h4>No hay mejor lugar para comenzar</h4>
-            </div>
-        </div>
-    </div>
-</section>
+@Html.Partial("_FindJobsPartial", Model)
 
-<section id="jobs">
-    <div class="container">
+<div class="container">
         <div class="row">
-            <div class="col-sm-9">
+            <div class="col-sm-12 col-md-12 col-lg-12">
                 @if (!Model.Result.Any() && (!string.IsNullOrWhiteSpace(Model.Keyword) || Model.SelectedLocation > 0))
                 {
                     <div>
                         <h5>No se encontraron resultados para esta busqueda.</h5>
-                        <hr />
+                        <hr/>
                     </div>
                 }
                 else
                 {
-                    @*Pagination*@
                     @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
-                   {
-                       selectedLocation,
-                       page,
-                       Model.Result.PageSize
-                   }))
+                    {
+                        selectedLocation,
+                        page,
+                        Model.Result.PageSize
+                    }))
                     <div>
                         <h5>@Model.Result.Count Empleos disponibles para esta busqueda.</h5>
-                        <hr/>
+                        <br/>
                     </div>
-                    <div class="jobs">
 
+                    @*Pagination*@
+
+
+                    <div class="jobs">
                         @foreach (var jobOpportunity in Model.Result)
                         {
                             <a href="@Url.Action("Detail", "JobOpportunity", new {id = jobOpportunity.Id})" class="featured" target="_blank">
@@ -67,7 +59,7 @@
                                             <p class="badge full-time">
                                                 Remoto
                                             </p>
-                                            <br />
+                                            <br/>
                                         }
                                         <p class="badge">@jobOpportunity.Category.ToEnumDescription()</p>
                                     </div>
@@ -78,47 +70,16 @@
                     <br/>
                     <div>
                         <h5>@Model.Result.Count Empleos disponibles para esta busqueda.</h5>
-                        <hr />
+                        <br/>
                     </div>
                         @*Pagination*@
-                        @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
-                       {
-                           selectedLocation,
-                           page,
-                           Model.Result.PageSize
-                       }))
-                }
-            </div>
-            <div class="col-sm-3" id="sidebar">
-                <div class="sidebar-widget" id="jobsearch">
-                    <h2>Filtros</h2>
-                    @using (Html.BeginForm("Index", "JobOpportunity", FormMethod.Get))
+                    @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
                     {
-                        <div class="form-group">
-                            <h5>Keyword</h5>
-                            @Html.TextBoxFor(x => x.Keyword, new {@class = "form-control"})
-                        </div>
-                        <div class="form-group">
-                            <h5>Localidad</h5>
-                            @Html.DropDownListFor(d => d.SelectedLocation,
-                            Model.Locations,
-                            new { @class = "form-control", id = "location" })    
-                        </div>
-                        <div class="form-group">
-                            <h5>Categoría</h5>
-                            @Html.EnumDropListFor(x => x.JobCategory, new { @class = "form-control"})
-                        </div>
-                        <br/>
-                        <button type="Submit" class="btn btn-primary">Filtrar</button>
-                    }
-                    <br/>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <hr>
-                        </div>
-                    </div>
-                </div>
+                        selectedLocation,
+                        page,
+                        Model.Result.PageSize
+                    }))
+                }
             </div>
         </div>
     </div>
-</section>
