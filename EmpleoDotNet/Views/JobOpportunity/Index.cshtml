@@ -14,25 +14,26 @@
                 @if (!Model.Result.Any() && (!string.IsNullOrWhiteSpace(Model.Keyword) || Model.SelectedLocation > 0))
                 {
                     <div>
-                        <h5>No se encontraron resultados para esta busqueda.</h5>
+                        <h5>No se encontraron resultados para esta búsqueda.</h5>
                         <hr/>
                     </div>
                 }
                 else
                 {
-                    @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
+                    @*Pagination*@
+                    if (@Model.Result.PageCount > 1)
                     {
-                        Model.SelectedLocation,
-                        page,
-                        Model.Result.PageSize
-                    }))
+                        @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
+                        {
+                            Model.SelectedLocation,
+                            page,
+                            Model.Result.PageSize
+                        }));
+                    }
                     <div>
-                        <h5>@Model.Result.Count Empleos disponibles para esta busqueda.</h5>
+                        <h5>@Model.Result.TotalItemCount Empleos disponibles para esta búsqueda.</h5>
                         <br/>
                     </div>
-
-                    @*Pagination*@
-
 
                     <div class="jobs">
                         @foreach (var jobOpportunity in Model.Result)
@@ -68,16 +69,20 @@
                     </div>
                     <br/>
                     <div>
-                        <h5>@Model.Result.Count Empleos disponibles para esta busqueda.</h5>
+                        <h5>@Model.Result.TotalItemCount Empleos disponibles para esta búsqueda.</h5>
                         <br/>
                     </div>
-                        @*Pagination*@
-                    @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
-                    {
-                        Model.SelectedLocation,
-                        page,
-                        Model.Result.PageSize
-                    }))
+                     
+                     @*Pagination*@
+                     if (@Model.Result.PageCount > 1)
+                     {
+                         @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
+                         {
+                             Model.SelectedLocation,
+                             page,
+                             Model.Result.PageSize
+                         }));
+                     }
                 }
             </div>
         </div>
