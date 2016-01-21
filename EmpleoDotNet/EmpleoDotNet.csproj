@@ -452,8 +452,6 @@
     <Content Include="Views\Credits\Index.cshtml" />
     <Content Include="Views\Shared\_GoogleAnalytics.cshtml" />
     <Content Include="Views\Error\Http500.cshtml" />
-    <Content Include="Views\Error\Global.cshtml" />
-    <Content Include="Views\Error\Http401.cshtml" />
     <Content Include="Views\Error\Http400.cshtml" />
     <Content Include="Views\Error\Http403.cshtml" />
   </ItemGroup>

@@ -14,15 +14,6 @@ namespace EmpleoDotNet.Controllers
         }
 
         /// <summary>
-        /// HTTP ERROR 401 (UNAUTHORIZED)
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Http401()
-        {
-            return View();
-        }
-
-        /// <summary>
         /// HTTP ERROR 403 (FORBIDDEN)
         /// </summary>
         /// <returns></returns>
