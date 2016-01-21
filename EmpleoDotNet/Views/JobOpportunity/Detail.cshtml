@@ -14,6 +14,10 @@
                 <h4>
                     <span><i class="fa fa-map-marker"></i>@Model.Location.Name</span>
                     <span><i class="fa fa-cog"></i>@Model.Category.ToEnumDescription()</span>
+                    @if (Model.IsRemote)
+                    {
+                        <span><i class="fa fa-globe"></i>Remoto</span>
+                    }
                 </h4>
             </div>
         </div>
@@ -29,12 +33,6 @@
                     <article>
                         @Html.Raw(Model.Description)
                     </article>
-                    @if (Model.IsRemote)
-                    {
-                        <p class="badge full-time">
-                            Remoto
-                        </p>
-                    }
                     <h3>Como aplicar</h3>
                     <p>Enviar CV <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a> </p>
                 </article>
@@ -50,12 +48,23 @@
                     </ul>
                 </div>
                 <hr>
+                
                 <div class="sidebar-widget" id="company">
                     <h2>Sobre la compañia</h2>
-                    <a href="@Model.CompanyUrl"><img src="@Model.CompanyLogoUrl" alt="" class="img-responsive">
+                    <a href="@Model.CompanyUrl">
+                        @if (string.IsNullOrWhiteSpace(@Model.CompanyLogoUrl))
+                        {
+                            <img src="~/Content/img/company-logo-placeholder.png" />
+                        }
+                        else
+                        {
+                            <img src="@Model.CompanyLogoUrl" alt="" class="img-responsive">
+                        }
                     </a>
                     <h5>@Model.CompanyName</h5>
-                    <p><a href="@Model.CompanyUrl" class="btn btn-primary">Mas sobre esta compañia</a></p>
+                    <p>
+                        <a href="@Model.CompanyUrl" class="btn btn-primary">Mas sobre esta compañia</a>
+                    </p>
                 </div>
                 <hr>
                 @if (((List<RelatedJobDto>)ViewBag.RelatedJobs).Any())
