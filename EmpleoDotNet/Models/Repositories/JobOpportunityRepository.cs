@@ -53,7 +53,7 @@ namespace EmpleoDotNet.Models.Repositories
             if (parameter.PageSize <= 0)
                 parameter.PageSize = 15;
 
-            var jobs = DbSet.Include(x => x.Location).Where(x => x.IsRemote == parameter.IsRemote);
+            var jobs = DbSet.Include(x => x.Location);
 
             if (parameter.JobCategory != JobCategory.All)
                 jobs = jobs.Where(x => x.Category == parameter.JobCategory);
