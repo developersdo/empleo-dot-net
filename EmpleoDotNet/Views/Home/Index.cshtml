@@ -5,44 +5,6 @@
     ViewBag.Title = "";
 }
 
-@*<div id="slider" class="sl-slider-wrapper">
-    <div class="sl-slider">
-        <div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
-            <div class="sl-slide-inner">
-                <div class="bg-img bg-img-1"></div>
-                <div class="tint"></div>
-                <div class="slide-content">
-                    <h2>Buscas un trabajo?</h2>
-                    <h3>No existe un mejor lugar para comenzar!</h3>
-                    <p><a href="@Url.Action("Index", "JobOpportunity")" class="btn btn-lg btn-default">Encuentra un Empleo</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="sl-slide" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
-            <div class="sl-slide-inner">
-                <div class="bg-img bg-img-2"></div>
-                <div class="tint"></div>
-                <div class="slide-content">
-                    <h2>Necesitas un colaborador?</h2>
-                    <p><a href="@Url.Action("New", "JobOpportunity")" class="btn btn-lg btn-default">Crea un Empleo</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <nav id="nav-arrows" class="nav-arrows">
-        <span class="nav-arrow-prev">Anterior</span>
-        <span class="nav-arrow-next">Siguente</span>
-    </nav>
-
-    <nav id="nav-dots" class="nav-dots">
-        <span class="nav-dot-current"></span>
-        <span></span>
-    </nav>
-</div>*@
 @Html.Partial("_FindJobsPartial", (JobOpportunitySearchViewModel)ViewBag.SearchViewModel)
 <div class="container" style="margin-top: -50px;">
     <section id="jobs">
