@@ -18,8 +18,15 @@ namespace EmpleoDotNet.Helpers
         /// <param name="textProperty">Expression con la propiedad que contiene lo que se desplegara cuando se seleccione un elemento en el SelectList</param>
         /// <param name="selectedValue">Valor (key) que puede preseleccionarse a la hora de que se cargue el SelectList</param>
         /// <returns>MVC SelectList</returns>
-        public static SelectList ToSelectList<T, TP1, TP2>(this IEnumerable<T> list, Expression<Func<T, TP1>> valueProperty, Expression<Func<T, TP2>> textProperty, object selectedValue = null) where T : class
+        public static SelectList ToSelectList<T, TP1, TP2>(
+            this IEnumerable<T> list, 
+            Expression<Func<T, TP1>> valueProperty, 
+            Expression<Func<T, TP2>> textProperty, 
+            object selectedValue = null) where T : class
         {
+            if (list == null)
+                return null;
+
             var valueExpression = (MemberExpression)valueProperty.Body;
             var dataValueField = valueExpression.Member.Name;
 

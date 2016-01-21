@@ -13,7 +13,6 @@ namespace EmpleoDotNet.Helpers
 {
     public static class EnumHelper
     {
-       
         /// <summary>
         /// Extensión para los enums que permite obtener el display name del mismo.
         /// </summary>
@@ -30,12 +29,10 @@ namespace EmpleoDotNet.Helpers
             return field.GetCustomAttribute<DisplayAttribute>().Name;
         }
 
-
-
         public static IHtmlString EnumDropListFor<TModel, TEnum>(
-                                  this HtmlHelper<TModel> helper,
-                                  Expression<Func<TModel, TEnum>> expression,
-                                  object htmlAttributes = null)
+            this HtmlHelper<TModel> helper,
+            Expression<Func<TModel, TEnum>> expression,
+            object htmlAttributes = null)
         {
             IEnumerable<object> values = null;
             IEnumerable<SelectListItem> items = null;
@@ -49,13 +46,12 @@ namespace EmpleoDotNet.Helpers
 
             if (values != null)
                 items = values.Where(e => e.GetType().GetField(e.ToString()).GetCustomAttribute<DisplayAttribute>() != null)
-                    .Select(e => new SelectListItem
-                {
-                    Text = e.GetType().GetField(e.ToString()).GetCustomAttribute<DisplayAttribute>().Name,
-                    Value = ((int)e).ToString(CultureInfo.InvariantCulture),
-                    Selected = e.Equals(meta.Model)
-                });
-            
+                    .Select(e => new SelectListItem {
+                        Text = e.GetType().GetField(e.ToString()).GetCustomAttribute<DisplayAttribute>().Name,
+                        Value = ((int)e).ToString(CultureInfo.InvariantCulture),
+                        Selected = e.Equals(meta.Model)
+                    });
+
             return helper.DropDownListFor(expression, items, string.Empty, htmlAttributes);
         }
 
