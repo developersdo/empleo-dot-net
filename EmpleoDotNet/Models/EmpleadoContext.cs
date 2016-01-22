@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Reflection;
+using EmpleoDotNet.Core.Domain;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace EmpleoDotNet.Models

@@ -1,4 +1,6 @@
-﻿namespace EmpleoDotNet.Models.Dto
+﻿using EmpleoDotNet.Core.Domain;
+
+namespace EmpleoDotNet.Models.Dto
 {
     /// <summary>
     /// Parametro para realizar la consulta de Trabajos paginada por Ubicacion

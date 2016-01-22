@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
+using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Models;
 
 namespace EmpleoDotNet.Migrations

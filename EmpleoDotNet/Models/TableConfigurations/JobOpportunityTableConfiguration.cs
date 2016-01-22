@@ -1,4 +1,6 @@
-﻿namespace EmpleoDotNet.Models.TableConfigurations
+﻿using EmpleoDotNet.Core.Domain;
+
+namespace EmpleoDotNet.Models.TableConfigurations
 {
     /// <summary>
     /// Table configuration de la Tabla JobOpportunity

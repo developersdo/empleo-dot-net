@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Helpers;
 using EmpleoDotNet.Models.Dto;
 using PagedList;

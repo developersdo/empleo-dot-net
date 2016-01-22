@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Models;
 using EmpleoDotNet.Models.Dto;
 using EmpleoDotNet.Models.Repositories;

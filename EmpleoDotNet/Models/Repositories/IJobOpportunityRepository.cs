@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Models.Dto;
 using PagedList;
 
