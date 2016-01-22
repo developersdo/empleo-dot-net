@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace EmpleoDotNet.Models
+namespace EmpleoDotNet.Core.Domain
 {
     /// <summary>
     /// Categoria de trabajo

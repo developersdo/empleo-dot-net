@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
-namespace EmpleoDotNet.Models
+namespace EmpleoDotNet.Core.Domain
 {
     public class Tag: EntityBase
     {
@@ -9,9 +8,9 @@ namespace EmpleoDotNet.Models
         /// <summary>
         /// Nombre del tag
         /// </summary>
-        [Required(ErrorMessage = "Este campo es requerido")]
-        [MaxLength(50, ErrorMessage = "Este campo no puede contener mas de 50 caracteres")]
-        [Display(Name = "Nombre")]
+        //[Required(ErrorMessage = "Este campo es requerido")]
+        //[MaxLength(50, ErrorMessage = "Este campo no puede contener mas de 50 caracteres")]
+        //[Display(Name = "Nombre")]
         public string Name { get; set; }
         #endregion
 

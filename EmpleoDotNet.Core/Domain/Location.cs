@@ -1,4 +1,4 @@
-﻿namespace EmpleoDotNet.Models
+﻿namespace EmpleoDotNet.Core.Domain
 {
     public class Location : EntityBase
     {

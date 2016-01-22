@@ -247,12 +247,8 @@
     <Compile Include="Models\EmpleadoContext.cs" />
     <Compile Include="Models\EntityFrameworkUnitOfWork.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />
-    <Compile Include="Models\EntityBase.cs" />
     <Compile Include="Models\ISearchable.cs" />
     <Compile Include="Models\IUnitOfWork.cs" />
-    <Compile Include="Models\JobCategory.cs" />
-    <Compile Include="Models\JobOpportunity.cs" />
-    <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Repositories\BaseRepository.cs" />
     <Compile Include="Models\Repositories\IJobOpportunityRepository.cs" />
     <Compile Include="Models\Repositories\ILocationRepository.cs" />
@@ -263,7 +259,6 @@
     <Compile Include="Models\TableConfigurations\BaseTableConfiguration.cs" />
     <Compile Include="Models\TableConfigurations\JobOpportunityTableConfiguration.cs" />
     <Compile Include="Models\TableConfigurations\LocationTableConfiguration.cs" />
-    <Compile Include="Models\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\JobOpportunityService.cs" />
     <Compile Include="Services\LocationService.cs" />
@@ -479,6 +474,16 @@
     <EmbeddedResource Include="Migrations\201601142153385_JobOpportunityIsRemoteField.resx">
       <DependentUpon>201601142153385_JobOpportunityIsRemoteField.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EmpleoDotNet.Core\EmpleoDotNet.Core.csproj">
+      <Project>{8677b534-ed45-4526-9a6a-fc08f35bfe8c}</Project>
+      <Name>EmpleoDotNet.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmpleoDotNet.Repository\EmpleoDotNet.Repository.csproj">
+      <Project>{4e677dec-45cf-4e88-9d49-2c0be16fface}</Project>
+      <Name>EmpleoDotNet.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EmpleoDotNet.Models
+namespace EmpleoDotNet.Core.Domain
 {
     /// <summary>
     /// Clase base de donde heredan todas las entidades del sistema. 
