@@ -1,5 +1,7 @@
-empleo-dot-net
+empleo-dot-net 
 ==============
+[![Build status](https://ci.appveyor.com/api/projects/status/lmek7cwf3g8a2gk3/branch/master?svg=true)](https://ci.appveyor.com/project/amhed/empleo-dot-net/branch/master)
+
 
 ### ¿Qué es esto?
 
