@@ -215,6 +215,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CookieHelper.cs" />
     <Compile Include="Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\EnumerableExtensions.cs" />
@@ -240,6 +241,10 @@
     <Compile Include="Migrations\201601142153385_JobOpportunityIsRemoteField.cs" />
     <Compile Include="Migrations\201601142153385_JobOpportunityIsRemoteField.Designer.cs">
       <DependentUpon>201601142153385_JobOpportunityIsRemoteField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601221437247_AddViewCountColumn.cs" />
+    <Compile Include="Migrations\201601221437247_AddViewCountColumn.Designer.cs">
+      <DependentUpon>201601221437247_AddViewCountColumn.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Dto\PagedResult.cs" />
@@ -478,6 +483,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601142153385_JobOpportunityIsRemoteField.resx">
       <DependentUpon>201601142153385_JobOpportunityIsRemoteField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601221437247_AddViewCountColumn.resx">
+      <DependentUpon>201601221437247_AddViewCountColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

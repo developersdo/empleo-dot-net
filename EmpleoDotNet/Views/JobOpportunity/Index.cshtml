@@ -9,31 +9,31 @@
 @Html.Partial("_FindJobsPartial", Model)
 
 <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12">
-                @if (!Model.Result.Any() && (!string.IsNullOrWhiteSpace(Model.Keyword) || Model.SelectedLocation > 0))
-                {
-                    <div>
-                        <h5>No se encontraron resultados para esta búsqueda.</h5>
-                        <hr/>
-                    </div>
-                }
-                else
-                {
-                    @*Pagination*@
-                    if (@Model.Result.PageCount > 1)
-                    {
-                        @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
-                        {
-                            Model.SelectedLocation,
-                            page,
-                            Model.Result.PageSize
-                        }));
-                    }
-                    <div>
-                        <h5>@Model.Result.TotalItemCount Empleos disponibles para esta búsqueda.</h5>
-                        <br/>
-                    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            @if (!Model.Result.Any() && (!string.IsNullOrWhiteSpace(Model.Keyword) || Model.SelectedLocation > 0))
+            {
+                <div>
+                    <h5>No se encontraron resultados para esta búsqueda.</h5>
+                    <hr />
+                </div>
+            }
+            else
+            {
+                @*Pagination*@
+            if (@Model.Result.PageCount > 1)
+            {
+                @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
+                   {
+                       Model.SelectedLocation,
+                       page,
+                       Model.Result.PageSize
+                   }));
+            }
+            <div>
+                <h5>@Model.Result.TotalItemCount Empleos disponibles para esta búsqueda.</h5>
+                <br />
+            </div>
 
                     <div class="jobs">
                         @foreach (var jobOpportunity in Model.Result)
@@ -41,7 +41,7 @@
                             <a href="@Url.Action("Detail", "JobOpportunity", new {id = jobOpportunity.Id})" class="featured" target="_blank">
                                 <div class="row">
                                     <div class="col-md-1 hidden-sm hidden-xs">
-                                        <img src="@jobOpportunity.CompanyLogoUrl" width="60" height="60" alt="" class="img-responsive" onclick="onJobOpportunityDetailClick(this);" data-url="@Url.Action("Detail", "JobOpportunity", new {id = jobOpportunity.Id})"/>
+                                        <img src="@jobOpportunity.CompanyLogoUrl" width="60" height="60" alt="" class="img-responsive" onclick="onJobOpportunityDetailClick(this);" data-url="@Url.Action("Detail", "JobOpportunity", new {id = jobOpportunity.Id})" />
                                     </div>
                                     <div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
                                         <h5>@jobOpportunity.Title</h5>
@@ -59,31 +59,32 @@
                                             <p class="badge full-time">
                                                 Remoto
                                             </p>
-                                            <br/>
+                                            <br />
                                         }
                                         <p class="badge">@jobOpportunity.Category.ToEnumDescription()</p>
+                                        <p>Visitas | @jobOpportunity.ViewCount</p>
                                     </div>
                                 </div>
                             </a>
                         }
                     </div>
-                    <br/>
+                    <br />
                     <div>
                         <h5>@Model.Result.TotalItemCount Empleos disponibles para esta búsqueda.</h5>
-                        <br/>
+                        <br />
                     </div>
-                     
-                     @*Pagination*@
-                     if (@Model.Result.PageCount > 1)
-                     {
-                         @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
-                         {
-                             Model.SelectedLocation,
-                             page,
-                             Model.Result.PageSize
-                         }));
-                     }
+
+                    @*Pagination*@
+            if (@Model.Result.PageCount > 1)
+            {
+                @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
+                    {
+                        Model.SelectedLocation,
+                        page,
+                        Model.Result.PageSize
+                    }));
                 }
-            </div>
+            }
         </div>
     </div>
+</div>

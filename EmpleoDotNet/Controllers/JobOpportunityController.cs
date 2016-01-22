@@ -44,6 +44,13 @@ namespace EmpleoDotNet.Controllers
                 ViewBag.RelatedJobs = 
                     _jobOpportunityService.GetCompanyRelatedJobs(id.Value, vm.CompanyName, vm.CompanyEmail, vm.CompanyUrl);
 
+                var cookieView = $"JobView{vm.Id}";
+                if (!CookieHelper.Exists(cookieView))
+                {
+                    _jobOpportunityService.UpdateViewCount(vm.Id);
+                    CookieHelper.Set(cookieView, vm.Id.ToString());
+                }
+
                 return View("Detail", vm);
             }
                 
