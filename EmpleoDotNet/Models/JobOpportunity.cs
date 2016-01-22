@@ -65,6 +65,12 @@ namespace EmpleoDotNet.Models
         /// </summary>
         public bool IsRemote { get; set; }
 
+
+        /// <summary>
+        /// Contador de visitas realizadas a una publicación
+        /// </summary>
+        public int ViewCount { get; set; }
+
         #endregion
 
         #region Navegation Properties
