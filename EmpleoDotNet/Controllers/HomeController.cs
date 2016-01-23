@@ -1,6 +1,6 @@
-﻿using EmpleoDotNet.Models.Repositories;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using EmpleoDotNet.Helpers;
+using EmpleoDotNet.Repository;
 using EmpleoDotNet.Services;
 using EmpleoDotNet.ViewModel;
 

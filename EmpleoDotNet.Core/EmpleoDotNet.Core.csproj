@@ -46,6 +46,8 @@
     <Compile Include="Domain\JobCategory.cs" />
     <Compile Include="Domain\JobOpportunity.cs" />
     <Compile Include="Domain\Location.cs" />
+    <Compile Include="Dto\JobOpportunityPagingParameter.cs" />
+    <Compile Include="Dto\PagedResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Domain\Tag.cs" />
   </ItemGroup>

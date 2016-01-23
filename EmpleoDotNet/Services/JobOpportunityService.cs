@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using EmpleoDotNet.Core.Domain;
-using EmpleoDotNet.Models;
-using EmpleoDotNet.Models.Dto;
-using EmpleoDotNet.Models.Repositories;
+using EmpleoDotNet.Core.Dto;
+using EmpleoDotNet.Data;
+using EmpleoDotNet.Repository;
 using EmpleoDotNet.ViewModel;
 using PagedList;
 
@@ -44,7 +43,7 @@ namespace EmpleoDotNet.Services
 
         public IPagedList<JobOpportunity> GetAllJobOpportunitiesPagedByFilters(JobOpportunityPagingParameter parameter)
         {
-            return _jobOpportunityRepository.GetAllJobOpportunitiesPagedByFilters(parameter);
+          return _jobOpportunityRepository.GetAllJobOpportunitiesPagedByFilters(parameter);
         }
 
         public JobOpportunity GetJobOpportunityById(int? id)

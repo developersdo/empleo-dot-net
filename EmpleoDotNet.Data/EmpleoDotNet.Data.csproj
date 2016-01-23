@@ -31,7 +31,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,7 +50,62 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmpleadoContext.cs" />
+    <Compile Include="EntityFrameworkUnitOfWork.cs" />
+    <Compile Include="ISearchable.cs" />
+    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="Migrations\201511280400499_initial.cs" />
+    <Compile Include="Migrations\201511280400499_initial.Designer.cs">
+      <DependentUpon>201511280400499_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511291800125_AddApprovedField.cs" />
+    <Compile Include="Migrations\201511291800125_AddApprovedField.Designer.cs">
+      <DependentUpon>201511291800125_AddApprovedField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201511300307344_AddEntityModels.cs" />
+    <Compile Include="Migrations\201511300307344_AddEntityModels.Designer.cs">
+      <DependentUpon>201511300307344_AddEntityModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512170522237_NewJobOpportunityModel.cs" />
+    <Compile Include="Migrations\201512170522237_NewJobOpportunityModel.Designer.cs">
+      <DependentUpon>201512170522237_NewJobOpportunityModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601142153385_JobOpportunityIsRemoteField.cs" />
+    <Compile Include="Migrations\201601142153385_JobOpportunityIsRemoteField.Designer.cs">
+      <DependentUpon>201601142153385_JobOpportunityIsRemoteField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TableConfigurations\BaseTableConfiguration.cs" />
+    <Compile Include="TableConfigurations\JobOpportunityTableConfiguration.cs" />
+    <Compile Include="TableConfigurations\LocationTableConfiguration.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201511280400499_initial.resx">
+      <DependentUpon>201511280400499_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511291800125_AddApprovedField.resx">
+      <DependentUpon>201511291800125_AddApprovedField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201511300307344_AddEntityModels.resx">
+      <DependentUpon>201511300307344_AddEntityModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512170522237_NewJobOpportunityModel.resx">
+      <DependentUpon>201512170522237_NewJobOpportunityModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601142153385_JobOpportunityIsRemoteField.resx">
+      <DependentUpon>201601142153385_JobOpportunityIsRemoteField.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EmpleoDotNet.Core\EmpleoDotNet.Core.csproj">
+      <Project>{8677b534-ed45-4526-9a6a-fc08f35bfe8c}</Project>
+      <Name>EmpleoDotNet.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

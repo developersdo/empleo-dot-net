@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using EmpleoDotNet.Core.Domain;
-using EmpleoDotNet.Models;
-using EmpleoDotNet.Models.Repositories;
-using Microsoft.Ajax.Utilities;
+using EmpleoDotNet.Data;
+using EmpleoDotNet.Repository;
 
 namespace EmpleoDotNet.Services
 {
