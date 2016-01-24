@@ -9,19 +9,6 @@
 
         // ====================================================================
 
-        // Header scroll function
-
-        $(window).scroll(function() {    
-        	var scroll = $(window).scrollTop();
-        	if (scroll > 50) {
-        	    $("#header-background").slideDown(300);
-        	} else {
-        	    $("#header-background").slideUp(300);
-        	}
-        });
-
-        // ====================================================================
-
         // Flex Menu
 
         $('.menu').flexMenu({
