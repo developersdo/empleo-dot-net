@@ -269,6 +269,7 @@
     <Compile Include="Services\JobOpportunityService.cs" />
     <Compile Include="Services\LocationService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\ErrorViewModel.cs" />
     <Compile Include="ViewModel\JobOpportunitySearchViewModel.cs" />
     <Compile Include="ViewModel\NewJobOpportunityViewModel.cs" />
     <Compile Include="ViewModel\RelatedJobDto.cs" />
@@ -424,7 +425,6 @@
     <Content Include="Scripts\theme\settings.js" />
     <Content Include="Scripts\theme\waypoints.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Error\Http404.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -434,7 +434,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
@@ -456,9 +455,7 @@
     <Content Include="Views\Credits\Index.cshtml" />
     <Content Include="Views\Shared\_GoogleAnalytics.cshtml" />
     <Content Include="Views\Shared\_FindJobsPartial.cshtml" />
-    <Content Include="Views\Error\Http500.cshtml" />
-    <Content Include="Views\Error\Http400.cshtml" />
-    <Content Include="Views\Error\Http403.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
