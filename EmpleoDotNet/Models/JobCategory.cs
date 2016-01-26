@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace EmpleoDotNet.Models
 {
     /// <summary>
-    /// Categoria de trabajo
+    /// Categoria de empleo
     /// </summary>
     [Flags]
     public enum JobCategory

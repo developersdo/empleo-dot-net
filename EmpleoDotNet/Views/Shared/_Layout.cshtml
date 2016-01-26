@@ -22,7 +22,7 @@
 
     @{ 
         var ogTitle = String.IsNullOrEmpty(@ViewBag.Title) ? "Emplea.do" : @ViewBag.Title + " - Emplea.do";
-        var ogDescription = String.IsNullOrEmpty(ViewBag.Description) ? "La mejor manera de encontrar un trabajo como desarrollador de software" : ViewBag.Description;
+        var ogDescription = String.IsNullOrEmpty(ViewBag.Description) ? "La mejor manera de encontrar un empleo como desarrollador de software" : ViewBag.Description;
         var ogImage = String.IsNullOrEmpty(ViewBag.ImageUrl) ? new Uri(Request.Url, Url.Content("~/Content/img/logo-empleado.png")) : ViewBag.ImageUrl;
     }
     <meta property="og:title" content="@ogTitle">

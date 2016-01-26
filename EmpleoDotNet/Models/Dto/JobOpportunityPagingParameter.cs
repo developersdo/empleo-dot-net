@@ -1,7 +1,7 @@
 ﻿namespace EmpleoDotNet.Models.Dto
 {
     /// <summary>
-    /// Parametro para realizar la consulta de Trabajos paginada por Ubicacion
+    /// Parametro para realizar la consulta de empleos paginada por Ubicacion
     /// </summary>
     public class JobOpportunityPagingParameter
     {

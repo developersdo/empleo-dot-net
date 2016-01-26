@@ -39,7 +39,7 @@ namespace EmpleoDotNet.Models.Repositories
         }
 
         /// <summary>
-        /// Obtener una lista de Trabajos paginada por Ubicacion.
+        /// Obtener una lista de Empleos paginada por Ubicacion.
         /// </summary>
         /// <param name="parameter">Objeto con los parametros necesarios para realizar la consulta.</param>
         /// <returns>Objeto que representa una lista de datos paginados</returns>
