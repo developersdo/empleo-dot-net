@@ -60,5 +60,10 @@ namespace EmpleoDotNet.Services
             item.ViewCount++;
             _jobOpportunityRepository.SaveChanges();           
         }
+
+        public int GetLastInsertedJobId ()
+        {
+            return _jobOpportunityRepository.GetLatestJobOpportunity(1).FirstOrDefault().Id;
+        }
     }
 }
