@@ -13,7 +13,7 @@
         @Html.AntiForgeryToken()
         <div id="wizzard" class="owl-carousel owl-theme">
             <div class="item">
-                <h2>Paso 1 de 4. Detalles de la Empresa</h2>
+                <h2>Paso 1 de 2. Detalles de la Empresa</h2>
                 
                 <div class="form-group" id="company-name-group">
                     <label for="CompanyName">Nombre de la Empresa</label>
@@ -41,7 +41,7 @@
                 <a class="btn-next btn btn-primary btn-lg">Siguiente</a>
             </div>
             <div class="item">
-                <h2>Detalles del puesto</h2>
+                <h2>Paso 2 de 2. Detalles del puesto</h2>
                 <div class="form-group" id="job-title-group">
                     <label for="Title">Título. ¿Qu&eacute; est&aacute;s buscando?</label>
                     @Html.TextBoxFor(m => m.Title, new {@class = "form-control", placeholder = "ejemp. Web Designer"})
