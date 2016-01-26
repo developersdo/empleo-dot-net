@@ -1996,3 +1996,7 @@ header {
 		}
 
 	}
+
+    .http-error {
+        color: #dc143c;
+    }

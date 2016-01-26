@@ -1,0 +1,153 @@
+﻿@using EmpleoDotNet.Helpers
+@using EmpleoDotNet.Models
+@model EmpleoDotNet.ViewModel.JobOpportunitySearchViewModel
+
+@{
+
+    #region locations
+
+    var locations = new[]
+{
+        new
+        {
+            Description = "Santo Domingo",
+            Link = "/"
+        },
+        new
+        {
+            Description = "Santiago",
+            Link = "/"
+        },
+        new
+        {
+            Description = "Puerto Plata",
+            Link = "/"
+        }
+
+    };
+    #endregion
+
+    #region categories
+
+    var categories = new[]
+    {
+        new
+        {
+            Description = JobCategory.MobileDevelopment.ToEnumDescription(),
+            Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.MobileDevelopment })
+        },
+        new
+        {
+            Description = JobCategory.WebDevelopment.ToEnumDescription(),
+            Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.WebDevelopment })
+        },
+        new
+        {
+            Description = JobCategory.SoftwareDevelopment.ToEnumDescription(),
+            Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.MobileDevelopment })
+        },
+        new
+        {
+            Description = JobCategory.GraphicDesign.ToEnumDescription(),
+            Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.GraphicDesign })
+        },
+    };
+
+    #endregion
+
+    #region keywords
+
+    var keywords = new[]
+    {
+        new
+        {
+            Description = "C#",
+            Link = @Url.Action("Index", "JobOpportunity", new { Keyword = "C#" })
+        },
+        new
+        {
+            Description = ".NET",
+            Link = @Url.Action("Index", "JobOpportunity", new { Keyword = ".net" })
+        },
+        new
+        {
+            Description = "javascript",
+            Link = @Url.Action("Index", "JobOpportunity", new { Keyword = "javascript" })
+        },
+        new
+        {
+            Description = "PHP",
+            Link = @Url.Action("Index", "JobOpportunity", new { Keyword = "PHP" })
+        },
+        new
+        {
+            Description = "Java",
+            Link = @Url.Action("Index", "JobOpportunity", new { Keyword = "Java" })
+        },
+        new
+        {
+            Description = "xamarin",
+            Link = @Url.Action("Index", "JobOpportunity", new { Keyword = "xamarin" })
+        }
+    };
+
+    #endregion
+
+}
+
+<div class="container" style="margin-top: 50px;">
+    <div class="row">
+        <div class="col-md-9 col-lg-9">
+            <p class="search-job-title">Buscar Trabajos</p>
+            @using (Html.BeginForm("Index", "JobOpportunity", FormMethod.Get))
+            {
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Keyword">
+                                <strong>Keywords</strong>
+                            </label>
+                            @Html.TextBoxFor(m => m.Keyword, new {@class = "form-control", placeholder = "título, descripción o companía" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Location">
+                                <strong>Localidad</strong>
+                            </label>
+                            @Html.DropDownListFor(d => d.SelectedLocation,
+                                Model.Locations,
+                                new {@class = "form-control", id = "location"})
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="submit" class="btn btn-primary search-job-button" value="Buscar"/>
+                    </div>
+                </div>
+            }
+            <div class="row">
+                <p class="search-job-label">
+                    <strong>Keywords :</strong>
+                    @foreach (var keyword in keywords)
+                    {
+                        <span class="search-job-label-item"><a href="@keyword.Link">@keyword.Description</a></span>
+                    }
+                </p>
+                @*<p class="search-job-label">
+                    <strong>Localidades :</strong>
+                    @foreach (var location in locations)
+                    {
+                        <span class="search-job-label-item"><a href="@location.Link">@location.Description</a></span>
+                    }
+                </p>*@
+                <p class="search-job-label">
+                    <strong>Categorias :</strong>
+                    @foreach (var category in categories)
+                    {
+                        <span class="search-job-label-item"><a href="@category.Link">@category.Description</a></span>
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

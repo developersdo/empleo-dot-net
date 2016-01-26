@@ -10,5 +10,6 @@
         public int PageSize { get; set; } = 15;
         public int Page { get; set; } = 1;
         public JobCategory JobCategory { get; set; } = JobCategory.All;
+        public bool IsRemote { get; set; }
     }
 }

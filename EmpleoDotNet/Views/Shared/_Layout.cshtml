@@ -18,6 +18,7 @@
             margin-right: 18px;
         }
     </style>
+    <link href="~/Content/findJob.css" rel="stylesheet" />
     @RenderSection("styles", required: false)
 
     @{ 
@@ -56,10 +57,14 @@
         <div id="header-background"></div>
         <div class="container">
             <div class="pull-left">
-
                 <div>
                     <a id="menu-action-icon" class="fm-button"><i class="fa fa-bars fa-lg"></i></a>
                     <span><a href="@Url.Action("Index", "Home")"><i class="fa fa-users fa-2x"></i> Emplea.do { beta }</a></span>
+                </div>
+            </div>
+            <div class="pull-right hidden-xs">
+                <div>
+                    <a class="btn btn-default" href="@Url.Action("New", "JobOpportunity")"><i class="fa fa-user"></i> Publicar un Empleo</a>
                 </div>
             </div>
         </div>
