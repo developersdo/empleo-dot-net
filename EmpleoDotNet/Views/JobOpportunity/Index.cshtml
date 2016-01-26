@@ -47,10 +47,7 @@
                             }
                             else
                             {
-                            var splited = jobOpportunity.CompanyName.Split(' ');
-                            var lg = splited.Count() > 1 ? $"{splited[0].Substring(0, 1)}{splited[1].Substring(0, 1)}" : splited[0].Substring(0, 1);
-
-                            <h5 style="color:#0f858d; font-size:30px">@lg</h5>
+                            <h5 class="company-text-logo !important">@Html.FirstTwoLetters(jobOpportunity.CompanyName)</h5>
                             }
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
@@ -74,27 +71,46 @@
                             <p class="badge">@jobOpportunity.Category.ToEnumDescription()</p>
                             <p>Visitas | @jobOpportunity.ViewCount</p>
                         </div>
-                    </div>
-                </a>
-                }
-            </div>
-            <br />
-            <div>
-                <h5>@Model.Result.TotalItemCount Empleos disponibles para esta búsqueda.</h5>
-                <br />
-            </div>
 
-            @*Pagination*@
-            if (@Model.Result.PageCount > 1)
-            {
-            @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
-            {
-            Model.SelectedLocation,
-            page,
-            Model.Result.PageSize
-            }));
-            }
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 job-location">
+                        <p>
+                            <strong>@jobOpportunity.Location.Name</strong>
+                        </p>
+                        <p class="hidden-xs">@jobOpportunity.Created.ToShortDateString()</p>
+                    </div>
+                    <div class="pull-left col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
+                        @if (jobOpportunity.IsRemote)
+                        {
+                        <p class="badge full-time">
+                            Remoto
+                        </p>
+                        <br />
+                        }
+                        <p class="badge">@jobOpportunity.Category.ToEnumDescription()</p>
+                        <p>Visitas | @jobOpportunity.ViewCount</p>
+                    </div>
+            </div>
+            </a>
             }
         </div>
+        <br />
+        <div>
+            <h5>@Model.Result.TotalItemCount Empleos disponibles para esta búsqueda.</h5>
+            <br />
+        </div>
+
+        @*Pagination*@
+        if (@Model.Result.PageCount > 1)
+        {
+        @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
+        {
+        Model.SelectedLocation,
+        page,
+        Model.Result.PageSize
+        }));
+        }
+        }
     </div>
 </div>
+

@@ -25,10 +25,7 @@
                                     }
                                     else
                                     {
-                                        var splited = jobOpportunity.CompanyName.Split(' ');
-                                        var lg = splited.Count() > 1 ? $"{splited[0].Substring(0, 1)}{splited[1].Substring(0, 1)}" : splited[0].Substring(0, 1);
-
-                                        <h5 style="color:#0f858d; font-size:30px">@lg</h5>
+                                        <h5 class="company-text-logo !important">@Html.FirstTwoLetters(jobOpportunity.CompanyName)</h5>
                                     }
                                 </div>
 
