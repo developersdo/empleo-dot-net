@@ -85,7 +85,25 @@ namespace EmpleoDotNet.Controllers
 
             return RedirectToAction("Index");
         }
-
+        public ActionResult Wizzard()
+        {
+            var viewModel = new NewJobOpportunityViewModel();
+            LoadLocations(viewModel);
+            return View(viewModel);
+        }
+        [HttpPost, ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        public ActionResult Wizzard(NewJobOpportunityViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                LoadLocations(model);
+                ViewBag.ErrorMessage = "Han ocurrido errores de validación que no permiten continuar el proceso";
+                return View(model);
+            }
+            _jobOpportunityService.CreateNewJobOpportunity(model.ToEntity());
+            return RedirectToAction("Index");
+        }
         private void LoadLocations(NewJobOpportunityViewModel viewModel)
         {
             var locations = _locationService.GetAllLocations();

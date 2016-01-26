@@ -319,6 +319,7 @@
     <Content Include="Content\css\theme\jquery.nouislider.css" />
     <Content Include="Content\css\theme\owl.carousel.css" />
     <Content Include="Content\css\theme\style.css" />
+    <Content Include="Content\Wizzard.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -459,6 +460,7 @@
     <Content Include="Views\Shared\_GoogleAnalytics.cshtml" />
     <Content Include="Views\Shared\_FindJobsPartial.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\JobOpportunity\Wizzard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

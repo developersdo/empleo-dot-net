@@ -1,0 +1,121 @@
+﻿@using EmpleoDotNet.Helpers
+@model EmpleoDotNet.ViewModel.NewJobOpportunityViewModel
+
+@{
+    ViewBag.Title = "Nuevo Empleo";
+}
+
+<section>
+    <div class="container">
+
+    @using (Html.BeginForm("New", "JobOpportunity", FormMethod.Post, new {role = "form"}))
+    {
+        @Html.AntiForgeryToken()
+        <div id="wizzard" class="owl-carousel owl-theme">
+            <div class="item">
+                <h2>Paso 1 de 4. Detalles de la Empresa</h2>
+                
+                <div class="form-group" id="company-name-group">
+                    <label for="CompanyName">Nombre de la Empresa</label>
+                    @Html.TextBoxFor(m => m.CompanyName, new {@class = "form-control", placeholder = "CompanyX, SRL."})
+                    <span><b>Tip:</b> Los mejores candidatos tienden a hacer caso omiso de propuestas an&oacute;nimas</span>
+                    @Html.ValidationMessageFor(m => m.CompanyName)
+                </div>
+                <div class="form-group" id="company-email-group">
+                    <label for="CompanyEmail">Email</label>
+                    @Html.TextBoxFor(m => m.CompanyEmail, new {@class = "form-control", placeholder = "email@companyx.com"})
+                    @Html.ValidationMessageFor(m => m.CompanyEmail)
+                </div>
+                <div class="form-group" id="company-website-group">
+                    <label for="CompanyUrl">Web Site (Opcional)</label>
+                    @Html.TextBoxFor(m => m.CompanyUrl, new {@class = "form-control", placeholder = "companyx.com"})
+                    <span><b>Tip:</b> Muchos aplicantes visitar&aacute;n tu sitio web y lo tomar&aacute;n como referencia antes de decidirse por t&iacute;. Si tu empresa no tiene un sitio web o crees que necesita unas mejoras, considera buscar un web developer en <a href="@Url.Action("Index", "Home")">emplea.do</a></span>
+                    @Html.ValidationMessageFor(m => m.CompanyUrl)
+                </div>
+                <div class="form-group" id="company-logo-group">
+                    <label for="CompanyLogoUrl">Logo (Opcional)</label>
+                    @Html.TextBoxFor(m => m.CompanyLogoUrl, new {@class = "form-control", placeholder = "http://companyx.com/logo.png"})
+                    <span>Asegurate de que el servidor donde est&eacute; alojado el logo acepte hotlinks. Si no sabes que es eso, no te preocupes, sube el logo a <a href="https://imgur.com" target="_blank">imgur</a> y pega la url aqu&iacute;</span>
+                    @Html.ValidationMessageFor(m => m.CompanyLogoUrl)
+                </div>
+                <a class="btn-next btn btn-primary btn-lg">Siguiente</a>
+            </div>
+            <div class="item">
+                <h2>Detalles del puesto</h2>
+                <div class="form-group" id="job-title-group">
+                    <label for="Title">Título. ¿Qu&eacute; est&aacute;s buscando?</label>
+                    @Html.TextBoxFor(m => m.Title, new {@class = "form-control", placeholder = "ejemp. Web Designer"})
+                    @Html.ValidationMessageFor(m => m.Title)
+                </div>
+                <div class="form-group" id="job-category-group">
+                    <label for="Category">Categoría</label>
+                    @Html.EnumDropListFor(e => e.Category, new { @class = "form-control", id = "category" })
+                </div>
+                <div class="form-group" id="job-location-group">
+                    <label for="Location">Localidad</label>
+                    @Html.DropDownListFor(d => d.SelectedLocationId, Model.Locations, new {@class = "form-control", id = "location-id"})
+                </div>
+                <div class="form-group">
+                    @Html.CheckBoxFor(m => m.IsRemote)
+                    <label for="IsRemote">¿Es un puesto remoto?</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="Description">Descripci&oacute;n del Puesto</label>
+                    @Html.TextAreaFor(m => m.Description, new {@class = "form-control textarea"})
+                    @Html.ValidationMessageFor(m => m.Description)
+                    <span><b>Tip:</b> Se lo mas explicito posible, si eres de recursos humanos consulta con una persona de tecnolog&iacute;a sobre cuales son los requerimientos t&eacute;cnicos.</span>
+                </div>
+                <a class="btn-prev btn btn-primary btn-lg">Anterior</a>
+
+                <button type="submit" class="btn btn-primary btn-lg">Crear Empleo</button>
+            </div>
+            @*<div class="item">
+                <h2>La prueba de JOEL</h2>
+                <p>Si no sabes que es puedes <a href="http://www.joelonsoftware.com/articles/fog0000000043.html" target="_blank">leer aqu&iacute;</a>. En resumen, es un cuestionario para medir la calidad del equipo de desarrollo de tu empresa.</p>
+
+                <div class="form-group">
+                    @Html.CheckBoxFor(m => m.IsRemote)
+                    <label for="IsRemote">¿Es un puesto remoto?</label>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-lg">Crear Empleo</button>
+                </div>
+            </div>*@
+        </div>
+    }
+    </div>
+</section>
+@section styles{
+    <link href="~/Content/Wizzard.css" rel="stylesheet" />
+}
+@section scripts {
+    <script type="text/javascript">
+        var owl = $("#wizzard").owlCarousel({
+            slideSpeed: 300,
+            paginationSpeed: 400,
+            items: 1,
+            itemsDesktop: false,
+            itemsDesktopSmall: false,
+            itemsTablet: false,
+            itemsMobile: false
+        });
+        $(window).keydown(function(e) {
+            if (e.keyCode === 13) {
+                e.preventDefault();
+            }
+        });
+        $("input").keydown(function(e) {
+            if (e.keyCode === 13) {
+                owl.trigger('next');
+            }
+        });
+        $(".btn-next").click(function() {
+            owl.trigger('next');
+        });
+        $(".btn-prev").click(function () {
+            owl.trigger('prev');
+        });
+
+    </script>
+}
