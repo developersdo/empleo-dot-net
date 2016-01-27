@@ -33,7 +33,6 @@ namespace EmpleoDotNet
                       "~/Content/responsive.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                        "~/Scripts/url.js",
                         "~/Scripts/app.js"
                         ));
 
