@@ -28,6 +28,10 @@ namespace EmpleoDotNet.Controllers
 
             viewModel.Result = jobOpportunities;
 
+            var jobcategoryHelper = new JobCategoryHelper();
+
+            ViewBag.Categories = jobcategoryHelper.GetPrimaryJobCategories();
+
             return View(viewModel);
         }
 

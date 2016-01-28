@@ -29,29 +29,29 @@
 
     #region categories
 
-    var categories = new[]
-    {
-        new
-        {
-            Description = JobCategory.MobileDevelopment.ToEnumDescription(),
-            Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.MobileDevelopment })
-        },
-        new
-        {
-            Description = JobCategory.WebDevelopment.ToEnumDescription(),
-            Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.WebDevelopment })
-        },
-        new
-        {
-            Description = JobCategory.SoftwareDevelopment.ToEnumDescription(),
-            Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.MobileDevelopment })
-        },
-        new
-        {
-            Description = JobCategory.GraphicDesign.ToEnumDescription(),
-            Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.GraphicDesign })
-        },
-    };
+    //var categories = new[]
+    //{
+    //    new
+    //    {
+    //        Description = JobCategory.MobileDevelopment.ToEnumDescription(),
+    //        Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.MobileDevelopment })
+    //    },
+    //    new
+    //    {
+    //        Description = JobCategory.WebDevelopment.ToEnumDescription(),
+    //        Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.WebDevelopment })
+    //    },
+    //    new
+    //    {
+    //        Description = JobCategory.SoftwareDevelopment.ToEnumDescription(),
+    //        Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.MobileDevelopment })
+    //    },
+    //    new
+    //    {
+    //        Description = JobCategory.GraphicDesign.ToEnumDescription(),
+    //        Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.GraphicDesign })
+    //    },
+    //};
 
     #endregion
 
@@ -142,9 +142,13 @@
                 </p>*@
                 <p class="search-job-label">
                     <strong>Categorias :</strong>
-                    @foreach (var category in categories)
+                    @foreach (JobCategoryLinkViewModel category in ViewBag.Categories)
                     {
-                        <span class="search-job-label-item"><a href="@category.Link">@category.Description</a></span>
+                        <span class="search-job-label-item">
+                            <a href="@Url.Action("Index", "JobOpportunity", new {category.JobCategory})">
+                                @category.Description | @category.JobQuantity
+                            </a>
+                        </span>
                     }
                 </p>
             </div>
