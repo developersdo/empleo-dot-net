@@ -13,7 +13,7 @@ namespace EmpleoDotNet.Helpers
         /// </summary>
         /// <param name="dateTime">Date time</param>
         /// <returns></returns>
-        public static string ToLocalFormat(this DateTime dateTime)
+        public static string ToDominicanFormat(this DateTime dateTime)
         {
             return dateTime.ToString("dd MMMM \\de yyyy", new CultureInfo("es-DO"));
         }
