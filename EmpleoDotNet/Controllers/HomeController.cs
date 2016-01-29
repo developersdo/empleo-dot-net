@@ -24,9 +24,7 @@ namespace EmpleoDotNet.Controllers
                 Locations = _locationService.GetLocationsWithDefault().ToSelectList(x => x.Id, x => x.Name)
             };
 
-            var jobcategoryHelper = new JobCategoryHelper();
-
-            ViewBag.Categories = jobcategoryHelper.GetPrimaryJobCategories();
+            ViewBag.Categories = GetPrimaryJobCategories();
 
             var model = _jobRepository.GetLatestJobOpportunity(7);
 

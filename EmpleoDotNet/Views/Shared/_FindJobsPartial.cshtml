@@ -1,6 +1,6 @@
 ﻿@using EmpleoDotNet.Helpers
-@using EmpleoDotNet.Models
-@model EmpleoDotNet.ViewModel.JobOpportunitySearchViewModel
+@using EmpleoDotNet.ViewModel
+@model JobOpportunitySearchViewModel
 
 @{
 
@@ -25,34 +25,6 @@
         }
 
     };
-    #endregion
-
-    #region categories
-
-    //var categories = new[]
-    //{
-    //    new
-    //    {
-    //        Description = JobCategory.MobileDevelopment.ToEnumDescription(),
-    //        Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.MobileDevelopment })
-    //    },
-    //    new
-    //    {
-    //        Description = JobCategory.WebDevelopment.ToEnumDescription(),
-    //        Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.WebDevelopment })
-    //    },
-    //    new
-    //    {
-    //        Description = JobCategory.SoftwareDevelopment.ToEnumDescription(),
-    //        Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.MobileDevelopment })
-    //    },
-    //    new
-    //    {
-    //        Description = JobCategory.GraphicDesign.ToEnumDescription(),
-    //        Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.GraphicDesign })
-    //    },
-    //};
-
     #endregion
 
     #region keywords
@@ -133,20 +105,13 @@
                         <span class="search-job-label-item"><a href="@keyword.Link">@keyword.Description</a></span>
                     }
                 </p>
-                @*<p class="search-job-label">
-                    <strong>Localidades :</strong>
-                    @foreach (var location in locations)
-                    {
-                        <span class="search-job-label-item"><a href="@location.Link">@location.Description</a></span>
-                    }
-                </p>*@
                 <p class="search-job-label">
                     <strong>Categorias :</strong>
                     @foreach (JobCategoryLinkViewModel category in ViewBag.Categories)
                     {
                         <span class="search-job-label-item">
                             <a href="@Url.Action("Index", "JobOpportunity", new {category.JobCategory})">
-                                @category.Description | @category.JobQuantity
+                                @category.JobCategory.ToEnumDescription() | @category.JobQuantity
                             </a>
                         </span>
                     }

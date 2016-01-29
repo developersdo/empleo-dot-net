@@ -60,5 +60,12 @@ namespace EmpleoDotNet.Services
             item.ViewCount++;
             _jobOpportunityRepository.SaveChanges();           
         }
+
+        public IList<JobOpportunity> GetJobOpportunitiesByCategory(JobCategory jobCategory)
+        {
+            return _jobOpportunityRepository.GetAllJobOpportunities()
+                .Where(x => x.Category == jobCategory)
+                .ToList();
+        }
     }
 }

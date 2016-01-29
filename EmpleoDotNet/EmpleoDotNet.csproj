@@ -220,8 +220,6 @@
     <Compile Include="Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\EnumerableExtensions.cs" />
-    <Compile Include="Helpers\JobCategoryHelper.cs" />
-    <Compile Include="Helpers\JobCategoryLinkViewModel.cs" />
     <Compile Include="Helpers\QueryableExtensions.cs" />
     <Compile Include="Helpers\JobOpportunityDescriptionBuilder.cs" />
     <Compile Include="Helpers\PrettyUrlHelper.cs" />
@@ -277,6 +275,7 @@
     <Compile Include="Services\LocationService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\ErrorViewModel.cs" />
+    <Compile Include="ViewModel\JobCategoryLinkViewModel.cs" />
     <Compile Include="ViewModel\JobOpportunitySearchViewModel.cs" />
     <Compile Include="ViewModel\NewJobOpportunityViewModel.cs" />
     <Compile Include="ViewModel\RelatedJobDto.cs" />
@@ -507,7 +506,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>18661</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
