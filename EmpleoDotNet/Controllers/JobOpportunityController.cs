@@ -5,6 +5,7 @@ using EmpleoDotNet.Models.Dto;
 using EmpleoDotNet.Models.Repositories;
 using EmpleoDotNet.Services;
 using EmpleoDotNet.ViewModel;
+using reCAPTCHA.MVC;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -72,6 +73,10 @@ namespace EmpleoDotNet.Controllers
 
         [HttpPost, ValidateAntiForgeryToken]
         [ValidateInput(false)]
+        [CaptchaValidator(
+        PrivateKey = "6LdJlBYTAAAAAJgAdtWHmOB18n5ae5MxmVA-CadM",
+        ErrorMessage = "Invalid input captcha.",
+        RequiredMessage = "The captcha field is required.")]
         public ActionResult New(NewJobOpportunityViewModel model)
         {
             if (!ModelState.IsValid)
