@@ -1,5 +1,4 @@
 ﻿@using EmpleoDotNet.Helpers
-@using reCAPTCHA.MVC
 @model EmpleoDotNet.ViewModel.NewJobOpportunityViewModel
 
 @{
@@ -87,11 +86,6 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-10">
-                        @Html.Recaptcha(publicKey: "6LdJlBYTAAAAAEndLJ4M6lpaTnjUtpygmdLVdyD4", theme: CaptchaTheme.Dark, type: CaptchaType.Image,
-            callback: "verifyCallback", expiredCallback: "expiredCallback")
-
-                        @Html.ValidationMessage("ReCaptcha")
-                        <br />
                         <button type="submit" class="btn btn-primary btn-lg">Crear Empleo</button>
                     </div>
                 </div>
