@@ -28,8 +28,6 @@ namespace EmpleoDotNet.Controllers
 
             viewModel.Result = jobOpportunities;
 
-            ViewBag.Categories = GetPrimaryJobCategories();
-
             return View(viewModel);
         }
 
@@ -110,7 +108,8 @@ namespace EmpleoDotNet.Controllers
                 SelectedLocation = model.SelectedLocation,
                 JobCategory = model.JobCategory,
                 Keyword = model.Keyword,
-                IsRemote = model.IsRemote
+                IsRemote = model.IsRemote,
+                CategoryLinks = GetPrimaryJobCategories()
             };
 
             return viewModel;

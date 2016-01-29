@@ -107,7 +107,7 @@
                 </p>
                 <p class="search-job-label">
                     <strong>Categorias :</strong>
-                    @foreach (JobCategoryLinkViewModel category in ViewBag.Categories)
+                    @foreach (var category in Model.CategoryLinks)
                     {
                         <span class="search-job-label-item">
                             <a title="@category.JobQuantity empleos para esta categor&iacute;a" href="@Url.Action("Index", "JobOpportunity", new {category.JobCategory})">
