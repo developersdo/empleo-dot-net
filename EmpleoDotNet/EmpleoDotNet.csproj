@@ -275,6 +275,7 @@
     <Compile Include="Services\LocationService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\ErrorViewModel.cs" />
+    <Compile Include="ViewModel\JobCategoryLinkViewModel.cs" />
     <Compile Include="ViewModel\JobOpportunitySearchViewModel.cs" />
     <Compile Include="ViewModel\NewJobOpportunityViewModel.cs" />
     <Compile Include="ViewModel\RelatedJobDto.cs" />

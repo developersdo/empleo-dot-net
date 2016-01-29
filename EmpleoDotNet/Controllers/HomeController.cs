@@ -21,10 +21,12 @@ namespace EmpleoDotNet.Controllers
         {
             ViewBag.SearchViewModel = new JobOpportunitySearchViewModel
             {
-                Locations = _locationService.GetLocationsWithDefault().ToSelectList(x => x.Id, x => x.Name)
+                Locations = _locationService.GetLocationsWithDefault().ToSelectList(x => x.Id, x => x.Name),
+                CategoryLinks = GetPrimaryJobCategories()
             };
 
             var model = _jobRepository.GetLatestJobOpportunity(7);
+
             return View(model);
         }
     }
