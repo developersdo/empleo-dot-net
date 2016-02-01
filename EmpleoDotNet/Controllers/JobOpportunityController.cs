@@ -21,7 +21,8 @@ namespace EmpleoDotNet.Controllers
 
             return View(viewModel);
         }
-        
+
+               // GET: /JobOpportunity/Detail/4         
         public ActionResult Detail(int? id)
         {
             if (!id.HasValue)
@@ -63,14 +64,14 @@ namespace EmpleoDotNet.Controllers
         [ValidateInput(false)]
         public async Task<ActionResult> New(NewJobOpportunityViewModel model)
         {
-            
+
             if (!ModelState.IsValid)
             {
                 LoadLocations(model);
                 ViewBag.ErrorMessage = "Han ocurrido errores de validación que no permiten continuar el proceso";
                 return View(model);
             }
-            
+
             var jobOpportunity = model.ToEntity();
 
             _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity);
@@ -117,7 +118,8 @@ namespace EmpleoDotNet.Controllers
         {
             var locations = _locationService.GetLocationsWithDefault();
 
-            var viewModel = new JobOpportunitySearchViewModel {
+            var viewModel = new JobOpportunitySearchViewModel
+            {
                 Locations = locations.ToSelectList(l => l.Id, l => l.Name, model.SelectedLocation),
                 SelectedLocation = model.SelectedLocation,
                 JobCategory = model.JobCategory,
@@ -130,7 +132,7 @@ namespace EmpleoDotNet.Controllers
 
         public JobOpportunityController(
             ILocationService locationService,
-            IJobOpportunityService jobOpportunityService, 
+            IJobOpportunityService jobOpportunityService,
             ITwitterService twitterService)
         {
             _locationService = locationService;

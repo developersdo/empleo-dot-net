@@ -1,9 +1,9 @@
 ﻿@using EmpleoDotNet.Helpers
 @using EmpleoDotNet.ViewModel
 @model List<EmpleoDotNet.Core.Domain.JobOpportunity>
-@{
+    @{
     ViewBag.Title = "";
-}
+    }
 
 @Html.Partial("_FindJobsPartial", (JobOpportunitySearchViewModel)ViewBag.SearchViewModel)
 <div class="container" style="margin-top: -50px;">
@@ -43,25 +43,26 @@
                                     <p>
                                         <strong>@jobOpportunity.Location.Name</strong>
                                     </p>
-                                    <p class="hidden-xs">@jobOpportunity.Created.ToDominicanFormat()</p>
+                                    <p class="hidden-xs">@jobOpportunity.Created.ToShortDateString()</p>
                                 </div>
                                 <div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
                                     @if (jobOpportunity.IsRemote)
                                     {
-                                        <p class="badge full-time">
-                                            Remoto
-                                        </p>
-                                        <br />
+                                    <p class="badge full-time">
+                                        Remoto
+                                    </p>
+                                    <br />
                                     }
                                     <p class="badge">@jobOpportunity.Category.ToEnumDescription()</p>
                                     <p>Visitas | @jobOpportunity.ViewCount</p>
                                 </div>
                             </div>
                         </a>
-                    }
+                        }
+                    </div>
+                    <br />
+                    <a class="btn btn-primary" href="@Url.Action(" Index", "JobOpportunity" )">Mostrar mas empleos</a>
                 </div>
-                <br />
-            <a class="btn btn-primary" href="@Url.Action("Index", "JobOpportunity")">Mostrar mas empleos</a>
             </div>
         </div>
     </section>
