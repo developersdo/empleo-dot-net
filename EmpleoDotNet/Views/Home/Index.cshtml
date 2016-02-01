@@ -21,7 +21,13 @@
                                 <div class="col-md-1 hidden-sm hidden-xs text-center">
                                     @if (!string.IsNullOrEmpty(jobOpportunity.CompanyLogoUrl))
                                     {
-                                        <img src="@jobOpportunity.CompanyLogoUrl" width="60" height="60" alt="" class="img-responsive" onclick="onJobOpportunityDetailClick(this);" data-url="@Url.Action("Detail", "JobOpportunity", new { id = jobOpportunity.Id })" />
+                                        <img src="@jobOpportunity.CompanyLogoUrl" 
+                                             width="60" 
+                                             height="60" 
+                                             alt="" 
+                                             class="img-responsive" 
+                                             onclick="onJobOpportunityDetailClick(this);" 
+                                             data-url="@Url.Action("Detail", "JobOpportunity", new { id = jobOpportunity.Id })" />
                                     }
                                     else
                                     {
