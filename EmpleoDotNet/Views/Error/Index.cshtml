@@ -1,0 +1,24 @@
+﻿@model EmpleoDotNet.ViewModel.ErrorViewModel
+@{
+    ViewBag.Title = Model.HttpStatusCode.ToString();
+}
+
+<section id="title">
+    <div class="row text-center">
+        <div class="col-sm-12">
+            <div>
+                <h3>@Html.Raw(@Model.Title)</h3>
+                <h4>@Html.Raw(@Model.SubTitle)</h4>
+                <br/>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center">
+        <img width="600" height="400" src="~/Content/img/pinedax.png" />
+    </div>
+    <br />
+    <div class="row text-center">
+        <a class="btn btn-primary" href="@Url.Action("Index", "JobOpportunity")">Encuentra más trabajos</a>
+    </div>
+    <br />
+</section>

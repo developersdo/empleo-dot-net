@@ -50,5 +50,15 @@ namespace EmpleoDotNet.Services
         {
             return _jobOpportunityRepository.GetJobOpportunityById(id);
         }
+
+        public void UpdateViewCount(int id)
+        {
+            var item = _jobOpportunityRepository.GetJobOpportunityById(id);
+
+            if (item == null) return;
+
+            item.ViewCount++;
+            _jobOpportunityRepository.SaveChanges();           
+        }
     }
 }

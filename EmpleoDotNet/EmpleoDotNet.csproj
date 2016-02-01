@@ -210,11 +210,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CreditsController.cs" />
     <Compile Include="Controllers\EmpleoDotNetController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobOpportunityController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CookieHelper.cs" />
     <Compile Include="Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\EnumerableExtensions.cs" />
@@ -225,6 +227,7 @@
     <Compile Include="Services\JobOpportunityService.cs" />
     <Compile Include="Services\LocationService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\ErrorViewModel.cs" />
     <Compile Include="ViewModel\JobOpportunitySearchViewModel.cs" />
     <Compile Include="ViewModel\NewJobOpportunityViewModel.cs" />
     <Compile Include="ViewModel\RelatedJobDto.cs" />
@@ -253,6 +256,7 @@
     <Content Include="Content\IconsSocial\Twitter.png" />
     <Content Include="Content\IconsSocial\Wordpress.png" />
     <Content Include="Content\img\company-logo-placeholder.png" />
+    <Content Include="Content\img\pinedax.png" />
     <Content Include="Content\img\find-a-job.jpg" />
     <Content Include="Content\img\logo-empleado.png" />
     <Content Include="Content\img\post-a-job.jpg" />
@@ -408,6 +412,7 @@
     <Content Include="Views\Credits\Index.cshtml" />
     <Content Include="Views\Shared\_GoogleAnalytics.cshtml" />
     <Content Include="Views\Shared\_FindJobsPartial.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
