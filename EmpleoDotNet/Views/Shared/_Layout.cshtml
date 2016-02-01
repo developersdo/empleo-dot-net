@@ -70,14 +70,11 @@
         </div>
     </header>
 
-
-
     <!-- ============ PAGE LOADER START ============ -->
     <div id="loader">
         <i class="fa fa-cog fa-4x fa-spin"></i>
     </div>
     <!-- ============ PAGE LOADER END ============ -->
-
 
     @if (!String.IsNullOrEmpty(ViewBag.ErrorMessage))
     {
@@ -92,27 +89,13 @@
 
     @RenderBody()
 
-
     <footer>
         <div id="prefooter">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6" id="newsletter">
                         <h2>Emplea.do</h2>
-                        @*<form class="form-inline">
-                                <div class="form-group">
-                                    <label class="sr-only" for="newsletter-email">Email address</label>
-                                    <input type="email" class="form-control" id="newsletter-email" placeholder="Email address">
-                                </div>
-                                <button type="submit" class="btn btn-primary">Sign up</button>
-                            </form>*@
                     </div>
-                    @*<div class="col-sm-6" id="social-networks">
-                            <h2>Get in touch</h2>
-                            <a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
-                            <a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
-                            <a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
-                        </div>*@
                 </div>
             </div>
         </div>
@@ -136,5 +119,4 @@
     @RenderSection("scripts", required: false)
     <script src="~/Scripts/app.js"></script>
 </body>
-
 </html>
