@@ -1,9 +1,11 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using EmpleoDotNet.Helpers;
 using EmpleoDotNet.Models.Dto;
 using EmpleoDotNet.Models.Repositories;
 using EmpleoDotNet.Services;
+using EmpleoDotNet.Services.Social.Twitter;
 using EmpleoDotNet.ViewModel;
 
 namespace EmpleoDotNet.Controllers
@@ -12,11 +14,13 @@ namespace EmpleoDotNet.Controllers
     {
         private readonly LocationService _locationService;
         private readonly JobOpportunityService _jobOpportunityService;
+        private readonly ITwitterService _twitterService;
 
         public JobOpportunityController()
         {
             _locationService = new LocationService();
             _jobOpportunityService = new JobOpportunityService();
+            _twitterService = new TwitterService();
         }
         
         // GET: /JobOpportunity/
@@ -72,7 +76,7 @@ namespace EmpleoDotNet.Controllers
 
         [HttpPost, ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult New(NewJobOpportunityViewModel model)
+        public async Task<ActionResult> New(NewJobOpportunityViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -81,7 +85,11 @@ namespace EmpleoDotNet.Controllers
                 return View(model);
             }
 
-            _jobOpportunityService.CreateNewJobOpportunity(model.ToEntity());
+            var jobOpportunity = model.ToEntity();
+
+            _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity);
+
+            await _twitterService.PostNewJobOpportunity(jobOpportunity);
 
             return RedirectToAction("Index");
         }
