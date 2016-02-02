@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Reflection;
 using EmpleoDotNet.Core.Domain;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace EmpleoDotNet.Data
 {
@@ -25,17 +26,16 @@ namespace EmpleoDotNet.Data
         {
             modelBuilder.Configurations.AddFromAssembly(Assembly.GetExecutingAssembly());
 
-            //ConfigureIdentityTables(modelBuilder);
+            ConfigureIdentityTables(modelBuilder);
         }
 
-        //TODO: Ver como configurar identity
-        //private static void ConfigureIdentityTables(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<IdentityUserRole>().ToTable("UserRolesJoin").HasKey(m => new {m.UserId, m.RoleId});
-        //    modelBuilder.Entity<IdentityUserLogin>().ToTable("Logins").HasKey(m => m.UserId);
-        //    modelBuilder.Entity<IdentityUserClaim>().ToTable("Claims").HasKey(m => m.Id);
-        //    modelBuilder.Entity<IdentityRole>().ToTable("Roles").HasKey(m => m.Id);
-        //    modelBuilder.Entity<IdentityUser>().ToTable("Users").HasKey(m => m.Id);
-        //}
+        private static void ConfigureIdentityTables(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<IdentityUserRole>().ToTable("UserRolesJoin").HasKey(m => new { m.UserId, m.RoleId });
+            modelBuilder.Entity<IdentityUserLogin>().ToTable("Logins").HasKey(m => m.UserId);
+            modelBuilder.Entity<IdentityUserClaim>().ToTable("Claims").HasKey(m => m.Id);
+            modelBuilder.Entity<IdentityRole>().ToTable("Roles").HasKey(m => m.Id);
+            modelBuilder.Entity<IdentityUser>().ToTable("Users").HasKey(m => m.Id);
+        }
     }
 }
