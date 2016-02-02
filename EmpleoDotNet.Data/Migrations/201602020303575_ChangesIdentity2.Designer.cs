@@ -7,13 +7,13 @@ namespace EmpleoDotNet.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class merge : IMigrationMetadata
+    public sealed partial class ChangesIdentity2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(merge));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangesIdentity2));
         
         string IMigrationMetadata.Id
         {
-            get { return "201602011926108_merge"; }
+            get { return "201602020303575_ChangesIdentity2"; }
         }
         
         string IMigrationMetadata.Source
