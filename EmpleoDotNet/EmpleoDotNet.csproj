@@ -337,6 +337,7 @@
     <Content Include="Scripts\i18n\mk.js" />
     <Content Include="Scripts\i18n\nb.js" />
     <Content Include="Scripts\i18n\nl.js" />
+    <Content Include="Scripts\i18n\parsley\es.js" />
     <Content Include="Scripts\i18n\pl.js" />
     <Content Include="Scripts\i18n\pt-BR.js" />
     <Content Include="Scripts\i18n\pt.js" />

@@ -19,7 +19,6 @@ namespace EmpleoDotNet.Controllers
             _jobOpportunityService = new JobOpportunityService();
         }
         
-        // GET: /JobOpportunity/
         public ActionResult Index(JobOpportunityPagingParameter model)
         {
             var viewModel = GetSearchViewModel(model);
@@ -30,8 +29,7 @@ namespace EmpleoDotNet.Controllers
 
             return View(viewModel);
         }
-
-        // GET: /JobOpportunity/Detail/4
+        
         public ActionResult Detail(int? id)
         {
             if (!id.HasValue)
@@ -60,7 +58,6 @@ namespace EmpleoDotNet.Controllers
             return View("Index");
         }
 
-        // GET: /JobOpportunity/New
         public ActionResult New()
         {
             var viewModel = new NewJobOpportunityViewModel();
