@@ -1,21 +1,16 @@
 ﻿using System.Data.Entity;
 using System.Linq;
 using EmpleoDotNet.Data;
+using EmpleoDotNet.Repository.Contracts;
 
 namespace EmpleoDotNet.Repository
 {
-    public class BaseRepository<T> where T : class
+    public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        protected DbContext Context;
+        protected EmpleadoContext Context;
         protected DbSet<T> DbSet;
 
-        public BaseRepository()
-        {
-            Context = new EmpleadoContext();
-            DbSet = Context.Set<T>();
-        }
-
-        public BaseRepository(DbContext context)
+        public BaseRepository(EmpleadoContext context)
         {
             Context = context;
             DbSet = Context.Set<T>();

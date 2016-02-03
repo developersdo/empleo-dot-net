@@ -3,10 +3,8 @@ using EmpleoDotNet.Core.Domain;
 
 namespace EmpleoDotNet.Repository.Contracts
 {
-    public interface ITagRepository
+    public interface ITagRepository : IBaseRepository<Tag>
     {
         List<Tag> GetAllTags();
-
-        Tag GetTagById(int id);
     }
 }

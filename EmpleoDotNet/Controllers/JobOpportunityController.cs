@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using EmpleoDotNet.Core.Dto;
 using EmpleoDotNet.Helpers;
 using EmpleoDotNet.Services;
@@ -9,15 +8,6 @@ namespace EmpleoDotNet.Controllers
 {
     public class JobOpportunityController : EmpleoDotNetController
     {
-        private readonly LocationService _locationService;
-        private readonly JobOpportunityService _jobOpportunityService;
-
-        public JobOpportunityController()
-        {
-            _locationService = new LocationService();
-            _jobOpportunityService = new JobOpportunityService();
-        }
-        
         // GET: /JobOpportunity/
         public ActionResult Index(JobOpportunityPagingParameter model)
         {
@@ -40,7 +30,7 @@ namespace EmpleoDotNet.Controllers
 
             if (vm != null)
             {
-                ViewBag.RelatedJobs = 
+                ViewBag.RelatedJobs =
                     _jobOpportunityService.GetCompanyRelatedJobs(id.Value, vm.CompanyName, vm.CompanyEmail, vm.CompanyUrl);
 
                 var cookieView = $"JobView{vm.Id}";
@@ -52,10 +42,10 @@ namespace EmpleoDotNet.Controllers
 
                 return View("Detail", vm);
             }
-                
-            ViewBag.ErrorMessage = 
+
+            ViewBag.ErrorMessage =
                 "La vacante solicitada no existe. Por favor escoger una vacante válida del listado";
-            
+
             return View("Index");
         }
 
@@ -101,8 +91,7 @@ namespace EmpleoDotNet.Controllers
         {
             var locations = _locationService.GetLocationsWithDefault();
 
-            var viewModel = new JobOpportunitySearchViewModel
-            {
+            var viewModel = new JobOpportunitySearchViewModel {
                 Locations = locations.ToSelectList(l => l.Id, l => l.Name, model.SelectedLocation),
                 SelectedLocation = model.SelectedLocation,
                 JobCategory = model.JobCategory,
@@ -112,5 +101,16 @@ namespace EmpleoDotNet.Controllers
 
             return viewModel;
         }
+
+        public JobOpportunityController(
+            ILocationService locationService,
+            IJobOpportunityService jobOpportunityService)
+        {
+            _locationService = locationService;
+            _jobOpportunityService = jobOpportunityService;
+        }
+
+        private readonly ILocationService _locationService;
+        private readonly IJobOpportunityService _jobOpportunityService;
     }
 }
