@@ -44,6 +44,7 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
         [Display(Name = "Logo (opcional)")]
         public string CompanyLogoUrl { get; set; }
 
+        [Display(Name= "¿Es un puesto remoto?")]
         public bool IsRemote { get; set; }
 
         [Display(Name= "¿Usas algún tipo de control de versiones? (Git, Subversion)")]

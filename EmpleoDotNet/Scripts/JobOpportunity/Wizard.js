@@ -9,7 +9,7 @@
         itemsMobile: false
     });
     var validateScreen = function (callback) {
-        var parsleyGroup = $(".active").data('parsley-group');
+        var parsleyGroup = $(".active .item").data('parsley-group');
         if ($('form').parsley().validate({ group: parsleyGroup })) {
             callback();
         }
