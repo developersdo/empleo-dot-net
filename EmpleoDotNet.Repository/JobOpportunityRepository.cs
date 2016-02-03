@@ -14,20 +14,14 @@ namespace EmpleoDotNet.Repository
     {
         public List<JobOpportunity> GetAllJobOpportunities()
         {
-            var locations = _locationRepository.GetAllLocations().ToDictionary(x => x.Id);
-
-            var jobOpportunities = GetAll().OrderByDescending(x => x.PublishedDate);
-
-            //Esto es para llenar la propiedad de navegación ya que EF solo llena el LocationId (no se porqué)
-            foreach (var item in jobOpportunities)
-                item.Location = locations[item.LocationId];
-
+            var jobOpportunities = DbSet.Include(x=>x.Location).OrderByDescending(x => x.PublishedDate);
+            
             return jobOpportunities.ToList();
         }
 
         public List<JobOpportunity> GetAllJobOpportunitiesByLocation(Location location)
         {
-            var jobOpportunities = GetAllJobOpportunities().Where(x => x.LocationId == location.Id).ToList();
+            var jobOpportunities = DbSet.Include(x => x.Location).Where(x => x.LocationId == location.Id).ToList();
 
             return jobOpportunities;
         }
@@ -35,7 +29,6 @@ namespace EmpleoDotNet.Repository
         public JobOpportunity GetJobOpportunityById(int? id)
         {
             if (!id.HasValue) return null;
-
             return DbSet.Include(x => x.Location).FirstOrDefault(x => x.Id.Equals(id.Value));
         }
 
@@ -94,14 +87,9 @@ namespace EmpleoDotNet.Repository
                 .ToList();
         }
 
-        public JobOpportunityRepository(
-            ILocationRepository locationRepository,
-            EmpleadoContext context) 
+        public JobOpportunityRepository(EmpleadoContext context) 
             : base(context)
         {
-            _locationRepository = locationRepository;
         }
-
-        private readonly ILocationRepository _locationRepository;
     }
 }

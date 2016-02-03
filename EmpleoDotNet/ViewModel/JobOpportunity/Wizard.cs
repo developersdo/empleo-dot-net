@@ -97,7 +97,22 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
                 CompanyLogoUrl = CompanyLogoUrl,
                 CompanyEmail = CompanyEmail,
                 PublishedDate = DateTime.Now,
-                IsRemote = IsRemote
+                IsRemote = IsRemote,
+                JoelTest = new JoelTest
+                {
+                    HasSourceControl = this.HasSourceControl,
+                    HasOneStepBuilds = this.HasOneStepBuilds,
+                    HasDailyBuilds = this.HasDailyBuilds,
+                    HasBugDatabase = this.HasBugDatabase,
+                    HasBusFixedBeforeProceding = this.HasBusFixedBeforeProceding,
+                    HasUpToDateSchedule = this.HasUpToDateSchedule,
+                    HasSpec = this.HasSpec,
+                    HasQuiteEnvironment = this.HasQuiteEnvironment,
+                    HasBestTools = this.HasBestTools,
+                    HasTesters = this.HasTesters,
+                    HasWrittenTest = this.HasWrittenTest,
+                    HasHallwayTests = this.HasHallwayTests
+                }
             };
 
             return entity;
