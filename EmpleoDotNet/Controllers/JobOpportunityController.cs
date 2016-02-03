@@ -90,8 +90,9 @@ namespace EmpleoDotNet.Controllers
                 ViewBag.ErrorMessage = "Han ocurrido errores de validación que no permiten continuar el proceso";
                 return View(model);
             }
-            _jobOpportunityService.CreateNewJobOpportunity(model.ToEntity());
-            return RedirectToAction("Index");
+            var entity = model.ToEntity();
+            _jobOpportunityService.CreateNewJobOpportunity(entity);
+            return RedirectToAction("Detail", new {id=entity.Id, fromWizard=1});
         }
         private void LoadLocations(NewJobOpportunityViewModel viewModel)
         {
