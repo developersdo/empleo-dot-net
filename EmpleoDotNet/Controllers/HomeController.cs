@@ -1,6 +1,8 @@
 ﻿using System.Web.Mvc;
+using EmpleoDotNet.Data;
 using EmpleoDotNet.Helpers;
 using EmpleoDotNet.Repository;
+using EmpleoDotNet.Repository.Contracts;
 using EmpleoDotNet.Services;
 using EmpleoDotNet.ViewModel;
 
@@ -8,13 +10,20 @@ namespace EmpleoDotNet.Controllers
 {
     public class HomeController : EmpleoDotNetController
     {
-        private readonly JobOpportunityRepository _jobRepository;
-        private readonly LocationService _locationService;
+        private readonly ILocationService _locationService;
+        private readonly IJobOpportunityRepository _jobOpportunityRepository;
 
         public HomeController()
+            : this(new LocationService(), new JobOpportunityRepository(new EmpleadoContext()))
         {
-            _jobRepository = new JobOpportunityRepository(_database);
-            _locationService = new LocationService();
+        }
+
+        public HomeController(
+            ILocationService locationService,
+            IJobOpportunityRepository jobOpportunityRepository)
+        {
+            _locationService = locationService;
+            _jobOpportunityRepository = jobOpportunityRepository;
         }
 
         public ActionResult Index()
@@ -24,7 +33,7 @@ namespace EmpleoDotNet.Controllers
                 Locations = _locationService.GetLocationsWithDefault().ToSelectList(x => x.Id, x => x.Name)
             };
 
-            var model = _jobRepository.GetLatestJobOpportunity(7);
+            var model = _jobOpportunityRepository.GetLatestJobOpportunity(7);
             return View(model);
         }
     }

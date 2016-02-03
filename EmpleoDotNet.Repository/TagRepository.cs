@@ -1,28 +1,20 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using EmpleoDotNet.Core.Domain;
+using EmpleoDotNet.Data;
 using EmpleoDotNet.Repository.Contracts;
 
 namespace EmpleoDotNet.Repository
 {
     public class TagRepository : BaseRepository<Tag>, ITagRepository
-    { 
+    {
         public List<Tag> GetAllTags()
         {
-            var tags = GetAll().ToList();
-            return tags;
-        }
-         
-        public Tag GetTagById(int id)
-        {
-            var tag = GetAll().FirstOrDefault(a => a.Id == id);
-            return tag;
+            return GetAll().ToList();
         }
 
-        public TagRepository(DbContext context):base(context)
+        public TagRepository(EmpleadoContext context) : base(context)
         {
-            
         }
     }
 }

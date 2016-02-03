@@ -226,6 +226,8 @@
     <Compile Include="Helpers\PrettyUrlHelper.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IJobOpportunityService.cs" />
+    <Compile Include="Services\ILocationService.cs" />
     <Compile Include="Services\JobOpportunityService.cs" />
     <Compile Include="Services\LocationService.cs" />
     <Compile Include="Startup.cs" />
