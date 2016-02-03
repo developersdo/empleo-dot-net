@@ -38,8 +38,8 @@
         });
     });
     $(".btn-prev").click(function () {
-        validateScreen(function () {
-            owl.trigger('prev');
-        });
+        owl.trigger('prev');
+/*        validateScreen(function () {
+        });*/
     });
 });
