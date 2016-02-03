@@ -13,7 +13,7 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 function sortByContributions(a, b) {
-                    return ((a.contributions < b.contributions) ? -1 : ((a.contributions > b.contributions) ? 1 : 0));
+                    return ((a.contributions > b.contributions) ? -1 : ((a.contributions < b.contributions) ? 1 : 0));
                 }
 
                 $.getJSON("https://api.github.com/repos/developersdo/empleo-dot-net/contributors", function(data) {
@@ -25,8 +25,8 @@
                         $("#contributorsList").append(contributorDiv);
                     });
                 });
-                });
-            </script>
-        }
+            });
+        </script>
+    }
     </div>
 </section>
