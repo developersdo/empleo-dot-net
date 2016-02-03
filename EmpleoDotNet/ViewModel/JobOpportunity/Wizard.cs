@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using EmpleoDotNet.Models;
+using EmpleoDotNet.Core.Domain;
 
 namespace EmpleoDotNet.ViewModel.JobOpportunity
 {
@@ -45,9 +45,9 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
         public string CompanyLogoUrl { get; set; }
 
         public bool IsRemote { get; set; }
-        public Models.JobOpportunity ToEntity()
+        public Core.Domain.JobOpportunity ToEntity()
         {
-            var entity = new Models.JobOpportunity
+            var entity = new Core.Domain.JobOpportunity
             {
                 Title = Title,
                 LocationId = SelectedLocationId,
