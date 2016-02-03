@@ -90,9 +90,9 @@
     <Compile Include="Migrations\201602020303575_ChangesIdentity2.Designer.cs">
       <DependentUpon>201602020303575_ChangesIdentity2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602031525543_Adding JoelTest entity.cs" />
-    <Compile Include="Migrations\201602031525543_Adding JoelTest entity.Designer.cs">
-      <DependentUpon>201602031525543_Adding JoelTest entity.cs</DependentUpon>
+    <Compile Include="Migrations\201602031613403_Adding JoelTest entity.cs" />
+    <Compile Include="Migrations\201602031613403_Adding JoelTest entity.Designer.cs">
+      <DependentUpon>201602031613403_Adding JoelTest entity.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -122,8 +122,8 @@
     <EmbeddedResource Include="Migrations\201602020303575_ChangesIdentity2.resx">
       <DependentUpon>201602020303575_ChangesIdentity2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602031525543_Adding JoelTest entity.resx">
-      <DependentUpon>201602031525543_Adding JoelTest entity.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602031613403_Adding JoelTest entity.resx">
+      <DependentUpon>201602031613403_Adding JoelTest entity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

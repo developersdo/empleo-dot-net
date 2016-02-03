@@ -28,16 +28,16 @@ namespace EmpleoDotNet.Data.Migrations
                     })
                 .PrimaryKey(t => t.Id);
             
-            AddColumn("dbo.JobOpportunities", "JoelTest_Id", c => c.Int());
-            CreateIndex("dbo.JobOpportunities", "JoelTest_Id");
-            AddForeignKey("dbo.JobOpportunities", "JoelTest_Id", "dbo.JoelTests", "Id");
+            AddColumn("dbo.JobOpportunities", "JoelTestId", c => c.Int());
+            CreateIndex("dbo.JobOpportunities", "JoelTestId");
+            AddForeignKey("dbo.JobOpportunities", "JoelTestId", "dbo.JoelTests", "Id");
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.JobOpportunities", "JoelTest_Id", "dbo.JoelTests");
-            DropIndex("dbo.JobOpportunities", new[] { "JoelTest_Id" });
-            DropColumn("dbo.JobOpportunities", "JoelTest_Id");
+            DropForeignKey("dbo.JobOpportunities", "JoelTestId", "dbo.JoelTests");
+            DropIndex("dbo.JobOpportunities", new[] { "JoelTestId" });
+            DropColumn("dbo.JobOpportunities", "JoelTestId");
             DropTable("dbo.JoelTests");
         }
     }

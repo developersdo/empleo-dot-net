@@ -13,7 +13,7 @@ namespace EmpleoDotNet.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201602031525543_Adding JoelTest entity"; }
+            get { return "201602031613403_Adding JoelTest entity"; }
         }
         
         string IMigrationMetadata.Source
