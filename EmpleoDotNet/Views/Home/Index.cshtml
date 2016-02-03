@@ -29,7 +29,7 @@
                                     <p>
                                         <strong>@jobOpportunity.Location.Name</strong>
                                     </p>
-                                    <p class="hidden-xs">@jobOpportunity.Created.ToShortDateString()</p>
+                                    <p class="hidden-xs">@jobOpportunity.Created.ToDominicanFormat()</p>
                                 </div>
                                 <div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
                                     @if (jobOpportunity.IsRemote)

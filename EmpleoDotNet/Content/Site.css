@@ -1,1 +1,129 @@
-body{padding-top:50px;padding-bottom:20px}input,select{max-width:280px}.body-content{padding-left:15px;padding-right:15px}.img{background-size:contain;background-repeat:no-repeat;background-position:center}.row{margin-bottom:10px}.title{border-bottom:1px solid #e6e6e6;margin-bottom:20px}.title *{display:inline-block}.title>h1{position:relative;top:10px;width:100%;margin:0 0 5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.title>h1 span{color:#818181}.title .right{float:right;position:relative;top:15px;z-index:50}.company{padding:5px;border:1px solid #e6e6e6}.company .img{height:100px}.company>div{padding:20px 0 5px;text-align:center}.company-title{background-color:#eee;border:none}.company-title p{color:#818181}.company-title p:first-child{font-weight:600;font-size:20px;color:#000}.company-information{padding-bottom:5px}.company-information>:not(:last-child){padding-bottom:10px;border-bottom:1px solid #e6e6e6}.information-block{padding:20px 0 5px;text-align:center}.field-validation-error,.validation-summary-errors{color:#b94a48}.field-validation-valid,.validation-summary-valid{display:none}input.input-validation-error{border:1px solid #b94a48}input[type=checkbox].input-validation-error{border:0}.share-buttons{list-style:none;padding:0}.share-buttons li{display:inline}.table tr:first-child{background-color:#eee;border-bottom:2px solid #e6e6e6}
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+.padding-top-80{
+    padding-top:80px;
+}
+
+input, select {
+    max-width: 280px;
+}
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.img {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.row {
+    margin-bottom: 10px;
+}
+
+.title {
+    border-bottom: 1px solid #e6e6e6;
+    margin-bottom: 20px;
+}
+
+    .title * {
+        display: inline-block;
+    }
+
+    .title > h1 {
+        position: relative;
+        top: 10px;
+        width: 100%;
+        margin: 0 0 5px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+        .title > h1 span {
+            color: #818181;
+        }
+
+    .title .right {
+        float: right;
+        position: relative;
+        top: 15px;
+        z-index: 50;
+    }
+
+.company {
+    padding: 5px;
+    border: 1px solid #e6e6e6;
+}
+
+    .company .img {
+        height: 100px;
+    }
+
+    .company > div {
+        padding: 20px 0 5px;
+        text-align: center;
+    }
+
+.company-title {
+    background-color: #eee;
+    border: none;
+}
+
+    .company-title p {
+        color: #818181;
+    }
+
+        .company-title p:first-child {
+            font-weight: 600;
+            font-size: 20px;
+            color: #000;
+        }
+
+.company-information {
+    padding-bottom: 5px;
+}
+
+    .company-information > :not(:last-child) {
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e6e6e6;
+    }
+
+.information-block {
+    padding: 20px 0 5px;
+    text-align: center;
+}
+
+.field-validation-error, .validation-summary-errors {
+    color: #b94a48;
+}
+
+.field-validation-valid, .validation-summary-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type=checkbox].input-validation-error {
+    border: 0;
+}
+
+.share-buttons {
+    list-style: none;
+    padding: 0;
+}
+
+    .share-buttons li {
+        display: inline;
+    }
+
+.table tr:first-child {
+    background-color: #eee;
+    border-bottom: 2px solid #e6e6e6;
+}
