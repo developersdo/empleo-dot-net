@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Models;
 
 namespace EmpleoDotNet.ViewModel

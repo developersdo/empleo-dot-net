@@ -66,6 +66,14 @@
       <HintPath>..\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -162,14 +170,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.AspNet.Identity.Core">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.1.0.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.1.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -220,56 +222,9 @@
     <Compile Include="Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\EnumerableExtensions.cs" />
-    <Compile Include="Helpers\QueryableExtensions.cs" />
     <Compile Include="Helpers\JobOpportunityDescriptionBuilder.cs" />
     <Compile Include="Helpers\PrettyUrlHelper.cs" />
-    <Compile Include="Migrations\201511280400499_initial.cs" />
-    <Compile Include="Migrations\201511280400499_initial.Designer.cs">
-      <DependentUpon>201511280400499_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511291800125_AddApprovedField.cs" />
-    <Compile Include="Migrations\201511291800125_AddApprovedField.Designer.cs">
-      <DependentUpon>201511291800125_AddApprovedField.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511300307344_AddEntityModels.cs" />
-    <Compile Include="Migrations\201511300307344_AddEntityModels.Designer.cs">
-      <DependentUpon>201511300307344_AddEntityModels.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201512170522237_NewJobOpportunityModel.cs" />
-    <Compile Include="Migrations\201512170522237_NewJobOpportunityModel.Designer.cs">
-      <DependentUpon>201512170522237_NewJobOpportunityModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601142153385_JobOpportunityIsRemoteField.cs" />
-    <Compile Include="Migrations\201601142153385_JobOpportunityIsRemoteField.Designer.cs">
-      <DependentUpon>201601142153385_JobOpportunityIsRemoteField.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601221437247_AddViewCountColumn.cs" />
-    <Compile Include="Migrations\201601221437247_AddViewCountColumn.Designer.cs">
-      <DependentUpon>201601221437247_AddViewCountColumn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Dto\PagedResult.cs" />
-    <Compile Include="Models\Dto\JobOpportunityPagingParameter.cs" />
-    <Compile Include="Models\EmpleadoContext.cs" />
-    <Compile Include="Models\EntityFrameworkUnitOfWork.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />
-    <Compile Include="Models\EntityBase.cs" />
-    <Compile Include="Models\ISearchable.cs" />
-    <Compile Include="Models\IUnitOfWork.cs" />
-    <Compile Include="Models\JobCategory.cs" />
-    <Compile Include="Models\JobOpportunity.cs" />
-    <Compile Include="Models\Location.cs" />
-    <Compile Include="Models\Repositories\BaseRepository.cs" />
-    <Compile Include="Models\Repositories\IJobOpportunityRepository.cs" />
-    <Compile Include="Models\Repositories\ILocationRepository.cs" />
-    <Compile Include="Models\Repositories\ITagRepository.cs" />
-    <Compile Include="Models\Repositories\JobOpportunityRepository.cs" />
-    <Compile Include="Models\Repositories\LocationRepository.cs" />
-    <Compile Include="Models\Repositories\TagRepository.cs" />
-    <Compile Include="Models\TableConfigurations\BaseTableConfiguration.cs" />
-    <Compile Include="Models\TableConfigurations\JobOpportunityTableConfiguration.cs" />
-    <Compile Include="Models\TableConfigurations\LocationTableConfiguration.cs" />
-    <Compile Include="Models\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\JobOpportunityService.cs" />
     <Compile Include="Services\LocationService.cs" />
@@ -439,6 +394,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
@@ -462,7 +418,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\UnitOfWork\" />
     <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
@@ -472,24 +427,18 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201511280400499_initial.resx">
-      <DependentUpon>201511280400499_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511291800125_AddApprovedField.resx">
-      <DependentUpon>201511291800125_AddApprovedField.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511300307344_AddEntityModels.resx">
-      <DependentUpon>201511300307344_AddEntityModels.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201512170522237_NewJobOpportunityModel.resx">
-      <DependentUpon>201512170522237_NewJobOpportunityModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601142153385_JobOpportunityIsRemoteField.resx">
-      <DependentUpon>201601142153385_JobOpportunityIsRemoteField.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601221437247_AddViewCountColumn.resx">
-      <DependentUpon>201601221437247_AddViewCountColumn.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\EmpleoDotNet.Core\EmpleoDotNet.Core.csproj">
+      <Project>{8677b534-ed45-4526-9a6a-fc08f35bfe8c}</Project>
+      <Name>EmpleoDotNet.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmpleoDotNet.Data\EmpleoDotNet.Data.csproj">
+      <Project>{32141584-d6c9-44c2-ac12-7f21f6043ee5}</Project>
+      <Name>EmpleoDotNet.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmpleoDotNet.Repository\EmpleoDotNet.Repository.csproj">
+      <Project>{4e677dec-45cf-4e88-9d49-2c0be16fface}</Project>
+      <Name>EmpleoDotNet.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

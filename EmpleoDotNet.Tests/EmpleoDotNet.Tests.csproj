@@ -71,6 +71,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EmpleoDotNet.Core\EmpleoDotNet.Core.csproj">
+      <Project>{8677b534-ed45-4526-9a6a-fc08f35bfe8c}</Project>
+      <Name>EmpleoDotNet.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmpleoDotNet.Data\EmpleoDotNet.Data.csproj">
+      <Project>{32141584-d6c9-44c2-ac12-7f21f6043ee5}</Project>
+      <Name>EmpleoDotNet.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmpleoDotNet.Repository\EmpleoDotNet.Repository.csproj">
+      <Project>{4e677dec-45cf-4e88-9d49-2c0be16fface}</Project>
+      <Name>EmpleoDotNet.Repository</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EmpleoDotNet\EmpleoDotNet.csproj">
       <Project>{afe7fc0b-2d9d-4260-a25f-6b523f9a6a0f}</Project>
       <Name>EmpleoDotNet</Name>

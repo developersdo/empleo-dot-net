@@ -1,8 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using EmpleoDotNet.Core.Dto;
 using EmpleoDotNet.Helpers;
-using EmpleoDotNet.Models.Dto;
-using EmpleoDotNet.Models.Repositories;
 using EmpleoDotNet.Services;
 using EmpleoDotNet.ViewModel;
 
