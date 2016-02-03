@@ -95,14 +95,9 @@ namespace EmpleoDotNet.Repository
         }
 
         public JobOpportunityRepository(
-            EmpleadoContext context) 
-            : this(new LocationRepository(context), context)
-        {
-        }
-        
-        public JobOpportunityRepository(
             ILocationRepository locationRepository,
-            EmpleadoContext context) : base(context)
+            EmpleadoContext context) 
+            : base(context)
         {
             _locationRepository = locationRepository;
         }

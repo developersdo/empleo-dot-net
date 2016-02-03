@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using EmpleoDotNet.Core.Domain;
-using EmpleoDotNet.Data;
-using EmpleoDotNet.Repository;
 using EmpleoDotNet.Repository.Contracts;
 
 namespace EmpleoDotNet.Services
@@ -20,10 +18,6 @@ namespace EmpleoDotNet.Services
         public IEnumerable<Location> GetAllLocations()
         {
             return _locationRepository.GetAllLocations();
-        }
-
-        public LocationService() : this(new LocationRepository(new EmpleadoContext()))
-        {
         }
 
         public LocationService(ILocationRepository locationRepository)

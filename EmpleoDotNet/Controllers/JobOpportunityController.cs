@@ -8,22 +8,6 @@ namespace EmpleoDotNet.Controllers
 {
     public class JobOpportunityController : EmpleoDotNetController
     {
-        private readonly ILocationService _locationService;
-        private readonly IJobOpportunityService _jobOpportunityService;
-
-        public JobOpportunityController()
-            : this(new LocationService(), new JobOpportunityService())
-        {
-        }
-
-        public JobOpportunityController(
-            ILocationService locationService,
-            IJobOpportunityService jobOpportunityService)
-        {
-            _locationService = locationService;
-            _jobOpportunityService = jobOpportunityService;
-        }
-
         // GET: /JobOpportunity/
         public ActionResult Index(JobOpportunityPagingParameter model)
         {
@@ -117,5 +101,16 @@ namespace EmpleoDotNet.Controllers
 
             return viewModel;
         }
+
+        public JobOpportunityController(
+            ILocationService locationService,
+            IJobOpportunityService jobOpportunityService)
+        {
+            _locationService = locationService;
+            _jobOpportunityService = jobOpportunityService;
+        }
+
+        private readonly ILocationService _locationService;
+        private readonly IJobOpportunityService _jobOpportunityService;
     }
 }

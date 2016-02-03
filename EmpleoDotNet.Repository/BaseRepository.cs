@@ -10,10 +10,6 @@ namespace EmpleoDotNet.Repository
         protected EmpleadoContext Context;
         protected DbSet<T> DbSet;
 
-        public BaseRepository() : this(new EmpleadoContext())
-        {
-        }
-
         public BaseRepository(EmpleadoContext context)
         {
             Context = context;
