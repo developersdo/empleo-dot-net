@@ -1,29 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using EmpleoDotNet.Models;
 
-namespace EmpleoDotNet.ViewModel
+namespace EmpleoDotNet.ViewModel.JobOpportunity
 {
-    /// <summary>
-    /// ViewModel para crear una vacante nueva
-    /// </summary>
-    public class NewJobOpportunityViewModel
+    public class Wizard
     {
-        [Required(ErrorMessage = "El campo titulo es requerido."), StringLength(int.MaxValue)]
-        [Display(Name = "Titulo")]
+        [Required(ErrorMessage = "El campo título es requerido."), StringLength(int.MaxValue)]
+        [Display(Name = "Título. ¿Qué estás buscando?")]
         public string Title { get; set; }
 
         [Required(ErrorMessage = "La localidad es requerida")]
+        [Display(Name = "Localidad")]
         public int SelectedLocationId { get; set; }
 
         public SelectList Locations { get; set; }
 
-        [Required(ErrorMessage = "Debe elegir una categoria.")]
-        [Display(Name = "Categoria")]
+        [Required(ErrorMessage = "Debes elegir una categoría.")]
+        [Display(Name = "Categoría")]
         public JobCategory Category { get; set; }
 
-        [Required(ErrorMessage = "Debe especificar al menos un requisito."), StringLength(int.MaxValue)]
+        [Required(ErrorMessage = "Debes especificar al menos un requisito."), StringLength(int.MaxValue)]
         [Display(Name = "Requisitos para aplicar")]
         public string Description { get; set; }
 
@@ -31,16 +32,16 @@ namespace EmpleoDotNet.ViewModel
         [Display(Name = "Nombre")]
         public string CompanyName { get; set; }
 
-        [StringLength(int.MaxValue), Url(ErrorMessage = "La dirección Web de la compañia debe ser un Url valido.")]
-        [Display(Name = "Dirección Web")]
+        [StringLength(int.MaxValue), Url(ErrorMessage = "La dirección Web de la compañia debe ser un Url válido.")]
+        [Display(Name = "Sitio Web (url)")]
         public string CompanyUrl { get; set; }
 
-        [Required(ErrorMessage = "El campo email es requerido"), StringLength(int.MaxValue), EmailAddress(ErrorMessage = "Email invalido.")]
-        [Display(Name = "Email"), ]
+        [Required(ErrorMessage = "El campo correo electrónico es requerido"), StringLength(int.MaxValue), EmailAddress(ErrorMessage = "Correo electrónico inválido.")]
+        [Display(Name = "Correo electrónico"),]
         public string CompanyEmail { get; set; }
 
-        [StringLength(int.MaxValue), Url(ErrorMessage = "El Logo de la compañia debe ser un Url valido.")]
-        [Display(Name = "Logo")]
+        [StringLength(int.MaxValue), Url(ErrorMessage = "El logo de la compañía debe ser un Url válido.")]
+        [Display(Name = "Logo (Opcional)")]
         public string CompanyLogoUrl { get; set; }
 
         public bool IsRemote { get; set; }

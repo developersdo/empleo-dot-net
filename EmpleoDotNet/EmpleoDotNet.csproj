@@ -276,6 +276,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\ErrorViewModel.cs" />
     <Compile Include="ViewModel\JobOpportunitySearchViewModel.cs" />
+    <Compile Include="ViewModel\JobOpportunity\Wizard.cs" />
     <Compile Include="ViewModel\NewJobOpportunityViewModel.cs" />
     <Compile Include="ViewModel\RelatedJobDto.cs" />
   </ItemGroup>
@@ -319,7 +320,7 @@
     <Content Include="Content\css\theme\jquery.nouislider.css" />
     <Content Include="Content\css\theme\owl.carousel.css" />
     <Content Include="Content\css\theme\style.css" />
-    <Content Include="Content\Wizzard.css" />
+    <Content Include="Content\JobOpportunity\Wizard.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -396,6 +397,7 @@
     <Content Include="Scripts\i18n\zh-CN.js" />
     <Content Include="Scripts\i18n\zh-TW.js" />
     <None Include="Scripts\jquery-1.11.2.intellisense.js" />
+    <Content Include="Scripts\JobOpportunity\Wizard.js" />
     <Content Include="Scripts\jquery-1.11.2.js" />
     <Content Include="Scripts\jquery-1.11.2.min.js" />
     <Content Include="Scripts\jquery-1.11.2.min.map" />
@@ -406,6 +408,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\parsley.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -460,7 +463,7 @@
     <Content Include="Views\Shared\_GoogleAnalytics.cshtml" />
     <Content Include="Views\Shared\_FindJobsPartial.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
-    <Content Include="Views\JobOpportunity\Wizzard.cshtml" />
+    <Content Include="Views\JobOpportunity\Wizard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

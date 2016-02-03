@@ -1,5 +1,5 @@
 ﻿@using EmpleoDotNet.Helpers
-@model EmpleoDotNet.ViewModel.NewJobOpportunityViewModel
+@model EmpleoDotNet.ViewModel.JobOpportunity.Wizard
 
 @{
     ViewBag.Title = "Nuevo Empleo";
@@ -13,27 +13,32 @@
         @Html.AntiForgeryToken()
         <div id="wizzard" class="owl-carousel owl-theme">
             <div class="item">
-                <h2>Paso 1 de 2. Detalles de la Empresa</h2>
+                <h2>Paso 1 de 3. Detalles de la Empresa</h2>
                 
                 <div class="form-group" id="company-name-group">
-                    <label for="CompanyName">Nombre de la Empresa</label>
-                    @Html.TextBoxFor(m => m.CompanyName, new {@class = "form-control", placeholder = "CompanyX, SRL."})
+                    @Html.LabelFor(m => m.CompanyName)
+                    @Html.TextBoxFor(m => m.CompanyName, new {@class = "form-control", placeholder = "CompanyX, SRL.", required=""})
                     <span><b>Tip:</b> Los mejores candidatos tienden a hacer caso omiso de propuestas an&oacute;nimas</span>
                     @Html.ValidationMessageFor(m => m.CompanyName)
                 </div>
                 <div class="form-group" id="company-email-group">
-                    <label for="CompanyEmail">Email</label>
-                    @Html.TextBoxFor(m => m.CompanyEmail, new {@class = "form-control", placeholder = "email@companyx.com"})
+                    @Html.LabelFor(m => m.CompanyEmail)
+                    @Html.TextBoxFor(m => m.CompanyEmail, new {@class = "form-control", placeholder = "email@companyx.com", required = "" })
                     @Html.ValidationMessageFor(m => m.CompanyEmail)
                 </div>
                 <div class="form-group" id="company-website-group">
-                    <label for="CompanyUrl">Web Site (Opcional)</label>
+                    @Html.LabelFor(m => m.CompanyUrl)
                     @Html.TextBoxFor(m => m.CompanyUrl, new {@class = "form-control", placeholder = "companyx.com"})
-                    <span><b>Tip:</b> Muchos aplicantes visitar&aacute;n tu sitio web y lo tomar&aacute;n como referencia antes de decidirse por t&iacute;. Si tu empresa no tiene un sitio web o crees que necesita unas mejoras, considera buscar un web developer en <a href="@Url.Action("Index", "Home")">emplea.do</a></span>
+                    <span>
+                        <b>Tip:</b> Muchos aplicantes visitar&aacute;n tu sitio web y lo tomar&aacute;n 
+                        como referencia antes de decidirse por t&iacute;. Si tu empresa no tiene un sitio web 
+                        o crees que necesita unas mejoras, considera buscar un web developer en
+                         <a href="@Url.Action("Index", "Home")">emplea.do</a>
+                    </span>
                     @Html.ValidationMessageFor(m => m.CompanyUrl)
                 </div>
                 <div class="form-group" id="company-logo-group">
-                    <label for="CompanyLogoUrl">Logo (Opcional)</label>
+                    @Html.LabelFor(m => m.CompanyLogoUrl)
                     @Html.TextBoxFor(m => m.CompanyLogoUrl, new {@class = "form-control", placeholder = "http://companyx.com/logo.png"})
                     <span>Asegurate de que el servidor donde est&eacute; alojado el logo acepte hotlinks. Si no sabes que es eso, no te preocupes, sube el logo a <a href="https://imgur.com" target="_blank">imgur</a> y pega la url aqu&iacute;</span>
                     @Html.ValidationMessageFor(m => m.CompanyLogoUrl)
@@ -41,18 +46,18 @@
                 <a class="btn-next btn btn-primary btn-lg">Siguiente</a>
             </div>
             <div class="item">
-                <h2>Paso 2 de 2. Detalles del puesto</h2>
+                <h2>Paso 2 de 3. Detalles del puesto</h2>
                 <div class="form-group" id="job-title-group">
-                    <label for="Title">Título. ¿Qu&eacute; est&aacute;s buscando?</label>
+                    @Html.LabelFor(m => m.Title)
                     @Html.TextBoxFor(m => m.Title, new {@class = "form-control", placeholder = "ejemp. Web Designer"})
                     @Html.ValidationMessageFor(m => m.Title)
                 </div>
                 <div class="form-group" id="job-category-group">
-                    <label for="Category">Categoría</label>
+                    @Html.LabelFor(m => m.Category)
                     @Html.EnumDropListFor(e => e.Category, new { @class = "form-control", id = "category" })
                 </div>
                 <div class="form-group" id="job-location-group">
-                    <label for="Location">Localidad</label>
+                    @Html.LabelFor(m => m.SelectedLocationId)
                     @Html.DropDownListFor(d => d.SelectedLocationId, Model.Locations, new {@class = "form-control", id = "location-id"})
                 </div>
                 <div class="form-group">
@@ -70,8 +75,8 @@
 
                 <button type="submit" class="btn btn-primary btn-lg">Crear Empleo</button>
             </div>
-            @*<div class="item">
-                <h2>La prueba de JOEL</h2>
+            <div class="item">
+                <h2>Paso 3 de 3. La prueba de JOEL</h2>
                 <p>Si no sabes que es puedes <a href="http://www.joelonsoftware.com/articles/fog0000000043.html" target="_blank">leer aqu&iacute;</a>. En resumen, es un cuestionario para medir la calidad del equipo de desarrollo de tu empresa.</p>
 
                 <div class="form-group">
@@ -81,41 +86,15 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg">Crear Empleo</button>
                 </div>
-            </div>*@
+            </div>
         </div>
     }
     </div>
 </section>
 @section styles{
-    <link href="~/Content/Wizzard.css" rel="stylesheet" />
+    <link href="~/Content/JobOpportunity/Wizard.css" rel="stylesheet" />
 }
 @section scripts {
-    <script type="text/javascript">
-        var owl = $("#wizzard").owlCarousel({
-            slideSpeed: 300,
-            paginationSpeed: 400,
-            items: 1,
-            itemsDesktop: false,
-            itemsDesktopSmall: false,
-            itemsTablet: false,
-            itemsMobile: false
-        });
-        $(window).keydown(function(e) {
-            if (e.keyCode === 13) {
-                e.preventDefault();
-            }
-        });
-        $("input").keydown(function(e) {
-            if (e.keyCode === 13) {
-                owl.trigger('next');
-            }
-        });
-        $(".btn-next").click(function() {
-            owl.trigger('next');
-        });
-        $(".btn-prev").click(function () {
-            owl.trigger('prev');
-        });
-
-    </script>
+    <script type="text/javascript" src="~/Scripts/parsley.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/JobOpportunity/Wizard.js"></script>
 }

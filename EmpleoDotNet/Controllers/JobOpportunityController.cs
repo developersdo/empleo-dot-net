@@ -5,6 +5,7 @@ using EmpleoDotNet.Models.Dto;
 using EmpleoDotNet.Models.Repositories;
 using EmpleoDotNet.Services;
 using EmpleoDotNet.ViewModel;
+using EmpleoDotNet.ViewModel.JobOpportunity;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -85,19 +86,21 @@ namespace EmpleoDotNet.Controllers
 
             return RedirectToAction("Index");
         }
-        public ActionResult Wizzard()
+        public ActionResult Wizard()
         {
-            var viewModel = new NewJobOpportunityViewModel();
-            LoadLocations(viewModel);
+            var viewModel = new Wizard
+            {
+                Locations = _locationService.GetAllLocations().ToSelectList(x => x.Id, x => x.Name)
+            };
             return View(viewModel);
         }
         [HttpPost, ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Wizzard(NewJobOpportunityViewModel model)
+        public ActionResult Wizard(Wizard model)
         {
             if (!ModelState.IsValid)
             {
-                LoadLocations(model);
+                model.Locations = _locationService.GetAllLocations().ToSelectList(x => x.Id, x => x.Name);
                 ViewBag.ErrorMessage = "Han ocurrido errores de validación que no permiten continuar el proceso";
                 return View(model);
             }
