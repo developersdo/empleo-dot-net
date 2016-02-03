@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Web.Mvc;
+using EmpleoDotNet.Data;
 using EmpleoDotNet.Models;
 
 namespace EmpleoDotNet.Controllers
