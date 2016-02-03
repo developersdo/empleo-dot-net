@@ -79,6 +79,8 @@ namespace EmpleoDotNet.Core.Domain
 
         public Location Location { get; set; }
 
+        public JoelTest JoelTest { get; set; }
+
         #endregion
     }
 }

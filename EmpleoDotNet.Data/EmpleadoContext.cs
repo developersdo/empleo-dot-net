@@ -21,7 +21,8 @@ namespace EmpleoDotNet.Data
         public DbSet<JobOpportunity> JobOpportunities { get; set; }
         public DbSet<Location> Locations { get; set; } 
         public DbSet<Tag> Tags { get; set; }
-        
+        public DbSet<JoelTest> JoelTest { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.AddFromAssembly(Assembly.GetExecutingAssembly());
