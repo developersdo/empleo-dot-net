@@ -19,7 +19,7 @@ namespace EmpleoDotNet.Data
 
         //Tablas
         public DbSet<JobOpportunity> JobOpportunities { get; set; }
-        public DbSet<Location> Locations { get; set; } 
+        public DbSet<Location> Locations { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<JoelTest> JoelTest { get; set; }
 
