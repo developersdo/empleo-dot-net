@@ -8,32 +8,32 @@
 
 @Html.Partial("_FindJobsPartial", Model)
 
-    <div class="container">
-        <div class="row">
+<div class="container">
+    <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
-                @if (!Model.Result.Any() && (!string.IsNullOrWhiteSpace(Model.Keyword) || Model.SelectedLocation > 0))
-                {
-                    <div>
+            @if (!Model.Result.Any() && (!string.IsNullOrWhiteSpace(Model.Keyword) || Model.SelectedLocation > 0))
+            {
+                <div>
                     <h5>No se encontraron resultados para esta búsqueda.</h5>
-                        <hr />
-                    </div>
-                }
-                else
-                {
-                    @*Pagination*@
+                    <hr />
+                </div>
+            }
+            else
+            {
+                @*Pagination*@
             if (@Model.Result.PageCount > 1)
             {
-                    @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
+                @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
                    {
                        Model.SelectedLocation,
                        page,
                        Model.Result.PageSize
                    }));
             }
-                    <div>
+            <div>
                 <h5>@Model.Result.TotalItemCount Empleos disponibles para esta búsqueda.</h5>
                 <br />
-                    </div>
+            </div>
 
                     <div class="jobs">
                         @foreach (var jobOpportunity in Model.Result)
@@ -51,7 +51,7 @@
                                         <p>
                                             <strong>@jobOpportunity.Location.Name</strong>
                                         </p>
-                                        <p class="hidden-xs">@jobOpportunity.Created.ToString("mmm dd yyyy")</p>
+                                        <p class="hidden-xs">@jobOpportunity.Created.ToDominicanFormat()</p>
                                     </div>
                                     <div class="pull-left col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
                                         @if (jobOpportunity.IsRemote)
@@ -74,17 +74,17 @@
                         <br />
                     </div>
 
-                        @*Pagination*@
+                    @*Pagination*@
             if (@Model.Result.PageCount > 1)
             {
-                        @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
-                       {
+                @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
+                    {
                         Model.SelectedLocation,
-                           page,
-                           Model.Result.PageSize
+                        page,
+                        Model.Result.PageSize
                     }));
                 }
-                    }
-            </div>
+            }
         </div>
     </div>
+</div>

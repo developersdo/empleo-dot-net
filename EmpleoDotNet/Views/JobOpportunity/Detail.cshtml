@@ -1,7 +1,7 @@
 ﻿@using EmpleoDotNet.Helpers
 @using EmpleoDotNet.ViewModel
 @using System.Text.RegularExpressions
-@model EmpleoDotNet.Models.JobOpportunity
+@model EmpleoDotNet.Core.Domain.JobOpportunity
 @{
     ViewBag.Title = Model.Title;
     ViewBag.Description = Regex.Replace(Model.Description, @"<(.|\n)*?>", "");

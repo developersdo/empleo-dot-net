@@ -12,7 +12,7 @@
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/css/theme/font-awesome.min.css" rel="stylesheet" />
     @Styles.Render("~/bundles/theme/css")
-    <link href="http://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:700" rel="stylesheet"/>
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:700" rel="stylesheet" />
     <style>
         #menu-action-icon {
             margin-right: 18px;
@@ -22,7 +22,7 @@
     <script src='https://www.google.com/recaptcha/api.js'></script>
     @RenderSection("styles", required: false)
 
-    @{ 
+    @{
         var ogTitle = String.IsNullOrEmpty(@ViewBag.Title) ? "Emplea.do" : @ViewBag.Title + " - Emplea.do";
         var ogDescription = String.IsNullOrEmpty(ViewBag.Description) ? "La mejor manera de encontrar un empleo como desarrollador de software" : ViewBag.Description;
         var ogImage = String.IsNullOrEmpty(ViewBag.ImageUrl) ? new Uri(Request.Url, Url.Content("~/Content/img/logo-empleado.png")) : ViewBag.ImageUrl;
@@ -71,32 +71,26 @@
         </div>
     </header>
 
-    <div>
-
-        <!-- ============ PAGE LOADER START ============ -->
-        <div id="loader">
-            <i class="fa fa-cog fa-4x fa-spin"></i>
+    <!-- ============ PAGE LOADER START ============ -->
+    <div id="loader">
+        <i class="fa fa-cog fa-4x fa-spin"></i>
     </div>
-        <!-- ============ PAGE LOADER END ============ -->
+    <!-- ============ PAGE LOADER END ============ -->
 
-
-        @if (!String.IsNullOrEmpty(ViewBag.ErrorMessage))
-        {
-            <section id="jobs">
-                <div class="container">
-                    <div class="row">
-            <div class="alert alert-danger">
-                @ViewBag.ErrorMessage
+    @if (!String.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="container padding-top-80">
+            <div class="row">
+                <div class="alert alert-danger">
+                    @ViewBag.ErrorMessage
+                </div>
             </div>
-                    </div>
-                </div>    
-            </section>
-        }
+        </div>
+    }
 
-        @RenderBody()
-    </div>
+    @RenderBody()
 
-        <footer>
+    <footer>
         <div id="prefooter">
             <div class="container">
                 <div class="row">
@@ -113,12 +107,12 @@
                         &copy; @DateTime.Today.Year Emplea.do<br>
                         Made with <i class="fa fa-heart fa-inverse"></i> by
                         <a href="https://github.com/developersdo/empleo-dot-net" target="_blank">Developers.do</a>
-                        <br/><span>ver. @Html.AssemblyVersion()</span>
+                        <br /><span>ver. @Html.AssemblyVersion()</span>
                     </div>
                 </div>
             </div>
         </div>
-        </footer>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

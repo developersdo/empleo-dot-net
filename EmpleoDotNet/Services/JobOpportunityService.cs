@@ -1,23 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using EmpleoDotNet.Models;
-using EmpleoDotNet.Models.Dto;
-using EmpleoDotNet.Models.Repositories;
+using EmpleoDotNet.Core.Domain;
+using EmpleoDotNet.Core.Dto;
+using EmpleoDotNet.Repository.Contracts;
 using EmpleoDotNet.ViewModel;
 using PagedList;
 
 namespace EmpleoDotNet.Services
 {
-    public class JobOpportunityService
+    public class JobOpportunityService : IJobOpportunityService
     {
-        private readonly JobOpportunityRepository _jobOpportunityRepository;
-
-        public JobOpportunityService()
-        {
-            _jobOpportunityRepository = new JobOpportunityRepository(new EmpleadoContext());
-        }
-
         public void CreateNewJobOpportunity(JobOpportunity jobOpportunity)
         {
             _jobOpportunityRepository.Add(jobOpportunity);
@@ -32,8 +24,7 @@ namespace EmpleoDotNet.Services
                         x.Id != id &&
                         (x.CompanyName == name && x.CompanyEmail == email &&
                          x.CompanyUrl == url))
-                .Select(jobOpportunity => new RelatedJobDto
-                {
+                .Select(jobOpportunity => new RelatedJobDto {
                     Title = jobOpportunity.Title,
                     Url = "/JobOpportunity/Detail/" + jobOpportunity.Id
                 }).ToList();
@@ -61,5 +52,14 @@ namespace EmpleoDotNet.Services
             _jobOpportunityRepository.SaveChanges();           
         }
 
+
+        public JobOpportunityService(
+            IJobOpportunityRepository jobOpportunityRepository
+            )
+        {
+            _jobOpportunityRepository = jobOpportunityRepository;
+        }
+
+        private readonly IJobOpportunityRepository _jobOpportunityRepository;
     }
 }

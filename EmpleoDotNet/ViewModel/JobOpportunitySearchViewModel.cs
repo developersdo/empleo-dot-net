@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using EmpleoDotNet.Models;
+using EmpleoDotNet.Core.Domain;
 using PagedList;
 
 namespace EmpleoDotNet.ViewModel

@@ -1,19 +1,11 @@
 ﻿using System.Collections.Generic;
-using EmpleoDotNet.Models;
-using EmpleoDotNet.Models.Repositories;
-using Microsoft.Ajax.Utilities;
+using EmpleoDotNet.Core.Domain;
+using EmpleoDotNet.Repository.Contracts;
 
 namespace EmpleoDotNet.Services
 {
-    public class LocationService
+    public class LocationService : ILocationService
     {
-        private LocationRepository _locationRepository;
-
-        public LocationService()
-        {
-            _locationRepository = new LocationRepository(new EmpleadoContext());
-        }
-
         public IEnumerable<Location> GetLocationsWithDefault()
         {
             var locations = _locationRepository.GetAllLocations();
@@ -26,6 +18,13 @@ namespace EmpleoDotNet.Services
         public IEnumerable<Location> GetAllLocations()
         {
             return _locationRepository.GetAllLocations();
-        } 
+        }
+
+        public LocationService(ILocationRepository locationRepository)
+        {
+            _locationRepository = locationRepository;
+        }
+
+        private readonly ILocationRepository _locationRepository;
     }
 }
