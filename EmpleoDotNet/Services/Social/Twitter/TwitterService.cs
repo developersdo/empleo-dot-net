@@ -1,5 +1,6 @@
 ﻿using System.Configuration;
 using System.Threading.Tasks;
+using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Models;
 using Tweetinvi;
 

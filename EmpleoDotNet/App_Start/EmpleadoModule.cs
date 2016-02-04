@@ -2,6 +2,7 @@
 using EmpleoDotNet.Repository;
 using EmpleoDotNet.Repository.Contracts;
 using EmpleoDotNet.Services;
+using EmpleoDotNet.Services.Social.Twitter;
 using Ninject.Modules;
 using Ninject.Web.Common;
 
@@ -19,6 +20,8 @@ namespace EmpleoDotNet.App_Start
 
             Kernel.Bind<ILocationService>().To<LocationService>();
             Kernel.Bind<IJobOpportunityService>().To<JobOpportunityService>();
+
+            Kernel.Bind<ITwitterService>().To<TwitterService>();
         }
     }
 }
