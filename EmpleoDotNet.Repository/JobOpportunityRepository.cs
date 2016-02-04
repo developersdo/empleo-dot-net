@@ -29,7 +29,7 @@ namespace EmpleoDotNet.Repository
         public JobOpportunity GetJobOpportunityById(int? id)
         {
             if (!id.HasValue) return null;
-            return DbSet.Include(x => x.Location).FirstOrDefault(x => x.Id.Equals(id.Value));
+            return DbSet.Include(x => x.Location).Include(x=>x.JoelTest).FirstOrDefault(x => x.Id.Equals(id.Value));
         }
 
         /// <summary>

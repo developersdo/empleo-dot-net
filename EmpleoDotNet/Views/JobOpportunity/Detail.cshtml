@@ -35,7 +35,18 @@
                         @Html.Raw(Model.Description)
                     </article>
                     <h3>Como aplicar</h3>
-                    <p>Enviar CV <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a> </p>
+                    <p>Enviar CV <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a>
+                    </p>
+                </article>
+                <article>
+                    @if (Model.JoelTest != null)
+                    {
+                        @Model.JoelTest.HasSourceControl
+                    }
+                    else
+                    {
+                        <span>JOEL test no disponible</span>
+                    }
                 </article>
             </div>
             <div class="col-sm-4" id="sidebar">
