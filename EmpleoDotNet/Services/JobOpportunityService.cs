@@ -61,10 +61,10 @@ namespace EmpleoDotNet.Services
             _jobOpportunityRepository.SaveChanges();           
         }
 
-        public IList<JobOpportunity> GetJobOpportunitiesByCategory(JobCategory jobCategory)
+        public IList<JobOpportunity> GetJobOpportunitiesByCategories(IList<JobCategory> jobCategories)
         {
             return _jobOpportunityRepository.GetAllJobOpportunities()
-                .Where(x => x.Category == jobCategory)
+                .Where(x => jobCategories.Contains(x.Category))
                 .ToList();
         }
     }
