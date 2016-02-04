@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
 using EmpleoDotNet.Core.Dto;
 using EmpleoDotNet.Helpers;
@@ -11,15 +10,6 @@ namespace EmpleoDotNet.Controllers
 {
     public class JobOpportunityController : EmpleoDotNetController
     {
-        private readonly LocationService _locationService;
-        private readonly JobOpportunityService _jobOpportunityService;
-
-        public JobOpportunityController()
-        {
-            _locationService = new LocationService();
-            _jobOpportunityService = new JobOpportunityService();
-        }
-        
         // GET: /JobOpportunity/
         public ActionResult Index(JobOpportunityPagingParameter model)
         {
@@ -120,13 +110,16 @@ namespace EmpleoDotNet.Controllers
 
         public JobOpportunityController(
             ILocationService locationService,
-            IJobOpportunityService jobOpportunityService)
+            IJobOpportunityService jobOpportunityService, 
+            ITwitterService twitterService)
         {
             _locationService = locationService;
             _jobOpportunityService = jobOpportunityService;
+            _twitterService = twitterService;
         }
 
         private readonly ILocationService _locationService;
         private readonly IJobOpportunityService _jobOpportunityService;
+        private readonly ITwitterService _twitterService;
     }
 }
