@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Core.Dto;
+using EmpleoDotNet.Data;
 using EmpleoDotNet.Repository.Contracts;
 using EmpleoDotNet.Repository.Helpers;
 using PagedList;
@@ -13,12 +14,10 @@ namespace EmpleoDotNet.Repository
     {
         public List<JobOpportunity> GetAllJobOpportunities()
         {
-            //TODO: Este repositorio no debería instanciar otro
-            var locationRepo = new LocationRepository(Context);
-            var locations = locationRepo.GetAllLocations().ToDictionary(x=> x.Id);
+            var locations = _locationRepository.GetAllLocations().ToDictionary(x => x.Id);
 
             var jobOpportunities = GetAll().OrderByDescending(x => x.PublishedDate);
-            
+
             //Esto es para llenar la propiedad de navegación ya que EF solo llena el LocationId (no se porqué)
             foreach (var item in jobOpportunities)
                 item.Location = locations[item.LocationId];
@@ -47,7 +46,7 @@ namespace EmpleoDotNet.Repository
         /// <returns>Objeto que representa una lista de datos paginados</returns>
         public IPagedList<JobOpportunity> GetAllJobOpportunitiesPagedByFilters(JobOpportunityPagingParameter parameter)
         {
-            IPagedList<JobOpportunity> result = null;
+            IPagedList<JobOpportunity> result;
 
             if (parameter.Page <= 0)
                 parameter.Page = 1;
@@ -95,9 +94,14 @@ namespace EmpleoDotNet.Repository
                 .ToList();
         }
 
-        public JobOpportunityRepository(DbContext context):base(context)
+        public JobOpportunityRepository(
+            ILocationRepository locationRepository,
+            EmpleadoContext context) 
+            : base(context)
         {
-            
+            _locationRepository = locationRepository;
         }
+
+        private readonly ILocationRepository _locationRepository;
     }
 }

@@ -1,29 +1,23 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using EmpleoDotNet.Core.Domain;
+using EmpleoDotNet.Data;
 using EmpleoDotNet.Repository.Contracts;
 
 namespace EmpleoDotNet.Repository
 {
-    public class LocationRepository:BaseRepository<Location>, ILocationRepository
+    public class LocationRepository : BaseRepository<Location>, ILocationRepository
     {
-
         public List<Location> GetAllLocations()
         {
-            return new List<Location>( GetAll().ToList() );
+            return GetAll().ToList();
         }
 
         public List<string> GetAllLocationNames()
         {
-            List<string> locationNamesList = new List<string>();
-
             var locations = GetAllLocations();
 
-            foreach (var location in locations)
-                locationNamesList.Add(location.Name);
-
-            return locationNamesList;
+            return locations.Select(location => location.Name).ToList();
         }
 
         public Location GetLocationById(int id)
@@ -33,14 +27,12 @@ namespace EmpleoDotNet.Repository
 
         public Location GetLocationByName(string name)
         {
-            var location = GetAll().Where(x => x.Name.Equals(name))
-                            .SingleOrDefault();
+            var location = GetAll().SingleOrDefault(x => x.Name.Equals(name));
             return location;
         }
 
-        public LocationRepository(DbContext context):base(context)
+        public LocationRepository(EmpleadoContext context) : base(context)
         {
-            
         }
     }
 }

@@ -13,13 +13,11 @@ namespace EmpleoDotNet.Controllers
     {
         private readonly LocationService _locationService;
         private readonly JobOpportunityService _jobOpportunityService;
-        private readonly ITwitterService _twitterService;
 
         public JobOpportunityController()
         {
             _locationService = new LocationService();
             _jobOpportunityService = new JobOpportunityService();
-            _twitterService = new TwitterService();
         }
         
         // GET: /JobOpportunity/
@@ -109,8 +107,7 @@ namespace EmpleoDotNet.Controllers
         {
             var locations = _locationService.GetLocationsWithDefault();
 
-            var viewModel = new JobOpportunitySearchViewModel
-            {
+            var viewModel = new JobOpportunitySearchViewModel {
                 Locations = locations.ToSelectList(l => l.Id, l => l.Name, model.SelectedLocation),
                 SelectedLocation = model.SelectedLocation,
                 JobCategory = model.JobCategory,
@@ -120,5 +117,16 @@ namespace EmpleoDotNet.Controllers
 
             return viewModel;
         }
+
+        public JobOpportunityController(
+            ILocationService locationService,
+            IJobOpportunityService jobOpportunityService)
+        {
+            _locationService = locationService;
+            _jobOpportunityService = jobOpportunityService;
+        }
+
+        private readonly ILocationService _locationService;
+        private readonly IJobOpportunityService _jobOpportunityService;
     }
 }
