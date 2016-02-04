@@ -111,7 +111,7 @@
                     {
                         <span class="search-job-label-item">
                             <a title="@category.JobQuantity empleos para esta categor&iacute;a" href="@Url.Action("Index", "JobOpportunity", new {category.JobCategory})">
-                                @category.JobCategory.ToEnumDescription() | @category.JobQuantity
+                                @category.JobCategory.ToEnumDescription() (@category.JobQuantity)
                             </a>
                         </span>
                     }
