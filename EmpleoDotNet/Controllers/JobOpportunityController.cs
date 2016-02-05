@@ -63,16 +63,17 @@ namespace EmpleoDotNet.Controllers
         [ValidateInput(false)]
         public ActionResult New(NewJobOpportunityViewModel model)
         {
+            
             if (!ModelState.IsValid)
             {
                 LoadLocations(model);
                 ViewBag.ErrorMessage = "Han ocurrido errores de validación que no permiten continuar el proceso";
                 return View(model);
             }
+            var jobOportunity = model.ToEntity();
+            _jobOpportunityService.CreateNewJobOpportunity(jobOportunity);
 
-            _jobOpportunityService.CreateNewJobOpportunity(model.ToEntity());
-
-            return RedirectToAction("Index");
+            return RedirectToAction("detail", new { id = jobOportunity.Id});
         }
 
         private void LoadLocations(NewJobOpportunityViewModel viewModel)
