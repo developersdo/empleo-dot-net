@@ -69,8 +69,19 @@ namespace EmpleoDotNet.Helpers
         public static IHtmlString FirstTwoLetters(this HtmlHelper helper, string value)
         {
             var splited = value.Split(' ');
-            var lg = splited.Count() > 1 ? $"{splited[0].Substring(0, 1)}{splited[1].Substring(0, 1)}" : splited[0].Substring(0, 1);
-            return MvcHtmlString.Create(lg);
+            var result = string.Empty;
+
+            foreach (var currentValue in splited)
+            {
+                if(string.IsNullOrWhiteSpace(currentValue))continue;
+
+                result += currentValue.Substring(0, 1);
+
+                if(result.Length.Equals(2))
+                    break;
+            }
+
+            return MvcHtmlString.Create(result);
         }
     }
 }
