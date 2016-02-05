@@ -1,0 +1,9 @@
+﻿#wizard input {
+    max-width: 100%;
+}
+#wizard{
+    margin-top: 30px;
+}
+.parsley-errors-list {
+    color: red;
+}

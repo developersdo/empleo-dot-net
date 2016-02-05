@@ -71,6 +71,8 @@ namespace EmpleoDotNet.Core.Domain
         /// </summary>
         public int ViewCount { get; set; }
 
+        public int? JoelTestId { get; set; }
+
         #endregion
 
         #region Navegation Properties
@@ -78,6 +80,8 @@ namespace EmpleoDotNet.Core.Domain
         public List<Tag> Tags { get; set; }
 
         public Location Location { get; set; }
+
+        public JoelTest JoelTest { get; set; }
 
         #endregion
     }

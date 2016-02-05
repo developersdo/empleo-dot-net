@@ -3,28 +3,32 @@
 }
 <section id="contributors">
     <div class="container">
-
         <div class="row text-center" id="contributorsList">
-            <h3>Traído a ustedes gracias a las contribuciones de:</h3>
+            <h3>Traído a ustedes gracias a las contribuciones de personas como tu</h3>
+            <p>Tú también puedes contribuir, toma <a href="https://github.com/developersdo/empleo-dot-net/issues">un issue en github</a> y has un pull request</p>
         </div>
 
-    @section scripts
-    {
-        <script type="text/javascript">
-            $(document).ready(function() {
-                function sortByContributions(a, b) {
-                    return ((a.contributions < b.contributions) ? -1 : ((a.contributions > b.contributions) ? 1 : 0));
-                }
+        @section scripts
+        {
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    function sortByContributions(a, b) {
+                        return ((a.contributions > b.contributions) ? -1 : ((a.contributions < b.contributions) ? 1 : 0));
+                    }
 
-                $.getJSON("https://api.github.com/repos/developersdo/empleo-dot-net/contributors", function(data) {
-                    var arr = data.sort(sortByContributions);
-                    $(arr).each(function(i, e) {
-                        var contributorDiv = "<a href='" + e.html_url + "'>";
-                        contributorDiv += '<img data-toggle="tooltip" data-placement="top" title="' + e.login + '" style="margin:15px" class="img-circle red-tooltip" src="' + e.avatar_url + '" width="150" height="150" />';
-                        contributorDiv += "</a>";
-                        $("#contributorsList").append(contributorDiv);
+                    $.getJSON("https://api.github.com/repos/developersdo/empleo-dot-net/contributors", function(data) {
+                        var arr = data.sort(sortByContributions);
+                        $(arr).each(function(i, e) {
+                            var contributorDiv = "<div class='col-sm-2'>";
+                            contributorDiv += "<a href='" + e.html_url + "'>";
+                            contributorDiv += '<img data-toggle="tooltip" data-placement="top" title="' + e.login + '" style="margin:15px" class="img-circle red-tooltip" src="' + e.avatar_url + '" width="150" height="150" />';
+                            contributorDiv += "</a>";
+                            contributorDiv += "<br/><b>" + e.login + "</b><br/>";
+                            contributorDiv += "Contribuciones: " + e.contributions + "<br/>";
+                            contributorDiv += "</div>";
+                            $("#contributorsList").append(contributorDiv);
+                        });
                     });
-                });
                 });
             </script>
         }

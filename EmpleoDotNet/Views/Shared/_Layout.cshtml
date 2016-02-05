@@ -103,10 +103,12 @@
         <div id="credits">
             <div class="container text-center">
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-3">
+                        <a class="btn btn-default pull-left" href="https://github.com/developersdo/empleo-dot-net" target="_blank"><i class="fa fa-github"></i> Fork us on github</a>
+                    </div>
+                    <div class="col-sm-6">
                         &copy; @DateTime.Today.Year Emplea.do<br>
-                        Made with <i class="fa fa-heart fa-inverse"></i> by
-                        <a href="https://github.com/developersdo/empleo-dot-net" target="_blank">Developers.do</a>
+                        Made with <i class="fa fa-heart fa-inverse"></i> by <a href="@Url.Action("Index", "Credits")">all of us</a>
                         <br /><span>ver. @Html.AssemblyVersion()</span>
                     </div>
                 </div>

@@ -5,12 +5,12 @@ using EmpleoDotNet.Helpers;
 using EmpleoDotNet.Services;
 using EmpleoDotNet.Services.Social.Twitter;
 using EmpleoDotNet.ViewModel;
+using EmpleoDotNet.ViewModel.JobOpportunity;
 
 namespace EmpleoDotNet.Controllers
 {
     public class JobOpportunityController : EmpleoDotNetController
     {
-        // GET: /JobOpportunity/
         public ActionResult Index(JobOpportunityPagingParameter model)
         {
             var viewModel = GetSearchViewModel(model);
@@ -21,8 +21,7 @@ namespace EmpleoDotNet.Controllers
 
             return View(viewModel);
         }
-
-        // GET: /JobOpportunity/Detail/4
+        
         public ActionResult Detail(int? id)
         {
             if (!id.HasValue)
@@ -51,7 +50,6 @@ namespace EmpleoDotNet.Controllers
             return View("Index");
         }
 
-        // GET: /JobOpportunity/New
         public ActionResult New()
         {
             var viewModel = new NewJobOpportunityViewModel();
@@ -81,7 +79,28 @@ namespace EmpleoDotNet.Controllers
 
             return RedirectToAction("detail", new { id = jobOpportunity.Id });
         }
-
+        public ActionResult Wizard()
+        {
+            var viewModel = new Wizard
+            {
+                Locations = _locationService.GetAllLocations().ToSelectList(x => x.Id, x => x.Name)
+            };
+            return View(viewModel);
+        }
+        [HttpPost, ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        public ActionResult Wizard(Wizard model)
+        {
+            if (!ModelState.IsValid)
+            {
+                model.Locations = _locationService.GetAllLocations().ToSelectList(x => x.Id, x => x.Name);
+                ViewBag.ErrorMessage = "Han ocurrido errores de validación que no permiten continuar el proceso";
+                return View(model);
+            }
+            var entity = model.ToEntity();
+            _jobOpportunityService.CreateNewJobOpportunity(entity);
+            return RedirectToAction("Detail", new {id=entity.Id, fromWizard=1});
+        }
         private void LoadLocations(NewJobOpportunityViewModel viewModel)
         {
             var locations = _locationService.GetAllLocations();

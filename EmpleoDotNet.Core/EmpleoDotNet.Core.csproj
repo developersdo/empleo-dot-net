@@ -45,6 +45,7 @@
     <Compile Include="Domain\EntityBase.cs" />
     <Compile Include="Domain\JobCategory.cs" />
     <Compile Include="Domain\JobOpportunity.cs" />
+    <Compile Include="Domain\JoelTest.cs" />
     <Compile Include="Domain\Location.cs" />
     <Compile Include="Dto\JobOpportunityPagingParameter.cs" />
     <Compile Include="Dto\PagedResult.cs" />

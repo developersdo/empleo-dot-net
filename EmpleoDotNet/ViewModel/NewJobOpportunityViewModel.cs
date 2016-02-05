@@ -44,9 +44,9 @@ namespace EmpleoDotNet.ViewModel
         public string CompanyLogoUrl { get; set; }
 
         public bool IsRemote { get; set; }
-        public JobOpportunity ToEntity()
+        public Core.Domain.JobOpportunity ToEntity()
         {
-            var entity = new JobOpportunity
+            var entity = new Core.Domain.JobOpportunity
             {
                 Title = Title,
                 LocationId = SelectedLocationId,

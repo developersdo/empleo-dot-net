@@ -8,7 +8,7 @@ namespace EmpleoDotNet.ViewModel
     {
         public int SelectedLocation { get; set; }
         public SelectList Locations { get; set; }
-        public IPagedList<JobOpportunity> Result { get; set; }
+        public IPagedList<Core.Domain.JobOpportunity> Result { get; set; }
         public string Keyword { get; set; }
         public JobCategory JobCategory { get; set; }
         public bool IsRemote { get; set; }

@@ -1,0 +1,148 @@
+﻿@using EmpleoDotNet.Helpers
+@model EmpleoDotNet.ViewModel.JobOpportunity.Wizard
+
+@{
+    ViewBag.Title = "Nuevo Empleo";
+}
+
+<section>
+    <div class="container">
+
+    @using (Html.BeginForm("Wizard", "JobOpportunity", FormMethod.Post, new {role = "form"}))
+    {
+        @Html.AntiForgeryToken()
+        <div id="wizard" class="owl-carousel owl-theme">
+            <div class="item" data-parsley-group="business-details">
+                <h2>Paso 1 de 3. Detalles de la Empresa</h2>
+                <div class="form-group" id="company-name-group">
+                    @Html.LabelFor(m => m.CompanyName)
+                    @Html.TextBoxFor(m => m.CompanyName, new {@class = "form-control", placeholder = "CompanyX, SRL.", required="", @data_parsley_group= "business-details"})
+                    <span><b>Tip:</b> Los mejores candidatos tienden a hacer caso omiso de propuestas an&oacute;nimas</span>
+                    @Html.ValidationMessageFor(m => m.CompanyName)
+                </div>
+                <div class="form-group" id="company-email-group">
+                    @Html.LabelFor(m => m.CompanyEmail)
+                    @Html.TextBoxFor(m => m.CompanyEmail, new {@class = "form-control", type="email", placeholder = "email@companyx.com", required = "", @data_parsley_group = "business-details" })
+                    @Html.ValidationMessageFor(m => m.CompanyEmail)
+                </div>
+                <div class="form-group" id="company-website-group">
+                    @Html.LabelFor(m => m.CompanyUrl)
+                    @Html.TextBoxFor(m => m.CompanyUrl, new {@class = "form-control", type="url", @data_parsley_type="url", placeholder = "companyx.com", @data_parsley_group = "business-details" })
+                    <span>
+                        <b>Tip:</b> Muchos aplicantes visitar&aacute;n tu sitio web y lo tomar&aacute;n 
+                        como referencia antes de decidirse por t&iacute;. Si tu empresa no tiene un sitio web 
+                        o crees que necesita unas mejoras, considera buscar un web developer en
+                         <a href="@Url.Action("Index", "Home")">emplea.do</a>
+                    </span>
+                    @Html.ValidationMessageFor(m => m.CompanyUrl)
+                </div>
+                <div class="form-group" id="company-logo-group">
+                    @Html.LabelFor(m => m.CompanyLogoUrl)
+                    @Html.TextBoxFor(m => m.CompanyLogoUrl, new {@class = "form-control", type = "url", @data_parsley_type = "url", placeholder = "http://companyx.com/logo.png"})
+                    <span>Asegurate de que el servidor donde est&eacute; alojado el logo acepte hotlinks. 
+                    Si no sabes que es eso, no te preocupes, sube el logo a <a href="https://imgur.com" target="_blank">imgur</a> y pega la url aqu&iacute;</span>
+                    @Html.ValidationMessageFor(m => m.CompanyLogoUrl)
+                </div>
+                <a class="btn-next btn btn-primary btn-lg">Siguiente</a>
+            </div>
+            <div class="item" data-parsley-group="job-details">
+                <h2>Paso 2 de 3. Detalles del puesto</h2>
+                <div class="form-group" id="job-title-group">
+                    @Html.LabelFor(m => m.Title)
+                    @Html.TextBoxFor(m => m.Title, new {@class = "form-control", placeholder = "ejemp. Se busca Web Designer", @data_parsley_group = "job-details", required="" })
+                    @Html.ValidationMessageFor(m => m.Title)
+                </div>
+                <div class="form-group" id="job-category-group">
+                    @Html.LabelFor(m => m.Category)
+                    @Html.EnumDropListFor(e => e.Category, new { @class = "form-control", id = "category", @data_parsley_group = "job-details" })
+                </div>
+                <div class="form-group" id="job-location-group">
+                    @Html.LabelFor(m => m.SelectedLocationId)
+                    @Html.DropDownListFor(d => d.SelectedLocationId, Model.Locations, new {@class = "form-control", id = "location-id", @data_parsley_group = "job-details" })
+                </div>
+                <div class="form-group">
+                    @Html.CheckBoxFor(m => m.IsRemote)
+                    @Html.LabelFor(m => m.IsRemote)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Description)
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control textarea", @data_parsley_group="job-details", @data_parsley_errors_container="#description_errors", required="" })
+                    @Html.ValidationMessageFor(m => m.Description)
+                    <span><b>Tip:</b> Se lo mas explicito posible, si eres de recursos humanos consulta con una persona de 
+                    tecnolog&iacute;a sobre cuales son los requerimientos t&eacute;cnicos.</span>
+                    <span id="description_errors" class="danger"></span>
+                </div>
+                <a class="btn-prev btn btn-warning btn-lg">Anterior</a>
+                <a class="btn-next btn btn-primary btn-lg">Siguiente</a>
+
+            </div>
+            <div class="item">
+                <h2>Paso 3 de 3. La prueba de JOEL</h2>
+                <p>Si no sabes que es puedes 
+                <a href="http://local.joelonsoftware.com/wiki/El_Test_de_Joel:_12_pasos_hacia_un_c%C3%B3digo_mejor" target="_blank">leer aqu&iacute;</a>.
+                    En resumen, es un cuestionario para medir la calidad del equipo de desarrollo de tu empresa. Coteja las opciones que apliquen.
+                    <br/>**Este paso es opcional y solo aplica para posiciones relacionadas al Desarrollo de Software</p>
+                <div class="form-group">
+                    @Html.CheckBoxFor(m => m.HasSourceControl)
+                    @Html.LabelFor(m => m.HasSourceControl)
+                </div>
+                <div class="form-group">
+                    @Html.CheckBoxFor(m => m.HasOneStepBuilds)
+                    @Html.LabelFor(m => m.HasOneStepBuilds)
+                </div>
+                <div class="form-group">
+                    @Html.CheckBoxFor(m => m.HasDailyBuilds)
+                    @Html.LabelFor(m => m.HasDailyBuilds)
+                </div>
+                <div class="form-group">
+                    @Html.CheckBoxFor(m => m.HasBugDatabase)
+                    @Html.LabelFor(m => m.HasBugDatabase)
+                </div>
+                <div class="form-group">
+                    @Html.CheckBoxFor(m => m.HasBusFixedBeforeProceding)
+                    @Html.LabelFor(m => m.HasBusFixedBeforeProceding)
+                </div>
+                <div class="form-group">
+                    @Html.CheckBoxFor(m => m.HasUpToDateSchedule)
+                    @Html.LabelFor(m => m.HasUpToDateSchedule)
+                </div>
+                <div class="form-group">
+                    @Html.CheckBoxFor(m => m.HasSpec)
+                    @Html.LabelFor(m => m.HasSpec)
+                </div>
+                <div class="form-group">
+                    @Html.CheckBoxFor(m => m.HasQuiteEnvironment)
+                    @Html.LabelFor(m => m.HasQuiteEnvironment)
+                </div>
+                <div class="form-group">
+                    @Html.CheckBoxFor(m => m.HasBestTools)
+                    @Html.LabelFor(m => m.HasBestTools)
+                </div>
+                <div class="form-group">
+                    @Html.CheckBoxFor(m => m.HasTesters)
+                    @Html.LabelFor(m => m.HasTesters)
+                </div>
+                <div class="form-group">
+                    @Html.CheckBoxFor(m => m.HasWrittenTest)
+                    @Html.LabelFor(m => m.HasWrittenTest)
+                </div>
+                <div class="form-group">
+                    @Html.CheckBoxFor(m => m.HasHallwayTests)
+                    @Html.LabelFor(m => m.HasHallwayTests)
+                </div>
+                <a class="btn-prev btn btn-warning btn-lg">Anterior</a>
+                <button type="submit" class="btn btn-primary btn-lg">Crear Empleo</button>
+            </div>
+        </div>
+    }
+    </div>
+</section>
+@section styles{
+    <link href="~/Content/JobOpportunity/Wizard.css" rel="stylesheet" />
+}
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/parsley.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/i18n/parsley/es.js"></script>
+    <script type="text/javascript" src="~/Scripts/JobOpportunity/Wizard.js"></script>
+}
