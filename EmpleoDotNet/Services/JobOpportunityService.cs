@@ -49,7 +49,7 @@ namespace EmpleoDotNet.Services
             if (item == null) return;
 
             item.ViewCount++;
-            _jobOpportunityRepository.SaveChanges();
+            _jobOpportunityRepository.SaveChanges();           
         }
 
 

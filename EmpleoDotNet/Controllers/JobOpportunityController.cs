@@ -1,7 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using System.Threading.Tasks;
+using System.Web.Mvc;
 using EmpleoDotNet.Core.Dto;
 using EmpleoDotNet.Helpers;
 using EmpleoDotNet.Services;
+using EmpleoDotNet.Services.Social.Twitter;
 using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.ViewModel.JobOpportunity;
 
@@ -59,18 +61,23 @@ namespace EmpleoDotNet.Controllers
 
         [HttpPost, ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult New(NewJobOpportunityViewModel model)
+        public async Task<ActionResult> New(NewJobOpportunityViewModel model)
         {
+            
             if (!ModelState.IsValid)
             {
                 LoadLocations(model);
                 ViewBag.ErrorMessage = "Han ocurrido errores de validación que no permiten continuar el proceso";
                 return View(model);
             }
+            
+            var jobOpportunity = model.ToEntity();
 
-            _jobOpportunityService.CreateNewJobOpportunity(model.ToEntity());
+            _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity);
 
-            return RedirectToAction("Index");
+            await _twitterService.PostNewJobOpportunity(jobOpportunity);
+
+            return RedirectToAction("detail", new { id = jobOpportunity.Id });
         }
         public ActionResult Wizard()
         {
@@ -123,13 +130,16 @@ namespace EmpleoDotNet.Controllers
 
         public JobOpportunityController(
             ILocationService locationService,
-            IJobOpportunityService jobOpportunityService)
+            IJobOpportunityService jobOpportunityService, 
+            ITwitterService twitterService)
         {
             _locationService = locationService;
             _jobOpportunityService = jobOpportunityService;
+            _twitterService = twitterService;
         }
 
         private readonly ILocationService _locationService;
         private readonly IJobOpportunityService _jobOpportunityService;
+        private readonly ITwitterService _twitterService;
     }
 }
