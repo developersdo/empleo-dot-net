@@ -12,17 +12,17 @@ namespace EmpleoDotNet.Core.Domain
         public string Title { get; set; }
 
         /// <summary>
-        /// Posición geográfica (donde es el trabajo)
+        /// Posición geográfica (donde es el empleo)
         /// </summary>
         public int LocationId { get; set; }
 
         /// <summary>
-        /// Categoria del trabajo
+        /// Categoria del empleo
         /// </summary>
         public JobCategory Category { get; set; }
 
         /// <summary>
-        /// Descripción de los requerimientos necesarios para aplicar al trabajo
+        /// Descripción de los requerimientos necesarios para aplicar al empleo
         /// </summary>
         public string Description { get; set; }
 
@@ -56,12 +56,12 @@ namespace EmpleoDotNet.Core.Domain
         public DateTime? PublishedDate { get; set; }
 
         /// <summary>
-        /// Flag que representa si el trabajo ha sido aprovado o no para mostrarse en la pantalla principal de empleos.
+        /// Flag que representa si el empleo ha sido aprovado o no para mostrarse en la pantalla principal de empleos.
         /// </summary>
         public bool Approved { get; set; }
 
         /// <summary>
-        /// Flag que representa si el trabajo es Remoto o no
+        /// Flag que representa si el empleo es Remoto o no
         /// </summary>
         public bool IsRemote { get; set; }
 

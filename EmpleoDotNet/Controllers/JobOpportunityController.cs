@@ -32,7 +32,7 @@ namespace EmpleoDotNet.Controllers
 
             if (vm != null)
             {
-                ViewBag.RelatedJobs = 
+                ViewBag.RelatedJobs =
                     _jobOpportunityService.GetCompanyRelatedJobs(id.Value, vm.CompanyName, vm.CompanyEmail, vm.CompanyUrl);
 
                 var cookieView = $"JobView{vm.Id}";
@@ -44,10 +44,10 @@ namespace EmpleoDotNet.Controllers
 
                 return View("Detail", vm);
             }
-                
-            ViewBag.ErrorMessage = 
+
+            ViewBag.ErrorMessage =
                 "La vacante solicitada no existe. Por favor escoger una vacante válida del listado";
-            
+
             return View("Index");
         }
 
@@ -65,20 +65,21 @@ namespace EmpleoDotNet.Controllers
         [ValidateInput(false)]
         public async Task<ActionResult> New(NewJobOpportunityViewModel model)
         {
+            
             if (!ModelState.IsValid)
             {
                 LoadLocations(model);
                 ViewBag.ErrorMessage = "Han ocurrido errores de validación que no permiten continuar el proceso";
                 return View(model);
             }
-
+            
             var jobOpportunity = model.ToEntity();
 
             _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity);
 
             await _twitterService.PostNewJobOpportunity(jobOpportunity);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("detail", new { id = jobOportunity.Id });
         }
 
         private void LoadLocations(NewJobOpportunityViewModel viewModel)

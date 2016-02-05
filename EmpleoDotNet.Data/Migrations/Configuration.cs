@@ -270,7 +270,7 @@ namespace EmpleoDotNet.Data.Migrations
                     LocationId = locationsList[0].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
-                    Description = "Conocimeinto en C++, c#, v isual studio. Sera para un trabajo temporal de 3 meses.",
+                    Description = "Conocimeinto en C++, c#, v isual studio. Sera para un empleo temporal de 3 meses.",
                     CompanyName = "Dekolor",
                     Created = DateTime.Now.AddDays(-1),
                     PublishedDate = DateTime.Now

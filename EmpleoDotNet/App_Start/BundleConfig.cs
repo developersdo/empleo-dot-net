@@ -30,7 +30,11 @@ namespace EmpleoDotNet
                       "~/Content/bootstrap.min.css",
                       "~/Content/site.css",
                       "~/Content/responsive.css"));
-            
+
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                        "~/Scripts/app.js"
+                        ));
+
             RegisterTemplate(bundles);
         }
 
