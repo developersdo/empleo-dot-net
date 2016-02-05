@@ -55,10 +55,22 @@ namespace EmpleoDotNet.Helpers
             string[] acceptedActions = actions.Trim().Split(',').Distinct().ToArray();
             string[] acceptedControllers = controllers.Trim().Split(',').Distinct().ToArray();
 
-            if (acceptedActions.Contains(currentAction) && acceptedControllers.Contains(currentController)) {
+            if (acceptedActions.Contains(currentAction) && acceptedControllers.Contains(currentController))
+            {
                 return cssClass;
             }
             return string.Empty;
+        }
+        /// Obtener de las dos primemras palabras su primera letra. Sí el texto solo posee una palabra solo se retorna la primera letra de la misma
+        /// </summary>
+        /// <param name="helper">Variable de extensión</param>
+        /// <param name="value">Valor a procesar</param>
+        /// <returns>HtmlString</returns>
+        public static IHtmlString FirstTwoLetters(this HtmlHelper helper, string value)
+        {
+            var splited = value.Split(' ');
+            var lg = splited.Count() > 1 ? $"{splited[0].Substring(0, 1)}{splited[1].Substring(0, 1)}" : splited[0].Substring(0, 1);
+            return MvcHtmlString.Create(lg);
         }
     }
 }

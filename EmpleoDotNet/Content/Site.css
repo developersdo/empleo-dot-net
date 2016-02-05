@@ -2,6 +2,7 @@ body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
+
 .padding-top-80{
     padding-top:80px;
 }
@@ -96,6 +97,11 @@ input, select {
 .information-block {
     padding: 20px 0 5px;
     text-align: center;
+}
+
+.company-text-logo{
+   color:#14B1BB; 
+   font-size:30px;
 }
 
 .field-validation-error, .validation-summary-errors {

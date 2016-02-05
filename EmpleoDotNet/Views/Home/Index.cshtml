@@ -18,9 +18,23 @@
                     {
                         <a href="@Url.Action("Detail", "JobOpportunity", new {id = jobOpportunity.Id})" class="featured">
                             <div class="row">
-                                <div class="col-md-1 hidden-sm hidden-xs">
-                                    <img src="@jobOpportunity.CompanyLogoUrl" width="60" height="60" alt="" class="img-responsive" onclick="onJobOpportunityDetailClick(this);" data-url="@Url.Action("Detail", "JobOpportunity", new { id = jobOpportunity.Id})" />
+                                <div class="col-md-1 hidden-sm hidden-xs text-center">
+                                    @if (!string.IsNullOrEmpty(jobOpportunity.CompanyLogoUrl))
+                                    {
+                                        <img src="@jobOpportunity.CompanyLogoUrl" 
+                                             width="60" 
+                                             height="60" 
+                                             alt="" 
+                                             class="img-responsive" 
+                                             onclick="onJobOpportunityDetailClick(this);" 
+                                             data-url="@Url.Action("Detail", "JobOpportunity", new { id = jobOpportunity.Id })" />
+                                    }
+                                    else
+                                    {
+                                        <h5 class="company-text-logo !important">@Html.FirstTwoLetters(jobOpportunity.CompanyName)</h5>
+                                    }
                                 </div>
+
                                 <div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
                                     <h5>@jobOpportunity.Title</h5>
                                     <p><strong>@jobOpportunity.CompanyName</strong>  |  @jobOpportunity.CompanyEmail</p>
@@ -52,5 +66,3 @@
         </div>
     </section>
 </div>
-
-

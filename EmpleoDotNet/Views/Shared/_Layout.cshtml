@@ -6,7 +6,11 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>@ViewBag.Title - Emplea.do</title>
+    @{
+        var branch = "Emplea.do";
+        var title = string.IsNullOrEmpty(ViewBag.Title) ? branch : $"{ViewBag.Title}-{branch}";
+    }
+    <title>@title</title>
     @Html.Partial("_GoogleAnalytics")
     @Styles.Render("~/bundles/styles")
     @Scripts.Render("~/bundles/modernizr")
