@@ -236,6 +236,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\BoolExtensions.cs" />
     <Compile Include="Helpers\CookieHelper.cs" />
     <Compile Include="Helpers\DateTimeExtensions.cs" />
     <Compile Include="Helpers\HtmlHelperExtensions.cs" />
@@ -442,7 +443,7 @@
     <Content Include="Views\Shared\_FindJobsPartial.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\JobOpportunity\Wizard.cshtml" />
-    <Content Include="Views\JobOpportunity\_JoelTest.cshtml" />
+    <Content Include="Views\JobOpportunity\_JoelTestResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

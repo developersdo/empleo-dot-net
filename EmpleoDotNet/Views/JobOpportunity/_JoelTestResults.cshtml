@@ -1,0 +1,45 @@
+﻿@using EmpleoDotNet.Helpers
+@model EmpleoDotNet.Core.Domain.JoelTest
+
+<h4>La prueba de JOEL</h4>
+<p>Es un cuestionario para medir la calidad del equipo de desarrollo de tu empresa. Coteja las opciones que apliquen.
+    <br />Esto es opcional y solo aplica para posiciones relacionadas al Desarrollo de Software
+</p>
+<div class="list-group">
+    <div class="list-group-item">
+        <b>¿Usan algún tipo de control de versiones? (Git, Subversion)</b> @Model.HasSourceControl.ToYesNoString()
+    </div>
+    <div class="list-group-item">
+        <b>¿Pueden hacer pases a producción en un solo paso?</b> @Model.HasOneStepBuilds.ToYesNoString()
+    </div>
+    <div class="list-group-item">
+        <b>¿Compilan el producto diariamente?</b> @Model.HasDailyBuilds.ToYesNoString()
+    </div>
+    <div class="list-group-item">
+        <b>¿Tienen una base de datos de bugs?</b> @Model.HasBugDatabase.ToYesNoString()
+    </div>
+    <div class="list-group-item">
+        <b>¿Corrigen los bugs antes de añadir más código?</b> @Model.HasBusFixedBeforeProceding.ToYesNoString()
+    </div>
+    <div class="list-group-item">
+        <b>¿Tienen una planificación actualizada?</b> @Model.HasUpToDateSchedule.ToYesNoString()
+    </div>
+    <div class="list-group-item">
+        <b>¿Tienes un documento de especificaciones?</b> @Model.HasSpec.ToYesNoString()
+    </div>
+    <div class="list-group-item">
+        <b>¿Están los programadores en un lugar tranquilo?</b> @Model.HasQuiteEnvironment.ToYesNoString()
+    </div>
+    <div class="list-group-item">
+        <b>¿Utilizan las mejores herramientas que puedes comprar?</b> @Model.HasBestTools.ToYesNoString()
+    </div>
+    <div class="list-group-item">
+        <b>¿Tienen gente para probar los productos?</b> @Model.HasTesters.ToYesNoString()
+    </div>
+    <div class="list-group-item">
+        <b>¿Hacen escribir código a los nuevos candidatos en las entrevistas?</b> @Model.HasWrittenTest.ToYesNoString()
+    </div>
+    <div class="list-group-item">
+        <b>¿Hacen pruebas de usabilidad 'de vestíbulo'?</b> @Model.HasHallwayTests.ToYesNoString()
+    </div>
+</div>

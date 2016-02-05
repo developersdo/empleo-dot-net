@@ -41,7 +41,7 @@
                 <article>
                     @if (Model.JoelTest != null)
                     {
-                        @Model.JoelTest.HasSourceControl
+                        Html.RenderPartial("_JoelTestResults", Model.JoelTest);
                     }
                     else
                     {
