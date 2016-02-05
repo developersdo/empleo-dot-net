@@ -79,7 +79,7 @@ namespace EmpleoDotNet.Controllers
 
             await _twitterService.PostNewJobOpportunity(jobOpportunity);
 
-            return RedirectToAction("detail", new { id = jobOportunity.Id });
+            return RedirectToAction("detail", new { id = jobOpportunity.Id });
         }
 
         private void LoadLocations(NewJobOpportunityViewModel viewModel)
