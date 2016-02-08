@@ -1,6 +1,8 @@
 ﻿@using EmpleoDotNet.Helpers
-@using EmpleoDotNet.ViewModel
+@using EmpleoDotNet.AppServices.ViewModel
+@using EmpleoDotNet.Core.Domain
 @using System.Text.RegularExpressions
+
 @model EmpleoDotNet.Core.Domain.JobOpportunity
 @{
     ViewBag.Title = Model.Title;
@@ -82,14 +84,14 @@
                     </p>
                 </div>
                 <hr>
-                @if (((List<RelatedJobDto>)ViewBag.RelatedJobs).Any())
+                @if (((List<JobOpportunity>)ViewBag.RelatedJobs).Any())
                 {
                     <div class="sidebar-widget" id="company-jobs">
                         <h2>Mas empleos de esta compañia</h2>
                         <ul>
-                            @foreach (var jobOpportunity in (List<RelatedJobDto>)ViewBag.RelatedJobs)
-                            {
-                                <li><a href="@jobOpportunity.Url">@jobOpportunity.Title</a></li>
+                            @foreach (var jobOpportunity in (List<JobOpportunity>)ViewBag.RelatedJobs)
+                            {                                
+                                <li><a href="@Url.Action("Detail", new { id=jobOpportunity.Id })">@jobOpportunity.Title</a></li>
                             }
                         </ul>
                     </div>

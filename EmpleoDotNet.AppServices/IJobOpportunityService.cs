@@ -1,15 +1,15 @@
 using System.Collections.Generic;
 using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Core.Dto;
-using EmpleoDotNet.ViewModel;
+using EmpleoDotNet.AppServices.ViewModel;
 using PagedList;
 
-namespace EmpleoDotNet.Services
+namespace EmpleoDotNet.AppServices
 {
     public interface IJobOpportunityService
     {
         void CreateNewJobOpportunity(JobOpportunity jobOpportunity);
-        List<RelatedJobDto> GetCompanyRelatedJobs(int id, string name, string email, string url);
+        List<JobOpportunity> GetCompanyRelatedJobs(int id, string name);
         IPagedList<JobOpportunity> GetAllJobOpportunitiesPagedByFilters(JobOpportunityPagingParameter parameter);
         JobOpportunity GetJobOpportunityById(int? id);
         void UpdateViewCount(int id);

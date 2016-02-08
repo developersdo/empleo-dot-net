@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using EmpleoDotNet.Core.Domain;
 
-namespace EmpleoDotNet.Services
+namespace EmpleoDotNet.AppServices
 {
     public interface ILocationService
     {

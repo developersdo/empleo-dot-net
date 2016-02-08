@@ -26,6 +26,20 @@ namespace EmpleoDotNet.Repository
             return jobOpportunities;
         }
 
+        public List<JobOpportunity> GetRelatedJobs(int id, string name)
+        {
+            var RelatedJobs = DbSet
+                .Where(
+                    x =>
+                        x.Id != id &&
+                        (x.CompanyName.Equals(name,System.StringComparison.InvariantCultureIgnoreCase) 
+                        )).OrderByDescending(x =>x.ViewCount)
+                        .Take(5)
+                        .ToList();
+
+            return RelatedJobs;
+        }
+
         public JobOpportunity GetJobOpportunityById(int? id)
         {
             if (!id.HasValue) return null;

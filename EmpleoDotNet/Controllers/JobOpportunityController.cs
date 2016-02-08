@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using EmpleoDotNet.Core.Dto;
 using EmpleoDotNet.Helpers;
-using EmpleoDotNet.Services;
+using EmpleoDotNet.AppServices;
 using EmpleoDotNet.Services.Social.Twitter;
 using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.ViewModel.JobOpportunity;
@@ -32,7 +32,7 @@ namespace EmpleoDotNet.Controllers
             if (vm != null)
             {
                 ViewBag.RelatedJobs =
-                    _jobOpportunityService.GetCompanyRelatedJobs(id.Value, vm.CompanyName, vm.CompanyEmail, vm.CompanyUrl);
+                    _jobOpportunityService.GetCompanyRelatedJobs(id.Value, vm.CompanyName);
 
                 var cookieView = $"JobView{vm.Id}";
                 if (!CookieHelper.Exists(cookieView))
