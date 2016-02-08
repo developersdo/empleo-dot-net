@@ -5,33 +5,33 @@
     ViewBag.Title = "";
     }
 
-@Html.Partial("_FindJobsPartial", (JobOpportunitySearchViewModel)ViewBag.SearchViewModel)
-<div class="container" style="margin-top: -50px;">
-    <section id="jobs">
-        <div class="container">
-            <div class="row">
-                <div>
-                <h2>Empleos Recientes</h2>
-                </div>
-                <div class="jobs">
-                    @foreach (var jobOpportunity in Model)
-                    {
-                        <a href="@Url.Action("Detail", "JobOpportunity", new {id = jobOpportunity.Id})" class="featured">
+    @Html.Partial("_FindJobsPartial", (JobOpportunitySearchViewModel)ViewBag.SearchViewModel)
+    <div class="container" style="margin-top: -50px;">
+        <section id="jobs">
+            <div class="container">
+                <div class="row">
+                    <div>
+                        <h2>Empleos Recientes</h2>
+                    </div>
+                    <div class="jobs">
+                        @foreach (var jobOpportunity in Model)
+                        {
+                        <a href="@Url.Action("Detail", "JobOpportunity" , new { id=UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)})" class="featured">
                             <div class="row">
                                 <div class="col-md-1 hidden-sm hidden-xs text-center">
                                     @if (!string.IsNullOrEmpty(jobOpportunity.CompanyLogoUrl))
                                     {
-                                        <img src="@jobOpportunity.CompanyLogoUrl" 
-                                             width="60" 
-                                             height="60" 
-                                             alt="" 
-                                             class="img-responsive" 
-                                             onclick="onJobOpportunityDetailClick(this);" 
-                                             data-url="@Url.Action("Detail", "JobOpportunity", new { id = jobOpportunity.Id })" />
+                                    <img src="@jobOpportunity.CompanyLogoUrl"
+                                         width="60"
+                                         height="60"
+                                         alt=""
+                                         class="img-responsive"
+                                         onclick="onJobOpportunityDetailClick(this);"
+                                         data-url="@Url.Action("Detail", "JobOpportunity" , new { id=UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)})" />
                                     }
                                     else
                                     {
-                                        <h5 class="company-text-logo !important">@Html.FirstTwoLetters(jobOpportunity.CompanyName)</h5>
+                                    <h5 class="company-text-logo !important">@Html.FirstTwoLetters(jobOpportunity.CompanyName)</h5>
                                     }
                                 </div>
 
@@ -64,6 +64,6 @@
                     <a class="btn btn-primary" href="@Url.Action(" Index", "JobOpportunity" )">Mostrar mas empleos</a>
                 </div>
             </div>
-        </div>
+    </div>
     </section>
-</div>
+    </div>

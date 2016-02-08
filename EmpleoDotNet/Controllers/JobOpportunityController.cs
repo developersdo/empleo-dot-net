@@ -22,18 +22,28 @@ namespace EmpleoDotNet.Controllers
             return View(viewModel);
         }
 
-               // GET: /JobOpportunity/Detail/4         
-        public ActionResult Detail(int? id)
+        // GET: /JobOpportunity/Detail/4-jobtitle         
+        public ActionResult Detail(string id)
         {
-            if (!id.HasValue)
+            if (string.IsNullOrEmpty(id))
                 return RedirectToAction("Index");
 
-            var vm = _jobOpportunityService.GetJobOpportunityById(id);
+            var url = id.Split('-');
+
+            if (url.Length == 0)
+                return RedirectToAction("Index");
+
+            var value = 0;
+
+            if (!int.TryParse(url[0], out value))
+                return RedirectToAction("Index");
+
+            var vm = _jobOpportunityService.GetJobOpportunityById(value);
 
             if (vm != null)
             {
                 ViewBag.RelatedJobs =
-                    _jobOpportunityService.GetCompanyRelatedJobs(id.Value, vm.CompanyName);
+                    _jobOpportunityService.GetCompanyRelatedJobs(value, vm.CompanyName);
 
                 var cookieView = $"JobView{vm.Id}";
                 if (!CookieHelper.Exists(cookieView))
@@ -78,8 +88,9 @@ namespace EmpleoDotNet.Controllers
 
             await _twitterService.PostNewJobOpportunity(jobOpportunity);
 
-            return RedirectToAction("detail", new { id = jobOpportunity.Id });
+            return RedirectToAction("detail", new { id = UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title) });
         }
+
         public ActionResult Wizard()
         {
             var viewModel = new Wizard
@@ -88,6 +99,7 @@ namespace EmpleoDotNet.Controllers
             };
             return View(viewModel);
         }
+
         [HttpPost, ValidateAntiForgeryToken]
         [ValidateInput(false)]
         public ActionResult Wizard(Wizard model)
@@ -100,8 +112,9 @@ namespace EmpleoDotNet.Controllers
             }
             var entity = model.ToEntity();
             _jobOpportunityService.CreateNewJobOpportunity(entity);
-            return RedirectToAction("Detail", new {id=entity.Id, fromWizard=1});
+            return RedirectToAction("Detail", new { id = entity.Id, fromWizard = 1 });
         }
+
         private void LoadLocations(NewJobOpportunityViewModel viewModel)
         {
             var locations = _locationService.GetAllLocations();

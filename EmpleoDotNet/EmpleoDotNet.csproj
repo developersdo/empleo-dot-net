@@ -259,7 +259,7 @@
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\EnumerableExtensions.cs" />
     <Compile Include="Helpers\JobOpportunityDescriptionBuilder.cs" />
-    <Compile Include="Helpers\PrettyUrlHelper.cs" />
+    <Compile Include="Helpers\UrlHelperExtensions.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Social\Twitter\ITwitterService.cs" />
