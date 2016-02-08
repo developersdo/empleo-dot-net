@@ -32,7 +32,7 @@ namespace EmpleoDotNet.Controllers
             if (vm != null)
             {
                 ViewBag.RelatedJobs =
-                    _jobOpportunityService.GetCompanyRelatedJobs(id.Value, vm.CompanyName, vm.CompanyEmail, vm.CompanyUrl);
+                    _jobOpportunityService.GetCompanyRelatedJobs(id.Value, vm.CompanyName);
 
                 var cookieView = $"JobView{vm.Id}";
                 if (!CookieHelper.Exists(cookieView))

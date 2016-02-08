@@ -14,7 +14,10 @@ namespace EmpleoDotNet.Data
         public EmpleadoContext()
             : base("EmpleoDotNetConn")
         {
-            this.Configuration.LazyLoadingEnabled = true;
+            Configuration.LazyLoadingEnabled = true;
+#if DEBUG
+            Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
+#endif
         }
 
         //Tablas

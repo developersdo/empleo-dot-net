@@ -16,9 +16,9 @@ namespace EmpleoDotNet.AppServices
             _jobOpportunityRepository.SaveChanges();
         }
 
-        public List<JobOpportunity> GetCompanyRelatedJobs(int id, string name, string email, string url)
+        public List<JobOpportunity> GetCompanyRelatedJobs(int id, string name)
         {
-            var result = _jobOpportunityRepository.GetRelatedJobs(id,name, email, url);
+            var result = _jobOpportunityRepository.GetRelatedJobs(id,name);
 
             return result;
         }
