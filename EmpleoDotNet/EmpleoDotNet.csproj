@@ -262,10 +262,6 @@
     <Compile Include="Helpers\PrettyUrlHelper.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IJobOpportunityService.cs" />
-    <Compile Include="Services\ILocationService.cs" />
-    <Compile Include="Services\JobOpportunityService.cs" />
-    <Compile Include="Services\LocationService.cs" />
     <Compile Include="Services\Social\Twitter\ITwitterService.cs" />
     <Compile Include="Services\Social\Twitter\TwitterService.cs" />
     <Compile Include="Startup.cs" />
@@ -473,6 +469,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EmpleoDotNet.AppServices\EmpleoDotNet.AppServices.csproj">
+      <Project>{57c28455-1b52-46a1-b504-4ee0312b0c53}</Project>
+      <Name>EmpleoDotNet.AppServices</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EmpleoDotNet.Core\EmpleoDotNet.Core.csproj">
       <Project>{8677b534-ed45-4526-9a6a-fc08f35bfe8c}</Project>
       <Name>EmpleoDotNet.Core</Name>

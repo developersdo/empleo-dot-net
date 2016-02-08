@@ -3,10 +3,10 @@ using System.Linq;
 using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Core.Dto;
 using EmpleoDotNet.Repository.Contracts;
-using EmpleoDotNet.ViewModel;
+using EmpleoDotNet.AppServices.ViewModel;
 using PagedList;
 
-namespace EmpleoDotNet.Services
+namespace EmpleoDotNet.AppServices
 {
     public class JobOpportunityService : IJobOpportunityService
     {
@@ -16,18 +16,9 @@ namespace EmpleoDotNet.Services
             _jobOpportunityRepository.SaveChanges();
         }
 
-        public List<RelatedJobDto> GetCompanyRelatedJobs(int id, string name, string email, string url)
+        public List<JobOpportunity> GetCompanyRelatedJobs(int id, string name, string email, string url)
         {
-            var result = _jobOpportunityRepository.GetAllJobOpportunities()
-                .Where(
-                    x =>
-                        x.Id != id &&
-                        (x.CompanyName == name && x.CompanyEmail == email &&
-                         x.CompanyUrl == url))
-                .Select(jobOpportunity => new RelatedJobDto {
-                    Title = jobOpportunity.Title,
-                    Url = "/JobOpportunity/Detail/" + jobOpportunity.Id
-                }).ToList();
+            var result = _jobOpportunityRepository.GetRelatedJobs(id,name, email, url);
 
             return result;
         }

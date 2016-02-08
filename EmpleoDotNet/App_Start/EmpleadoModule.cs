@@ -1,7 +1,7 @@
 ﻿using EmpleoDotNet.Data;
 using EmpleoDotNet.Repository;
 using EmpleoDotNet.Repository.Contracts;
-using EmpleoDotNet.Services;
+using EmpleoDotNet.AppServices;
 using EmpleoDotNet.Services.Social.Twitter;
 using Ninject.Modules;
 using Ninject.Web.Common;

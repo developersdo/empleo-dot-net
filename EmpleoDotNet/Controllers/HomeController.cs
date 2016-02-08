@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using EmpleoDotNet.Helpers;
 using EmpleoDotNet.Repository.Contracts;
-using EmpleoDotNet.Services;
+using EmpleoDotNet.AppServices;
 using EmpleoDotNet.ViewModel;
 
 namespace EmpleoDotNet.Controllers

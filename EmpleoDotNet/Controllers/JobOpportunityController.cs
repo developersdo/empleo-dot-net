@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using EmpleoDotNet.Core.Dto;
 using EmpleoDotNet.Helpers;
-using EmpleoDotNet.Services;
+using EmpleoDotNet.AppServices;
 using EmpleoDotNet.Services.Social.Twitter;
 using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.ViewModel.JobOpportunity;

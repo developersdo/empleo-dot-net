@@ -2,7 +2,7 @@
 using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Repository.Contracts;
 
-namespace EmpleoDotNet.Services
+namespace EmpleoDotNet.AppServices
 {
     public class LocationService : ILocationService
     {

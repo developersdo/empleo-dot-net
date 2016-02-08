@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpleoDotNet", "EmpleoDotNet\EmpleoDotNet.csproj", "{AFE7FC0B-2D9D-4260-A25F-6B523F9A6A0F}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpleoDotNet.Data", "EmpleoDotNet.Data\EmpleoDotNet.Data.csproj", "{32141584-D6C9-44C2-AC12-7F21F6043EE5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpleoDotNet.Repository", "EmpleoDotNet.Repository\EmpleoDotNet.Repository.csproj", "{4E677DEC-45CF-4E88-9D49-2C0BE16FFACE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpleoDotNet.AppServices", "EmpleoDotNet.AppServices\EmpleoDotNet.AppServices.csproj", "{57C28455-1B52-46A1-B504-4EE0312B0C53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{4E677DEC-45CF-4E88-9D49-2C0BE16FFACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E677DEC-45CF-4E88-9D49-2C0BE16FFACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E677DEC-45CF-4E88-9D49-2C0BE16FFACE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57C28455-1B52-46A1-B504-4EE0312B0C53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57C28455-1B52-46A1-B504-4EE0312B0C53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57C28455-1B52-46A1-B504-4EE0312B0C53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57C28455-1B52-46A1-B504-4EE0312B0C53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
