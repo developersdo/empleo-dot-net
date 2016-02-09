@@ -79,6 +79,7 @@ namespace EmpleoDotNet.Controllers
 
             return RedirectToAction("detail", new { id = jobOpportunity.Id });
         }
+
         public ActionResult Wizard()
         {
             var viewModel = new Wizard
@@ -87,6 +88,7 @@ namespace EmpleoDotNet.Controllers
             };
             return View(viewModel);
         }
+
         [HttpPost, ValidateAntiForgeryToken]
         [ValidateInput(false)]
         public ActionResult Wizard(Wizard model)

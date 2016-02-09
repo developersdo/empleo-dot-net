@@ -1,8 +1,6 @@
-﻿@using EmpleoDotNet.Helpers
-@using EmpleoDotNet.AppServices.ViewModel
+﻿@using System.Text.RegularExpressions
 @using EmpleoDotNet.Core.Domain
-@using System.Text.RegularExpressions
-
+@using EmpleoDotNet.Helpers
 @model EmpleoDotNet.Core.Domain.JobOpportunity
 @{
     ViewBag.Title = Model.Title;
@@ -36,23 +34,19 @@
                 <article>
                     <h2>Detalles del Puesto</h2>
                     <article>
-                        @*@Html.Raw(HttpUtility.HtmlDecode(@Html.TextBoxFor(m => m.Description, new { @class = "form-control textarea" }).ToHtmlString()));*@
                         @Html.Raw(Model.Description)
+                    </article>
+                    <article>
+                        @if (Model.JoelTest != null)
+                        {
+                            Html.RenderPartial("_JoelTestResults", Model.JoelTest);
+                        }
                     </article>
                     <h3>Como aplicar</h3>
                     <p>Enviar CV <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a>
                     </p>
                 </article>
-                <article>
-                    @if (Model.JoelTest != null)
-                    {
-                        Html.RenderPartial("_JoelTestResults", Model.JoelTest);
-                    }
-                    else
-                    {
-                        <span>JOEL test no disponible</span>
-                    }
-                </article>
+                
             </div>
             <div class="col-sm-4" id="sidebar">
                 <div class="sidebar-widget" id="share">
