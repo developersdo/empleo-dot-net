@@ -38,7 +38,8 @@
             <div class="jobs">
                 @foreach (var jobOpportunity in Model.Result)
                 {
-                <a href="@Url.Action("Detail", "JobOpportunity" , new {id=jobOpportunity.Id})" class="featured" target="_blank">
+
+                <a href="@Url.Action("Detail", new {id=UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)})" class="featured">
                     <div class="row">
                         <div class="col-md-1 hidden-sm hidden-xs text-center">
                             @if (!string.IsNullOrEmpty(jobOpportunity.CompanyLogoUrl))
@@ -49,12 +50,13 @@
                                  alt=""
                                  class="img-responsive"
                                  onclick="onJobOpportunityDetailClick(this);"
-                                 data-url="@Url.Action(" Detail", "JobOpportunity" , new { id=jobOpportunity.Id })" />
+                                 data-url="@Url.Action("Detail", new { id=UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title) })" />
                             }
                             else
                             {
                             <h5 class="company-text-logo !important">@Html.FirstTwoLetters(jobOpportunity.CompanyName)</h5>
                             }
+
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
                             <h5>@jobOpportunity.Title</h5>
