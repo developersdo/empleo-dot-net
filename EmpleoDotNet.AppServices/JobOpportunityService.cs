@@ -43,6 +43,11 @@ namespace EmpleoDotNet.AppServices
             _jobOpportunityRepository.SaveChanges();           
         }
 
+        public List<JobCategoryCountDto> GetMainJobCategoriesCount()
+        {
+            return _jobOpportunityRepository.GetMainJobCategoriesCount();
+        }
+
 
         public JobOpportunityService(
             IJobOpportunityRepository jobOpportunityRepository

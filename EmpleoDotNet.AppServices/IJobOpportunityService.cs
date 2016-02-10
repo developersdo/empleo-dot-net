@@ -13,5 +13,6 @@ namespace EmpleoDotNet.AppServices
         IPagedList<JobOpportunity> GetAllJobOpportunitiesPagedByFilters(JobOpportunityPagingParameter parameter);
         JobOpportunity GetJobOpportunityById(int? id);
         void UpdateViewCount(int id);
+        List<JobCategoryCountDto> GetMainJobCategoriesCount();
     }
 }
