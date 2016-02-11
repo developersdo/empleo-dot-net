@@ -42,6 +42,11 @@ namespace EmpleoDotNet.Controllers
 
             if (vm != null)
             {
+                var exceptedUrl = UrlHelperExtensions.SeoUrl(value, vm.Title.SanitizeUrl());
+
+                if (!exceptedUrl.Equals(id))
+                    return RedirectToActionPermanent("Detail", new { id = exceptedUrl });
+
                 ViewBag.RelatedJobs =
                     _jobOpportunityService.GetCompanyRelatedJobs(value, vm.CompanyName);
 
