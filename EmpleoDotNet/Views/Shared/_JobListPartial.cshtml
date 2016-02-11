@@ -4,7 +4,7 @@
 <div class="jobs">
     @foreach (var jobOpportunity in Model)
     {
-        <a href="@Url.Action("Detail", "JobOpportunity" , new {id=jobOpportunity.Id})" class="featured" target="_blank">
+        <a href="@Url.Action("Detail", "JobOpportunity" , new { id=UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)})" class="featured" target="_blank">
             <div class="row">
                 <div class="col-md-1 hidden-sm hidden-xs text-center">
                     @if (!string.IsNullOrEmpty(jobOpportunity.CompanyLogoUrl))
@@ -15,7 +15,7 @@
                              alt=""
                              class="img-responsive"
                              onclick="onJobOpportunityDetailClick(this);"
-                             data-url="@Url.Action("Detail", "JobOpportunity" , new { id=jobOpportunity.Id })" />
+                             data-url="@Url.Action("Detail", "JobOpportunity" , new { id=UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)})" />
                     }
                     else
                     {

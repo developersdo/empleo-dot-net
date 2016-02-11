@@ -95,6 +95,7 @@
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
       <Private>True</Private>
     </Reference>
+
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
@@ -107,8 +108,13 @@
       <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="reCAPTCHA.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\reCAPTCH.MVC.1.0.1\lib\net45\reCAPTCHA.MVC.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RouteDebugger">
@@ -180,7 +186,7 @@
       <HintPath>..\packages\TweetinviAPI.0.9.10.2\lib\net45\Tweetinvi.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+   <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
       <Private>True</Private>
     </Reference>
@@ -259,7 +265,7 @@
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\EnumerableExtensions.cs" />
     <Compile Include="Helpers\JobOpportunityDescriptionBuilder.cs" />
-    <Compile Include="Helpers\PrettyUrlHelper.cs" />
+    <Compile Include="Helpers\UrlHelperExtensions.cs" />
     <Compile Include="Models\Identity\AccountViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Social\Twitter\ITwitterService.cs" />

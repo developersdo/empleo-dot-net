@@ -1,20 +1,20 @@
 ﻿@using EmpleoDotNet.ViewModel
 @model List<EmpleoDotNet.Core.Domain.JobOpportunity>
-@{
+    @{
     ViewBag.Title = "";
-}
+    }
 
-@Html.Partial("_FindJobsPartial", (JobOpportunitySearchViewModel)ViewBag.SearchViewModel)
+    @Html.Partial("_FindJobsPartial", (JobOpportunitySearchViewModel)ViewBag.SearchViewModel)
 <div class="container" style="margin-top: -50px;">
     <section id="jobs">
         <div class="container">
             <div class="row">
                 <div>
-                <h2>Empleos Recientes</h2>
+                    <h2>Empleos Recientes</h2>
                 </div>
                 @Html.Partial("_JobListPartial", Model)
                 <br />
-            <a class="btn btn-primary" href="@Url.Action("Index", "JobOpportunity")">Mostrar mas empleos</a>
+                <a class="btn btn-primary" href="@Url.Action("Index", "JobOpportunity")">Mostrar mas empleos</a>
             </div>
         </div>
     </section>

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Models;
 using Tweetinvi;
+using EmpleoDotNet.Helpers;
 
 namespace EmpleoDotNet.Services.Social.Twitter
 {
@@ -38,7 +39,7 @@ namespace EmpleoDotNet.Services.Social.Twitter
                 ? jobOpportunity.Title.Substring(0, 80) 
                 : jobOpportunity.Title;
 
-            var message = $"Se busca: {title} http://emplea.do/JobOpportunity/Detail/{jobOpportunity.Id}";
+            var message = $"Se busca: {title} http://emplea.do/JobOpportunity/Detail/{UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)}";
 
             await PostTweet(message);
         }

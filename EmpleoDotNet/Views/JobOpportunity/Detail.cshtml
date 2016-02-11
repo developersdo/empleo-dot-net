@@ -1,12 +1,14 @@
-﻿@using System.Text.RegularExpressions
+@using System.Text.RegularExpressions
 @using EmpleoDotNet.Core.Domain
 @using EmpleoDotNet.Helpers
-@model EmpleoDotNet.Core.Domain.JobOpportunity
+
+@model JobOpportunity
 @{
     ViewBag.Title = Model.Title;
     ViewBag.Description = Regex.Replace(Model.Description, @"<(.|\n)*?>", "");
     ViewBag.ImageUrl = Model.CompanyLogoUrl;
 }
+
 <section id="title">
     <div class="container">
         <div class="row">
@@ -19,7 +21,6 @@
                     {
                         <span><i class="fa fa-globe"></i>Remoto</span>
                     }
-                    
                 </h4>
                 <h5 class="text-center"><i class="fa fa-calendar"></i> @Model.Created.ToString("dd MMMM yyyy")</h5>
             </div>
@@ -36,17 +37,21 @@
                     <article>
                         @Html.Raw(Model.Description)
                     </article>
-                    <article>
-                        @if (Model.JoelTest != null)
-                        {
-                            Html.RenderPartial("_JoelTestResults", Model.JoelTest);
-                        }
-                    </article>
                     <h3>Como aplicar</h3>
-                    <p>Enviar CV <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a>
+                    <p>
+                        Enviar CV <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a>
                     </p>
                 </article>
-                
+                <article>
+                    @if (Model.JoelTest != null)
+                    {
+                        Html.RenderPartial("_JoelTestResults", Model.JoelTest);
+                    }
+                    else
+                    {
+                        <span>JOEL test no disponible</span>
+                    }
+                </article>
             </div>
             <div class="col-sm-4" id="sidebar">
                 <div class="sidebar-widget" id="share">
@@ -58,6 +63,7 @@
                         <li><a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=@Request.Url&amp;summary=&amp;source="><i class="fa fa-linkedin"></i></a></li>
                     </ul>
                 </div>
+
                 <hr>
 
                 <div class="sidebar-widget" id="company">
@@ -77,21 +83,23 @@
                         <a href="@Model.CompanyUrl" class="btn btn-primary">Más sobre esta compañía</a>
                     </p>
                 </div>
+
                 <hr>
+
                 @if (((List<JobOpportunity>)ViewBag.RelatedJobs).Any())
                 {
                     <div class="sidebar-widget" id="company-jobs">
                         <h2>Mas empleos de esta compañia</h2>
                         <ul>
                             @foreach (var jobOpportunity in (List<JobOpportunity>)ViewBag.RelatedJobs)
-                            {                                
-                                <li><a href="@Url.Action("Detail", new { id=jobOpportunity.Id })">@jobOpportunity.Title</a></li>
+                            {
+                                <li><a href="@Url.Action("Detail", new {id=UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)})">@jobOpportunity.Title</a></li>
                             }
                         </ul>
                     </div>
+                        <hr>
                 }
 
-                <hr>
                 <div class="sidebar-widget" id="view-count">
                     <h2>Visitas Realizadas</h2>
                     <h3>@Model.ViewCount</h3>
