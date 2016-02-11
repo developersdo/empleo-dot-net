@@ -24,53 +24,14 @@
                 <br />
             </div>
 
-            <div class="jobs">
-                @foreach (var jobOpportunity in Model.Result)
-                {
-                <a href="@Url.Action("Detail", "JobOpportunity" , new {id=jobOpportunity.Id})" class="featured" target="_blank">
-                    <div class="row">
-                        <div class="col-md-1 hidden-sm hidden-xs text-center">
-                            @if (!string.IsNullOrEmpty(jobOpportunity.CompanyLogoUrl))
-                            {
-                            <img src="@jobOpportunity.CompanyLogoUrl"
-                                 width="60"
-                                 height="60"
-                                 alt=""
-                                 class="img-responsive"
-                                 onclick="onJobOpportunityDetailClick(this);"
-                                 data-url="@Url.Action(" Detail", "JobOpportunity" , new { id=jobOpportunity.Id })" />
-                            }
-                            else
-                            {
-                            <h5 class="company-text-logo !important">@Html.FirstTwoLetters(jobOpportunity.CompanyName)</h5>
-                            }
-                        </div>
-                        <div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-                            <h5>@jobOpportunity.Title</h5>
-                            <p><strong>@jobOpportunity.CompanyName</strong> | @jobOpportunity.CompanyEmail</p>
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 job-location">
-                            <p>
-                                <strong>@jobOpportunity.Location.Name</strong>
-                            </p>
-                            <p class="hidden-xs">@jobOpportunity.Created.ToShortDateString()</p>
-                        </div>
-                        <div class="pull-left col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-                            @if (jobOpportunity.IsRemote)
-                            {
-                            <p class="badge full-time">
-                                Remoto
-                            </p>
-                            <br />
-                            }
-                            <p class="badge">@jobOpportunity.Category.ToEnumDescription()</p>
-                            <p>Visitas | @jobOpportunity.ViewCount</p>
-                        </div>
-                    </div>
-                </a>
-                }
+
+            @Html.Partial("_JobListPartial", Model.Result)
+            <br />
+            <div>
+                <h5>@Model.Result.TotalItemCount Empleos disponibles para esta búsqueda.</h5>
+                <br />
             </div>
-            <br/>
+
             @*Pagination*@
             @if (Model.Result.PageCount > 1)
             {
