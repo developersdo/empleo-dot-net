@@ -13,27 +13,17 @@
         <div class="col-sm-12 col-md-12 col-lg-12">
             @if (!Model.Result.Any() && (!string.IsNullOrWhiteSpace(Model.Keyword) || Model.SelectedLocation > 0))
             {
-            <div>
-                <h5>No se encontraron resultados para esta búsqueda.</h5>
-                <hr />
-            </div>
+                <div>
+                    <h5>No se encontraron resultados para esta búsqueda.</h5>
+                    <hr/>
+                </div>
             }
-            else
-            {
-            @*Pagination*@
-            if (@Model.Result.PageCount > 1)
-            {
-            @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
-            {
-            Model.SelectedLocation,
-            page,
-            Model.Result.PageSize
-            }));
-            }
+            <br/>
             <div>
-                <h5>@Model.Result.TotalItemCount Empleos disponibles para esta búsqueda.</h5>
+                <h5>@Model.Result.TotalItemCount Empleo(s) disponibles para esta búsqueda.</h5>
                 <br />
             </div>
+
 
             @Html.Partial("_JobListPartial", Model.Result)
             <br />
@@ -43,16 +33,16 @@
             </div>
 
             @*Pagination*@
-            if (@Model.Result.PageCount > 1)
+            @if (Model.Result.PageCount > 1)
             {
-            @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
-            {
-            Model.SelectedLocation,
-            page,
-            Model.Result.PageSize
-            }));
+                @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
+                {
+                Model.SelectedLocation,
+                page,
+                Model.Result.PageSize
+                }));
             }
-            }
+            
         </div>
     </div>
 </div>

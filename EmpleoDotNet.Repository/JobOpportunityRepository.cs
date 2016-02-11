@@ -66,6 +66,9 @@ namespace EmpleoDotNet.Repository
             if (parameter.JobCategory != JobCategory.All)
                 jobs = jobs.Where(x => x.Category == parameter.JobCategory);
 
+            if (parameter.IsRemote)
+                jobs = jobs.Where(x => x.IsRemote);
+
             jobs = jobs.OrderByDescending(x => x.Id);
 
             if (parameter.SelectedLocation <= 0)
