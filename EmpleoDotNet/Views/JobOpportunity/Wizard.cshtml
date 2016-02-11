@@ -11,15 +11,15 @@
     @using (Html.BeginForm("Wizard", "JobOpportunity", FormMethod.Post, new {role = "form"}))
     {
         @Html.AntiForgeryToken()
+        <div>
+            <span class="h2 section-title"></span>
+            <hr />
+            <div class="tab section-1">1</div>
+            <div class="tab section-2">2</div>
+            <div class="tab section-3">3</div>
+        </div>
         <div id="wizard" class="owl-carousel owl-theme">
             <div class="item" data-parsley-group="business-details">
-                <div>
-                    <span class="h2">INFORMACIÓN DE LA EMPRESA</span>
-                    <hr />
-                    <div class="tab section-1 active">1</div>
-                    <div class="tab section-2">2</div>
-                    <div class="tab section-3">3</div>                
-                </div>
                 <div class="form-group" id="company-name-group">
                     @Html.LabelFor(m => m.CompanyName)
                     @Html.TextBoxFor(m => m.CompanyName, new {@class = "form-control", placeholder = "CompanyX, SRL.", required="", @data_parsley_group= "business-details"})
@@ -52,13 +52,6 @@
                 <a class="btn-next btn btn-primary btn-lg">Siguiente</a>
             </div>
             <div class="item" data-parsley-group="job-details">
-                <div>
-                    <span class="h2">INFORMACIÓN DEL PUESTO</span>
-                    <hr />
-                    <div class="tab section-1">1</div>
-                    <div class="tab section-2 active">2</div>
-                    <div class="tab section-3">3</div>
-                </div>
                 <div class="form-group" id="job-title-group">
                     @Html.LabelFor(m => m.Title)
                     @Html.TextBoxFor(m => m.Title, new {@class = "form-control", placeholder = "ejemp. Se busca Web Designer", @data_parsley_group = "job-details", required="" })
@@ -90,13 +83,6 @@
 
             </div>
             <div class="item">
-                <div>
-                    <span class="h2">LA PRUEBA DE JOEL</span>
-                    <hr />
-                    <div class="tab section-1">1</div>
-                    <div class="tab section-2">2</div>
-                    <div class="tab section-3 active">3</div>
-                </div>
                 <p>Si no sabes que es puedes 
                 <a href="http://local.joelonsoftware.com/wiki/El_Test_de_Joel:_12_pasos_hacia_un_c%C3%B3digo_mejor" target="_blank">leer aqu&iacute;</a>.
                     En resumen, es un cuestionario para medir la calidad del equipo de desarrollo de tu empresa. Coteja las opciones que apliquen.

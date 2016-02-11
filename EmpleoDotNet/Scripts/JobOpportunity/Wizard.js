@@ -1,4 +1,5 @@
-﻿$(document).ready(function() {
+﻿var currentSection = 0;
+$(document).ready(function () {
     var owl = $("#wizard").owlCarousel({
         slideSpeed: 300,
         paginationSpeed: 400,
@@ -10,7 +11,12 @@
         dots: false,
         touchDrag: false,
         mouseDrag: false
-    });
+    });    
+    var sections = ["INFORMACIÓN DE LA EMPRESA", "INFORMACIÓN DEL PUESTO", "LA PRUEBA DE JOEL"];
+    $('.section-title').html(sections[currentSection]);
+    $('.tab').removeClass('active');
+    $('.section-1').addClass('active');
+
     var validateScreen = function (callback) {
         var parsleyGroup = $(".active .item").data('parsley-group');
         if ($('form').parsley().validate({ group: parsleyGroup })) {
@@ -38,11 +44,17 @@
     $(".btn-next").click(function () {
         validateScreen(function () {
             owl.trigger('next');
+            currentSection++;
+            $('.section-title').html(sections[currentSection]);
+            $('.tab').removeClass('active');
+            $('.section-' + (currentSection+1)).addClass('active');
         });
     });
     $(".btn-prev").click(function () {
         owl.trigger('prev');
-/*        validateScreen(function () {
-        });*/
+        currentSection--;
+        $('.section-title').html(sections[currentSection]);
+        $('.tab').removeClass('active');
+        $('.section-' + (currentSection+1)).addClass('active');
     });
 });
