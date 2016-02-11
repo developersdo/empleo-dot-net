@@ -432,6 +432,7 @@
     <Content Include="Scripts\theme\settings.js" />
     <Content Include="Scripts\theme\waypoints.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Shared\_JobListPartial.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
