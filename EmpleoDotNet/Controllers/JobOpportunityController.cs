@@ -6,6 +6,7 @@ using EmpleoDotNet.AppServices;
 using EmpleoDotNet.Services.Social.Twitter;
 using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.ViewModel.JobOpportunity;
+using reCAPTCHA.MVC;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -61,16 +62,17 @@ namespace EmpleoDotNet.Controllers
 
         [HttpPost, ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public async Task<ActionResult> New(NewJobOpportunityViewModel model)
+        [CaptchaValidator(RequiredMessage = "Por favor confirma que no eres un robot")]
+        public async Task<ActionResult> New(NewJobOpportunityViewModel model, bool captchaValid)
         {
-            
+
             if (!ModelState.IsValid)
             {
                 LoadLocations(model);
                 ViewBag.ErrorMessage = "Han ocurrido errores de validación que no permiten continuar el proceso";
                 return View(model);
             }
-            
+
             var jobOpportunity = model.ToEntity();
 
             _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity);
@@ -117,7 +119,8 @@ namespace EmpleoDotNet.Controllers
         {
             var locations = _locationService.GetLocationsWithDefault();
 
-            var viewModel = new JobOpportunitySearchViewModel {
+            var viewModel = new JobOpportunitySearchViewModel
+            {
                 Locations = locations.ToSelectList(l => l.Id, l => l.Name, model.SelectedLocation),
                 SelectedLocation = model.SelectedLocation,
                 JobCategory = model.JobCategory,
@@ -130,7 +133,7 @@ namespace EmpleoDotNet.Controllers
 
         public JobOpportunityController(
             ILocationService locationService,
-            IJobOpportunityService jobOpportunityService, 
+            IJobOpportunityService jobOpportunityService,
             ITwitterService twitterService)
         {
             _locationService = locationService;
