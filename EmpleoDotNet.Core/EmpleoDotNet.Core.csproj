@@ -50,6 +50,7 @@
     <Compile Include="Dto\JobCategoryCountDto.cs" />
     <Compile Include="Dto\JobOpportunityPagingParameter.cs" />
     <Compile Include="Dto\PagedResult.cs" />
+    <Compile Include="Dto\RelatedJobDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Domain\Tag.cs" />
   </ItemGroup>

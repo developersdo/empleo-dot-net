@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Core.Dto;
-using EmpleoDotNet.AppServices.ViewModel;
 using PagedList;
 
 namespace EmpleoDotNet.AppServices
