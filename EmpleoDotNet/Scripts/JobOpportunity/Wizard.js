@@ -6,7 +6,10 @@
         itemsDesktop: false,
         itemsDesktopSmall: false,
         itemsTablet: false,
-        itemsMobile: false
+        itemsMobile: false,
+        dots: false,
+        touchDrag: false,
+        mouseDrag: false
     });
     var validateScreen = function (callback) {
         var parsleyGroup = $(".active .item").data('parsley-group');
