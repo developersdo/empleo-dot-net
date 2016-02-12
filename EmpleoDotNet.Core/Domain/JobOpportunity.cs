@@ -73,6 +73,8 @@ namespace EmpleoDotNet.Core.Domain
 
         public int? JoelTestId { get; set; }
 
+        public bool IsActive { get; set; }
+
         #endregion
 
         #region Navegation Properties
