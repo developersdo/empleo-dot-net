@@ -54,7 +54,7 @@ var Wizard = function () {
             }
         },
 
-        preventEnter: function () {
+        preventEnter: function (e) {
             if (e.keyCode === 13) {
                 e.preventDefault();
             }
@@ -72,7 +72,7 @@ var Wizard = function () {
 $(function () {
     var wizard = new Wizard();
     $('form').submit(function (e) { wizard.submitForm(); });
-    $(window).keydown(function (e) { wizard.preventEnter(); });
+    $(window).keydown(function (e) { wizard.preventEnter(e); });
     $("input").keydown(function (e) { wizard.goNextOnEnter(); });
     $(".btn-next").click(function () { wizard.next();});
     $(".btn-prev").click(function () { wizard.previous(); });

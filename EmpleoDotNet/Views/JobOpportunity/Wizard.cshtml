@@ -1,4 +1,5 @@
 ﻿@using EmpleoDotNet.Helpers
+@using reCAPTCHA.MVC
 @model EmpleoDotNet.ViewModel.JobOpportunity.Wizard
 
 @{
@@ -139,6 +140,16 @@
                 <button type="submit" class="btn btn-primary btn-lg">Crear Empleo</button>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    @Html.Recaptcha()
+                    @Html.ValidationMessage("ReCaptcha")
+                </div>
+            </div>
+        </div>
+
     }
     </div>
 </section>
