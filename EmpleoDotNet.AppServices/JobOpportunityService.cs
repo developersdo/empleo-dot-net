@@ -3,7 +3,6 @@ using System.Linq;
 using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Core.Dto;
 using EmpleoDotNet.Repository.Contracts;
-using EmpleoDotNet.AppServices.ViewModel;
 using PagedList;
 
 namespace EmpleoDotNet.AppServices
