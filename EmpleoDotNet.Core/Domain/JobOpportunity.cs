@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace EmpleoDotNet.Core.Domain
 {
     public class JobOpportunity : EntityBase
-    { 
+    {
         #region Property
         /// <summary>
         /// Titulo de la posición
@@ -73,7 +73,7 @@ namespace EmpleoDotNet.Core.Domain
 
         public int? JoelTestId { get; set; }
 
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
 
         #endregion
 
