@@ -1,37 +1,7 @@
-﻿@using EmpleoDotNet.Core.Domain
-@using EmpleoDotNet.Helpers
-@using EmpleoDotNet.Models
+﻿@using EmpleoDotNet.Helpers
 @model EmpleoDotNet.ViewModel.JobOpportunitySearchViewModel
 
 @{
-    #region categories
-
-    var categories = new[]
-    {
-        new
-        {
-            Description = JobCategory.MobileDevelopment.ToEnumDescription(),
-            Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.MobileDevelopment })
-        },
-        new
-        {
-            Description = JobCategory.WebDevelopment.ToEnumDescription(),
-            Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.WebDevelopment })
-        },
-        new
-        {
-            Description = JobCategory.SoftwareDevelopment.ToEnumDescription(),
-            Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.MobileDevelopment })
-        },
-        new
-        {
-            Description = JobCategory.GraphicDesign.ToEnumDescription(),
-            Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.GraphicDesign })
-        },
-    };
-
-    #endregion
-
     #region keywords
 
     var keywords = new[]
@@ -119,9 +89,9 @@
                 </p>
                 <p class="search-job-label">
                     <strong>Categorias :</strong>
-                    @foreach (var category in categories)
+                    @foreach (var category in Model.CategoriesCount)
                     {
-                        <span class="search-job-label-item"><a href="@category.Link">@category.Description</a></span>
+                        <span class="search-job-label-item"><a href="@Url.Action("Index", "JobOpportunity", new { category.JobCategory })">@category.JobCategory.ToEnumDescription() <span class="badge">@category.Count</span> </a></span>
                     }
                 </p>
             </div>

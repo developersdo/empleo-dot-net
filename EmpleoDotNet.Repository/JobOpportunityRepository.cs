@@ -40,6 +40,23 @@ namespace EmpleoDotNet.Repository
             return RelatedJobs;
         }
 
+        public List<JobCategoryCountDto> GetMainJobCategoriesCount()
+        {
+            var result = (from c in DbSet
+                where (c.Category == JobCategory.MobileDevelopment ||
+                       c.Category == JobCategory.SoftwareDevelopment ||
+                       c.Category == JobCategory.WebDevelopment ||
+                       c.Category == JobCategory.GraphicDesign)
+                group c by new { c.Category} into g
+                select new JobCategoryCountDto
+                {
+                    JobCategory = g.Key.Category,
+                    Count = g.Count()
+                }).ToList();
+
+            return result;
+        }
+
         public JobOpportunity GetJobOpportunityById(int? id)
         {
             if (!id.HasValue) return null;

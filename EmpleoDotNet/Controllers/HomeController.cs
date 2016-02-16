@@ -11,7 +11,8 @@ namespace EmpleoDotNet.Controllers
         public ActionResult Index()
         {
             ViewBag.SearchViewModel = new JobOpportunitySearchViewModel {
-                Locations = _locationService.GetLocationsWithDefault().ToSelectList(x => x.Id, x => x.Name)
+                Locations = _locationService.GetLocationsWithDefault().ToSelectList(x => x.Id, x => x.Name),
+                CategoriesCount = _jobOpportunityRepository.GetMainJobCategoriesCount()
             };
 
             var model = _jobOpportunityRepository.GetLatestJobOpportunity(7);
