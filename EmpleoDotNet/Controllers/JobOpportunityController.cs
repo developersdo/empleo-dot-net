@@ -71,7 +71,7 @@ namespace EmpleoDotNet.Controllers
 
             LoadLocations(viewModel);
 
-            return View(viewModel).WithInfo("Prueba nuestro nuevo proceso guíado de creación de posiciones haciendo <b><a href='"+Url.Action("Wizard")+"'>click aquí</a></b>");
+            return View(viewModel).WithInfo("Prueba nuestro nuevo proceso guiado de creación de posiciones haciendo <b><a href='"+Url.Action("Wizard")+"'>click aquí</a></b>");
         }
 
         [HttpPost, ValidateAntiForgeryToken]
