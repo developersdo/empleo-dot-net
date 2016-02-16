@@ -81,16 +81,7 @@
     </div>
     <!-- ============ PAGE LOADER END ============ -->
 
-    @if (!String.IsNullOrEmpty(ViewBag.ErrorMessage))
-    {
-        <div class="container padding-top-80">
-            <div class="row">
-                <div class="alert alert-danger">
-                    @ViewBag.ErrorMessage
-                </div>
-            </div>
-        </div>
-    }
+    @Html.Partial("_Alerts")
 
     @RenderBody()
 

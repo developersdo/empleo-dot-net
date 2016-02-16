@@ -7,39 +7,39 @@
 </p>
 <div class="list-group">
     <div class="list-group-item">
-        <b>¿Usan algún tipo de control de versiones? (Git, Subversion)</b> @Model.HasSourceControl.ToYesNoString()
+        <b>¿Usan algún tipo de control de versiones? (Git, Subversion)</b> <span class="pull-right">@Html.Raw(Model.HasSourceControl.ToCheckTimesString())</span>
+</div>
+    <div class="list-group-item">
+        <b>¿Pueden hacer pases a producción en un solo paso?</b> <span class="pull-right">@Html.Raw(Model.HasOneStepBuilds.ToCheckTimesString())</span>
     </div>
     <div class="list-group-item">
-        <b>¿Pueden hacer pases a producción en un solo paso?</b> @Model.HasOneStepBuilds.ToYesNoString()
+        <b>¿Compilan el producto diariamente?</b> <span class="pull-right">@Html.Raw(Model.HasDailyBuilds.ToCheckTimesString())</span>
     </div>
     <div class="list-group-item">
-        <b>¿Compilan el producto diariamente?</b> @Model.HasDailyBuilds.ToYesNoString()
+        <b>¿Tienen una base de datos de bugs?</b> <span class="pull-right">@Html.Raw(Model.HasBugDatabase.ToCheckTimesString())</span>
     </div>
     <div class="list-group-item">
-        <b>¿Tienen una base de datos de bugs?</b> @Model.HasBugDatabase.ToYesNoString()
+        <b>¿Corrigen los bugs antes de añadir más código?</b> <span class="pull-right">@Html.Raw(Model.HasBusFixedBeforeProceding.ToCheckTimesString())</span>
     </div>
     <div class="list-group-item">
-        <b>¿Corrigen los bugs antes de añadir más código?</b> @Model.HasBusFixedBeforeProceding.ToYesNoString()
+        <b>¿Tienen una planificación actualizada?</b> <span class="pull-right">@Html.Raw(Model.HasUpToDateSchedule.ToCheckTimesString())</span>
     </div>
     <div class="list-group-item">
-        <b>¿Tienen una planificación actualizada?</b> @Model.HasUpToDateSchedule.ToYesNoString()
+        <b>¿Tienes un documento de especificaciones?</b> <span class="pull-right">@Html.Raw(Model.HasSpec.ToCheckTimesString())</span>
     </div>
     <div class="list-group-item">
-        <b>¿Tienes un documento de especificaciones?</b> @Model.HasSpec.ToYesNoString()
+        <b>¿Están los programadores en un lugar tranquilo?</b> <span class="pull-right">@Html.Raw(Model.HasQuiteEnvironment.ToCheckTimesString())</span>
     </div>
     <div class="list-group-item">
-        <b>¿Están los programadores en un lugar tranquilo?</b> @Model.HasQuiteEnvironment.ToYesNoString()
+        <b>¿Utilizan las mejores herramientas que puedes comprar?</b> <span class="pull-right">@Html.Raw(Model.HasBestTools.ToCheckTimesString())</span>
     </div>
     <div class="list-group-item">
-        <b>¿Utilizan las mejores herramientas que puedes comprar?</b> @Model.HasBestTools.ToYesNoString()
+        <b>¿Tienen gente para probar los productos?</b> <span class="pull-right">@Html.Raw(Model.HasTesters.ToCheckTimesString())</span>
     </div>
     <div class="list-group-item">
-        <b>¿Tienen gente para probar los productos?</b> @Model.HasTesters.ToYesNoString()
+        <b>¿Hacen escribir código a los nuevos candidatos en las entrevistas?</b> <span class="pull-right">@Html.Raw(Model.HasWrittenTest.ToCheckTimesString())</span>
     </div>
     <div class="list-group-item">
-        <b>¿Hacen escribir código a los nuevos candidatos en las entrevistas?</b> @Model.HasWrittenTest.ToYesNoString()
-    </div>
-    <div class="list-group-item">
-        <b>¿Hacen pruebas de usabilidad 'de vestíbulo'?</b> @Model.HasHallwayTests.ToYesNoString()
+        <b>¿Hacen pruebas de usabilidad 'de vestíbulo'?</b> <span class="pull-right">@Html.Raw(Model.HasHallwayTests.ToCheckTimesString())</span>
     </div>
 </div>
