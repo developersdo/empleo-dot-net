@@ -62,7 +62,7 @@ namespace EmpleoDotNet.Controllers
                 return View("Detail", vm);
             }
 
-            return View("Index").WithError("La vacante solicitada no existe. Por favor escoger una vacante válida del listado");
+            return View("Index").WithError("La vacante solicitada no existe. Por favor escoge una vacante válida del listado");
         }
 
         public ActionResult New()
