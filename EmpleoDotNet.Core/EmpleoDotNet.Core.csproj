@@ -47,6 +47,7 @@
     <Compile Include="Domain\JobOpportunity.cs" />
     <Compile Include="Domain\JoelTest.cs" />
     <Compile Include="Domain\Location.cs" />
+    <Compile Include="Dto\JobCategoryCountDto.cs" />
     <Compile Include="Dto\JobOpportunityPagingParameter.cs" />
     <Compile Include="Dto\PagedResult.cs" />
     <Compile Include="Dto\RelatedJobDto.cs" />

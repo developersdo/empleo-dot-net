@@ -14,5 +14,6 @@ namespace EmpleoDotNet.Repository.Contracts
         IPagedList<JobOpportunity> GetAllJobOpportunitiesPagedByFilters(JobOpportunityPagingParameter parameter);
         List<JobOpportunity> GetLatestJobOpportunity(int quantity);
         List<JobOpportunity> GetRelatedJobs(int id, string name);
+        List<JobCategoryCountDto> GetMainJobCategoriesCount();
     }
 }

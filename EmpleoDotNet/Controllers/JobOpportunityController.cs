@@ -140,7 +140,8 @@ namespace EmpleoDotNet.Controllers
                 SelectedLocation = model.SelectedLocation,
                 JobCategory = model.JobCategory,
                 Keyword = model.Keyword,
-                IsRemote = model.IsRemote
+                IsRemote = model.IsRemote,
+                CategoriesCount = _jobOpportunityService.GetMainJobCategoriesCount()
             };
 
             return viewModel;
