@@ -64,7 +64,7 @@ namespace EmpleoDotNet.Controllers
             ViewBag.ErrorMessage =
                 "La vacante solicitada no existe. Por favor escoger una vacante válida del listado";
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
 
         public ActionResult New()
