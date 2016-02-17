@@ -59,7 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmpleadoContext.cs" />
+    <Compile Include="EmpleaDotNetDbConfiguration.cs" />
     <Compile Include="EntityFrameworkUnitOfWork.cs" />
+    <Compile Include="Interceptors\JobOpportunityIsActiveInterceptor.cs" />
+    <Compile Include="Interceptors\JobOpportunityIsActiveVisitor.cs" />
     <Compile Include="ISearchable.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Migrations\201511280400499_initial.cs" />
@@ -94,6 +97,10 @@
     <Compile Include="Migrations\201602031613403_Adding JoelTest entity.Designer.cs">
       <DependentUpon>201602031613403_Adding JoelTest entity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602121341347_IsActiveColumn.cs" />
+    <Compile Include="Migrations\201602121341347_IsActiveColumn.Designer.cs">
+      <DependentUpon>201602121341347_IsActiveColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableConfigurations\BaseTableConfiguration.cs" />
@@ -125,6 +132,9 @@
     <EmbeddedResource Include="Migrations\201602031613403_Adding JoelTest entity.resx">
       <DependentUpon>201602031613403_Adding JoelTest entity.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602121341347_IsActiveColumn.resx">
+      <DependentUpon>201602121341347_IsActiveColumn.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -136,6 +146,7 @@
       <Name>EmpleoDotNet.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
