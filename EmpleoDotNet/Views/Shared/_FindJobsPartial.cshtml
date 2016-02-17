@@ -1,37 +1,7 @@
-﻿@using EmpleoDotNet.Core.Domain
-@using EmpleoDotNet.Helpers
-@using EmpleoDotNet.Models
+﻿@using EmpleoDotNet.Helpers
 @model EmpleoDotNet.ViewModel.JobOpportunitySearchViewModel
 
 @{
-    #region categories
-
-    var categories = new[]
-    {
-        new
-        {
-            Description = JobCategory.MobileDevelopment.ToEnumDescription(),
-            Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.MobileDevelopment })
-        },
-        new
-        {
-            Description = JobCategory.WebDevelopment.ToEnumDescription(),
-            Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.WebDevelopment })
-        },
-        new
-        {
-            Description = JobCategory.SoftwareDevelopment.ToEnumDescription(),
-            Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.MobileDevelopment })
-        },
-        new
-        {
-            Description = JobCategory.GraphicDesign.ToEnumDescription(),
-            Link = @Url.Action("Index", "JobOpportunity", new { JobCategory = JobCategory.GraphicDesign })
-        },
-    };
-
-    #endregion
-
     #region keywords
 
     var keywords = new[]
@@ -78,35 +48,35 @@
             @using (Html.BeginForm("Index", "JobOpportunity", FormMethod.Get))
             {
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="Keyword">
-                                <strong>Keywords</strong>
-                            </label>
-                            @Html.TextBoxFor(m => m.Keyword, new {@class = "form-control", placeholder = "título, descripción o companía"})
+                    <div class="col-md-8" style="padding-left: 0">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="Keyword">
+                                    <strong>Keywords</strong>
+                                </label>
+                                @Html.TextBoxFor(m => m.Keyword, new { @class = "form-control", placeholder = "título, descripción o companía" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="Location">
+                                    <strong>Localidad</strong>
+                                </label>
+                                @Html.DropDownListFor(d => d.SelectedLocation,
+                                    Model.Locations,
+                                    new { @class = "form-control", id = "location" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.CheckBoxFor(m => m.IsRemote)
+                                <label for="IsRemote">Buscar solo empleos remotos</label>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="Location">
-                                <strong>Localidad</strong>
-                            </label>
-                            @Html.DropDownListFor(d => d.SelectedLocation,
-                                Model.Locations,
-                                new {@class = "form-control", id = "location"})
-                        </div>
-                        <div class="form-group hidden-sm hidden-lg hidden-md">
-                            @Html.CheckBoxFor(m => m.IsRemote)
-                            <label for="IsRemote">Buscar solo empleos remotos</label>
-                        </div>
+                        <input type="submit" class="btn btn-primary search-job-button" value="Buscar" />
                     </div>
-                    <div class="col-md-2">
-                        <input type="submit" class="btn btn-primary search-job-button" value="Buscar"/>
-                    </div>
-                </div>
-                <div class="form-group hidden-xs">
-                    @Html.CheckBoxFor(m => m.IsRemote)
-                    <label for="IsRemote">Buscar solo empleos remotos</label>
                 </div>
             }
             <div class="row">
@@ -119,9 +89,9 @@
                 </p>
                 <p class="search-job-label">
                     <strong>Categorias :</strong>
-                    @foreach (var category in categories)
+                    @foreach (var category in Model.CategoriesCount)
                     {
-                        <span class="search-job-label-item"><a href="@category.Link">@category.Description</a></span>
+                        <span class="search-job-label-item"><a href="@Url.Action("Index", "JobOpportunity", new { category.JobCategory })">@category.JobCategory.ToEnumDescription() <span class="badge">@category.Count</span> </a></span>
                     }
                 </p>
             </div>

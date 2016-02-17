@@ -81,16 +81,7 @@
     </div>
     <!-- ============ PAGE LOADER END ============ -->
 
-    @if (!String.IsNullOrEmpty(ViewBag.ErrorMessage))
-    {
-        <div class="container padding-top-80">
-            <div class="row">
-                <div class="alert alert-danger">
-                    @ViewBag.ErrorMessage
-                </div>
-            </div>
-        </div>
-    }
+    @Html.Partial("_Alerts")
 
     @RenderBody()
 
@@ -100,6 +91,8 @@
                 <div class="row">
                     <div class="col-sm-6" id="newsletter">
                         <h2>Emplea.do</h2>
+                        <a href="https://www.facebook.com/empleadonet" class="btn btn-default"><i class="fa fa-facebook"></i></a>
+                        <a href="https://twitter.com/emplea_do" class="btn btn-default"><i class="fa fa-twitter"></i></a>
                     </div>
                 </div>
             </div>

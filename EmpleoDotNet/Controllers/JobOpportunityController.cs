@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using EmpleoDotNet.Core.Dto;
 using EmpleoDotNet.Helpers;
 using EmpleoDotNet.AppServices;
+using EmpleoDotNet.Helpers.Alerts;
 using EmpleoDotNet.Services.Social.Twitter;
 using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.ViewModel.JobOpportunity;
@@ -61,10 +62,7 @@ namespace EmpleoDotNet.Controllers
                 return View("Detail", vm);
             }
 
-            ViewBag.ErrorMessage =
-                "La vacante solicitada no existe. Por favor escoger una vacante válida del listado";
-
-            return View("Index");
+            return View("Index").WithError("La vacante solicitada no existe. Por favor escoge una vacante válida del listado");
         }
 
         public ActionResult New()
@@ -73,7 +71,7 @@ namespace EmpleoDotNet.Controllers
 
             LoadLocations(viewModel);
 
-            return View(viewModel);
+            return View(viewModel).WithInfo("Prueba nuestro nuevo proceso guiado de creación de posiciones haciendo <b><a href='"+Url.Action("Wizard")+"'>click aquí</a></b>");
         }
 
         [HttpPost, ValidateAntiForgeryToken]
@@ -85,8 +83,7 @@ namespace EmpleoDotNet.Controllers
             if (!ModelState.IsValid)
             {
                 LoadLocations(model);
-                ViewBag.ErrorMessage = "Han ocurrido errores de validación que no permiten continuar el proceso";
-                return View(model);
+                return View(model).WithError("Han ocurrido errores de validación que no permiten continuar el proceso");
             }
 
             var jobOpportunity = model.ToEntity();
@@ -114,8 +111,7 @@ namespace EmpleoDotNet.Controllers
             if (!ModelState.IsValid)
             {
                 model.Locations = _locationService.GetAllLocations().ToSelectList(x => x.Id, x => x.Name);
-                ViewBag.ErrorMessage = "Han ocurrido errores de validación que no permiten continuar el proceso";
-                return View(model);
+                return View(model).WithError("Han ocurrido errores de validación que no permiten continuar el proceso");
             }
             var entity = model.ToEntity();
             _jobOpportunityService.CreateNewJobOpportunity(entity);
@@ -144,7 +140,8 @@ namespace EmpleoDotNet.Controllers
                 SelectedLocation = model.SelectedLocation,
                 JobCategory = model.JobCategory,
                 Keyword = model.Keyword,
-                IsRemote = model.IsRemote
+                IsRemote = model.IsRemote,
+                CategoriesCount = _jobOpportunityService.GetMainJobCategoriesCount()
             };
 
             return viewModel;
