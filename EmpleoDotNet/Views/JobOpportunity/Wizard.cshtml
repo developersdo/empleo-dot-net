@@ -8,7 +8,6 @@
 
 <section>
     <div class="container">
-
     @using (Html.BeginForm("Wizard", "JobOpportunity", FormMethod.Post, new {role = "form"}))
     {
         @Html.AntiForgeryToken()
@@ -63,8 +62,17 @@
                     @Html.EnumDropListFor(e => e.Category, new { @class = "form-control", id = "category", @data_parsley_group = "job-details" })
                 </div>
                 <div class="form-group" id="job-location-group">
-                    @Html.LabelFor(m => m.SelectedLocationId)
-                    @Html.DropDownListFor(d => d.SelectedLocationId, Model.Locations, new {@class = "form-control", id = "location-id", @data_parsley_group = "job-details" })
+                    @Html.LabelFor(m => m.LocationName)
+                    @Html.TextBoxFor(m => m.LocationName, new
+                   {
+                       @class = "form-control",
+                       placeholder = "Selecciona una localidad",
+                       id = "location-input",
+                       @data_parsley_group = "job-details"
+                   })
+                    @Html.HiddenFor(m => m.LocationLatitude, new { id = "location-latitude", @data_parsley_group = "job-details" })
+                    @Html.HiddenFor(m => m.LocationLongitude, new { id = "location-longitude", @data_parsley_group = "job-details" })
+                    @Html.HiddenFor(m => m.LocationPlaceId, new { id = "location-placeid", @data_parsley_group = "job-details" })
                 </div>
                 <div class="form-group">
                     @Html.CheckBoxFor(m => m.IsRemote)
@@ -158,4 +166,27 @@
     <script type="text/javascript" src="~/Scripts/parsley.min.js"></script>
     <script type="text/javascript" src="~/Scripts/i18n/parsley/es.js"></script>
     <script type="text/javascript" src="~/Scripts/JobOpportunity/Wizard.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script type="text/javascript">
+        google.maps.event.addDomListener(window, 'load', function () {
+            var places = new google.maps.places.Autocomplete(document.getElementById('location-input'));
+            google.maps.event.addListener(places, 'place_changed', function () {
+                var place = places.getPlace();
+                if (place) {
+                    var latitude = place.geometry.location.lat();
+                    var longitude = place.geometry.location.lng();
+                    var placeId = place.place_id;
+
+                    $('#location-latitude').val(latitude);
+                    $('#location-longitude').val(longitude);
+                    $('#location-placeid').val(placeId);
+                } else {
+                    $('#location-input').val('');
+                    $('#location-latitude').val('');
+                    $('#location-longitude').val('');
+                    $('#location-placeid').val('');
+                }
+            });
+        });
+    </script>
 }

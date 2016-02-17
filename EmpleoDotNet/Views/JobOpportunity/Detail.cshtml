@@ -15,7 +15,14 @@
             <div class="col-sm-12 text-center">
                 <h1>@Model.Title</h1>
                 <h4>
-                    <span><i class="fa fa-map-marker"></i>@Model.Location.Name</span>
+                    @if (Model.JobOpportunityLocation == null)
+                    {
+                        <span><i class="fa fa-map-marker"></i>N/A</span>
+                    }
+                    else
+                    {
+                        <span><i class="fa fa-map-marker"></i>@Model.JobOpportunityLocation.Name</span>
+                    }
                     <span><i class="fa fa-cog"></i>@Model.Category.ToEnumDescription()</span>
                     @if (Model.IsRemote)
                     {

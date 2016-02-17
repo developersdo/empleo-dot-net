@@ -69,9 +69,8 @@ namespace EmpleoDotNet.Controllers
         {
             var viewModel = new NewJobOpportunityViewModel();
 
-            LoadLocations(viewModel);
-
-            return View(viewModel).WithInfo("Prueba nuestro nuevo proceso guiado de creación de posiciones haciendo <b><a href='"+Url.Action("Wizard")+"'>click aquí</a></b>");
+            return View(viewModel)
+                .WithInfo("Prueba nuestro nuevo proceso guiado de creación de posiciones haciendo <b><a href='"+Url.Action("Wizard")+"'>click aquí</a></b>");
         }
 
         [HttpPost, ValidateAntiForgeryToken]
@@ -79,11 +78,10 @@ namespace EmpleoDotNet.Controllers
         [CaptchaValidator(RequiredMessage = "Por favor confirma que no eres un robot")]
         public async Task<ActionResult> New(NewJobOpportunityViewModel model, bool captchaValid)
         {
-
             if (!ModelState.IsValid)
             {
-                LoadLocations(model);
-                return View(model).WithError("Han ocurrido errores de validación que no permiten continuar el proceso");
+                return View(model)
+                    .WithError("Han ocurrido errores de validación que no permiten continuar el proceso");
             }
 
             var jobOpportunity = model.ToEntity();
@@ -92,38 +90,37 @@ namespace EmpleoDotNet.Controllers
 
             await _twitterService.PostNewJobOpportunity(jobOpportunity);
 
-            return RedirectToAction("detail", new { id = UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title) });
+            return RedirectToAction("Detail", new
+            {
+                id = UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)
+            });
         }
 
         public ActionResult Wizard()
         {
-            var viewModel = new Wizard
-            {
-                Locations = _locationService.GetAllLocations().ToSelectList(x => x.Id, x => x.Name)
-            };
-            return View(viewModel);
+            return View();
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         [ValidateInput(false)]
         [CaptchaValidator(RequiredMessage = "Por favor confirma que no eres un robot")]
-        public ActionResult Wizard(Wizard model)
+        public async Task<ActionResult> Wizard(Wizard model)
         {
             if (!ModelState.IsValid)
+                return View(model)
+                    .WithError("Han ocurrido errores de validación que no permiten continuar el proceso");
+
+            var jobOpportunity = model.ToEntity();
+
+            _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity);
+
+            await _twitterService.PostNewJobOpportunity(jobOpportunity);
+
+            return RedirectToAction("Detail", new
             {
-                model.Locations = _locationService.GetAllLocations().ToSelectList(x => x.Id, x => x.Name);
-                return View(model).WithError("Han ocurrido errores de validación que no permiten continuar el proceso");
-            }
-            var entity = model.ToEntity();
-            _jobOpportunityService.CreateNewJobOpportunity(entity);
-            return RedirectToAction("Detail", new { id = entity.Id, fromWizard = 1 });
-        }
-
-        private void LoadLocations(NewJobOpportunityViewModel viewModel)
-        {
-            var locations = _locationService.GetAllLocations();
-
-            viewModel.Locations = locations.ToSelectList(x => x.Id, x => x.Name);
+                id = UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title),
+                fromWizard = 1
+            });
         }
 
         /// <summary>
@@ -133,12 +130,10 @@ namespace EmpleoDotNet.Controllers
         /// <returns></returns>
         private JobOpportunitySearchViewModel GetSearchViewModel(JobOpportunityPagingParameter model)
         {
-            var locations = _locationService.GetLocationsWithDefault();
-
             var viewModel = new JobOpportunitySearchViewModel
             {
-                Locations = locations.ToSelectList(l => l.Id, l => l.Name, model.SelectedLocation),
-                SelectedLocation = model.SelectedLocation,
+                SelectedLocationPlaceId = model.SelectedLocationPlaceId,
+                SelectedLocationName = model.SelectedLocationName,
                 JobCategory = model.JobCategory,
                 Keyword = model.Keyword,
                 IsRemote = model.IsRemote,
@@ -149,16 +144,13 @@ namespace EmpleoDotNet.Controllers
         }
 
         public JobOpportunityController(
-            ILocationService locationService,
             IJobOpportunityService jobOpportunityService,
             ITwitterService twitterService)
         {
-            _locationService = locationService;
             _jobOpportunityService = jobOpportunityService;
             _twitterService = twitterService;
         }
 
-        private readonly ILocationService _locationService;
         private readonly IJobOpportunityService _jobOpportunityService;
         private readonly ITwitterService _twitterService;
     }
