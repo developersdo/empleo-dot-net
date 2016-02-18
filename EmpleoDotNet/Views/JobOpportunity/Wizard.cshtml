@@ -1,4 +1,5 @@
 ﻿@using EmpleoDotNet.Helpers
+@using reCAPTCHA.MVC
 @model EmpleoDotNet.ViewModel.JobOpportunity.Wizard
 
 @{
@@ -11,9 +12,15 @@
     @using (Html.BeginForm("Wizard", "JobOpportunity", FormMethod.Post, new {role = "form"}))
     {
         @Html.AntiForgeryToken()
+        <div>
+            <span class="h2 section-title"></span>
+            <hr />
+            <div class="tab section-1">1</div>
+            <div class="tab section-2">2</div>
+            <div class="tab section-3">3</div>
+        </div>
         <div id="wizard" class="owl-carousel owl-theme">
             <div class="item" data-parsley-group="business-details">
-                <h2>Paso 1 de 3. Detalles de la Empresa</h2>
                 <div class="form-group" id="company-name-group">
                     @Html.LabelFor(m => m.CompanyName)
                     @Html.TextBoxFor(m => m.CompanyName, new {@class = "form-control", placeholder = "CompanyX, SRL.", required="", @data_parsley_group= "business-details"})
@@ -46,7 +53,6 @@
                 <a class="btn-next btn btn-primary btn-lg">Siguiente</a>
             </div>
             <div class="item" data-parsley-group="job-details">
-                <h2>Paso 2 de 3. Detalles del puesto</h2>
                 <div class="form-group" id="job-title-group">
                     @Html.LabelFor(m => m.Title)
                     @Html.TextBoxFor(m => m.Title, new {@class = "form-control", placeholder = "ejemp. Se busca Web Designer", @data_parsley_group = "job-details", required="" })
@@ -78,7 +84,6 @@
 
             </div>
             <div class="item">
-                <h2>Paso 3 de 3. La prueba de JOEL</h2>
                 <p>Si no sabes que es puedes 
                 <a href="http://local.joelonsoftware.com/wiki/El_Test_de_Joel:_12_pasos_hacia_un_c%C3%B3digo_mejor" target="_blank">leer aqu&iacute;</a>.
                     En resumen, es un cuestionario para medir la calidad del equipo de desarrollo de tu empresa. Coteja las opciones que apliquen.
@@ -130,6 +135,14 @@
                 <div class="form-group">
                     @Html.CheckBoxFor(m => m.HasHallwayTests)
                     @Html.LabelFor(m => m.HasHallwayTests)
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            @Html.Recaptcha()
+                            @Html.ValidationMessage("ReCaptcha")
+                        </div>
+                    </div>
                 </div>
                 <a class="btn-prev btn btn-warning btn-lg">Anterior</a>
                 <button type="submit" class="btn btn-primary btn-lg">Crear Empleo</button>

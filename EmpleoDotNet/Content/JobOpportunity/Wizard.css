@@ -7,3 +7,27 @@
 .parsley-errors-list {
     color: red;
 }
+
+.tab {
+    background-color: rgb(199, 199, 199);
+    color: white;
+    border-radius: 39px;
+    padding: 11px 16px;
+    display: inline;
+    position: relative;
+    bottom: 33px;    
+}
+
+.tab.section-1{
+    left: 100px;
+}
+.tab.section-2{    
+    left: 513px;
+}
+.tab.section-3{    
+    left: 900px;
+}
+
+.tab.active {
+    background-color: #14b1bb;
+}
