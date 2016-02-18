@@ -136,20 +136,18 @@
                     @Html.CheckBoxFor(m => m.HasHallwayTests)
                     @Html.LabelFor(m => m.HasHallwayTests)
                 </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            @Html.Recaptcha()
+                            @Html.ValidationMessage("ReCaptcha")
+                        </div>
+                    </div>
+                </div>
                 <a class="btn-prev btn btn-warning btn-lg">Anterior</a>
                 <button type="submit" class="btn btn-primary btn-lg">Crear Empleo</button>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="form-group">
-                    @Html.Recaptcha()
-                    @Html.ValidationMessage("ReCaptcha")
-                </div>
-            </div>
-        </div>
-
     }
     </div>
 </section>

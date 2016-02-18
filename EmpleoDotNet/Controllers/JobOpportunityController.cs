@@ -106,6 +106,7 @@ namespace EmpleoDotNet.Controllers
 
         [HttpPost, ValidateAntiForgeryToken]
         [ValidateInput(false)]
+        [CaptchaValidator(RequiredMessage = "Por favor confirma que no eres un robot")]
         public ActionResult Wizard(Wizard model)
         {
             if (!ModelState.IsValid)
