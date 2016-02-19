@@ -11,7 +11,7 @@ namespace EmpleoDotNet.Core.Dto
         public int SelectedLocation { get; set; } = 0;
         public int PageSize { get; set; } = 15;
         public int Page { get; set; } = 1;
-        public JobCategory JobCategory { get; set; } = JobCategory.All;
+        public JobCategory JobCategory { get; set; } = JobCategory.Invalid;
         public bool IsRemote { get; set; }
     }
 }

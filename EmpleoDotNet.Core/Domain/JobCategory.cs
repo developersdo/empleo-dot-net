@@ -12,6 +12,11 @@ namespace EmpleoDotNet.Core.Domain
         /// <summary>
         /// Todas
         /// </summary>
+        [Display(Name = "Invalid")]
+        Invalid = -2,
+        /// <summary>
+        /// Todas
+        /// </summary>
         [Display(Name = "Todas")]
         All = -1,
 
