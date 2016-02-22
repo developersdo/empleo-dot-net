@@ -8,6 +8,7 @@ using EmpleoDotNet.Services.Social.Twitter;
 using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.ViewModel.JobOpportunity;
 using reCAPTCHA.MVC;
+using System;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -27,27 +28,18 @@ namespace EmpleoDotNet.Controllers
         // GET: /JobOpportunity/Detail/4-jobtitle         
         public ActionResult Detail(string id)
         {
-            if (string.IsNullOrEmpty(id))
-                return RedirectToAction("Index");
-
-            var url = id.Split('-');
-
-            if (url.Length == 0)
-                return RedirectToAction("Index");
-
-            var value = 0;
-
-            if (!int.TryParse(url[0], out value))
+            var value = GetIdFromTitle(id);
+            if (value == 0)
                 return RedirectToAction("Index");
 
             var vm = _jobOpportunityService.GetJobOpportunityById(value);
 
             if (vm != null)
             {
-                var exceptedUrl = UrlHelperExtensions.SeoUrl(value, vm.Title.SanitizeUrl());
+                var expectedUrl = UrlHelperExtensions.SeoUrl(value, vm.Title.SanitizeUrl());
 
-                if (!exceptedUrl.Equals(id))
-                    return RedirectToActionPermanent("Detail", new { id = exceptedUrl });
+                if (!expectedUrl.Equals(id,StringComparison.OrdinalIgnoreCase))
+                    return RedirectToActionPermanent("Detail", new { id = expectedUrl });
 
                 ViewBag.RelatedJobs =
                     _jobOpportunityService.GetCompanyRelatedJobs(value, vm.CompanyName);
@@ -146,6 +138,17 @@ namespace EmpleoDotNet.Controllers
             };
 
             return viewModel;
+        }
+
+        private int GetIdFromTitle(string title)
+        {
+            var id = 0;
+            var url = title.Split('-');
+
+            if (string.IsNullOrEmpty(title) || url.Length == 0 || !int.TryParse(url[0], out id))
+                return 0;
+
+            return id;
         }
 
         public JobOpportunityController(

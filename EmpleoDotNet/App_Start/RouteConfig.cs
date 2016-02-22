@@ -9,6 +9,8 @@ namespace EmpleoDotNet
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.LowercaseUrls = true;
+
             routes.MapRoute(
                 name: "All jobs",
                 url: "jobs",
