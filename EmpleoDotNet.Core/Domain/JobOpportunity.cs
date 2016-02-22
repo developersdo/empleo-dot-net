@@ -12,14 +12,14 @@ namespace EmpleoDotNet.Core.Domain
         public string Title { get; set; }
 
         /// <summary>
-        /// Posición geográfica (donde es el empleo)
-        /// </summary>
-        public int LocationId { get; set; }
-
-        /// <summary>
         /// Categoria del empleo
         /// </summary>
         public JobCategory Category { get; set; }
+
+        /// <summary>
+        /// Locacion del empleo
+        /// </summary>
+        public int? LocationId { get; set; }
 
         /// <summary>
         /// Descripción de los requerimientos necesarios para aplicar al empleo
@@ -75,15 +75,19 @@ namespace EmpleoDotNet.Core.Domain
 
         public bool IsActive { get; set; } = true;
 
+        public int? JobOpportunityLocationId { get; set; }
+
         #endregion
 
         #region Navegation Properties
 
         public List<Tag> Tags { get; set; }
 
-        public Location Location { get; set; }
-
         public JoelTest JoelTest { get; set; }
+
+        public JobOpportunityLocation JobOpportunityLocation { get; set; }
+
+        public Location Location { get; set; }
 
         #endregion
     }

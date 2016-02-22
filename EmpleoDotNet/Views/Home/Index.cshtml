@@ -1,10 +1,35 @@
 ﻿@using EmpleoDotNet.ViewModel
 @model List<EmpleoDotNet.Core.Domain.JobOpportunity>
-    @{
-    ViewBag.Title = "";
-    }
 
-    @Html.Partial("_FindJobsPartial", (JobOpportunitySearchViewModel)ViewBag.SearchViewModel)
+@{
+    ViewBag.Title = "";
+}
+
+@* This added here because the partial view _FindsJobPartinal need this JS to work :( *@
+@section scripts {
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script type="text/javascript">
+
+        google.maps.event.addDomListener(window, 'load', function () {
+            var places = new google.maps.places.Autocomplete(document.getElementById('location-input'));
+            google.maps.event.addListener(places, 'place_changed', function () {
+                var place = places.getPlace();
+                if (place) {
+                    var placeId = place.place_id;
+
+                    $('#location-placeid').val(placeId);
+                } else {
+                    $('#location-input').val('');
+                    $('#location-placeid').val('');
+                }
+            });
+        });
+    </script>
+}
+
+
+@Html.Partial("_FindJobsPartial", (JobOpportunitySearchViewModel)ViewBag.SearchViewModel)
+
 <div class="container" style="margin-top: -50px;">
     <section id="jobs">
         <div class="container">

@@ -1,9 +1,30 @@
-﻿@using EmpleoDotNet.Helpers
-@using PagedList.Mvc
-
+﻿@using PagedList.Mvc
 @model EmpleoDotNet.ViewModel.JobOpportunitySearchViewModel
+
 @{
     ViewBag.Title = "Listado de Empleos";
+}
+
+@* This added here because the partial view _FindsJobPartinal need this JS to work :( *@
+@section scripts {
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script type="text/javascript">
+
+        google.maps.event.addDomListener(window, 'load', function () {
+            var places = new google.maps.places.Autocomplete(document.getElementById('location-input'));
+            google.maps.event.addListener(places, 'place_changed', function () {
+                var place = places.getPlace();
+                if (place) {
+                    var placeId = place.place_id;
+
+                    $('#location-placeid').val(placeId);
+                } else {
+                    $('#location-input').val('');
+                    $('#location-placeid').val('');
+                }
+            });
+        });
+    </script>
 }
 
 @Html.Partial("_FindJobsPartial", Model)
@@ -11,7 +32,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
-            @if (!Model.Result.Any() && (!string.IsNullOrWhiteSpace(Model.Keyword) || Model.SelectedLocation > 0))
+            @if (!Model.Result.Any() && (!string.IsNullOrWhiteSpace(Model.Keyword)))
             {
                 <div>
                     <h5>No se encontraron resultados para esta búsqueda.</h5>
@@ -37,7 +58,7 @@
             {
                 @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
                 {
-                Model.SelectedLocation,
+                SelectedLocation = Model.SelectedLocationName,
                 page,
                 Model.Result.PageSize
                 }));

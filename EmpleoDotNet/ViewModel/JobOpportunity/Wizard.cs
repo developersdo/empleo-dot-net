@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 using EmpleoDotNet.Core.Domain;
 
 namespace EmpleoDotNet.ViewModel.JobOpportunity
@@ -14,11 +10,12 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
         [Display(Name = "Título. ¿Qué estás buscando?")]
         public string Title { get; set; }
 
-        [Required(ErrorMessage = "La localidad es requerida")]
+        [Required(ErrorMessage = "La Localidad es requerida")]
         [Display(Name = "Localidad")]
-        public int SelectedLocationId { get; set; }
-
-        public SelectList Locations { get; set; }
+        public string LocationName { get; set; }
+        public string LocationLatitude { get; set; }
+        public string LocationLongitude { get; set; }
+        public string LocationPlaceId { get; set; }
 
         [Required(ErrorMessage = "Debes elegir una categoría.")]
         [Display(Name = "Categoría")]
@@ -89,7 +86,6 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
             var entity = new Core.Domain.JobOpportunity
             {
                 Title = Title,
-                LocationId = SelectedLocationId,
                 Category = Category,
                 Description = Description,
                 CompanyName = CompanyName,
@@ -114,6 +110,18 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
                     HasHallwayTests = this.HasHallwayTests
                 }
             };
+
+            if (!string.IsNullOrWhiteSpace(LocationName) &&
+                !string.IsNullOrWhiteSpace(LocationPlaceId))
+            {
+                entity.JobOpportunityLocation = new JobOpportunityLocation
+                {
+                    Latitude = LocationLatitude,
+                    Longitude = LocationLongitude,
+                    Name = LocationName,
+                    PlaceId = LocationPlaceId
+                };
+            }
 
             return entity;
         }

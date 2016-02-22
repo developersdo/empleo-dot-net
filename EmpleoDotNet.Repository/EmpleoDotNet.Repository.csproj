@@ -70,11 +70,9 @@
     <Compile Include="BaseRepository.cs" />
     <Compile Include="Contracts\IBaseRepository.cs" />
     <Compile Include="Contracts\IJobOpportunityRepository.cs" />
-    <Compile Include="Contracts\ILocationRepository.cs" />
     <Compile Include="Contracts\ITagRepository.cs" />
     <Compile Include="Helpers\QueryableExtensions.cs" />
     <Compile Include="JobOpportunityRepository.cs" />
-    <Compile Include="LocationRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TagRepository.cs" />
   </ItemGroup>

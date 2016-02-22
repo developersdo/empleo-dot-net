@@ -14,22 +14,7 @@ namespace EmpleoDotNet.Data.Migrations
 
         protected override void Seed(EmpleadoContext context)
         {
-            #region Locations
-            var locationsList = new List<Location>
-            {
-                new Location { Name = "Santo Domingo" },
-                new Location { Name = "Santiago" },
-                new Location { Name = "Puerto Plata" }
-            };
-            foreach(var location in locationsList)
-            {
-                context.Locations.AddOrUpdate(d => d.Name,
-                                              location);
-            }
-            #endregion
-            //This triggers the save to the database making entity framework assign the correct Id's to the locationsList
-            context.SaveChanges();
-
+#if DEBUG
             #region JobOpportunities
 
             var opportunitiesList = new List<JobOpportunity>
@@ -38,7 +23,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.SoftwareDevelopment,
                     Title = "Pega Blo Senior",
-                    LocationId = locationsList[0].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description = "Debe saber programar Java",
@@ -50,7 +34,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.SoftwareDevelopment,
                     Title = "Pega Blo Junior",
-                    LocationId = locationsList[0].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description = "Debe saber programar C#",
@@ -62,7 +45,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.Networking,
                     Title = "Gerente de IT",
-                    LocationId = locationsList[1].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description = "Se necesita gerente de IT para multinacional",
@@ -74,7 +56,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.GraphicDesign,
                     Title = "Diseñador Gráfico Web",
-                    LocationId = locationsList[2].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description = "Se necesita diseñador que sepa HTML, CSS, Javascript y maneje Bootstrap",
@@ -86,7 +67,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.SoftwareDevelopment,
                     Title = "4 Vacantes, Desarrolladores",
-                    LocationId = locationsList[0].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -99,7 +79,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.MobileDevelopment,
                     Title = "Programador IOS",
-                    LocationId = locationsList[0].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -112,7 +91,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.MobileDevelopment,
                     Title = "Programador Android",
-                    LocationId = locationsList[0].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -125,7 +103,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.SoftwareDevelopment,
                     Title = "Programador/Desarrollador",
-                    LocationId = locationsList[0].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description = "Tecnologo de Software.",
@@ -137,7 +114,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.SoftwareDevelopment,
                     Title = "Programador",
-                    LocationId = locationsList[0].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -150,7 +126,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.WebDevelopment,
                     Title = "Programadores y disenadores Junior y Senior",
-                    LocationId = locationsList[0].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -163,7 +138,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.MobileDevelopment,
                     Title = "Mobile Developer Intern",
-                    LocationId = locationsList[0].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -176,7 +150,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.SoftwareDevelopment,
                     Title = "Backend python developer",
-                    LocationId = locationsList[0].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -189,7 +162,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.WebDevelopment,
                     Title = "Diseñador web Comunimas",
-                    LocationId = locationsList[0].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -202,7 +174,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.SoftwareDevelopment,
                     Title = "Programador PHP/C#.NET",
-                    LocationId = locationsList[0].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -215,7 +186,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.WebDevelopment,
                     Title = "Senior PHP Developer",
-                    LocationId = locationsList[0].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -228,7 +198,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.DataBaseAdministrator,
                     Title = "Programador Base de Datos",
-                    LocationId = locationsList[0].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -241,7 +210,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.MobileDevelopment,
                     Title = "Mobile y Web Developers",
-                    LocationId = locationsList[0].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -254,7 +222,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.WebDevelopment,
                     Title = "Programador web/Python",
-                    LocationId = locationsList[0].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -267,7 +234,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.SoftwareDevelopment,
                     Title = "programador C++ y programador C#",
-                    LocationId = locationsList[0].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description = "Conocimeinto en C++, c#, v isual studio. Sera para un empleo temporal de 3 meses.",
@@ -279,7 +245,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.WebDevelopment,
                     Title = "Programador SENIOR .NET Indra",
-                    LocationId = locationsList[0].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description = "Ingenieros de Sistemas o Tecnologías de la Información (egresados) 5 años o más de experiencia en desarrollo .NET Conocimientos avanzados Java y SQL. Se ofrece contrato indefinido con jornada completa, seguro médico y bonificación. El salario será a convenir según la valía del candidato.",
@@ -291,7 +256,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.SoftwareDevelopment,
                     Title = "Programador C ++ y c#",
-                    LocationId = locationsList[0].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -304,7 +268,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.SoftwareDevelopment,
                     Title = "Programador Java",
-                    LocationId = locationsList[0].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -317,7 +280,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.WebDevelopment,
                     Title = "Programador web Tamontao",
-                    LocationId = locationsList[2].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description = "Programador web en lenguaje asp.net con mucho tiempo libre para trabajar.",
@@ -329,7 +291,6 @@ namespace EmpleoDotNet.Data.Migrations
                 {
                     Category = JobCategory.SoftwareDevelopment,
                     Title = "Programador VB .net",
-                    LocationId = locationsList[0].Id,
                     CompanyEmail = "prueba@developers.do",
                     CompanyUrl = "http://www.developers.do",
                     Description =
@@ -372,6 +333,7 @@ namespace EmpleoDotNet.Data.Migrations
               
             tagList.ForEach(tags => context.Tags.AddOrUpdate(a=>a.Name, tags));
             #endregion
+#endif
         }
     }
 }

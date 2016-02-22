@@ -14,21 +14,14 @@ namespace EmpleoDotNet.Repository
     {
         public List<JobOpportunity> GetAllJobOpportunities()
         {
-            var jobOpportunities = DbSet.Include(x=>x.Location).OrderByDescending(x => x.PublishedDate);
+            var jobOpportunities = DbSet.Include(x => x.JobOpportunityLocation).OrderByDescending(x => x.PublishedDate);
             
             return jobOpportunities.ToList();
         }
 
-        public List<JobOpportunity> GetAllJobOpportunitiesByLocation(Location location)
-        {
-            var jobOpportunities = DbSet.Include(x => x.Location).Where(x => x.LocationId == location.Id).ToList();
-
-            return jobOpportunities;
-        }
-
         public List<JobOpportunity> GetRelatedJobs(int id, string name)
         {
-            var RelatedJobs = DbSet
+            var relatedJobs = DbSet
                 .Where(
                     x =>
                         x.Id != id &&
@@ -37,7 +30,7 @@ namespace EmpleoDotNet.Repository
                         .Take(5)
                         .ToList();
 
-            return RelatedJobs;
+            return relatedJobs;
         }
 
         public List<JobCategoryCountDto> GetMainJobCategoriesCount()
@@ -60,7 +53,10 @@ namespace EmpleoDotNet.Repository
         public JobOpportunity GetJobOpportunityById(int? id)
         {
             if (!id.HasValue) return null;
-            return DbSet.Include(x => x.Location).Include(x=>x.JoelTest).FirstOrDefault(x => x.Id.Equals(id.Value));
+
+            return DbSet.Include(x => x.JobOpportunityLocation)
+                        .Include(x => x.JoelTest)
+                        .FirstOrDefault(x => x.Id.Equals(id.Value));
         }
 
         /// <summary>
@@ -70,7 +66,7 @@ namespace EmpleoDotNet.Repository
         /// <returns>Objeto que representa una lista de datos paginados</returns>
         public IPagedList<JobOpportunity> GetAllJobOpportunitiesPagedByFilters(JobOpportunityPagingParameter parameter)
         {
-            IPagedList<JobOpportunity> result;
+            IPagedList<JobOpportunity> result = null;
 
             if (parameter.Page <= 0)
                 parameter.Page = 1;
@@ -78,7 +74,7 @@ namespace EmpleoDotNet.Repository
             if (parameter.PageSize <= 0)
                 parameter.PageSize = 15;
 
-            var jobs = DbSet.Include(x => x.Location);
+            var jobs = DbSet.Include(x => x.JobOpportunityLocation);
 
             if (parameter.JobCategory != JobCategory.All)
                 jobs = jobs.Where(x => x.Category == parameter.JobCategory);
@@ -88,7 +84,8 @@ namespace EmpleoDotNet.Repository
 
             jobs = jobs.OrderByDescending(x => x.Id);
 
-            if (parameter.SelectedLocation <= 0)
+            if (string.IsNullOrWhiteSpace(parameter.SelectedLocationPlaceId) && 
+                string.IsNullOrWhiteSpace(parameter.SelectedLocationName))
             {
                 if (!string.IsNullOrWhiteSpace(parameter.Keyword))
                     result = jobs.FullTextSearch(parameter.Keyword)
@@ -99,14 +96,44 @@ namespace EmpleoDotNet.Repository
             else
             {
                 if (!string.IsNullOrWhiteSpace(parameter.Keyword))
-                    result = jobs.Where(x => x.LocationId.Equals(parameter.SelectedLocation))
-                        .FullTextSearch(parameter.Keyword)
-                        .ToPagedList(parameter.Page, parameter.PageSize);
+                {
+                    if (!string.IsNullOrWhiteSpace(parameter.SelectedLocationPlaceId))
+                    {
+                        result = jobs
+                            .Where(x => x.JobOpportunityLocation.PlaceId.Equals(parameter.SelectedLocationPlaceId))
+                            .FullTextSearch(parameter.Keyword)
+                            .ToPagedList(parameter.Page, parameter.PageSize);
+                    }
+                    else if(!string.IsNullOrWhiteSpace(parameter.SelectedLocationName))
+                    {
+                        result = jobs
+                            .Where(x => x.JobOpportunityLocation.Name.ToUpper()
+                            .Contains(parameter.SelectedLocationName.ToUpper()))
+                            .FullTextSearch(parameter.Keyword)
+                            .ToPagedList(parameter.Page, parameter.PageSize);
+                    }
+                    else
+                    {
+                        result = jobs
+                            .FullTextSearch(parameter.Keyword)
+                            .ToPagedList(parameter.Page, parameter.PageSize);
+                    }
+                }
                 else
                 {
-                    result = jobs
-                        .Where(x => x.LocationId.Equals(parameter.SelectedLocation))
-                        .ToPagedList(parameter.Page, parameter.PageSize);
+                    if (!string.IsNullOrWhiteSpace(parameter.SelectedLocationPlaceId))
+                    {
+                        result = jobs
+                            .Where(x => x.JobOpportunityLocation.PlaceId.Equals(parameter.SelectedLocationPlaceId))
+                            .ToPagedList(parameter.Page, parameter.PageSize);
+                    }
+                    else if (!string.IsNullOrWhiteSpace(parameter.SelectedLocationName))
+                    {
+                        result = jobs
+                            .Where(x => x.JobOpportunityLocation.Name.ToUpper()
+                            .Contains(parameter.SelectedLocationName.ToUpper()))
+                            .ToPagedList(parameter.Page, parameter.PageSize);
+                    }
                 }
             }
 
@@ -116,7 +143,7 @@ namespace EmpleoDotNet.Repository
         public List<JobOpportunity> GetLatestJobOpportunity(int quantity)
         {
             return GetAll().OrderByDescending(m => m.PublishedDate)
-                .Include(m => m.Location)
+                .Include(m => m.JobOpportunityLocation)
                 .Take(quantity)
                 .ToList();
         }
