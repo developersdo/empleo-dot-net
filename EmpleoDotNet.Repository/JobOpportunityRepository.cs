@@ -76,7 +76,7 @@ namespace EmpleoDotNet.Repository
 
             var jobs = DbSet.Include(x => x.JobOpportunityLocation);
 
-            if (parameter.JobCategory != JobCategory.All)
+            if ((parameter.JobCategory != JobCategory.All && parameter.JobCategory != JobCategory.Invalid))
                 jobs = jobs.Where(x => x.Category == parameter.JobCategory);
 
             if (parameter.IsRemote)
