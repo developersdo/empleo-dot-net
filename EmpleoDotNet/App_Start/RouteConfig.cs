@@ -12,21 +12,15 @@ namespace EmpleoDotNet
             routes.LowercaseUrls = true;
 
             routes.MapRoute(
-                name: "All jobs",
-                url: "jobs",
-                defaults: new { controller = "JobOpportunity", action = "Index" }
-            );
-
-            routes.MapRoute(
                 name: "job",
-                url: "job/{id}",
+                url: "jobs/{id}",
                 defaults: new { controller = "JobOpportunity", action = "Detail" },
                 constraints: new {id = @"\d+[a-z-A-Z-]+" }
             );
 
             routes.MapRoute(
                 name: "Default job route",
-                url: "job/{action}",
+                url: "jobs/{action}",
                 defaults: new { controller = "JobOpportunity", action = "Index" }
             );
 
