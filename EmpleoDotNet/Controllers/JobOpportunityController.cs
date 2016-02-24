@@ -3,10 +3,12 @@ using System.Web.Mvc;
 using EmpleoDotNet.Core.Dto;
 using EmpleoDotNet.Helpers;
 using EmpleoDotNet.AppServices;
+using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Helpers.Alerts;
 using EmpleoDotNet.Services.Social.Twitter;
 using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.ViewModel.JobOpportunity;
+using PagedList;
 using reCAPTCHA.MVC;
 using System;
 
@@ -16,7 +18,15 @@ namespace EmpleoDotNet.Controllers
     {
         public ActionResult Index(JobOpportunityPagingParameter model)
         {
+            
             var viewModel = GetSearchViewModel(model);
+
+            if (!string.IsNullOrWhiteSpace(viewModel.SelectedLocationName) &&
+                string.IsNullOrWhiteSpace(viewModel.SelectedLocationPlaceId))
+            {
+                ModelState.AddModelError("SelectedLocationName", "");
+                return View(viewModel).WithError("Debe seleccionar una Localidad para buscar.");
+            }
 
             var jobOpportunities = _jobOpportunityService.GetAllJobOpportunitiesPagedByFilters(model);
 
@@ -76,6 +86,12 @@ namespace EmpleoDotNet.Controllers
                     .WithError("Han ocurrido errores de validación que no permiten continuar el proceso");
             }
 
+            if (string.IsNullOrWhiteSpace(model.LocationPlaceId))
+            {
+                ModelState.AddModelError("LocationName", "");
+                return View(model).WithError("Debe seleccionar una Localidad.");
+            }
+
             var jobOpportunity = model.ToEntity();
 
             _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity);
@@ -122,6 +138,13 @@ namespace EmpleoDotNet.Controllers
         /// <returns></returns>
         private JobOpportunitySearchViewModel GetSearchViewModel(JobOpportunityPagingParameter model)
         {
+            if (string.IsNullOrWhiteSpace(model.SelectedLocationName))
+            {
+                model.SelectedLocationLatitude = string.Empty;
+                model.SelectedLocationLongitude = string.Empty;
+                model.SelectedLocationPlaceId = string.Empty;
+            }
+
             var viewModel = new JobOpportunitySearchViewModel
             {
                 SelectedLocationPlaceId = model.SelectedLocationPlaceId,
@@ -129,7 +152,7 @@ namespace EmpleoDotNet.Controllers
                 JobCategory = model.JobCategory,
                 Keyword = model.Keyword,
                 IsRemote = model.IsRemote,
-                CategoriesCount = _jobOpportunityService.GetMainJobCategoriesCount()
+                CategoriesCount = _jobOpportunityService.GetMainJobCategoriesCount(),
             };
 
             return viewModel;
