@@ -476,7 +476,6 @@
     <Content Include="Views\JobOpportunity\Wizard.cshtml" />
     <Content Include="Views\JobOpportunity\_JoelTestResults.cshtml" />
     <Content Include="Views\Shared\_Alerts.cshtml" />
-    <Content Include="Views\Shared\_UnderMaintenancePartial.cshtml" />
     <Content Include="Views\UnderMaintenance\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
