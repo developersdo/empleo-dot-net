@@ -1,4 +1,4 @@
-@using System.Text.RegularExpressions
+﻿@using System.Text.RegularExpressions
 @using EmpleoDotNet.Core.Domain
 @using EmpleoDotNet.Helpers
 
@@ -70,7 +70,7 @@
                 <hr>
 
                 <div class="sidebar-widget" id="company">
-                    <h2>Sobre la compañia</h2>
+                    <h2>Sobre la Compañía</h2>
                     <a href="@Model.CompanyUrl">
                         @if (string.IsNullOrWhiteSpace(@Model.CompanyLogoUrl))
                         {
@@ -92,7 +92,7 @@
                 @if (((List<JobOpportunity>)ViewBag.RelatedJobs).Any())
                 {
                     <div class="sidebar-widget" id="company-jobs">
-                        <h2>Mas empleos de esta compañia</h2>
+                        <h2>Más empleos de esta Compañía</h2>
                         <ul>
                             @foreach (var jobOpportunity in (List<JobOpportunity>)ViewBag.RelatedJobs)
                             {

@@ -38,6 +38,9 @@ namespace EmpleoDotNet.Controllers
         // GET: /JobOpportunity/Detail/4-jobtitle         
         public ActionResult Detail(string id)
         {
+            if (string.IsNullOrWhiteSpace(id))
+                return RedirectToAction("Index");
+
             var value = GetIdFromTitle(id);
             if (value == 0)
                 return RedirectToAction("Index");
