@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Core.Dto;
 using EmpleoDotNet.Data;
 using EmpleoDotNet.Repository.Contracts;
+using EmpleoDotNet.Repository.Dto;
 using EmpleoDotNet.Repository.Helpers;
 using PagedList;
 
@@ -66,7 +68,7 @@ namespace EmpleoDotNet.Repository
         /// <returns>Objeto que representa una lista de datos paginados</returns>
         public IPagedList<JobOpportunity> GetAllJobOpportunitiesPagedByFilters(JobOpportunityPagingParameter parameter)
         {
-            IPagedList<JobOpportunity> result = null;
+            IPagedList<JobOpportunity> result = new PagedList<JobOpportunity>(null, 1, 15);
 
             if (parameter.Page <= 0)
                 parameter.Page = 1;
@@ -76,67 +78,74 @@ namespace EmpleoDotNet.Repository
 
             var jobs = DbSet.Include(x => x.JobOpportunityLocation);
 
+            jobs = jobs.OrderByDescending(x => x.Id);
+            
+            //Filter by JobCategory
             if ((parameter.JobCategory != JobCategory.All && parameter.JobCategory != JobCategory.Invalid))
                 jobs = jobs.Where(x => x.Category == parameter.JobCategory);
 
             if (parameter.IsRemote)
                 jobs = jobs.Where(x => x.IsRemote);
 
-            jobs = jobs.OrderByDescending(x => x.Id);
+            //Filter using FTS if keyword is not empty
+            if (!string.IsNullOrWhiteSpace(parameter.Keyword))
+                jobs = jobs.FullTextSearch(parameter.Keyword);
 
-            if (string.IsNullOrWhiteSpace(parameter.SelectedLocationPlaceId) && 
-                string.IsNullOrWhiteSpace(parameter.SelectedLocationName))
+            //if no location selected just return pagination 
+            if (string.IsNullOrWhiteSpace(parameter.SelectedLocationPlaceId))
             {
-                if (!string.IsNullOrWhiteSpace(parameter.Keyword))
-                    result = jobs.FullTextSearch(parameter.Keyword)
-                        .ToPagedList(parameter.Page, parameter.PageSize);
-                else
-                    result = jobs.ToPagedList(parameter.Page, parameter.PageSize);
-            }
-            else
-            {
-                if (!string.IsNullOrWhiteSpace(parameter.Keyword))
-                {
-                    if (!string.IsNullOrWhiteSpace(parameter.SelectedLocationPlaceId))
-                    {
-                        result = jobs
-                            .Where(x => x.JobOpportunityLocation.PlaceId.Equals(parameter.SelectedLocationPlaceId))
-                            .FullTextSearch(parameter.Keyword)
-                            .ToPagedList(parameter.Page, parameter.PageSize);
-                    }
-                    else if(!string.IsNullOrWhiteSpace(parameter.SelectedLocationName))
-                    {
-                        result = jobs
-                            .Where(x => x.JobOpportunityLocation.Name.ToUpper()
-                            .Contains(parameter.SelectedLocationName.ToUpper()))
-                            .FullTextSearch(parameter.Keyword)
-                            .ToPagedList(parameter.Page, parameter.PageSize);
-                    }
-                    else
-                    {
-                        result = jobs
-                            .FullTextSearch(parameter.Keyword)
-                            .ToPagedList(parameter.Page, parameter.PageSize);
-                    }
-                }
-                else
-                {
-                    if (!string.IsNullOrWhiteSpace(parameter.SelectedLocationPlaceId))
-                    {
-                        result = jobs
-                            .Where(x => x.JobOpportunityLocation.PlaceId.Equals(parameter.SelectedLocationPlaceId))
-                            .ToPagedList(parameter.Page, parameter.PageSize);
-                    }
-                    else if (!string.IsNullOrWhiteSpace(parameter.SelectedLocationName))
-                    {
-                        result = jobs
-                            .Where(x => x.JobOpportunityLocation.Name.ToUpper()
-                            .Contains(parameter.SelectedLocationName.ToUpper()))
-                            .ToPagedList(parameter.Page, parameter.PageSize);
-                    }
-                }
+                result = jobs.ToPagedList(parameter.Page, parameter.PageSize);
+
+                return result;
             }
 
+            //Query using Haversine formula ref.: http://www.wikiwand.com/en/Haversine_formula
+
+            var locations = GetNearbyJobOpportunityLocations(parameter.SelectedLocationLatitude,
+                parameter.SelectedLocationLongitude, parameter.LocationDistance);
+
+            if (!locations.Any())
+                return result;
+
+            result = (from jo in jobs
+                where locations.Contains(jo.JobOpportunityLocationId.Value)
+                select jo).ToPagedList(parameter.Page, parameter.PageSize);
+
+            return result;
+        }
+
+        private List<int> GetNearbyJobOpportunityLocations(string latitude, string longitude, decimal distance)
+        {
+            var query =
+                Context
+                .Database
+                .SqlQuery<NearbyJobOpportunityLocation>(@"
+                    SELECT jol.Id
+                    , p.distance_unit
+                                * DEGREES(ACOS(COS(RADIANS(p.latpoint))
+                                * COS(RADIANS(jol.Latitude))
+                                * COS(RADIANS(p.longpoint) - RADIANS(jol.Longitude))
+                                + SIN(RADIANS(p.latpoint))
+                                * SIN(RADIANS(jol.Latitude)))) AS DistanceInKm
+                FROM JobOpportunityLocations AS jol
+                JOIN (   /* these are the query parameters */
+                    SELECT  @latitude  AS latpoint, @longitude AS longpoint,
+                            @distance AS radius, 111.045 AS distance_unit
+                ) AS p ON 1=1
+                WHERE jol.Latitude
+                    BETWEEN p.latpoint  - (p.radius / p.distance_unit)
+                        AND p.latpoint  + (p.radius / p.distance_unit)
+                AND jol.longitude
+                    BETWEEN p.longpoint - (p.radius / (p.distance_unit * COS(RADIANS(p.latpoint))))
+                        AND p.longpoint + (p.radius / (p.distance_unit * COS(RADIANS(p.latpoint))))
+                ORDER BY DistanceInKm ", 
+                new SqlParameter("@latitude", latitude),
+                new SqlParameter("@longitude", longitude),
+                new SqlParameter("@distance", distance))
+                .ToList();
+
+            var result = query.Select(x => x.Id).ToList();
+                
             return result;
         }
 

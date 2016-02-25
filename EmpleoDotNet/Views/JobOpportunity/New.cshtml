@@ -60,7 +60,8 @@
                 {
                     @class = "form-control",
                     placeholder = "Selecciona una localidad",
-                    id = "location-input"
+                    id = "location-input",
+                    autocomplete = "off"
                 })
                 @Html.HiddenFor(m => m.LocationLatitude, new { id = "location-latitude"})
                 @Html.HiddenFor(m => m.LocationLongitude, new { id = "location-longitude" })

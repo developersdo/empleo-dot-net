@@ -16,8 +16,12 @@
                 var place = places.getPlace();
                 if (place) {
                     var placeId = place.place_id;
+                    var latitude = place.geometry.location.lat();
+                    var longitude = place.geometry.location.lng();
 
                     $('#location-placeid').val(placeId);
+                    $('#location-latitude').val(latitude);
+                    $('#location-longitude').val(longitude);
                 } else {
                     $('#location-input').val('');
                     $('#location-placeid').val('');
