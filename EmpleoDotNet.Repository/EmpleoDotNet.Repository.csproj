@@ -71,6 +71,7 @@
     <Compile Include="Contracts\IBaseRepository.cs" />
     <Compile Include="Contracts\IJobOpportunityRepository.cs" />
     <Compile Include="Contracts\ITagRepository.cs" />
+    <Compile Include="Dto\NearbyJobOpportunityLocation.cs" />
     <Compile Include="Helpers\QueryableExtensions.cs" />
     <Compile Include="JobOpportunityRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

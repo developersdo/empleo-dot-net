@@ -66,9 +66,12 @@
                                 @Html.TextBoxFor(m => m.SelectedLocationName, new
                                 {
                                     @class = "form-control",
-                                    id = "location-input"
-                                })
+                                    id = "location-input",
+                                    autocomplete = "off"
+                                 })
                                 @Html.HiddenFor(m => m.SelectedLocationPlaceId, new { id = "location-placeid" })
+                                @Html.HiddenFor(m => m.SelectedLocationLatitude, new { id = "location-latitude" })
+                                @Html.HiddenFor(m => m.SelectedLocationLongitude, new { id = "location-longitude" })
                             </div>
                         </div>
                         <div class="col-md-6">

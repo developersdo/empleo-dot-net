@@ -16,8 +16,12 @@
                 var place = places.getPlace();
                 if (place) {
                     var placeId = place.place_id;
+                    var latitude = place.geometry.location.lat();
+                    var longitude = place.geometry.location.lng();
 
                     $('#location-placeid').val(placeId);
+                    $('#location-latitude').val(latitude);
+                    $('#location-longitude').val(longitude);
                 } else {
                     $('#location-input').val('');
                     $('#location-placeid').val('');
@@ -32,38 +36,38 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
-            @if (!Model.Result.Any() && (!string.IsNullOrWhiteSpace(Model.Keyword)))
+            @if (Model.Result == null || !Model.Result.Any())
             {
                 <div>
                     <h5>No se encontraron resultados para esta búsqueda.</h5>
                     <hr/>
                 </div>
             }
-            <br/>
-            <div>
-                <h5>@Model.Result.TotalItemCount Empleo(s) disponibles para esta búsqueda.</h5>
-                <br />
-            </div>
-
-
-            @Html.Partial("_JobListPartial", Model.Result)
-            <br />
-            <div>
-                <h5>@Model.Result.TotalItemCount Empleos disponibles para esta búsqueda.</h5>
-                <br />
-            </div>
-
-            @*Pagination*@
-            @if (Model.Result.PageCount > 1)
+            else
             {
-                @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
+                <div>
+                    <h5>@Model.Result.TotalItemCount Empleo(s) disponibles para esta búsqueda.</h5>
+                </div>
+
+                <br />
+
+                @Html.Partial("_JobListPartial", Model.Result)
+
+                <br />
+
+                @*Pagination*@
+                if (Model.Result.PageCount > 1)
                 {
-                SelectedLocation = Model.SelectedLocationName,
-                page,
-                Model.Result.PageSize
-                }));
+                   @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
+                    {
+                       Model.SelectedLocationName,
+                       Model.SelectedLocationLatitude,
+                       Model.SelectedLocationLongitude,
+                       page,
+                       Model.Result.PageSize
+                   }))
+                }
             }
-            
         </div>
     </div>
 </div>
