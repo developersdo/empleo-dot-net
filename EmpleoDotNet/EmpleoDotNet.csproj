@@ -261,9 +261,11 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobOpportunityController.cs" />
+    <Compile Include="Controllers\UnderMaintenanceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\UnderMaintenanceFilterAttribute.cs" />
     <Compile Include="Helpers\Alerts\Alert.cs" />
     <Compile Include="Helpers\Alerts\AlertDecoratorResult.cs" />
     <Compile Include="Helpers\Alerts\AlertExtensions.cs" />
@@ -474,6 +476,8 @@
     <Content Include="Views\JobOpportunity\Wizard.cshtml" />
     <Content Include="Views\JobOpportunity\_JoelTestResults.cshtml" />
     <Content Include="Views\Shared\_Alerts.cshtml" />
+    <Content Include="Views\Shared\_UnderMaintenancePartial.cshtml" />
+    <Content Include="Views\UnderMaintenance\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
