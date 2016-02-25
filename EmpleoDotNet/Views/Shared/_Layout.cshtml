@@ -1,5 +1,4 @@
-﻿@using System.Reflection
-@using EmpleoDotNet.Helpers
+﻿@using EmpleoDotNet.Helpers
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,10 +46,10 @@
                 <a class="fm-button"><i class="fa fa-close fa-2x"></i></a>
             </div>
             <ul class="nav">
-                <li  class="@Html.IsSelected("Home", "Index")"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li class="@Html.IsSelected("Home", "Index")"><a href="@Url.Action("Index", "Home")">Home</a></li>
                 <li class="@Html.IsSelected("JobOpportunity", "Index")"><a href="@Url.Action("Index", "JobOpportunity")">Lista de Empleos</a></li>
                 <li class="@Html.IsSelected("JobOpportunity", "New")"><a href="@Url.Action("New", "JobOpportunity")">Publicar un Empleo</a></li>
-                <li  class="@Html.IsSelected("Credits", "Index")"><a href="@Url.Action("Index", "Credits")">Agradecimientos</a></li>
+                <li class="@Html.IsSelected("Credits", "Index")"><a href="@Url.Action("Index", "Credits")">Agradecimientos</a></li>
             </ul>
         </div>
         <!-- end Menu -->
@@ -82,7 +81,6 @@
     <!-- ============ PAGE LOADER END ============ -->
 
     @Html.Partial("_Alerts")
-
     @RenderBody()
 
     <footer>
