@@ -67,6 +67,8 @@ namespace EmpleoDotNet.Controllers
         }
 
         [HttpGet]
+
+        [Authorize]
         public ActionResult New()
         {
             var viewModel = new NewJobOpportunityViewModel();
@@ -78,6 +80,7 @@ namespace EmpleoDotNet.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         [ValidateInput(false)]
         [CaptchaValidator(RequiredMessage = "Por favor confirma que no eres un robot")]
+        [Authorize]
         public async Task<ActionResult> New(NewJobOpportunityViewModel model, bool captchaValid)
         {
             if (!ModelState.IsValid)

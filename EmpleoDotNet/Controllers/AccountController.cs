@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Security.Claims;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using EmpleoDotNet.Data;
@@ -193,14 +194,55 @@ namespace EmpleoDotNet.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
-            if (loginInfo == null)
+            //var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
+            //if (loginInfo == null)
+            //{
+            //    return RedirectToAction("Login");
+            //}
+
+            //// Sign in the user with this external login provider if the user already has a login
+            //var user = await UserManager.FindAsync(loginInfo.Login);
+            //if (user != null)
+            //{
+            //    await SignInAsync(user, isPersistent: false);
+            //    return RedirectToLocal(returnUrl);
+            //}
+            //else
+            //{
+            //    // If the user does not have an account, then prompt the user to create an account
+            //    ViewBag.ReturnUrl = returnUrl;
+            //    ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
+            //    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { UserName = loginInfo.DefaultUserName });
+            //}
+
+
+
+            var result = await AuthenticationManager.AuthenticateAsync(DefaultAuthenticationTypes.ExternalCookie);
+            if (result == null || result.Identity == null)
+            {
+                return RedirectToAction("Login");
+            }
+            
+            var idClaim = result.Identity.FindFirst(ClaimTypes.NameIdentifier);
+            if (idClaim == null)
             {
                 return RedirectToAction("Login");
             }
 
+            var login = new UserLoginInfo(idClaim.Issuer, idClaim.Value);
+            var name = result.Identity.Name == null ? "" : result.Identity.Name.Replace(" ", "");
+
+            if (login.LoginProvider == "Facebook")
+            {
+                var access_token = result.Identity.FindFirstValue("FacebookAccessToken");
+                
+                var fb = new Facebook.FacebookClient(access_token);
+                dynamic myInfo = fb.Get("/me?fields=id,name,email,first_name,last_name"); // specify the email field
+                name = myInfo.email;
+            }
+
             // Sign in the user with this external login provider if the user already has a login
-            var user = await UserManager.FindAsync(loginInfo.Login);
+            var user = await UserManager.FindAsync(login);
             if (user != null)
             {
                 await SignInAsync(user, isPersistent: false);
@@ -210,8 +252,8 @@ namespace EmpleoDotNet.Controllers
             {
                 // If the user does not have an account, then prompt the user to create an account
                 ViewBag.ReturnUrl = returnUrl;
-                ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { UserName = loginInfo.DefaultUserName });
+                ViewBag.LoginProvider = login.LoginProvider;
+                return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { UserName = name });
             }
         }
 

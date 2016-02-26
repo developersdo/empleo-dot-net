@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.Facebook;
 using Owin;
 
 namespace EmpleoDotNet
@@ -28,9 +32,26 @@ namespace EmpleoDotNet
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "BLAH",
-            // appSecret: "BLAH");
+
+            var fbAuthOptions = new FacebookAuthenticationOptions
+            {
+                AppId = "1640386106224012",
+                AppSecret = "13d97c0da39d38c3a990af219959b204"
+            };
+            
+            fbAuthOptions.Scope.Add("email");
+            fbAuthOptions.Scope.Add("public_profile");
+            fbAuthOptions.Scope.Add("user_friends");
+            fbAuthOptions.Provider = new FacebookAuthenticationProvider
+            {
+                OnAuthenticated = context =>
+                {
+                    context.Identity.AddClaim(new Claim("FacebookAccessToken",context.AccessToken));
+                    return Task.FromResult(true);
+                }
+            };
+                
+            app.UseFacebookAuthentication(fbAuthOptions);
 
             //app.UseGoogleAuthentication();
         }
