@@ -11,17 +11,20 @@
     }
     <title>@title</title>
     @Html.Partial("_GoogleAnalytics")
-    @Styles.Render("~/bundles/styles")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/css/theme/font-awesome.min.css" rel="stylesheet" />
-    @Styles.Render("~/bundles/theme/css")
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <!-- Plugins-->
+    <link href="~/Content/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="~/Content/owl-carousel/owl.theme.css" rel="stylesheet">
+    <link href="~/Content/owl-carousel/owl.transitions.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/Content/vegas.min.css" />
+
+
+    <link rel="stylesheet" href="~/Content/empleado.css" />
+
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:700" rel="stylesheet" />
-    <style>
-        #menu-action-icon {
-            margin-right: 18px;
-        }
-    </style>
-    <link href="~/Content/findJob.css" rel="stylesheet" />
     <script src='https://www.google.com/recaptcha/api.js'></script>
     @RenderSection("styles", required: false)
 
@@ -37,79 +40,63 @@
     <meta property="og:image" content="@ogImage">
 </head>
 <body id="home">
-    <!-- ============ NAVBAR START ============ -->
 
-    <div class="fm-container">
-        <!-- Menu -->
-        <div class="menu">
-            <div class="button-close text-right">
-                <a class="fm-button"><i class="fa fa-close fa-2x"></i></a>
+    <!-- Pre-loader -->
+    <div id="pre-loader"></div>
+
+    <!-- Logo -->
+    <div class="logo hidden-xs">
+        <div class="logo-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 col-xs-4">
+                        <div class="logo-title">
+                            <a href="/">Emplea.do</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <ul class="nav">
-                <li class="@Html.IsSelected("Home", "Index")"><a href="@Url.Action("Index", "Home")">Home</a></li>
-                <li class="@Html.IsSelected("JobOpportunity", "Index")"><a href="@Url.Action("Index", "JobOpportunity")">Lista de Empleos</a></li>
-                <li class="@Html.IsSelected("JobOpportunity", "New")"><a href="@Url.Action("New", "JobOpportunity")">Publicar un Empleo</a></li>
-                <li class="@Html.IsSelected("Credits", "Index")"><a href="@Url.Action("Index", "Credits")">Agradecimientos</a></li>
-            </ul>
         </div>
-        <!-- end Menu -->
     </div>
 
-    <!-- ============ NAVBAR END ============ -->
-
-    <header>
-        <div id="header-background"></div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
-            <div class="pull-left">
-                <div>
-                    <a id="menu-action-icon" class="fm-button"><i class="fa fa-bars fa-lg"></i></a>
-                    <span><a href="@Url.Action("Index", "Home")"><i class="fa fa-users fa-2x"></i> Emplea.do { beta }</a></span>
-                </div>
+            <div class="navbar-header hidden-lg hidden-md hidden-sm">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand">Emplea.do</a>
             </div>
-            <div class="pull-right hidden-xs">
-                <div>
-                    <a class="btn btn-default" href="@Url.Action("New", "JobOpportunity")"><i class="fa fa-user"></i> Publicar un Empleo</a>
-                </div>
+            <div class="collapse navbar-collapse navbar-left" id="nav-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="@Html.IsSelected("Home", "Index")">
+                        <a href="/">Inicio</a>
+                    </li>
+                    <li class="@Html.IsSelected("Jobs", "Index")">
+                        <a href="/jobs/">Lista de empleos</a>
+                    </li>
+                    <li class="@Html.IsSelected("JobOpportunity", "New")">
+                        <a href="/jobs/new">Crear un empleo</a>
+                    </li>
+                </ul>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <!-- ============ PAGE LOADER START ============ -->
-    <div id="loader">
-        <i class="fa fa-cog fa-4x fa-spin"></i>
-    </div>
-    <!-- ============ PAGE LOADER END ============ -->
 
     @Html.Partial("_Alerts")
     @RenderBody()
 
     <footer>
-        <div id="prefooter">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6" id="newsletter">
-                        <h2>Emplea.do</h2>
-                        <a href="https://www.facebook.com/empleadonet" class="btn btn-default"><i class="fa fa-facebook"></i></a>
-                        <a href="https://twitter.com/emplea_do" class="btn btn-default"><i class="fa fa-twitter"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="credits">
+        <div class="footer-inner">
             <div class="container text-center">
                 <div class="row">
-                    <div class="col-sm-3 hidden-xs">
-                        <a class="btn btn-default pull-left" href="https://github.com/developersdo/empleo-dot-net" target="_blank"><i class="fa fa-github"></i> Fork us on github</a>
-                    </div>
-                    <div class="col-sm-6">
-                        &copy; @DateTime.Today.Year Emplea.do<br>
-                        Made with <i class="fa fa-heart fa-inverse"></i> by <a href="@Url.Action("Index", "Credits")">all of us</a>
-                        <br/><span>ver. @Html.AssemblyVersion()</span>
-                        
-                        <div class="text-center hidden-lg hidden-sm hidden-md">
-                            <br/>
-                            <a class="btn btn-default" href="https://github.com/developersdo/empleo-dot-net" target="_blank"><i class="fa fa-github"></i> Fork us on github</a>
-                        </div>
+                    <div class="col-md-12">
+                        <p class="copy">&copy; 2016 Emplea.do - Hecho en Rep. Dominicana por <a href="#">Developers.do</a></p>
                     </div>
                 </div>
             </div>
@@ -118,8 +105,9 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/theme/js")
-    @Scripts.Render("~/bundles/app")
+    <script src="~/Scripts/owl.carousel.min.js"></script>
+    <script src="~/Scripts/vegas.min.js"></script>
+    <script src="~/Scripts/empleado.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

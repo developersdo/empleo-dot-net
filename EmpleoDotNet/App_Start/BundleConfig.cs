@@ -34,7 +34,6 @@ namespace EmpleoDotNet
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                         "~/Scripts/app.js"
                         ));
-
             RegisterTemplate(bundles);
         }
 

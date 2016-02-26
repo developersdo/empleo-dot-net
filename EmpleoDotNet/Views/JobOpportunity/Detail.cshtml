@@ -8,104 +8,109 @@
     ViewBag.Description = Regex.Replace(Model.Description, @"<(.|\n)*?>", "");
     ViewBag.ImageUrl = Model.CompanyLogoUrl;
 }
-
-<section id="title">
+<section>
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 text-center">
-                <h1>@Model.Title</h1>
-                <h4>
-                    @if (Model.JobOpportunityLocation == null)
-                    {
-                        <span><i class="fa fa-map-marker"></i>N/A</span>
-                    }
-                    else
-                    {
-                        <span><i class="fa fa-map-marker"></i>@Model.JobOpportunityLocation.Name</span>
-                    }
-                    <span><i class="fa fa-cog"></i>@Model.Category.ToEnumDescription()</span>
-                    @if (Model.IsRemote)
-                    {
-                        <span><i class="fa fa-globe"></i>Remoto</span>
-                    }
-                </h4>
-                <h5 class="text-center"><i class="fa fa-calendar"></i> @Model.Created.ToString("dd MMMM yyyy")</h5>
+            <div class="col-md-12">
+                <h3>@Model.Title</h3>
+                <hr class="small">
             </div>
         </div>
     </div>
-</section>
 
-<section id="jobs">
-    <div class="container">
+    <div class="container job-details-content">
         <div class="row">
             <div class="col-sm-8">
-                <article>
-                    <h2>Detalles del Puesto</h2>
-                    <article>
-                        @Html.Raw(Model.Description)
-                    </article>
-                    <h3>Como aplicar</h3>
-                    <p>
-                        Enviar CV <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a>
-                    </p>
-                </article>
-                <article>
-                    @if (Model.JoelTest != null)
-                    {
-                        Html.RenderPartial("_JoelTestResults", Model.JoelTest);
-                    }
-                </article>
-            </div>
-            <div class="col-sm-4" id="sidebar">
-                <div class="sidebar-widget" id="share">
-                    <h2>Compartir</h2>
-                    <ul>
-                        <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=@Request.Url"><i class="fa fa-facebook"></i></a></li>
-                        <li><a target="_blank" href="https://twitter.com/home?status=@Request.Url"><i class="fa fa-twitter"></i></a></li>
-                        <li><a target="_blank" href="https://plus.google.com/share?url=@Request.Url"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=@Request.Url&amp;summary=&amp;source="><i class="fa fa-linkedin"></i></a></li>
-                    </ul>
-                </div>
+                <div class="panel panel-default" id="meta">
+                    <div class="panel-body">
+                        <ul class="list-unstyled">
+                            <li>
+                                Categoria: <span class="text-opacity">@Model.Category.ToEnumDescription()</span>
+                            </li>
+                            <li>
+                                Localidad:
+                                @if (Model.JobOpportunityLocation == null)
+                                {
+                                    <span class="text-opacity">N/A</span>
+                                }
+                                else
+                                {
+                                    <span class="text-opacity">@Model.JobOpportunityLocation.Name</span>
+                                }
+                            </li>
+                            <li>
+                                Publicado: <span class="text-opacity">@Model.Created.ToDominicanFormat()</span>
+                            </li>
 
-                <hr>
-
-                <div class="sidebar-widget" id="company">
-                    <h2>Sobre la Compañía</h2>
-                    <a href="@Model.CompanyUrl">
-                        @if (string.IsNullOrWhiteSpace(@Model.CompanyLogoUrl))
-                        {
-                            <img src="~/Content/img/company-logo-placeholder.png" />
-                        }
-                        else
-                        {
-                            <img src="@Model.CompanyLogoUrl" alt="" class="img-responsive">
-                        }
-                    </a>
-                    <h5>@Model.CompanyName</h5>
-                    <p>
-                        <a href="@Model.CompanyUrl" class="btn btn-primary">Más sobre esta compañía</a>
-                    </p>
-                </div>
-
-                <hr>
-
-                @if (((List<JobOpportunity>)ViewBag.RelatedJobs).Any())
-                {
-                    <div class="sidebar-widget" id="company-jobs">
-                        <h2>Más empleos de esta Compañía</h2>
-                        <ul>
-                            @foreach (var jobOpportunity in (List<JobOpportunity>)ViewBag.RelatedJobs)
+                            @if (Model.IsRemote)
                             {
-                                <li><a href="@Url.Action("Detail", new {id=UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)})">@jobOpportunity.Title</a></li>
+                                <li class="remote">
+                                    <span class="badge badge-success">Remoto</span>
+                                </li>
                             }
                         </ul>
-                    </div>
-                        <hr>
-                }
 
-                <div class="sidebar-widget" id="view-count">
-                    <h2>Visitas Realizadas</h2>
-                    <h3>@Model.ViewCount</h3>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        @Html.Raw(Model.Description);
+                        <strong>Como aplicar:</strong>
+                        <br><br>
+                        Enviar CV <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a>
+
+                        <article>
+                            @if (Model.JoelTest != null)
+                            {
+                                Html.RenderPartial("_JoelTestResults", Model.JoelTest);
+                            }
+                        </article>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="panel panel-default" id="company">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Acerca de la empresa</h4>
+                    </div>
+                    <div class="panel-body">
+                        <a href="@Model.CompanyUrl">
+                            @if (string.IsNullOrWhiteSpace(@Model.CompanyLogoUrl))
+                            {
+                                <img src="~/Content/img/company-logo-placeholder.png" />
+                            }
+                            else
+                            {
+                                <img src="@Model.CompanyLogoUrl" alt="" class="img-responsive">
+                            }
+                        </a>
+                        <h5>@Model.CompanyName</h5>
+                    </div>
+                    <div class="panel-footer text-right">
+                        <a href="@Model.CompanyUrl">Mas acerca de la empresa &raquo;</a>
+                    </div>
+                </div>
+                <div class="panel panel-default" id="share">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Compartir</h4>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=@Request.Url" class="btn btn-primary btn-xl"><span class="fa fa-facebook"></span></a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/home?status=@Request.Url" class="btn btn-primary btn-xl"><span class="fa fa-twitter"></span></a>
+                            </li>
+                            <li>
+                                <a href="https://plus.google.com/share?url=@Request.Url" class="btn btn-primary btn-xl"><span class="fa fa-google"></span></a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=@Request.Url&amp;summary=&amp;source=" class="btn btn-primary btn-xl"><span class="fa fa-linkedin"></span></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
