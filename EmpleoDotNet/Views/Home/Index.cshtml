@@ -30,9 +30,24 @@
         });
     </script>
 }
+    <!-- Intro -->
+<header id="intro" class="no-padding">
+    <div class="intro-content">
+        <div class="intro-inner">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2">
+                        <h1>Encuentra <strong>empleo</strong>, o un colaborador hoy</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 
 
 @Html.Partial("_FindJobsPartial", (JobOpportunitySearchViewModel)ViewBag.SearchViewModel)
+
 
 <div class="container" style="margin-top: -50px;">
     <section id="jobs">

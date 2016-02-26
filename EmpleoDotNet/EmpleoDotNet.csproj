@@ -152,6 +152,10 @@
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
       <Private>True</Private>
@@ -184,9 +188,6 @@
     <Reference Include="System.Net.Http">
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
-    </Reference>
-    <Reference Include="System.Web.Optimization">
-      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.1\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
     <Reference Include="Tweetinvi, Version=0.9.10.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\TweetinviAPI.0.9.10.2\lib\net45\Tweetinvi.dll</HintPath>
@@ -299,6 +300,7 @@
     <Content Include="Content\css\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\css\theme\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\css\theme\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\empleado.css" />
     <Content Include="Content\findJob.css" />
     <Content Include="Content\IconsSocial\Email.png" />
     <Content Include="Content\IconsSocial\Facebook.png" />
@@ -311,11 +313,17 @@
     <Content Include="Content\IconsSocial\Tumblr.png" />
     <Content Include="Content\IconsSocial\Twitter.png" />
     <Content Include="Content\IconsSocial\Wordpress.png" />
+    <Content Include="Content\img\comp-1.png" />
     <Content Include="Content\img\company-logo-placeholder.png" />
     <Content Include="Content\img\pinedax.png" />
     <Content Include="Content\img\find-a-job.jpg" />
     <Content Include="Content\img\logo-empleado.png" />
     <Content Include="Content\img\post-a-job.jpg" />
+    <Content Include="Content\img\pre-loader.gif" />
+    <Content Include="Content\img\slide1.jpg" />
+    <Content Include="Content\img\slide2.jpg" />
+    <Content Include="Content\img\slide3.jpg" />
+    <Content Include="Content\img\slide4.jpg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\responsive.css" />
     <Content Include="Content\css\theme\animate.css" />
@@ -329,6 +337,7 @@
     <Content Include="Content\css\theme\owl.carousel.css" />
     <Content Include="Content\css\theme\style.css" />
     <Content Include="Content\JobOpportunity\Wizard.css" />
+    <Content Include="Content\vegas.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -362,6 +371,7 @@
     <Content Include="Content\css\theme\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\css\theme\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\empleado.js" />
     <Content Include="Scripts\i18n\az.js" />
     <Content Include="Scripts\i18n\bg.js" />
     <Content Include="Scripts\i18n\ca.js" />
@@ -417,6 +427,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\owl.carousel.min.js" />
     <Content Include="Scripts\parsley.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
@@ -442,6 +453,7 @@
     <Content Include="Scripts\theme\scrollReveal.min.js" />
     <Content Include="Scripts\theme\settings.js" />
     <Content Include="Scripts\theme\waypoints.min.js" />
+    <Content Include="Scripts\vegas.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Shared\_JobListPartial.cshtml" />
     <Content Include="Web.config" />
@@ -480,6 +492,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\owl-carousel\" />
     <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
