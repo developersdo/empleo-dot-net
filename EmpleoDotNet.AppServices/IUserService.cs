@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EmpleoDotNet.AppServices
 {
-    public interface IUserProfileService
+    public interface IUserService
     {
     }
 }
