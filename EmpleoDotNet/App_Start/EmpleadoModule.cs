@@ -16,9 +16,10 @@ namespace EmpleoDotNet.App_Start
 
             Kernel.Bind<IJobOpportunityRepository>().To<JobOpportunityRepository>();
             Kernel.Bind<ITagRepository>().To<TagRepository>();
+            Kernel.Bind<IUserProfileRepository>().To<UserProfileRepository>();
 
             Kernel.Bind<IJobOpportunityService>().To<JobOpportunityService>();
-
+            
             Kernel.Bind<ITwitterService>().To<TwitterService>();
         }
     }

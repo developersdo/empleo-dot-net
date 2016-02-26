@@ -147,6 +147,9 @@
     <EmbeddedResource Include="Migrations\201602190158389_JobOpportunityLocationTable.resx">
       <DependentUpon>201602190158389_JobOpportunityLocationTable.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602260327441_Add_UserProfile_Entity.resx">
+      <DependentUpon>201602260327441_Add_UserProfile_Entity.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602190159405_NullableLocationField.resx">
       <DependentUpon>201602190159405_NullableLocationField.cs</DependentUpon>
     </EmbeddedResource>
