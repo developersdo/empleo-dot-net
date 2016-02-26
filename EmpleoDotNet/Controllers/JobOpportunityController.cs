@@ -152,6 +152,8 @@ namespace EmpleoDotNet.Controllers
             {
                 SelectedLocationPlaceId = model.SelectedLocationPlaceId,
                 SelectedLocationName = model.SelectedLocationName,
+                SelectedLocationLongitude = model.SelectedLocationLongitude,
+                SelectedLocationLatitude = model.SelectedLocationLatitude,
                 JobCategory = model.JobCategory,
                 Keyword = model.Keyword,
                 IsRemote = model.IsRemote,
