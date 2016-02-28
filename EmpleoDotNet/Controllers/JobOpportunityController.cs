@@ -3,12 +3,10 @@ using System.Web.Mvc;
 using EmpleoDotNet.Core.Dto;
 using EmpleoDotNet.Helpers;
 using EmpleoDotNet.AppServices;
-using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Helpers.Alerts;
 using EmpleoDotNet.Services.Social.Twitter;
 using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.ViewModel.JobOpportunity;
-using PagedList;
 using reCAPTCHA.MVC;
 using System;
 
@@ -18,7 +16,7 @@ namespace EmpleoDotNet.Controllers
     {
         public ActionResult Index(JobOpportunityPagingParameter model)
         {
-            
+
             var viewModel = GetSearchViewModel(model);
 
             if (!string.IsNullOrWhiteSpace(viewModel.SelectedLocationName) &&
@@ -47,27 +45,26 @@ namespace EmpleoDotNet.Controllers
 
             var vm = _jobOpportunityService.GetJobOpportunityById(value);
 
-            if (vm != null)
+            if (vm == null)
+                return View("Index")
+                    .WithError("La vacante solicitada no existe. Por favor escoge una vacante válida del listado");
+
+            var expectedUrl = UrlHelperExtensions.SeoUrl(value, vm.Title.SanitizeUrl());
+
+            if (!expectedUrl.Equals(id, StringComparison.OrdinalIgnoreCase))
+                return RedirectToActionPermanent("Detail", new { id = expectedUrl });
+
+            ViewBag.RelatedJobs =
+                _jobOpportunityService.GetCompanyRelatedJobs(value, vm.CompanyName);
+
+            var cookieView = $"JobView{vm.Id}";
+            if (!CookieHelper.Exists(cookieView))
             {
-                var expectedUrl = UrlHelperExtensions.SeoUrl(value, vm.Title.SanitizeUrl());
-
-                if (!expectedUrl.Equals(id,StringComparison.OrdinalIgnoreCase))
-                    return RedirectToActionPermanent("Detail", new { id = expectedUrl });
-
-                ViewBag.RelatedJobs =
-                    _jobOpportunityService.GetCompanyRelatedJobs(value, vm.CompanyName);
-
-                var cookieView = $"JobView{vm.Id}";
-                if (!CookieHelper.Exists(cookieView))
-                {
-                    _jobOpportunityService.UpdateViewCount(vm.Id);
-                    CookieHelper.Set(cookieView, vm.Id.ToString());
-                }
-
-                return View("Detail", vm);
+                _jobOpportunityService.UpdateViewCount(vm.Id);
+                CookieHelper.Set(cookieView, vm.Id.ToString());
             }
 
-            return View("Index").WithError("La vacante solicitada no existe. Por favor escoge una vacante válida del listado");
+            return View("Detail", vm);
         }
 
         public ActionResult New()
@@ -75,7 +72,7 @@ namespace EmpleoDotNet.Controllers
             var viewModel = new NewJobOpportunityViewModel();
 
             return View(viewModel)
-                .WithInfo("Prueba nuestro nuevo proceso guiado de creación de posiciones haciendo <b><a href='"+Url.Action("Wizard")+"'>click aquí</a></b>");
+                .WithInfo("Prueba nuestro nuevo proceso guiado de creación de posiciones haciendo <b><a href='" + Url.Action("Wizard") + "'>click aquí</a></b>");
         }
 
         [HttpPost, ValidateAntiForgeryToken]
@@ -101,8 +98,7 @@ namespace EmpleoDotNet.Controllers
 
             await _twitterService.PostNewJobOpportunity(jobOpportunity);
 
-            return RedirectToAction("Detail", new
-            {
+            return RedirectToAction("Detail", new {
                 id = UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)
             });
         }
@@ -127,8 +123,7 @@ namespace EmpleoDotNet.Controllers
 
             await _twitterService.PostNewJobOpportunity(jobOpportunity);
 
-            return RedirectToAction("Detail", new
-            {
+            return RedirectToAction("Detail", new {
                 id = UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title),
                 fromWizard = 1
             });
@@ -148,8 +143,7 @@ namespace EmpleoDotNet.Controllers
                 model.SelectedLocationPlaceId = string.Empty;
             }
 
-            var viewModel = new JobOpportunitySearchViewModel
-            {
+            var viewModel = new JobOpportunitySearchViewModel {
                 SelectedLocationPlaceId = model.SelectedLocationPlaceId,
                 SelectedLocationName = model.SelectedLocationName,
                 SelectedLocationLongitude = model.SelectedLocationLongitude,
