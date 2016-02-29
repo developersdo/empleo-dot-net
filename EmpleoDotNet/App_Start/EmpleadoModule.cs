@@ -16,9 +16,7 @@ namespace EmpleoDotNet.App_Start
 
             Kernel.Bind<IJobOpportunityRepository>().To<JobOpportunityRepository>();
             Kernel.Bind<ITagRepository>().To<TagRepository>();
-            Kernel.Bind<ILocationRepository>().To<LocationRepository>();
 
-            Kernel.Bind<ILocationService>().To<LocationService>();
             Kernel.Bind<IJobOpportunityService>().To<JobOpportunityService>();
 
             Kernel.Bind<ITwitterService>().To<TwitterService>();

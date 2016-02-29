@@ -1,4 +1,4 @@
-@using System.Text.RegularExpressions
+﻿@using System.Text.RegularExpressions
 @using EmpleoDotNet.Core.Domain
 @using EmpleoDotNet.Helpers
 
@@ -15,7 +15,14 @@
             <div class="col-sm-12 text-center">
                 <h1>@Model.Title</h1>
                 <h4>
-                    <span><i class="fa fa-map-marker"></i>@Model.Location.Name</span>
+                    @if (Model.JobOpportunityLocation == null)
+                    {
+                        <span><i class="fa fa-map-marker"></i>N/A</span>
+                    }
+                    else
+                    {
+                        <span><i class="fa fa-map-marker"></i>@Model.JobOpportunityLocation.Name</span>
+                    }
                     <span><i class="fa fa-cog"></i>@Model.Category.ToEnumDescription()</span>
                     @if (Model.IsRemote)
                     {
@@ -63,7 +70,7 @@
                 <hr>
 
                 <div class="sidebar-widget" id="company">
-                    <h2>Sobre la compañia</h2>
+                    <h2>Sobre la Compañía</h2>
                     <a href="@Model.CompanyUrl">
                         @if (string.IsNullOrWhiteSpace(@Model.CompanyLogoUrl))
                         {
@@ -85,7 +92,7 @@
                 @if (((List<JobOpportunity>)ViewBag.RelatedJobs).Any())
                 {
                     <div class="sidebar-widget" id="company-jobs">
-                        <h2>Mas empleos de esta compañia</h2>
+                        <h2>Más empleos de esta Compañía</h2>
                         <ul>
                             @foreach (var jobOpportunity in (List<JobOpportunity>)ViewBag.RelatedJobs)
                             {

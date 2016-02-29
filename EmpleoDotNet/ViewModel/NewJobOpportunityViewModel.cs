@@ -44,12 +44,18 @@ namespace EmpleoDotNet.ViewModel
         public string CompanyLogoUrl { get; set; }
 
         public bool IsRemote { get; set; }
+
+        [Required(ErrorMessage = "La Localidad es Requerida")]
+        public string LocationName { get; set; }
+        public string LocationLatitude { get; set; }
+        public string LocationLongitude { get; set; }
+        public string LocationPlaceId { get; set; }
+
         public Core.Domain.JobOpportunity ToEntity()
         {
             var entity = new Core.Domain.JobOpportunity
             {
                 Title = Title,
-                LocationId = SelectedLocationId,
                 Category = Category,
                 Description = Description,
                 CompanyName = CompanyName,
@@ -59,6 +65,18 @@ namespace EmpleoDotNet.ViewModel
                 PublishedDate = DateTime.Now,
                 IsRemote = IsRemote
             };
+
+            if (!string.IsNullOrWhiteSpace(LocationName) &&
+                !string.IsNullOrWhiteSpace(LocationPlaceId))
+            {
+                entity.JobOpportunityLocation = new JobOpportunityLocation
+                {
+                    Latitude = LocationLatitude,
+                    Longitude = LocationLongitude,
+                    Name = LocationName,
+                    PlaceId = LocationPlaceId
+                };
+            }
 
             return entity;
         }

@@ -60,9 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IJobOpportunityService.cs" />
-    <Compile Include="ILocationService.cs" />
     <Compile Include="JobOpportunityService.cs" />
-    <Compile Include="LocationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

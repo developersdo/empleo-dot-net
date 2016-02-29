@@ -39,6 +39,7 @@
     };
 
     #endregion
+
 }
 
 <div class="container" style="margin-top: 50px;">
@@ -62,9 +63,15 @@
                                 <label for="Location">
                                     <strong>Localidad</strong>
                                 </label>
-                                @Html.DropDownListFor(d => d.SelectedLocation,
-                                    Model.Locations,
-                                    new { @class = "form-control", id = "location" })
+                                @Html.TextBoxFor(m => m.SelectedLocationName, new
+                                {
+                                    @class = "form-control",
+                                    id = "location-input",
+                                    autocomplete = "off"
+                                 })
+                                @Html.HiddenFor(m => m.SelectedLocationPlaceId, new { id = "location-placeid" })
+                                @Html.HiddenFor(m => m.SelectedLocationLatitude, new { id = "location-latitude" })
+                                @Html.HiddenFor(m => m.SelectedLocationLongitude, new { id = "location-longitude" })
                             </div>
                         </div>
                         <div class="col-md-6">
