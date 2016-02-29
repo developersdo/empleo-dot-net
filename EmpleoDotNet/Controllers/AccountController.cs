@@ -88,14 +88,21 @@ namespace EmpleoDotNet.Controllers
                 //a la pantalla de profile
                 try
                 {
-                    var accessToken = result.Identity.FindFirstValue("FacebookAccessToken");
+                    var accessToken = "";
+
+                    if (login.LoginProvider == "Facebook")
+                    {
+                        accessToken = result.Identity.FindFirstValue("FacebookAccessToken");
+                    }
+
                     user = _authenticationService.CreateUserWithSocialProvider(login.LoginProvider, login.ProviderKey, accessToken);
                     await SignInAsync(user, isPersistent: false);
-                    return RedirectToLocal(returnUrl);
-                    //return RedirectToAction("Profile", new { returnUrl });
+
+                    return RedirectToAction("Profile", new { returnUrl });
                 }
                 catch (Exception ex)
                 {
+                    Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
                     throw;
                 }
             }

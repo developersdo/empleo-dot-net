@@ -16,11 +16,16 @@ namespace EmpleoDotNet.Services
     public class AuthenticationService : IAuthenticationService
     {
         private readonly IUserProfileRepository _userProfileRepository;
+        private readonly IUserProfileSocialService _userProfileSocialService;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public AuthenticationService(IUserProfileRepository userProfileRepository, UserManager<IdentityUser> userManager )
+        public AuthenticationService(
+            IUserProfileRepository userProfileRepository, 
+            IUserProfileSocialService userProfileSocialService,
+            UserManager<IdentityUser> userManager )
         {
             _userProfileRepository = userProfileRepository;
+            _userProfileSocialService = userProfileSocialService;
             _userManager = userManager;
         }
 
@@ -39,16 +44,8 @@ namespace EmpleoDotNet.Services
 
             var userProfile = new UserProfile();
 
-            //TODO: Move This to another method
-            if (socialProvider == "Facebook")
-            {
-                var fbClient = new Facebook.FacebookClient(accessToken);
-                dynamic fbInfo = fbClient.Get("/me?fields=id,name,email,first_name,last_name");
-
-                userProfile.Email = fbInfo.email;
-                userProfile.Name = fbInfo.name;
-            }
-
+            userProfile = _userProfileSocialService.GetFromSocialProvider(socialProvider, accessToken);
+           
             var user = new IdentityUser(GenerateUserName());
             var login = new UserLoginInfo(socialProvider, providerKey);
 
@@ -78,46 +75,5 @@ namespace EmpleoDotNet.Services
 
             return user;
         }
-
     }
 }
-
-
-
-//////Automatically create emplea.do account
-
-////var userProfile = new UserProfile();
-
-//                //Create user profile based on social auth info
-//                if (login.LoginProvider == "Facebook")
-//                {
-//                    var access_token = result.Identity.FindFirstValue("FacebookAccessToken");
-
-//var fbClient = new Facebook.FacebookClient(access_token);
-//dynamic fbInfo = fbClient.Get("/me?fields=id,name,email,first_name,last_name"); // specify the email field
-
-//userProfile.Email = fbInfo.email;
-//                    userProfile.Name = fbInfo.name;
-//                }
-                
-
-//                user = new IdentityUser(userProfile.Email);
-//var userCreationResult = await UserManager.CreateAsync(user);
-//                if (userCreationResult.Succeeded)
-//                {
-//                    var userLoginResult = await UserManager.AddLoginAsync(user.Id, login);
-//                    if (userLoginResult.Succeeded)
-//                    {
-//                        await SignInAsync(user, isPersistent: false);
-//                    }
-//                }
-//                else
-//                {
-//                    AddErrors(userCreationResult);
-//                    return RedirectToAction("Login");
-//                }
-
-
-//                userProfile.UserId = user.Id;
-//                _userProfileRepository.Add(userProfile);
-//                _userProfileRepository.SaveChanges();

@@ -24,6 +24,7 @@ namespace EmpleoDotNet.App_Start
             Kernel.Bind<IJobOpportunityService>().To<JobOpportunityService>();
             Kernel.Bind<IAuthenticationService>().To<AuthenticationService>()
                 .WithConstructorArgument("userManager", new UserManager<IdentityUser>(new UserStore<IdentityUser>(new EmpleadoContext())));
+            Kernel.Bind<IUserProfileSocialService>().To<UserProfileSocialService>();
 
             Kernel.Bind<ITwitterService>().To<TwitterService>();
         }
