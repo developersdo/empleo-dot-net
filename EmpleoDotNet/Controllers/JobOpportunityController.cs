@@ -16,7 +16,6 @@ namespace EmpleoDotNet.Controllers
     {
         public ActionResult Index(JobOpportunityPagingParameter model)
         {
-
             var viewModel = GetSearchViewModel(model);
 
             if (!string.IsNullOrWhiteSpace(viewModel.SelectedLocationName) &&
@@ -157,7 +156,7 @@ namespace EmpleoDotNet.Controllers
             return viewModel;
         }
 
-        private int GetIdFromTitle(string title)
+        private static int GetIdFromTitle(string title)
         {
             var id = 0;
             var url = title.Split('-');
