@@ -32,40 +32,41 @@ namespace EmpleoDotNet.Controllers
             return View(viewModel);
         }
 
-        // GET: /JobOpportunity/Detail/4-jobtitle         
+        // GET: /JobOpportunity/Detail/4-jobtitle
         public ActionResult Detail(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
 
             var value = GetIdFromTitle(id);
             if (value == 0)
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
 
-            var vm = _jobOpportunityService.GetJobOpportunityById(value);
+            var viewModel = _jobOpportunityService.GetJobOpportunityById(value);
 
-            if (vm == null)
-                return View("Index")
+            if (viewModel == null)
+                return View(nameof(Index))
                     .WithError("La vacante solicitada no existe. Por favor escoge una vacante válida del listado");
 
-            var expectedUrl = UrlHelperExtensions.SeoUrl(value, vm.Title.SanitizeUrl());
+            var expectedUrl = UrlHelperExtensions.SeoUrl(value, viewModel.Title.SanitizeUrl());
 
             if (!expectedUrl.Equals(id, StringComparison.OrdinalIgnoreCase))
-                return RedirectToActionPermanent("Detail", new { id = expectedUrl });
+                return RedirectToActionPermanent(nameof(Detail), new { id = expectedUrl });
 
             ViewBag.RelatedJobs =
-                _jobOpportunityService.GetCompanyRelatedJobs(value, vm.CompanyName);
+                _jobOpportunityService.GetCompanyRelatedJobs(value, viewModel.CompanyName);
 
-            var cookieView = $"JobView{vm.Id}";
+            var cookieView = $"JobView{viewModel.Id}";
             if (!CookieHelper.Exists(cookieView))
             {
-                _jobOpportunityService.UpdateViewCount(vm.Id);
-                CookieHelper.Set(cookieView, vm.Id.ToString());
+                _jobOpportunityService.UpdateViewCount(viewModel.Id);
+                CookieHelper.Set(cookieView, viewModel.Id.ToString());
             }
 
-            return View("Detail", vm);
+            return View(nameof(Detail), viewModel);
         }
 
+        [HttpGet]
         public ActionResult New()
         {
             var viewModel = new NewJobOpportunityViewModel();
@@ -87,7 +88,7 @@ namespace EmpleoDotNet.Controllers
 
             if (string.IsNullOrWhiteSpace(model.LocationPlaceId))
             {
-                ModelState.AddModelError("LocationName", "");
+                ModelState.AddModelError(nameof(model.LocationName), "");
                 return View(model).WithError("Debe seleccionar una Localidad.");
             }
 
@@ -95,13 +96,14 @@ namespace EmpleoDotNet.Controllers
 
             _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity);
 
-            await _twitterService.PostNewJobOpportunity(jobOpportunity);
+            await _twitterService.PostNewJobOpportunity(jobOpportunity).ConfigureAwait(false);
 
-            return RedirectToAction("Detail", new {
+            return RedirectToAction(nameof(Detail), new {
                 id = UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)
             });
         }
 
+        [HttpGet]
         public ActionResult Wizard()
         {
             return View();
@@ -122,7 +124,7 @@ namespace EmpleoDotNet.Controllers
 
             await _twitterService.PostNewJobOpportunity(jobOpportunity);
 
-            return RedirectToAction("Detail", new {
+            return RedirectToAction(nameof(Detail), new {
                 id = UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title),
                 fromWizard = 1
             });
@@ -158,7 +160,7 @@ namespace EmpleoDotNet.Controllers
 
         private static int GetIdFromTitle(string title)
         {
-            var id = 0;
+            int id;
             var url = title.Split('-');
 
             if (string.IsNullOrEmpty(title) || url.Length == 0 || !int.TryParse(url[0], out id))
