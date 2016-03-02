@@ -29,12 +29,19 @@ namespace EmpleoDotNet.Tests.Web.Controllers
         public void Index_ReturnsModelCorrectly()
         {
             // Arrange
-            List<JobOpportunity> expectedModel = new[] {
-                new JobOpportunity { Id = 123 }
-            }.ToList();
+            var latestJobs = new[] { new JobOpportunity {Id = 123} }.ToList();
+            var expectedJobCategoriesCount = new[] { new JobCategoryCountDto() }.ToList();
+            _jobOpportunityRepository.GetMainJobCategoriesCount().Returns(expectedJobCategoriesCount);
+            _jobOpportunityRepository.GetLatestJobOpportunity(7).Returns(latestJobs);
 
-            _jobOpportunityRepository.GetLatestJobOpportunity(7)
-                .Returns(expectedModel);
+            ViewModel.Home.IndexViewModel expectedModel = new ViewModel.Home.IndexViewModel
+            {
+                LatestJobs = latestJobs,
+                SearchViewModel = new ViewModel.JobOpportunity.SearchViewModel
+                {
+                    CategoriesCount = expectedJobCategoriesCount
+                }
+            };
 
             // Act
             var result = (ViewResult)_sut.Index();
@@ -42,29 +49,9 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             // Assert
             _jobOpportunityRepository.Received(1).GetLatestJobOpportunity(7);
 
-            var viewModel = (List<JobOpportunity>)result.Model;
-            viewModel.Should().BeSameAs(expectedModel);
-        }
-
-        [Test]
-        public void Index_PopulatesViewBagSearchModelCorrectly()
-        {
-            // Arrange
-            var expectedSearchModel = new[] {
-                    new JobCategoryCountDto()
-                }.ToList();
-
-            _jobOpportunityRepository.GetMainJobCategoriesCount()
-                .Returns(expectedSearchModel);
-
-            // Act
-            var result = (ViewResult)_sut.Index();
-
-            // Assert
-            _jobOpportunityRepository.Received(1).GetMainJobCategoriesCount();
-
-            var searchModel = (JobOpportunitySearchViewModel)result.ViewBag.SearchViewModel;
-            searchModel.CategoriesCount.Should().BeSameAs(expectedSearchModel);
+            var viewModel = (ViewModel.Home.IndexViewModel)result.Model;
+            viewModel.SearchViewModel.CategoriesCount.Should().Equal(expectedModel.SearchViewModel.CategoriesCount);
+            viewModel.LatestJobs.Should().BeSameAs(expectedModel.LatestJobs);
         }
     }
 }

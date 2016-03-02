@@ -3,9 +3,9 @@ using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Core.Dto;
 using PagedList;
 
-namespace EmpleoDotNet.ViewModel
+namespace EmpleoDotNet.ViewModel.JobOpportunity
 {
-    public class JobOpportunitySearchViewModel
+    public class SearchViewModel
     {
         public string SelectedLocationPlaceId { get; set; }
         public string SelectedLocationName { get; set; }

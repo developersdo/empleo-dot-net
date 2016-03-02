@@ -41,26 +41,27 @@ namespace EmpleoDotNet.Controllers
             var value = GetIdFromTitle(id);
             if (value == 0)
                 return RedirectToAction("Index");
+            var jobOpportunity = _jobOpportunityService.GetJobOpportunityById(value);
 
-            var vm = _jobOpportunityService.GetJobOpportunityById(value);
 
-            if (vm == null)
+            if (jobOpportunity == null)
                 return View("Index")
                     .WithError("La vacante solicitada no existe. Por favor escoge una vacante válida del listado");
 
-            var expectedUrl = UrlHelperExtensions.SeoUrl(value, vm.Title.SanitizeUrl());
+            var vm = new ViewModel.JobOpportunity.DetailsViewModel(jobOpportunity);
+            var expectedUrl = UrlHelperExtensions.SeoUrl(value, jobOpportunity.Title.SanitizeUrl());
 
             if (!expectedUrl.Equals(id, StringComparison.OrdinalIgnoreCase))
                 return RedirectToActionPermanent("Detail", new { id = expectedUrl });
 
-            ViewBag.RelatedJobs =
-                _jobOpportunityService.GetCompanyRelatedJobs(value, vm.CompanyName);
+            vm.RelatedJobs =
+                _jobOpportunityService.GetCompanyRelatedJobs(value, jobOpportunity.CompanyName);
 
-            var cookieView = $"JobView{vm.Id}";
+            var cookieView = $"JobView{jobOpportunity.Id}";
             if (!CookieHelper.Exists(cookieView))
             {
-                _jobOpportunityService.UpdateViewCount(vm.Id);
-                CookieHelper.Set(cookieView, vm.Id.ToString());
+                _jobOpportunityService.UpdateViewCount(jobOpportunity.Id);
+                CookieHelper.Set(cookieView, jobOpportunity.Id.ToString());
             }
 
             return View("Detail", vm);
@@ -68,7 +69,7 @@ namespace EmpleoDotNet.Controllers
 
         public ActionResult New()
         {
-            var viewModel = new NewJobOpportunityViewModel();
+            var viewModel = new NewViewModel();
 
             return View(viewModel)
                 .WithInfo("Prueba nuestro nuevo proceso guiado de creación de posiciones haciendo <b><a href='" + Url.Action("Wizard") + "'>click aquí</a></b>");
@@ -77,7 +78,7 @@ namespace EmpleoDotNet.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         [ValidateInput(false)]
         [CaptchaValidator(RequiredMessage = "Por favor confirma que no eres un robot")]
-        public async Task<ActionResult> New(NewJobOpportunityViewModel model, bool captchaValid)
+        public async Task<ActionResult> New(NewViewModel model, bool captchaValid)
         {
             if (!ModelState.IsValid)
             {
@@ -110,7 +111,7 @@ namespace EmpleoDotNet.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         [ValidateInput(false)]
         [CaptchaValidator(RequiredMessage = "Por favor confirma que no eres un robot")]
-        public async Task<ActionResult> Wizard(Wizard model)
+        public async Task<ActionResult> Wizard(WizardViewModel model)
         {
             if (!ModelState.IsValid)
                 return View(model)
@@ -133,7 +134,7 @@ namespace EmpleoDotNet.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        private JobOpportunitySearchViewModel GetSearchViewModel(JobOpportunityPagingParameter model)
+        private ViewModel.JobOpportunity.SearchViewModel GetSearchViewModel(JobOpportunityPagingParameter model)
         {
             if (string.IsNullOrWhiteSpace(model.SelectedLocationName))
             {
@@ -142,7 +143,8 @@ namespace EmpleoDotNet.Controllers
                 model.SelectedLocationPlaceId = string.Empty;
             }
 
-            var viewModel = new JobOpportunitySearchViewModel {
+            var viewModel = new ViewModel.JobOpportunity.SearchViewModel
+            {
                 SelectedLocationPlaceId = model.SelectedLocationPlaceId,
                 SelectedLocationName = model.SelectedLocationName,
                 SelectedLocationLongitude = model.SelectedLocationLongitude,

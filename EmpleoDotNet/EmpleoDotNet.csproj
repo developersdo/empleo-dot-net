@@ -284,9 +284,11 @@
     <Compile Include="Services\Social\Twitter\TwitterService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\ErrorViewModel.cs" />
-    <Compile Include="ViewModel\JobOpportunitySearchViewModel.cs" />
-    <Compile Include="ViewModel\JobOpportunity\Wizard.cs" />
-    <Compile Include="ViewModel\NewJobOpportunityViewModel.cs" />
+    <Compile Include="ViewModel\Home\IndexViewModel.cs" />
+    <Compile Include="ViewModel\JobOpportunity\SearchViewModel.cs" />
+    <Compile Include="ViewModel\JobOpportunity\DetailsViewModel.cs" />
+    <Compile Include="ViewModel\JobOpportunity\WizardViewModel.cs" />
+    <Compile Include="ViewModel\JobOpportunity\NewViewModel.cs" />
     <Compile Include="ViewModel\RelatedJobDto.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -57,7 +57,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
 
             result.Message.Should().Be("Debe seleccionar una Localidad para buscar.");
             var viewResult = (ViewResult)result.InnerResult;
-            var model = (JobOpportunitySearchViewModel)viewResult.Model;
+            var model = (ViewModel.JobOpportunity.SearchViewModel)viewResult.Model;
 
             model.SelectedLocationLatitude.Should().Be(param.SelectedLocationLatitude);
             model.SelectedLocationLongitude.Should().Be(param.SelectedLocationLongitude);
@@ -99,7 +99,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             _jobOpportunityService.Received(1).GetMainJobCategoriesCount();
             _jobOpportunityService.Received(1).GetAllJobOpportunitiesPagedByFilters(param);
 
-            var model = (JobOpportunitySearchViewModel)result.Model;
+            var model = (ViewModel.JobOpportunity.SearchViewModel)result.Model;
             model.SelectedLocationLatitude.Should().BeEmpty();
             model.SelectedLocationLongitude.Should().BeEmpty();
             model.SelectedLocationPlaceId.Should().BeEmpty();
@@ -140,7 +140,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             _jobOpportunityService.Received(1).GetMainJobCategoriesCount();
             _jobOpportunityService.Received(1).GetAllJobOpportunitiesPagedByFilters(param);
 
-            var model = (JobOpportunitySearchViewModel)result.Model;
+            var model = (ViewModel.JobOpportunity.SearchViewModel)result.Model;
             model.SelectedLocationLatitude.Should().Be(param.SelectedLocationLatitude);
             model.SelectedLocationLongitude.Should().Be(param.SelectedLocationLongitude);
             model.SelectedLocationPlaceId.Should().Be(param.SelectedLocationPlaceId);

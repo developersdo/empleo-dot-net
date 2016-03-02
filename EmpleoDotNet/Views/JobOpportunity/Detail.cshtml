@@ -2,7 +2,7 @@
 @using EmpleoDotNet.Core.Domain
 @using EmpleoDotNet.Helpers
 
-@model JobOpportunity
+@model EmpleoDotNet.ViewModel.JobOpportunity.DetailsViewModel
 @{
     ViewBag.Title = Model.Title;
     ViewBag.Description = Regex.Replace(Model.Description, @"<(.|\n)*?>", "");
@@ -89,12 +89,12 @@
 
                 <hr>
 
-                @if (((List<JobOpportunity>)ViewBag.RelatedJobs).Any())
+                @if (Model.RelatedJobs.Any())
                 {
                     <div class="sidebar-widget" id="company-jobs">
                         <h2>Más empleos de esta Compañía</h2>
                         <ul>
-                            @foreach (var jobOpportunity in (List<JobOpportunity>)ViewBag.RelatedJobs)
+                            @foreach (var jobOpportunity in Model.RelatedJobs)
                             {
                                 <li><a href="@Url.Action("Detail", new {id=UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)})">@jobOpportunity.Title</a></li>
                             }
