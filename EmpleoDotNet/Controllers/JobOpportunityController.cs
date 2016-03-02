@@ -109,7 +109,9 @@ namespace EmpleoDotNet.Controllers
         [HttpGet]
         public ActionResult Wizard()
         {
-            return View();
+            var viewModel = new Wizard();
+
+            return View(viewModel);
         }
 
         [HttpPost, ValidateAntiForgeryToken]

@@ -9,26 +9,36 @@
     ViewBag.ImageUrl = Model.CompanyLogoUrl;
 }
 
+@section styles{
+    <style>
+        .job-title h5 {
+            color: #14b1bb;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+    </style>
+}
+
 <section id="title">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 text-center">
                 <h1>@Model.Title</h1>
-                <h4>
-                    @if (Model.JobOpportunityLocation == null)
-                    {
-                        <span><i class="fa fa-map-marker"></i>N/A</span>
+                <div class="job-title">
+                    @if (Model.JobOpportunityLocation == null) {
+                        <h5><i class="fa fa-map-marker"></i> N/A</h5>
                     }
-                    else
-                    {
-                        <span><i class="fa fa-map-marker"></i>@Model.JobOpportunityLocation.Name</span>
+                    else {
+                        <h5><i class="fa fa-map-marker"></i> @Model.JobOpportunityLocation.Name</h5>
                     }
-                    <span><i class="fa fa-cog"></i>@Model.Category.ToEnumDescription()</span>
-                    @if (Model.IsRemote)
-                    {
-                        <span><i class="fa fa-globe"></i>Remoto</span>
+
+                    <h5><i class="fa fa-cog"></i> @Model.Category.ToEnumDescription()</h5>
+                    
+                    @if (Model.IsRemote) {
+                        <h5><i class="fa fa-globe"></i> Remoto</h5>
                     }
-                </h4>
+                    <h5><i class="fa fa-info"></i> @Model.JobType.ToEnumDescription()</h5>
+                </div>
                 <h5 class="text-center"><i class="fa fa-calendar"></i> @Model.Created.ToString("dd MMMM yyyy")</h5>
             </div>
         </div>

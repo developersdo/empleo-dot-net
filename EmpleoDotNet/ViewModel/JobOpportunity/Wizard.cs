@@ -21,6 +21,9 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
         [Display(Name = "Categoría")]
         public JobCategory Category { get; set; }
 
+        [Display(Name = "Tipo")]
+        public JobType JobType { get; set; }
+
         [Required(ErrorMessage = "Debes especificar al menos un requisito."), StringLength(int.MaxValue)]
         [Display(Name = "Requisitos para aplicar")]
         public string Description { get; set; }
@@ -94,6 +97,7 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
                 CompanyEmail = CompanyEmail,
                 PublishedDate = DateTime.Now,
                 IsRemote = IsRemote,
+                JobType = JobType,
                 JoelTest = new JoelTest
                 {
                     HasSourceControl = this.HasSourceControl,

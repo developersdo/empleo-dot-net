@@ -59,7 +59,11 @@
                 </div>
                 <div class="form-group" id="job-category-group">
                     @Html.LabelFor(m => m.Category)
-                    @Html.EnumDropListFor(e => e.Category, new { @class = "form-control", id = "category", @data_parsley_group = "job-details" })
+                    @Html.EnumDropListFor(e => e.Category, new {@class = "form-control", id = "category", @data_parsley_group = "job-details"})
+                </div>
+                <div class="form-group" id="job-category-group">
+                    @Html.LabelFor(m => m.JobType)
+                    @Html.EnumDropListFor(e => e.JobType, new { @class = "form-control", id = "job-type" })
                 </div>
                 <div class="form-group" id="job-location-group">
                     @Html.LabelFor(m => m.LocationName)
@@ -68,7 +72,8 @@
                        @class = "form-control",
                        placeholder = "Selecciona una localidad",
                        id = "location-input",
-                       @data_parsley_group = "job-details"
+                       @data_parsley_group = "job-details",
+                       autocomplete = "off"
                    })
                     @Html.HiddenFor(m => m.LocationLatitude, new { id = "location-latitude", @data_parsley_group = "job-details" })
                     @Html.HiddenFor(m => m.LocationLongitude, new { id = "location-longitude", @data_parsley_group = "job-details" })
