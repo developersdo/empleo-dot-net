@@ -6,7 +6,6 @@ namespace EmpleoDotNet.Core.Domain
     /// <summary>
     /// Categoria de empleo
     /// </summary>
-    [Flags]
     public enum JobCategory
     {
         /// <summary>
