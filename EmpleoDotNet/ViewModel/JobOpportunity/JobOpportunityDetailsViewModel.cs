@@ -7,9 +7,9 @@ using Ninject.Infrastructure.Language;
 
 namespace EmpleoDotNet.ViewModel.JobOpportunity
 {
-    public class DetailsViewModel
+    public class JobOpportunityDetailsViewModel
     {
-        public DetailsViewModel(Core.Domain.JobOpportunity jobOpportunity)
+        public JobOpportunityDetailsViewModel(Core.Domain.JobOpportunity jobOpportunity)
         {
             foreach (var property in jobOpportunity.GetType().GetProperties())
             {

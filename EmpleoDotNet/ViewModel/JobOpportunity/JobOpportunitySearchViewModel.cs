@@ -5,7 +5,7 @@ using PagedList;
 
 namespace EmpleoDotNet.ViewModel.JobOpportunity
 {
-    public class SearchViewModel
+    public class JobOpportunitySearchViewModel
     {
         public string SelectedLocationPlaceId { get; set; }
         public string SelectedLocationName { get; set; }

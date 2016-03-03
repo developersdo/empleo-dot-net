@@ -8,7 +8,7 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
     /// <summary>
     /// ViewModel para crear una vacante nueva
     /// </summary>
-    public class NewViewModel
+    public class JobOpportunityNewViewModel
     {
         [Required(ErrorMessage = "El campo titulo es requerido."), StringLength(int.MaxValue)]
         [Display(Name = "Titulo")]

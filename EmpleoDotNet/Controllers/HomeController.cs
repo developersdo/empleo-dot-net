@@ -8,10 +8,10 @@ namespace EmpleoDotNet.Controllers
     {
         public ActionResult Index()
         {
-            var model = new ViewModel.Home.IndexViewModel
+            var model = new ViewModel.Home.HomeIndexViewModel
             {
                 LatestJobs = _jobOpportunityRepository.GetLatestJobOpportunity(7),
-                SearchViewModel = new ViewModel.JobOpportunity.SearchViewModel
+                SearchViewModel = new ViewModel.JobOpportunity.JobOpportunitySearchViewModel
                 {
                     CategoriesCount = _jobOpportunityRepository.GetMainJobCategoriesCount()
                 }

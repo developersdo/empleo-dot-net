@@ -34,10 +34,10 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             _jobOpportunityRepository.GetMainJobCategoriesCount().Returns(expectedJobCategoriesCount);
             _jobOpportunityRepository.GetLatestJobOpportunity(7).Returns(latestJobs);
 
-            ViewModel.Home.IndexViewModel expectedModel = new ViewModel.Home.IndexViewModel
+            ViewModel.Home.HomeIndexViewModel expectedModel = new ViewModel.Home.HomeIndexViewModel
             {
                 LatestJobs = latestJobs,
-                SearchViewModel = new ViewModel.JobOpportunity.SearchViewModel
+                SearchViewModel = new ViewModel.JobOpportunity.JobOpportunitySearchViewModel
                 {
                     CategoriesCount = expectedJobCategoriesCount
                 }
@@ -49,7 +49,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             // Assert
             _jobOpportunityRepository.Received(1).GetLatestJobOpportunity(7);
 
-            var viewModel = (ViewModel.Home.IndexViewModel)result.Model;
+            var viewModel = (ViewModel.Home.HomeIndexViewModel)result.Model;
             viewModel.SearchViewModel.CategoriesCount.Should().Equal(expectedModel.SearchViewModel.CategoriesCount);
             viewModel.LatestJobs.Should().BeSameAs(expectedModel.LatestJobs);
         }
