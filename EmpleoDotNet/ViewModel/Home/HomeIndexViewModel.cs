@@ -6,9 +6,9 @@ using EmpleoDotNet.ViewModel.JobOpportunity;
 
 namespace EmpleoDotNet.ViewModel.Home
 {
-    public class IndexViewModel
+    public class HomeIndexViewModel
     {
         public IEnumerable<EmpleoDotNet.Core.Domain.JobOpportunity> LatestJobs { get; set; }
-        public SearchViewModel SearchViewModel { get; set; }
+        public JobOpportunitySearchViewModel SearchViewModel { get; set; }
     }
 }

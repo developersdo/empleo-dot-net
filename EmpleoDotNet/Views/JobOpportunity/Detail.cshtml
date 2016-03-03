@@ -2,7 +2,7 @@
 @using EmpleoDotNet.Core.Domain
 @using EmpleoDotNet.Helpers
 
-@model EmpleoDotNet.ViewModel.JobOpportunity.DetailsViewModel
+@model EmpleoDotNet.ViewModel.JobOpportunity.JobOpportunityDetailsViewModel
 @{
     ViewBag.Title = Model.Title;
     ViewBag.Description = Regex.Replace(Model.Description, @"<(.|\n)*?>", "");

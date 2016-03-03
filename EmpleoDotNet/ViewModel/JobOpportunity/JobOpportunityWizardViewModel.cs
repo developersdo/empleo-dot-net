@@ -4,7 +4,7 @@ using EmpleoDotNet.Core.Domain;
 
 namespace EmpleoDotNet.ViewModel.JobOpportunity
 {
-    public class WizardViewModel
+    public class JobOpportunityWizardViewModel
     {
         [Required(ErrorMessage = "El campo título es requerido."), StringLength(int.MaxValue)]
         [Display(Name = "Título. ¿Qué estás buscando?")]

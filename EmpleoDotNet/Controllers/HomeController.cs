@@ -1,6 +1,8 @@
 ﻿using System.Web.Mvc;
 using EmpleoDotNet.Repository.Contracts;
 using EmpleoDotNet.ViewModel;
+using EmpleoDotNet.ViewModel.Home;
+using EmpleoDotNet.ViewModel.JobOpportunity;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -8,10 +10,10 @@ namespace EmpleoDotNet.Controllers
     {
         public ActionResult Index()
         {
-            var model = new ViewModel.Home.IndexViewModel
+            var model = new HomeIndexViewModel
             {
                 LatestJobs = _jobOpportunityRepository.GetLatestJobOpportunity(7),
-                SearchViewModel = new ViewModel.JobOpportunity.SearchViewModel
+                SearchViewModel = new JobOpportunitySearchViewModel
                 {
                     CategoriesCount = _jobOpportunityRepository.GetMainJobCategoriesCount()
                 }

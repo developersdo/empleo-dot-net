@@ -8,7 +8,7 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
     /// <summary>
     /// ViewModel para crear una vacante nueva
     /// </summary>
-    public class NewViewModel
+    public class JobOpportunityNewViewModel
     {
         [Required(ErrorMessage = "El campo titulo es requerido."), StringLength(int.MaxValue)]
         [Display(Name = "Titulo")]
@@ -36,7 +36,7 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
         public string CompanyUrl { get; set; }
 
         [Required(ErrorMessage = "El campo email es requerido"), StringLength(int.MaxValue), EmailAddress(ErrorMessage = "Email invalido.")]
-        [Display(Name = "Email"), ]
+        [Display(Name = "Email")]
         public string CompanyEmail { get; set; }
 
         [StringLength(int.MaxValue), Url(ErrorMessage = "El Logo de la compañia debe ser un Url valido.")]
@@ -52,8 +52,7 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
         public string LocationPlaceId { get; set; }
 
         public Core.Domain.JobOpportunity ToEntity()
-        {
-            var entity = new Core.Domain.JobOpportunity
+            => new Core.Domain.JobOpportunity
             {
                 Title = Title,
                 Category = Category,
@@ -63,22 +62,14 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
                 CompanyLogoUrl = CompanyLogoUrl,
                 CompanyEmail = CompanyEmail,
                 PublishedDate = DateTime.Now,
-                IsRemote = IsRemote
-            };
-
-            if (!string.IsNullOrWhiteSpace(LocationName) &&
-                !string.IsNullOrWhiteSpace(LocationPlaceId))
-            {
-                entity.JobOpportunityLocation = new JobOpportunityLocation
+                IsRemote = IsRemote,
+                JobOpportunityLocation = new JobOpportunityLocation
                 {
                     Latitude = LocationLatitude,
                     Longitude = LocationLongitude,
                     Name = LocationName,
                     PlaceId = LocationPlaceId
-                };
-            }
-
-            return entity;
-        }
+                }
+            };
     }
 }
