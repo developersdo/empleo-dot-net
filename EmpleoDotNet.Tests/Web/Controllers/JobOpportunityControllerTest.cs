@@ -1,9 +1,13 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using EmpleoDotNet.AppServices;
 using EmpleoDotNet.Controllers;
 using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Core.Dto;
+using EmpleoDotNet.Helpers;
 using EmpleoDotNet.Helpers.Alerts;
 using EmpleoDotNet.Services.Social.Twitter;
 using EmpleoDotNet.ViewModel;
@@ -11,7 +15,9 @@ using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
 using PagedList;
+using reCAPTCHA.MVC;
 
+// ReSharper disable Mvc.ActionNotResolved
 namespace EmpleoDotNet.Tests.Web.Controllers
 {
     [TestFixture]
@@ -55,6 +61,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             _sut.ModelState.IsValid.Should().BeFalse();
             _sut.ModelState.Should().ContainKey("SelectedLocationName");
 
+            result.AlertClass.Should().Be("alert-danger");
             result.Message.Should().Be("Debe seleccionar una Localidad para buscar.");
             var viewResult = (ViewResult)result.InnerResult;
             var model = (ViewModel.JobOpportunity.SearchViewModel)viewResult.Model;
@@ -151,6 +158,204 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             model.CategoriesCount.Should().BeSameAs(jobCategoriesCount);
             model.Result.Should().BeSameAs(jobOpportunityList);
         }
+        #endregion
+
+        #region New
+
+        [Test]
+        public void New_GET_HasExpectedActionFilters()
+        {
+            // Arrange
+            var controller = typeof(JobOpportunityController);
+            var action = controller.GetMethod(nameof(JobOpportunityController.New),
+                new Type[0]);
+
+            // Act
+            var filters = action.GetCustomAttributes().ToArray();
+
+            // Assert
+            filters.Should().ContainSingle(x => x is HttpGetAttribute);
+        }
+
+        [Test]
+        public void New_GET_ReturnsView_WithEmptyModel()
+        {
+            // Arrange
+            var model = new NewJobOpportunityViewModel();
+            _sut.Url = Substitute.For<UrlHelper>();
+            _sut.Url.Action("Wizard").Returns("/jobs/wizard");
+
+            // Act
+            var result = (AlertDecoratorResult)_sut.New();
+
+            // Assert
+            result.AlertClass.Should().Be("alert-info");
+            result.Message.Should().Be(
+                "Prueba nuestro nuevo proceso guiado de creación de posiciones haciendo "
+                + "<b><a href='/jobs/wizard'>click aquí</a></b>");
+
+            var viewResult = (ViewResult)result.InnerResult;
+            viewResult.ViewName.Should().BeEmpty();
+            ((NewJobOpportunityViewModel)viewResult.Model).ShouldBeEquivalentTo(model);
+        }
+
+        [Test]
+        public void New_POST_HasExpectedActionFilters()
+        {
+            // Arrange
+            var controller = typeof(JobOpportunityController);
+            var action = controller.GetMethod(nameof(JobOpportunityController.New),
+                new[] { typeof(NewJobOpportunityViewModel), typeof(bool) });
+
+            // Act
+            var filters = action.GetCustomAttributes().ToArray();
+
+            // Assert
+            filters.Should().ContainSingle(x => x is HttpPostAttribute);
+            filters.Should().ContainSingle(x => x is ValidateAntiForgeryTokenAttribute);
+
+            var validateInput = (ValidateInputAttribute)filters.Single(x => x is ValidateInputAttribute);
+            var captchaValidator = (CaptchaValidatorAttribute)filters.Single(x => x is CaptchaValidatorAttribute);
+
+            validateInput.EnableValidation.Should().BeFalse();
+            captchaValidator.RequiredMessage.Should().Be("Por favor confirma que no eres un robot");
+        }
+
+        [Test]
+        public async Task New_POST_ModelStateInvalid_ReturnsViewWithError()
+        {
+            // Arrange
+            var model = new NewJobOpportunityViewModel();
+            _sut.ModelState.AddModelError("", "");
+
+            // Act
+            var result = (AlertDecoratorResult)await _sut.New(model, false);
+
+            // Assert
+            _jobOpportunityService.DidNotReceiveWithAnyArgs().CreateNewJobOpportunity(null);
+            await _twitterService.DidNotReceiveWithAnyArgs().PostNewJobOpportunity(null);
+
+            _sut.ModelState.IsValid.Should().BeFalse();
+
+            result.AlertClass.Should().Be("alert-danger");
+            result.Message.Should().Be("Han ocurrido errores de validación que no permiten continuar el proceso");
+
+            var innerResult = (ViewResult)result.InnerResult;
+            innerResult.ViewName.Should().BeEmpty();
+            innerResult.Model.Should().BeSameAs(model);
+        }
+
+        [Test]
+        public async Task New_POST_LocationPlaceIdNullOrWhitespace_ReturnsViewWithError(
+            [Values(null, "", " ")] string placeId
+            )
+        {
+            // Arrange
+            var model = new NewJobOpportunityViewModel { LocationPlaceId = placeId };
+
+            // Act
+            var result = (AlertDecoratorResult)await _sut.New(model, false);
+
+            // Assert
+            _jobOpportunityService.DidNotReceiveWithAnyArgs().CreateNewJobOpportunity(null);
+            await _twitterService.DidNotReceiveWithAnyArgs().PostNewJobOpportunity(null);
+
+            _sut.ModelState.IsValid.Should().BeFalse();
+            _sut.ModelState.Should().ContainKey(nameof(model.LocationName));
+
+            result.AlertClass.Should().Be("alert-danger");
+            result.Message.Should().Be("Debe seleccionar una Localidad.");
+
+            var innerResult = (ViewResult)result.InnerResult;
+            innerResult.ViewName.Should().BeEmpty();
+            innerResult.Model.Should().BeSameAs(model);
+        }
+
+        [Test]
+        public async Task New_POST_ValidModel_CreatesJob_PostsTweet_RedirectsToDetail()
+        {
+            // Arrange
+            var model = new NewJobOpportunityViewModel {
+                Title = "myTitle",
+                Category = JobCategory.MobileDevelopment,
+                Description = "My description",
+                CompanyName = "Company",
+                CompanyUrl = "http://example.com",
+                CompanyLogoUrl = "http://example.com/logo.png",
+                CompanyEmail = "company@example.com",
+                IsRemote = true,
+                LocationName = "My location",
+                LocationPlaceId = "123",
+                LocationLatitude = "18.3939393",
+                LocationLongitude = "-69.22222"
+            };
+
+            _jobOpportunityService.WhenForAnyArgs(x => x.CreateNewJobOpportunity(null))
+                .Do(x => { x.Arg<JobOpportunity>().Id = 1; });
+
+            // Act
+            var result = (RedirectToRouteResult)await _sut.New(model, false);
+
+            // Assert
+            _jobOpportunityService.Received(1).CreateNewJobOpportunity(
+                Arg.Do<JobOpportunity>(entity => VerifyGeneratedJobOpportunityEntity(model, entity)));
+            await _twitterService.Received(1).PostNewJobOpportunity(
+                Arg.Do<JobOpportunity>(entity => VerifyGeneratedJobOpportunityEntity(model, entity)));
+
+            result.RouteValues["action"].Should().Be(nameof(_sut.Detail));
+            result.RouteValues["id"].Should().Be(UrlHelperExtensions.SeoUrl(1, "myTitle"));
+        }
+
+        private static void VerifyGeneratedJobOpportunityEntity(
+            NewJobOpportunityViewModel model,
+            JobOpportunity entity)
+        {
+            entity.Title.Should().Be(model.Title);
+            entity.Category.Should().Be(model.Category);
+            entity.Description.Should().Be(model.Description);
+            entity.CompanyName.Should().Be(model.CompanyName);
+            entity.CompanyUrl.Should().Be(model.CompanyUrl);
+            entity.CompanyLogoUrl.Should().Be(model.CompanyLogoUrl);
+            entity.CompanyEmail.Should().Be(model.CompanyEmail);
+            entity.PublishedDate.Should().BeCloseTo(DateTime.Now);
+            entity.IsRemote.Should().Be(model.IsRemote);
+            entity.JobOpportunityLocation.Should().Match<JobOpportunityLocation>(x =>
+                x.Latitude == model.LocationLatitude
+                && x.Longitude == model.LocationLongitude
+                && x.Name == model.LocationName
+                && x.PlaceId == model.LocationPlaceId
+                );
+        }
+
+        #endregion
+
+        #region Wizard
+
+        [Test]
+        public void Wizard_GET_HasExpectedActionFilters()
+        {
+            // Arrange
+            var controller = typeof(JobOpportunityController);
+            var action = controller.GetMethod(nameof(JobOpportunityController.Wizard),
+                new Type[0]);
+
+            // Act
+            var filters = action.GetCustomAttributes().ToArray();
+
+            // Assert
+            filters.Should().ContainSingle(x => x is HttpGetAttribute);
+        }
+
+        [Test]
+        public void Wizard_GET_ReturnsView()
+        {
+            // Act
+            var result = (ViewResult)_sut.Wizard();
+
+            // Assert
+            result.ViewName.Should().BeEmpty();
+        }
+
         #endregion
     }
 }

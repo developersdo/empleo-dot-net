@@ -27,7 +27,7 @@ namespace EmpleoDotNet.Services.Social.Twitter
             await Sync.ExecuteTaskAsync(() =>
             {
                 Tweet.PublishTweet(message);
-            });
+            }).ConfigureAwait(false);
         }
 
         public async Task PostNewJobOpportunity(JobOpportunity jobOpportunity)
@@ -41,7 +41,7 @@ namespace EmpleoDotNet.Services.Social.Twitter
 
             var message = $"Se busca: {title} http://emplea.do/JobOpportunity/Detail/{UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)}";
 
-            await PostTweet(message);
+            await PostTweet(message).ConfigureAwait(false);
         }
     }
 }

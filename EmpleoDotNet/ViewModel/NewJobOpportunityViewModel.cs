@@ -36,7 +36,7 @@ namespace EmpleoDotNet.ViewModel
         public string CompanyUrl { get; set; }
 
         [Required(ErrorMessage = "El campo email es requerido"), StringLength(int.MaxValue), EmailAddress(ErrorMessage = "Email invalido.")]
-        [Display(Name = "Email"), ]
+        [Display(Name = "Email")]
         public string CompanyEmail { get; set; }
 
         [StringLength(int.MaxValue), Url(ErrorMessage = "El Logo de la compañia debe ser un Url valido.")]
@@ -52,33 +52,24 @@ namespace EmpleoDotNet.ViewModel
         public string LocationPlaceId { get; set; }
 
         public Core.Domain.JobOpportunity ToEntity()
-        {
-            var entity = new Core.Domain.JobOpportunity
-            {
-                Title = Title,
-                Category = Category,
-                Description = Description,
-                CompanyName = CompanyName,
-                CompanyUrl = CompanyUrl,
-                CompanyLogoUrl = CompanyLogoUrl,
-                CompanyEmail = CompanyEmail,
-                PublishedDate = DateTime.Now,
-                IsRemote = IsRemote
+            => new Core.Domain.JobOpportunity 
+                {
+                    Title = Title,
+                    Category = Category,
+                    Description = Description,
+                    CompanyName = CompanyName,
+                    CompanyUrl = CompanyUrl,
+                    CompanyLogoUrl = CompanyLogoUrl,
+                    CompanyEmail = CompanyEmail,
+                    PublishedDate = DateTime.Now,
+                    IsRemote = IsRemote,
+                    JobOpportunityLocation = new JobOpportunityLocation {
+                        Latitude = LocationLatitude,
+                        Longitude = LocationLongitude,
+                        Name = LocationName,
+                        PlaceId = LocationPlaceId
+                }
             };
 
-            if (!string.IsNullOrWhiteSpace(LocationName) &&
-                !string.IsNullOrWhiteSpace(LocationPlaceId))
-            {
-                entity.JobOpportunityLocation = new JobOpportunityLocation
-                {
-                    Latitude = LocationLatitude,
-                    Longitude = LocationLongitude,
-                    Name = LocationName,
-                    PlaceId = LocationPlaceId
-                };
-            }
-
-            return entity;
-        }
     }
 }
