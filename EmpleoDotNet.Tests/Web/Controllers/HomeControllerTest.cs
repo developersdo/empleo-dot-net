@@ -6,6 +6,8 @@ using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Core.Dto;
 using EmpleoDotNet.Repository.Contracts;
 using EmpleoDotNet.ViewModel;
+using EmpleoDotNet.ViewModel.Home;
+using EmpleoDotNet.ViewModel.JobOpportunity;
 using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
@@ -34,10 +36,10 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             _jobOpportunityRepository.GetMainJobCategoriesCount().Returns(expectedJobCategoriesCount);
             _jobOpportunityRepository.GetLatestJobOpportunity(7).Returns(latestJobs);
 
-            ViewModel.Home.HomeIndexViewModel expectedModel = new ViewModel.Home.HomeIndexViewModel
+            var expectedModel = new HomeIndexViewModel
             {
                 LatestJobs = latestJobs,
-                SearchViewModel = new ViewModel.JobOpportunity.JobOpportunitySearchViewModel
+                SearchViewModel = new JobOpportunitySearchViewModel
                 {
                     CategoriesCount = expectedJobCategoriesCount
                 }
@@ -49,7 +51,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             // Assert
             _jobOpportunityRepository.Received(1).GetLatestJobOpportunity(7);
 
-            var viewModel = (ViewModel.Home.HomeIndexViewModel)result.Model;
+            var viewModel = (HomeIndexViewModel)result.Model;
             viewModel.SearchViewModel.CategoriesCount.Should().Equal(expectedModel.SearchViewModel.CategoriesCount);
             viewModel.LatestJobs.Should().BeSameAs(expectedModel.LatestJobs);
         }

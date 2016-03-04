@@ -134,7 +134,7 @@ namespace EmpleoDotNet.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        private ViewModel.JobOpportunity.JobOpportunitySearchViewModel GetSearchViewModel(JobOpportunityPagingParameter model)
+        private JobOpportunitySearchViewModel GetSearchViewModel(JobOpportunityPagingParameter model)
         {
             if (string.IsNullOrWhiteSpace(model.SelectedLocationName))
             {
@@ -143,7 +143,7 @@ namespace EmpleoDotNet.Controllers
                 model.SelectedLocationPlaceId = string.Empty;
             }
 
-            var viewModel = new ViewModel.JobOpportunity.JobOpportunitySearchViewModel
+            var viewModel = new JobOpportunitySearchViewModel
             {
                 SelectedLocationPlaceId = model.SelectedLocationPlaceId,
                 SelectedLocationName = model.SelectedLocationName,
