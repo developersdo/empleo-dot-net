@@ -14,21 +14,20 @@
         <div class="row">
             <div class="col-sm-12 text-center">
                 <h1>@Model.Title</h1>
-                <h4>
+
                     @if (Model.JobOpportunityLocation == null)
                     {
-                        <span><i class="fa fa-map-marker"></i>N/A</span>
+                        <h4><span><i class="fa fa-map-marker"></i>N/A</span></h4>
                     }
                     else
                     {
-                        <span><i class="fa fa-map-marker"></i>@Model.JobOpportunityLocation.Name</span>
+                        <h4><span><i class="fa fa-map-marker"></i>@Model.JobOpportunityLocation.Name</span></h4>
                     }
-                    <span><i class="fa fa-cog"></i>@Model.Category.ToEnumDescription()</span>
+                    <h4><span><i class="fa fa-cog"></i>@Model.Category.ToEnumDescription()</span></h4>
                     @if (Model.IsRemote)
                     {
-                        <span><i class="fa fa-globe"></i>Remoto</span>
+                        <h4><span><i class="fa fa-globe"></i>Remoto</span></h4>
                     }
-                </h4>
                 <h5 class="text-center"><i class="fa fa-calendar"></i> @Model.Created.ToString("dd MMMM yyyy")</h5>
             </div>
         </div>
