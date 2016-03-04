@@ -1,6 +1,6 @@
 ﻿@using EmpleoDotNet.Helpers
 @using reCAPTCHA.MVC
-@model EmpleoDotNet.ViewModel.JobOpportunity.Wizard
+@model EmpleoDotNet.ViewModel.JobOpportunity.JobOpportunityWizardViewModel
 
 @{
     ViewBag.Title = "Nuevo Empleo";
@@ -64,12 +64,13 @@
                 <div class="form-group" id="job-location-group">
                     @Html.LabelFor(m => m.LocationName)
                     @Html.TextBoxFor(m => m.LocationName, new
-                   {
-                       @class = "form-control",
-                       placeholder = "Selecciona una localidad",
-                       id = "location-input",
-                       @data_parsley_group = "job-details"
-                   })
+                    {
+                        @class = "form-control",
+                        placeholder = "Selecciona una localidad",
+                        id = "location-input",
+                        @data_parsley_group = "job-details",
+                        autocomplete ="off"
+                    })
                     @Html.HiddenFor(m => m.LocationLatitude, new { id = "location-latitude", @data_parsley_group = "job-details" })
                     @Html.HiddenFor(m => m.LocationLongitude, new { id = "location-longitude", @data_parsley_group = "job-details" })
                     @Html.HiddenFor(m => m.LocationPlaceId, new { id = "location-placeid", @data_parsley_group = "job-details" })

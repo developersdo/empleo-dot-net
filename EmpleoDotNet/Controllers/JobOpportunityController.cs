@@ -41,19 +41,18 @@ namespace EmpleoDotNet.Controllers
             var value = GetIdFromTitle(id);
             if (value == 0)
                 return RedirectToAction(nameof(Index));
+            var jobOpportunity = _jobOpportunityService.GetJobOpportunityById(value);
 
-            var viewModel = _jobOpportunityService.GetJobOpportunityById(value);
-
-            if (viewModel == null)
+            if (jobOpportunity == null)
                 return View(nameof(Index))
                     .WithError("La vacante solicitada no existe. Por favor escoge una vacante válida del listado");
-
-            var expectedUrl = UrlHelperExtensions.SeoUrl(value, viewModel.Title.SanitizeUrl());
+            
+            var expectedUrl = UrlHelperExtensions.SeoUrl(value, jobOpportunity.Title.SanitizeUrl());
 
             if (!expectedUrl.Equals(id, StringComparison.OrdinalIgnoreCase))
                 return RedirectToActionPermanent(nameof(Detail), new { id = expectedUrl });
-
-            ViewBag.RelatedJobs =
+            var viewModel = new JobOpportunityDetailsViewModel(jobOpportunity);
+            viewModel.RelatedJobs =
                 _jobOpportunityService.GetCompanyRelatedJobs(value, viewModel.CompanyName);
 
             var cookieView = $"JobView{viewModel.Id}";
@@ -69,7 +68,7 @@ namespace EmpleoDotNet.Controllers
         [HttpGet]
         public ActionResult New()
         {
-            var viewModel = new NewJobOpportunityViewModel();
+            var viewModel = new JobOpportunityNewViewModel();
 
             return View(viewModel)
                 .WithInfo("Prueba nuestro nuevo proceso guiado de creación de posiciones haciendo <b><a href='" + Url.Action("Wizard") + "'>click aquí</a></b>");
@@ -78,7 +77,7 @@ namespace EmpleoDotNet.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         [ValidateInput(false)]
         [CaptchaValidator(RequiredMessage = "Por favor confirma que no eres un robot")]
-        public async Task<ActionResult> New(NewJobOpportunityViewModel model, bool captchaValid)
+        public async Task<ActionResult> New(JobOpportunityNewViewModel model, bool captchaValid)
         {
             if (!ModelState.IsValid)
             {
@@ -112,7 +111,7 @@ namespace EmpleoDotNet.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         [ValidateInput(false)]
         [CaptchaValidator(RequiredMessage = "Por favor confirma que no eres un robot")]
-        public async Task<ActionResult> Wizard(Wizard model)
+        public async Task<ActionResult> Wizard(JobOpportunityWizardViewModel model)
         {
             if (!ModelState.IsValid)
                 return View(model)
@@ -144,7 +143,8 @@ namespace EmpleoDotNet.Controllers
                 model.SelectedLocationPlaceId = string.Empty;
             }
 
-            var viewModel = new JobOpportunitySearchViewModel {
+            var viewModel = new JobOpportunitySearchViewModel
+            {
                 SelectedLocationPlaceId = model.SelectedLocationPlaceId,
                 SelectedLocationName = model.SelectedLocationName,
                 SelectedLocationLongitude = model.SelectedLocationLongitude,

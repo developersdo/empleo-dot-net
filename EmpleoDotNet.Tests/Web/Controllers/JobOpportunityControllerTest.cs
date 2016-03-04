@@ -11,6 +11,7 @@ using EmpleoDotNet.Helpers;
 using EmpleoDotNet.Helpers.Alerts;
 using EmpleoDotNet.Services.Social.Twitter;
 using EmpleoDotNet.ViewModel;
+using EmpleoDotNet.ViewModel.JobOpportunity;
 using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
@@ -64,7 +65,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             result.AlertClass.Should().Be("alert-danger");
             result.Message.Should().Be("Debe seleccionar una Localidad para buscar.");
             var viewResult = (ViewResult)result.InnerResult;
-            var model = (JobOpportunitySearchViewModel)viewResult.Model;
+            var model = (ViewModel.JobOpportunity.JobOpportunitySearchViewModel)viewResult.Model;
 
             model.SelectedLocationLatitude.Should().Be(param.SelectedLocationLatitude);
             model.SelectedLocationLongitude.Should().Be(param.SelectedLocationLongitude);
@@ -106,7 +107,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             _jobOpportunityService.Received(1).GetMainJobCategoriesCount();
             _jobOpportunityService.Received(1).GetAllJobOpportunitiesPagedByFilters(param);
 
-            var model = (JobOpportunitySearchViewModel)result.Model;
+            var model = (ViewModel.JobOpportunity.JobOpportunitySearchViewModel)result.Model;
             model.SelectedLocationLatitude.Should().BeEmpty();
             model.SelectedLocationLongitude.Should().BeEmpty();
             model.SelectedLocationPlaceId.Should().BeEmpty();
@@ -147,7 +148,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             _jobOpportunityService.Received(1).GetMainJobCategoriesCount();
             _jobOpportunityService.Received(1).GetAllJobOpportunitiesPagedByFilters(param);
 
-            var model = (JobOpportunitySearchViewModel)result.Model;
+            var model = (ViewModel.JobOpportunity.JobOpportunitySearchViewModel)result.Model;
             model.SelectedLocationLatitude.Should().Be(param.SelectedLocationLatitude);
             model.SelectedLocationLongitude.Should().Be(param.SelectedLocationLongitude);
             model.SelectedLocationPlaceId.Should().Be(param.SelectedLocationPlaceId);
@@ -181,7 +182,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
         public void New_GET_ReturnsView_WithEmptyModel()
         {
             // Arrange
-            var model = new NewJobOpportunityViewModel();
+            var model = new JobOpportunityNewViewModel();
             _sut.Url = Substitute.For<UrlHelper>();
             _sut.Url.Action("Wizard").Returns("/jobs/wizard");
 
@@ -196,7 +197,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
 
             var viewResult = (ViewResult)result.InnerResult;
             viewResult.ViewName.Should().BeEmpty();
-            ((NewJobOpportunityViewModel)viewResult.Model).ShouldBeEquivalentTo(model);
+            ((JobOpportunityNewViewModel)viewResult.Model).ShouldBeEquivalentTo(model);
         }
 
         [Test]
@@ -205,7 +206,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             // Arrange
             var controller = typeof(JobOpportunityController);
             var action = controller.GetMethod(nameof(JobOpportunityController.New),
-                new[] { typeof(NewJobOpportunityViewModel), typeof(bool) });
+                new[] { typeof(JobOpportunityNewViewModel), typeof(bool) });
 
             // Act
             var filters = action.GetCustomAttributes().ToArray();
@@ -225,7 +226,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
         public async Task New_POST_ModelStateInvalid_ReturnsViewWithError()
         {
             // Arrange
-            var model = new NewJobOpportunityViewModel();
+            var model = new JobOpportunityNewViewModel();
             _sut.ModelState.AddModelError("", "");
 
             // Act
@@ -251,7 +252,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             )
         {
             // Arrange
-            var model = new NewJobOpportunityViewModel { LocationPlaceId = placeId };
+            var model = new JobOpportunityNewViewModel { LocationPlaceId = placeId };
 
             // Act
             var result = (AlertDecoratorResult)await _sut.New(model, false);
@@ -275,7 +276,8 @@ namespace EmpleoDotNet.Tests.Web.Controllers
         public async Task New_POST_ValidModel_CreatesJob_PostsTweet_RedirectsToDetail()
         {
             // Arrange
-            var model = new NewJobOpportunityViewModel {
+            var model = new JobOpportunityNewViewModel
+            {
                 Title = "myTitle",
                 Category = JobCategory.MobileDevelopment,
                 Description = "My description",
@@ -307,7 +309,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
         }
 
         private static void VerifyGeneratedJobOpportunityEntity(
-            NewJobOpportunityViewModel model,
+            JobOpportunityNewViewModel model,
             JobOpportunity entity)
         {
             entity.Title.Should().Be(model.Title);
