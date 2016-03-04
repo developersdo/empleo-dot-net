@@ -1,0 +1,52 @@
+﻿@model EmpleoDotNet.Core.Domain.UserProfile
+
+@{
+    ViewBag.Title = "Mi perfil";
+}
+<div class="container">
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div>
+                        <h2>Mi perfil</h2>
+                    </div>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Created)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Created)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.UserId)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.UserId)
+                        </dd>
+
+                        <dt>
+                            Nombre
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Name)
+                        </dd>
+
+                        <dt>
+                            Email
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Email)
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </section>
+ </div>

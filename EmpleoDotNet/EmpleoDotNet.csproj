@@ -285,7 +285,6 @@
     <Compile Include="Helpers\EnumerableExtensions.cs" />
     <Compile Include="Helpers\JobOpportunityDescriptionBuilder.cs" />
     <Compile Include="Helpers\UrlHelperExtensions.cs" />
-    <Compile Include="Models\Identity\AccountViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Social\Twitter\ITwitterService.cs" />
     <Compile Include="Services\Social\Twitter\TwitterService.cs" />
@@ -294,6 +293,7 @@
     <Compile Include="ViewModel\Account\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModel\Account\ExternalLoginListViewModel.cs" />
     <Compile Include="ViewModel\Account\ForgotPasswordViewModel.cs" />
+    <Compile Include="ViewModel\Account\ProfileViewModel.cs" />
     <Compile Include="ViewModel\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModel\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModel\Account\VerifyCodeViewModel.cs" />
@@ -499,6 +499,7 @@
     <Content Include="Views\JobOpportunity\_JoelTestResults.cshtml" />
     <Content Include="Views\Shared\_Alerts.cshtml" />
     <Content Include="Views\UnderMaintenance\Index.cshtml" />
+    <Content Include="Views\Account\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,5 +14,10 @@ namespace EmpleoDotNet.Repository
         public UserProfileRepository(EmpleadoContext context) : base(context)
         {
         }
+
+        public UserProfile GetByUserId(string userId)
+        {
+            return DbSet.FirstOrDefault(x => x.UserId == userId);
+        }
     }
 }

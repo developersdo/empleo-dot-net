@@ -9,5 +9,6 @@ namespace EmpleoDotNet.Repository.Contracts
 {
     public interface IUserProfileRepository : IBaseRepository<UserProfile>
     {
+        UserProfile GetByUserId(string userId);
     }
 }

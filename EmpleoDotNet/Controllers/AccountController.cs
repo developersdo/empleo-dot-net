@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -7,10 +8,10 @@ using EmpleoDotNet.AppServices;
 using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Data;
 using EmpleoDotNet.Helpers.Alerts;
+using EmpleoDotNet.Repository;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
-using EmpleoDotNet.Models;
 using EmpleoDotNet.Repository.Contracts;
 
 namespace EmpleoDotNet.Controllers
@@ -22,11 +23,13 @@ namespace EmpleoDotNet.Controllers
     public class AccountController : Controller
     {
         private readonly IAuthenticationService _authenticationService;
+        private IUserProfileRepository _userProfileRepository;
 
-        public AccountController(IAuthenticationService authenticationService)
+        public AccountController(IAuthenticationService authenticationService, IUserProfileRepository userProfileRepository)
             : this(new UserManager<IdentityUser>(new UserStore<IdentityUser>(new EmpleadoContext())))
         {
             _authenticationService = authenticationService;
+            this._userProfileRepository = userProfileRepository;
         }
 
         public AccountController(UserManager<IdentityUser> userManager)
@@ -108,11 +111,6 @@ namespace EmpleoDotNet.Controllers
             }
         }
         
-
-        //
-        // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
@@ -225,7 +223,9 @@ namespace EmpleoDotNet.Controllers
 
         public ActionResult Profile(string returnurl)
         {
-            throw new NotImplementedException();
+            var user = _userProfileRepository.GetByUserId(this.User.Identity.GetUserId());
+
+            return View(user);
         }
     }
 }

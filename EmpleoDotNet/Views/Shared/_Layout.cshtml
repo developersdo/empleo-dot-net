@@ -46,6 +46,15 @@
                 <a class="fm-button"><i class="fa fa-close fa-2x"></i></a>
             </div>
             <ul class="nav">
+                @if (User == null)
+                {
+                    <li class="@Html.IsSelected("Account", "Login")"><a href="@Url.Action("Login", "Account")">Iniciar sesión</a></li>
+                }
+                else
+                {
+                    <li><a href="@Url.Action("Profile", "Account")">Mi perfil</a>
+                        <ul><li><a href="@Url.Action("LogOff","Account")">Cerrar sesión</a></li></ul></li>
+                }
                 <li class="@Html.IsSelected("Home", "Index")"><a href="@Url.Action("Index", "Home")">Home</a></li>
                 <li class="@Html.IsSelected("JobOpportunity", "Index")"><a href="@Url.Action("Index", "JobOpportunity")">Lista de Empleos</a></li>
                 <li class="@Html.IsSelected("JobOpportunity", "New")"><a href="@Url.Action("New", "JobOpportunity")">Publicar un Empleo</a></li>
