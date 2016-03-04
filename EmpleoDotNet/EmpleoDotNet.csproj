@@ -298,6 +298,8 @@
     <Compile Include="ViewModel\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModel\Account\VerifyCodeViewModel.cs" />
     <Compile Include="ViewModel\ErrorViewModel.cs" />
+    <Compile Include="ViewModel\JobOpportunityLike\JobOpportunityLikeParameter.cs" />
+    <Compile Include="ViewModel\JobOpportunityLike\JobOpportunityLikeViewModel.cs" />
     <Compile Include="ViewModel\JobOpportunitySearchViewModel.cs" />
     <Compile Include="ViewModel\JobOpportunity\Wizard.cs" />
     <Compile Include="ViewModel\NewJobOpportunityViewModel.cs" />
@@ -350,6 +352,7 @@
     <Content Include="Content\css\theme\owl.carousel.css" />
     <Content Include="Content\css\theme\style.css" />
     <Content Include="Content\JobOpportunity\Wizard.css" />
+    <Content Include="Content\JobOpportunity\Detail.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -427,6 +430,7 @@
     <Content Include="Scripts\i18n\zh-CN.js" />
     <Content Include="Scripts\i18n\zh-TW.js" />
     <None Include="Scripts\jquery-1.11.2.intellisense.js" />
+    <Content Include="Scripts\JobOpportunity\Likes.js" />
     <Content Include="Scripts\JobOpportunity\Wizard.js" />
     <Content Include="Scripts\jquery-1.11.2.js" />
     <Content Include="Scripts\jquery-1.11.2.min.js" />

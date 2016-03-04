@@ -3,7 +3,7 @@ namespace EmpleoDotNet.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddJobOpportunityLikes : DbMigration
+    public partial class AddJobOpportunityLikesTable : DbMigration
     {
         public override void Up()
         {
