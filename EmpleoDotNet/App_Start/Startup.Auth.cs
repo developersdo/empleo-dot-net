@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -6,6 +7,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Facebook;
 using Owin;
+using Tweetinvi;
 
 namespace EmpleoDotNet
 {
@@ -35,8 +37,8 @@ namespace EmpleoDotNet
 
             var fbAuthOptions = new FacebookAuthenticationOptions
             {
-                AppId = "1640386106224012",
-                AppSecret = "13d97c0da39d38c3a990af219959b204"
+                AppId = ConfigurationManager.AppSettings["fbAppId"],
+                AppSecret = ConfigurationManager.AppSettings["fbAppSecret"]
             };
             
             fbAuthOptions.Scope.Add("email");
