@@ -32,13 +32,34 @@
                                         {
                                             if (p.AuthenticationType == "Facebook")
                                             {
-                                                <button name="provider" value="Facebook" type="submit" class="btn btn-block btn-social btn btn-facebook">
+                                                <button name="provider" value="@p.AuthenticationType" type="submit" class="btn btn-block btn-social btn-facebook">
                                                     <span class="fa fa-facebook-official"></span> Accede con Facebook
+                                                </button>
+                                            }
+                                            else if (p.AuthenticationType == "Google")
+                                            {
+
+                                                <button name="provider" value="@p.AuthenticationType" type="submit" class="btn btn-block btn-social btn-google">
+                                                    <span class="fa fa-google-plus"></span> Accede con Google
+                                                </button>
+                                            }
+                                            else if (p.AuthenticationType == "Microsoft")
+                                            {
+                                                <button name="provider" value="@p.AuthenticationType" type="submit" class="btn btn-block btn-social btn-microsoft">
+                                                    <span class="fa fa-windows"></span> Accede con Microsoft
+                                                </button>
+                                            }
+                                            else if (p.AuthenticationType == "Twitter")
+                                            {
+                                                <button name="provider" value="@p.AuthenticationType" type="submit" class="btn btn-block btn-social btn-twitter">
+                                                    <span class="fa fa-twitter"></span> Accede con Twitter
                                                 </button>
                                             }
                                             else
                                             {
-                                                <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
+                                                <button type="submit" class="btn btn-block btn-social btn-primary" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">
+                                                    <span class="fa fa-link"></span> Accede con @p.AuthenticationType
+                                                </button>
                                             }
                                         }
                                     </p>

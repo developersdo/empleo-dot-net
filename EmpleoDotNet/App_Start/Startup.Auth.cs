@@ -27,14 +27,15 @@ namespace EmpleoDotNet
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+            app.UseMicrosoftAccountAuthentication(
+                clientId: ConfigurationManager.AppSettings["msClientId"],
+                clientSecret: ConfigurationManager.AppSettings["msClientSecret"]
+            );
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
-
+            app.UseTwitterAuthentication(
+                consumerKey: ConfigurationManager.AppSettings["consumerKey"],
+                consumerSecret: ConfigurationManager.AppSettings["consumerSecret"]
+            );
 
             var fbAuthOptions = new FacebookAuthenticationOptions
             {
@@ -54,7 +55,10 @@ namespace EmpleoDotNet
                 }
             };
             app.UseFacebookAuthentication(fbAuthOptions);
-            app.UseGoogleAuthentication();
+            app.UseGoogleAuthentication(
+                clientId: ConfigurationManager.AppSettings["googleClientId"],
+                clientSecret: ConfigurationManager.AppSettings["googleClientSecret"]
+            );
         }
     }
 }
