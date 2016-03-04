@@ -1,7 +1,7 @@
-﻿@using Microsoft.Owin.Security
-
+﻿@using EmpleoDotNet.ViewModel.Account
+@using Microsoft.Owin.Security
 @{
-    ViewBag.Title = "Log in";
+    ViewBag.Title = "Inicia sesión";
 }
 
 @section styles
@@ -9,17 +9,9 @@
     <link href="~/Content/css/plugins/bootstrapsocialgf/bootstrap-social.min.css" rel="stylesheet" />
 }
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-6 col-md-offset-3" style="height: 400px;">
-        <div class="col-md-4">
-            <a class="btn btn-block btn-social btn btn-facebook">
-                <span class="fa fa-facebook-official"></span> Accede con Facebook
-            </a>
-        </div>
-
-    </div>
+<div class="container">
+    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl, Action = "ExternalLogin" })
 </div>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

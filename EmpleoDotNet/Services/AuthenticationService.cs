@@ -42,9 +42,7 @@ namespace EmpleoDotNet.Services
         public IdentityUser CreateUserWithSocialProvider(string socialProvider, string providerKey, string accessToken)
         {
 
-            var userProfile = new UserProfile();
-
-            userProfile = _userProfileSocialService.GetFromSocialProvider(socialProvider, accessToken);
+            var userProfile = _userProfileSocialService.GetFromSocialProvider(socialProvider, accessToken);
            
             var user = new IdentityUser(GenerateUserName());
             var login = new UserLoginInfo(socialProvider, providerKey);

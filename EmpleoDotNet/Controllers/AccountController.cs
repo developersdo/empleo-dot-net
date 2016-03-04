@@ -222,5 +222,10 @@ namespace EmpleoDotNet.Controllers
             }
         }
         #endregion
+
+        public ActionResult Profile(string returnurl)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

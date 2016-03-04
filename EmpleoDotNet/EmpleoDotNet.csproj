@@ -288,6 +288,12 @@
     <Compile Include="Services\Social\Twitter\TwitterService.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\Account\ExternalLoginConfirmationViewModel.cs" />
+    <Compile Include="ViewModel\Account\ExternalLoginListViewModel.cs" />
+    <Compile Include="ViewModel\Account\ForgotPasswordViewModel.cs" />
+    <Compile Include="ViewModel\Account\ResetPasswordViewModel.cs" />
+    <Compile Include="ViewModel\Account\SendCodeViewModel.cs" />
+    <Compile Include="ViewModel\Account\VerifyCodeViewModel.cs" />
     <Compile Include="ViewModel\ErrorViewModel.cs" />
     <Compile Include="ViewModel\JobOpportunitySearchViewModel.cs" />
     <Compile Include="ViewModel\JobOpportunity\Wizard.cs" />
