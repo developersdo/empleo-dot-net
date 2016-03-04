@@ -10,7 +10,16 @@
 }
 
 @section styles{
-    <link href="~/Content/JobOpportunity/Detail.css" rel="stylesheet" />
+    @Styles.Render("~/Content/JobOpportunity/Detail.css")
+        }
+@section scripts
+{
+    <script type="text/javascript">
+        var $urls = {
+            LikeJobOpportunity: '@Url.Action("Like")'
+        };
+    </script>
+    @Scripts.Render("~/Scripts/JobOpportunity/Likes.js")
 }
 
 <section id="title">
@@ -28,7 +37,7 @@
                     }
 
                     <h5><i class="fa fa-cog"></i> @Model.Category.ToEnumDescription()</h5>
-
+                    
                     @if (Model.IsRemote)
                     {
                         <h5><i class="fa fa-globe"></i> Remoto</h5>
@@ -74,8 +83,17 @@
             <div class="col-sm-4" id="sidebar">
                 <div class="sidebar-widget" id="likes">
                     <h2>Likes</h2>
-                    // TODO: Change this
-                    @Model.JobOpportunityLikes.Count
+                    <div class="@Html.Raw(!ViewBag.CanLike ? "disabled" : "")">
+                        <a href="#" class="like-job" title="Me gusta" data-job="@Model.Id" data-like="true" data-canlike="@ViewBag.CanLike.ToString().ToLower()">
+                            <i class="fa fa-lg fa-thumbs-o-up"></i>
+                            <span>@string.Format(Model.JobOpportunityLikes.Count(x => x.Like).ToString(), "{1:#,0}")</span>
+                        </a>
+                        &nbsp;
+                        <a href="#" class="like-job" title="No me gusta" data-job="@Model.Id" data-like="false" data-canlike="@ViewBag.CanLike.ToString().ToLower()">
+                            <i class="fa fa-lg fa-thumbs-o-down"></i>
+                            <span>@string.Format(Model.JobOpportunityLikes.Count(x => !x.Like).ToString(), "{1:#,0}")</span>
+                        </a>
+                    </div>
                 </div>
                 <div class="sidebar-widget" id="share">
                     <h2>Compartir</h2>
@@ -121,7 +139,7 @@
                             }
                         </ul>
                     </div>
-                    <hr>
+                        <hr>
                 }
 
                 <div class="sidebar-widget" id="view-count">

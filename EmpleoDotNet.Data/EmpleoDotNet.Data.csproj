@@ -113,9 +113,9 @@
     <Compile Include="Migrations\201603021507582_AddedJobTypeField.Designer.cs">
       <DependentUpon>201603021507582_AddedJobTypeField.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603041616411_AddJobOpportunityLikes.cs" />
-    <Compile Include="Migrations\201603041616411_AddJobOpportunityLikes.Designer.cs">
-      <DependentUpon>201603041616411_AddJobOpportunityLikes.cs</DependentUpon>
+    <Compile Include="Migrations\201603161945186_AddJobOpportunityLikesTable.cs" />
+    <Compile Include="Migrations\201603161945186_AddJobOpportunityLikesTable.Designer.cs">
+      <DependentUpon>201603161945186_AddJobOpportunityLikesTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201603062240382_AddedUserProfileEntity.cs" />
     <Compile Include="Migrations\201603062240382_AddedUserProfileEntity.Designer.cs">
@@ -173,8 +173,8 @@
     <EmbeddedResource Include="Migrations\201603021507582_AddedJobTypeField.resx">
       <DependentUpon>201603021507582_AddedJobTypeField.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603041616411_AddJobOpportunityLikes.resx">
-      <DependentUpon>201603041616411_AddJobOpportunityLikes.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603161945186_AddJobOpportunityLikesTable.resx">
+      <DependentUpon>201603161945186_AddJobOpportunityLikesTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603062240382_AddedUserProfileEntity.resx">
       <DependentUpon>201603062240382_AddedUserProfileEntity.cs</DependentUpon>

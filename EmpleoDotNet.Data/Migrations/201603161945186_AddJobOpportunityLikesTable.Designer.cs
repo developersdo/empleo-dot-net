@@ -7,13 +7,13 @@ namespace EmpleoDotNet.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddJobOpportunityLikes : IMigrationMetadata
+    public sealed partial class AddJobOpportunityLikesTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddJobOpportunityLikes));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddJobOpportunityLikesTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603041616411_AddJobOpportunityLikes"; }
+            get { return "201603161945186_AddJobOpportunityLikesTable"; }
         }
         
         string IMigrationMetadata.Source
