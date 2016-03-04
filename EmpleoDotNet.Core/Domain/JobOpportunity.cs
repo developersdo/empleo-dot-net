@@ -71,6 +71,11 @@ namespace EmpleoDotNet.Core.Domain
         /// </summary>
         public int ViewCount { get; set; }
 
+        /// <summary>
+        /// Especifica si el empleo es Tiempo Completo, Independiente, etc.
+        /// </summary>
+        public JobType JobType { get; set; }
+
         public int? JoelTestId { get; set; }
 
         public bool IsActive { get; set; } = true;

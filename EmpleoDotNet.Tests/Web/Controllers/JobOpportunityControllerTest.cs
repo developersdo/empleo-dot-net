@@ -11,6 +11,7 @@ using EmpleoDotNet.Helpers;
 using EmpleoDotNet.Helpers.Alerts;
 using EmpleoDotNet.Services.Social.Twitter;
 using EmpleoDotNet.ViewModel;
+using EmpleoDotNet.ViewModel.JobOpportunity;
 using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
@@ -287,7 +288,8 @@ namespace EmpleoDotNet.Tests.Web.Controllers
                 LocationName = "My location",
                 LocationPlaceId = "123",
                 LocationLatitude = "18.3939393",
-                LocationLongitude = "-69.22222"
+                LocationLongitude = "-69.22222",
+                JobType = JobType.FullTime
             };
 
             _jobOpportunityService.WhenForAnyArgs(x => x.CreateNewJobOpportunity(null))
@@ -319,6 +321,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             entity.CompanyEmail.Should().Be(model.CompanyEmail);
             entity.PublishedDate.Should().BeCloseTo(DateTime.Now);
             entity.IsRemote.Should().Be(model.IsRemote);
+            entity.JobType.Should().Be(model.JobType);
             entity.JobOpportunityLocation.Should().Match<JobOpportunityLocation>(x =>
                 x.Latitude == model.LocationLatitude
                 && x.Longitude == model.LocationLongitude
@@ -354,6 +357,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
 
             // Assert
             result.ViewName.Should().BeEmpty();
+            ((Wizard) result.Model).ShouldBeEquivalentTo(new Wizard());
         }
 
         #endregion
