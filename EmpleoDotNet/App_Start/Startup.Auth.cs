@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Facebook;
+using Microsoft.Owin.Security.Google;
 using Owin;
 using Tweetinvi;
 
@@ -52,10 +53,8 @@ namespace EmpleoDotNet
                     return Task.FromResult(true);
                 }
             };
-                
             app.UseFacebookAuthentication(fbAuthOptions);
-
-            //app.UseGoogleAuthentication();
+            app.UseGoogleAuthentication();
         }
     }
 }
