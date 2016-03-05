@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Android", "Mobile\Android\Android.csproj", "{9279F05E-68C7-4919-A9E3-24A196457C94}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Android", "Android\Android.csproj", "{9279F05E-68C7-4919-A9E3-24A196457C94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Mobile\Api\Api.csproj", "{7A6460D0-CB8D-4425-886A-921E1D931FCA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{7A6460D0-CB8D-4425-886A-921E1D931FCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Contract", "Mobile\Api.Contract\Api.Contract.csproj", "{BECA9261-37EF-4883-883D-020F2080DF1B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Contract", "Api.Contract\Api.Contract.csproj", "{BECA9261-37EF-4883-883D-020F2080DF1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iOS", "Mobile\iOS\iOS.csproj", "{6B65DBD8-5EEF-4054-A91A-47132081BD5F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iOS", "iOS\iOS.csproj", "{6B65DBD8-5EEF-4054-A91A-47132081BD5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
