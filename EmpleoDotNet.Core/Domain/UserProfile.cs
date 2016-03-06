@@ -12,5 +12,7 @@ namespace EmpleoDotNet.Core.Domain
         public string UserId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+
+        public virtual IList<JobOpportunity> JobOpportunities { get; set; }
     }
 }

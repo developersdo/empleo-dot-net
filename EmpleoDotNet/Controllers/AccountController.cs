@@ -91,14 +91,7 @@ namespace EmpleoDotNet.Controllers
                 //a la pantalla de profile
                 try
                 {
-                    var accessToken = "";
-
-                    if (login.LoginProvider == "Facebook")
-                    {
-                        accessToken = result.Identity.FindFirstValue("FacebookAccessToken");
-                    }
-
-                    user = _authenticationService.CreateUserWithSocialProvider(login.LoginProvider, login.ProviderKey, accessToken);
+                    user = _authenticationService.CreateUserWithSocialProvider(login, result.Identity);
                     await SignInAsync(user, isPersistent: false);
 
                     return RedirectToAction("Profile", new { returnUrl });
@@ -110,7 +103,9 @@ namespace EmpleoDotNet.Controllers
                 }
             }
         }
-        
+   
+        //
+        // GET: /Account/LogOff
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();

@@ -9,6 +9,7 @@ using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.ViewModel.JobOpportunity;
 using reCAPTCHA.MVC;
 using System;
+using Microsoft.AspNet.Identity;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -96,8 +97,9 @@ namespace EmpleoDotNet.Controllers
             }
 
             var jobOpportunity = model.ToEntity();
+            var userId = User.Identity.GetUserId();
 
-            _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity);
+            _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity, userId);
 
             await _twitterService.PostNewJobOpportunity(jobOpportunity).ConfigureAwait(false);
 
@@ -125,7 +127,7 @@ namespace EmpleoDotNet.Controllers
 
             var jobOpportunity = model.ToEntity();
 
-            _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity);
+            _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity, User.Identity.GetUserId());
 
             await _twitterService.PostNewJobOpportunity(jobOpportunity);
 

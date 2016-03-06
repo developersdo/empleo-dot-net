@@ -113,6 +113,14 @@
     <Compile Include="Migrations\201603021507582_AddedJobTypeField.Designer.cs">
       <DependentUpon>201603021507582_AddedJobTypeField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603062240382_AddedUserProfileEntity.cs" />
+    <Compile Include="Migrations\201603062240382_AddedUserProfileEntity.Designer.cs">
+      <DependentUpon>201603062240382_AddedUserProfileEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603062359441_AddedRelationshipBetweenJobOpportunitiesAndUsers.cs" />
+    <Compile Include="Migrations\201603062359441_AddedRelationshipBetweenJobOpportunitiesAndUsers.Designer.cs">
+      <DependentUpon>201603062359441_AddedRelationshipBetweenJobOpportunitiesAndUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableConfigurations\BaseTableConfiguration.cs" />
@@ -151,14 +159,17 @@
     <EmbeddedResource Include="Migrations\201602190158389_JobOpportunityLocationTable.resx">
       <DependentUpon>201602190158389_JobOpportunityLocationTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602260327441_Add_UserProfile_Entity.resx">
-      <DependentUpon>201602260327441_Add_UserProfile_Entity.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602190159405_NullableLocationField.resx">
       <DependentUpon>201602190159405_NullableLocationField.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603021507582_AddedJobTypeField.resx">
       <DependentUpon>201603021507582_AddedJobTypeField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603062240382_AddedUserProfileEntity.resx">
+      <DependentUpon>201603062240382_AddedUserProfileEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603062359441_AddedRelationshipBetweenJobOpportunitiesAndUsers.resx">
+      <DependentUpon>201603062359441_AddedRelationshipBetweenJobOpportunitiesAndUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

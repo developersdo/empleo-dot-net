@@ -82,6 +82,7 @@ namespace EmpleoDotNet.Core.Domain
 
         public int? JobOpportunityLocationId { get; set; }
 
+        public virtual UserProfile User { get; set; }
         #endregion
 
         #region Navegation Properties

@@ -13,22 +13,6 @@
                     </div>
                     <dl class="dl-horizontal">
                         <dt>
-                            @Html.DisplayNameFor(model => model.Created)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.Created)
-                        </dd>
-
-                        <dt>
-                            @Html.DisplayNameFor(model => model.UserId)
-                        </dt>
-
-                        <dd>
-                            @Html.DisplayFor(model => model.UserId)
-                        </dd>
-
-                        <dt>
                             Nombre
                         </dt>
 
@@ -45,6 +29,21 @@
                         </dd>
 
                     </dl>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div>
+                        <h2>Mis ofertas de empleo</h2>
+                    </div>
+                    @if (Model.JobOpportunities.Any())
+                    {
+                        @Html.Partial("_JobListPartial", Model.JobOpportunities)
+                    }
+                    else
+                    {
+                        <span>No has creado una oferta de empleo, <a href="@Url.Action("Wizard","JobOpportunity")">comienza aquí</a></span>
+                    }
                 </div>
             </div>
         </div>

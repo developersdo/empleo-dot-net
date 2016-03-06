@@ -7,6 +7,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Facebook;
 using Microsoft.Owin.Security.Google;
+using Microsoft.Owin.Security.MicrosoftAccount;
 using Owin;
 using Tweetinvi;
 
@@ -27,15 +28,17 @@ namespace EmpleoDotNet
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Uncomment the following lines to enable logging in with third party login providers
-            app.UseMicrosoftAccountAuthentication(
-                clientId: ConfigurationManager.AppSettings["msClientId"],
-                clientSecret: ConfigurationManager.AppSettings["msClientSecret"]
-            );
+            var msAuthOptions = new MicrosoftAccountAuthenticationOptions();
+            msAuthOptions.Scope.Add("wl.basic");
+            msAuthOptions.Scope.Add("wl.emails");
+            msAuthOptions.ClientId = ConfigurationManager.AppSettings["msClientId"];
+            msAuthOptions.ClientSecret = ConfigurationManager.AppSettings["msClientSecret"];
+            app.UseMicrosoftAccountAuthentication(msAuthOptions);
 
-            app.UseTwitterAuthentication(
-                consumerKey: ConfigurationManager.AppSettings["consumerKey"],
-                consumerSecret: ConfigurationManager.AppSettings["consumerSecret"]
-            );
+//            app.UseTwitterAuthentication(
+//                consumerKey: ConfigurationManager.AppSettings["consumerKey"],
+//                consumerSecret: ConfigurationManager.AppSettings["consumerSecret"]
+//            );
 
             var fbAuthOptions = new FacebookAuthenticationOptions
             {

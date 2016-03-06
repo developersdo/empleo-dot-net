@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace EmpleoDotNet.Repository
 
         public UserProfile GetByUserId(string userId)
         {
-            return DbSet.FirstOrDefault(x => x.UserId == userId);
+            return DbSet.Where(x => x.UserId == userId).Include(x=>x.JobOpportunities).FirstOrDefault();
         }
     }
 }

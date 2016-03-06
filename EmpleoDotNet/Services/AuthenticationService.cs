@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using System.Web.UI.WebControls;
 using EmpleoDotNet.AppServices;
@@ -36,18 +37,16 @@ namespace EmpleoDotNet.Services
 
         public UserProfile GetUserProfile(string userId)
         {
-            throw new NotImplementedException();
+            return _userProfileRepository.GetByUserId(userId);
         }
-
-        public IdentityUser CreateUserWithSocialProvider(string socialProvider, string providerKey, string accessToken)
+        
+        public IdentityUser CreateUserWithSocialProvider(UserLoginInfo login, ClaimsIdentity identity)
         {
-            var userProfile = _userProfileSocialService.GetFromSocialProvider(socialProvider, accessToken);
-
+            var userProfile = _userProfileSocialService.GetFromSocialProvider(login.LoginProvider, identity);
             var user = new IdentityUser(GenerateUserName())
             {
                 Email = userProfile.Email
             };
-            var login = new UserLoginInfo(socialProvider, providerKey);
 
             var userCreationResult = _userManager.Create(user);
             if (userCreationResult.Succeeded)

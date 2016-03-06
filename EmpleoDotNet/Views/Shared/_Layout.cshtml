@@ -46,7 +46,7 @@
                 <a class="fm-button"><i class="fa fa-close fa-2x"></i></a>
             </div>
             <ul class="nav">
-                @if (User == null)
+                @if (User==null || !User.Identity.IsAuthenticated)
                 {
                     <li class="@Html.IsSelected("Account", "Login")"><a href="@Url.Action("Login", "Account")">Iniciar sesión</a></li>
                 }

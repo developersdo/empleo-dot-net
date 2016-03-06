@@ -9,8 +9,9 @@ namespace EmpleoDotNet.AppServices
 {
     public class JobOpportunityService : IJobOpportunityService
     {
-        public void CreateNewJobOpportunity(JobOpportunity jobOpportunity)
+        public void CreateNewJobOpportunity(JobOpportunity jobOpportunity, string userid)
         {
+            jobOpportunity.User = _userProfileRepository.GetByUserId(userid);
             _jobOpportunityRepository.Add(jobOpportunity);
             _jobOpportunityRepository.SaveChanges();
         }
@@ -49,12 +50,15 @@ namespace EmpleoDotNet.AppServices
 
 
         public JobOpportunityService(
-            IJobOpportunityRepository jobOpportunityRepository
+            IJobOpportunityRepository jobOpportunityRepository,
+            IUserProfileRepository userProfileRepository
             )
         {
             _jobOpportunityRepository = jobOpportunityRepository;
+            _userProfileRepository = userProfileRepository;
         }
 
         private readonly IJobOpportunityRepository _jobOpportunityRepository;
+        private readonly IUserProfileRepository _userProfileRepository;
     }
 }

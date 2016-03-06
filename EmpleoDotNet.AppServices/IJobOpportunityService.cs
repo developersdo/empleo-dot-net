@@ -7,7 +7,7 @@ namespace EmpleoDotNet.AppServices
 {
     public interface IJobOpportunityService
     {
-        void CreateNewJobOpportunity(JobOpportunity jobOpportunity);
+        void CreateNewJobOpportunity(JobOpportunity jobOpportunity, string userid);
         List<JobOpportunity> GetCompanyRelatedJobs(int id, string name);
         IPagedList<JobOpportunity> GetAllJobOpportunitiesPagedByFilters(JobOpportunityPagingParameter parameter);
         JobOpportunity GetJobOpportunityById(int? id);
