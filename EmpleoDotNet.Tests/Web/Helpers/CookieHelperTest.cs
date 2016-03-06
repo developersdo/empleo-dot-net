@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using EmpleoDotNet.Code;
 using EmpleoDotNet.Core;
 using EmpleoDotNet.Helpers;
 using FluentAssertions;

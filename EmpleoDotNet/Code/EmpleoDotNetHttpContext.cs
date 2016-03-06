@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 
-namespace EmpleoDotNet.Core
+namespace EmpleoDotNet.Code
 {
     /// <summary>
     /// An wrapper around HttpContext.Current that helps with unit testing.
