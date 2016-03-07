@@ -293,7 +293,6 @@
     <Compile Include="ViewModel\Account\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModel\Account\ExternalLoginListViewModel.cs" />
     <Compile Include="ViewModel\Account\ForgotPasswordViewModel.cs" />
-    <Compile Include="ViewModel\Account\ProfileViewModel.cs" />
     <Compile Include="ViewModel\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModel\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModel\Account\VerifyCodeViewModel.cs" />

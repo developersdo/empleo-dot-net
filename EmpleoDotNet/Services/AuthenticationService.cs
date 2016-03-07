@@ -12,8 +12,6 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace EmpleoDotNet.Services
 {
-    
-
     public class AuthenticationService : IAuthenticationService
     {
         private readonly IUserProfileRepository _userProfileRepository;
