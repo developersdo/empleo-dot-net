@@ -10,6 +10,7 @@ namespace EmpleoDotNet.ViewModel.Account
     {
         [Required]
         [Display(Name = "Email")]
+        [EmailAddress]
         public string Email { get; set; }
     }
 }

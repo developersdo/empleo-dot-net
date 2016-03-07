@@ -24,6 +24,7 @@ namespace EmpleoDotNet.ViewModel.Account
         [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "El campo de confirmar y contraseña deben ser iguales")]
         public string ConfirmPassword { get; set; }
 
+        [Required]
         public string Code { get; set; }
     }
 }
