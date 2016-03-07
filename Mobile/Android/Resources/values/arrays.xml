@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string-array name="HomeTitles">
+        <item>Empleos</item>
+        <item>Categorias</item>
+        <item>Favoritos</item>
+    </string-array>
+</resources>
