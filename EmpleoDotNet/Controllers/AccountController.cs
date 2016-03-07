@@ -64,7 +64,7 @@ namespace EmpleoDotNet.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
-            var result = await AuthenticationManager.AuthenticateAsync(DefaultAuthenticationTypes.ExternalCookie);
+            var result = await AuthenticationManager.AuthenticateAsync(DefaultAuthenticationTypes.ExternalCookie).ConfigureAwait(false);
             if (result == null || result.Identity == null)
             {
                 return RedirectToAction("Login");
@@ -79,7 +79,7 @@ namespace EmpleoDotNet.Controllers
             var login = new UserLoginInfo(idClaim.Issuer, idClaim.Value);
 
             // Si el usuario ya tiene una cuenta, autenticarlo con su cuenta de red social
-            var user = await UserManager.FindAsync(login);
+            var user = await UserManager.FindAsync(login).ConfigureAwait(false);
             if (user != null)
             {
                 await SignInAsync(user, isPersistent: false);
@@ -92,7 +92,7 @@ namespace EmpleoDotNet.Controllers
                 try
                 {
                     user = _authenticationService.CreateUserWithSocialProvider(login, result.Identity);
-                    await SignInAsync(user, isPersistent: false);
+                    await SignInAsync(user, isPersistent: false).ConfigureAwait(false);
 
                     return RedirectToAction("Profile", new { returnUrl });
                 }
@@ -145,7 +145,7 @@ namespace EmpleoDotNet.Controllers
         private async Task SignInAsync(IdentityUser user, bool isPersistent)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-            var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie).ConfigureAwait(false);
             AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
         }
 
