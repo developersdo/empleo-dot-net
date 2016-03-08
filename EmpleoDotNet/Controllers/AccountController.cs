@@ -23,17 +23,12 @@ namespace EmpleoDotNet.Controllers
     public class AccountController : Controller
     {
         private readonly IAuthenticationService _authenticationService;
-        private IUserProfileRepository _userProfileRepository;
+        private readonly IUserProfileRepository _userProfileRepository;
 
-        public AccountController(IAuthenticationService authenticationService, IUserProfileRepository userProfileRepository)
-            : this(new UserManager<IdentityUser>(new UserStore<IdentityUser>(new EmpleadoContext())))
+        public AccountController(IAuthenticationService authenticationService, IUserProfileRepository userProfileRepository, UserManager<IdentityUser> userManager)
         {
             _authenticationService = authenticationService;
-            this._userProfileRepository = userProfileRepository;
-        }
-
-        public AccountController(UserManager<IdentityUser> userManager)
-        {
+            _userProfileRepository = userProfileRepository;
             UserManager = userManager;
         }
 
@@ -216,7 +211,7 @@ namespace EmpleoDotNet.Controllers
         }
         #endregion
 
-        public ActionResult Profile(string returnurl)
+        public ActionResult Profile()
         {
             var user = _userProfileRepository.GetByUserId(this.User.Identity.GetUserId());
 

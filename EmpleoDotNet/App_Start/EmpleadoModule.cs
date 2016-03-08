@@ -1,4 +1,5 @@
-﻿using EmpleoDotNet.Data;
+﻿using System.Data.Entity;
+using EmpleoDotNet.Data;
 using EmpleoDotNet.Repository;
 using EmpleoDotNet.Repository.Contracts;
 using EmpleoDotNet.AppServices;
@@ -22,8 +23,10 @@ namespace EmpleoDotNet.App_Start
             Kernel.Bind<IUserProfileRepository>().To<UserProfileRepository>();
 
             Kernel.Bind<IJobOpportunityService>().To<JobOpportunityService>();
-            Kernel.Bind<IAuthenticationService>().To<AuthenticationService>()
-                .WithConstructorArgument("userManager", new UserManager<IdentityUser>(new UserStore<IdentityUser>(new EmpleadoContext())));
+            Kernel.Bind<IAuthenticationService>().To<AuthenticationService>();
+            
+            Kernel.Bind<IUserStore<IdentityUser>>().To<UserStore<IdentityUser>>();
+            Kernel.Bind<DbContext>().To<EmpleadoContext>();
             Kernel.Bind<IUserProfileSocialService>().To<UserProfileSocialService>();
 
             Kernel.Bind<ITwitterService>().To<TwitterService>();
