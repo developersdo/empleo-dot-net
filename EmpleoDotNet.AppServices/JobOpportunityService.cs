@@ -11,7 +11,7 @@ namespace EmpleoDotNet.AppServices
     {
         public void CreateNewJobOpportunity(JobOpportunity jobOpportunity, string userid)
         {
-            jobOpportunity.User = _userProfileRepository.GetByUserId(userid);
+            jobOpportunity.UserProfile = _userProfileRepository.GetByUserId(userid);
             _jobOpportunityRepository.Add(jobOpportunity);
             _jobOpportunityRepository.SaveChanges();
         }
