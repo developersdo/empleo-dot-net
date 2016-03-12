@@ -5,7 +5,9 @@ empleo-dot-net
 
 ### ¿Qué es esto?
 
-Es una iniciativa de Developers.DO y C#.DO  de crear un proyecto en github que sirva como "aprendizaje de la vida real" para quienes quieren aprender ASP.NET MVC.
+Este proyecto tiene la finalidad de servir como fuente de aprendizaje sobre "desasrrollo en el mundo real" para los interesados en aprender ASP .NET MVC.
+
+Es fruto de una iniciativa de Developers.DO y C#.DO.
 
 * Cada 1 o 2 semanas crearemos un Hangout para explicar conceptos relacionados al desarrollo del proyecto. 
 * El hangout será público, anunciaremos el URL con tiempo, y publicaremos un evento en Facebook para recordar a los interesados.
@@ -13,9 +15,9 @@ Es una iniciativa de Developers.DO y C#.DO  de crear un proyecto en github que s
 * Durante las sesiones interactivas, todos están invitados a hacer preguntas en el chat. El propósito no es dar una cátedra, sino programar algo real y que los participantes aclaren dudas. 
 * Luego de cada sesión se definirán Issues(feature nuevos, bugs, mejoras, etc.) para que todo el que quiera participar lo pueda hacer. 
 
-### Como Participo?
+### ¿Cómo Participo?
 
-Todo el conocimiento y decisiones que surgen a partir de discusiones se estará persistiendo en el wiki. Hay un enlace disponible en el menú del lado derecho aquí mismo en Github. 
+Todo el conocimiento y decisiones que surgen a partir de discusiones se asentará en [el wiki](https://github.com/developersdo/empleo-dot-net/wiki]], puede utilizarlo como referencia futura.
 
 * Comienza revisando los [recursos sugeridos](https://github.com/developersdo/empleo-dot-net/wiki/Lista-de-Recursos-de-Aprendizaje)
 * Mira la lista de [sesiones previas en Google Hangouts](https://github.com/developersdo/empleo-dot-net/wiki/Sesiones-de-Trabajo-Previas)
@@ -58,4 +60,4 @@ Pensamos dividir el desarrollo en tres etapas que permitan que participen person
 
 #### Etapa 4 - Mobile Services
 
-Una vez tengamos todo el codebase de forma organizada y con unit tests, entonces podemos exportar parte de la lógica a una aplicación mobile. El anuncio de [Xamarin Forms](xamarin.com/forms) es excelente noticia para nosotros, pues probablemente quiera decir que desarrollemos el app una sola vez con poco esfuerzo para las tres plataformas (iOS, Android y WP8)
+Una vez tengamos todo el código organizado y con pruebas unitarias desarrolladas, podremos exportar parte de la lógica a una aplicación mobile. Probablemente utilicemos [Xamarin Forms](xamarin.com/forms) para esta etapa del proyecto, porque implica que se puede desarrollar una sola aplicación y con esto llegar a las tres plataformas de smartphones principales:  iOS, Android y WP8.
