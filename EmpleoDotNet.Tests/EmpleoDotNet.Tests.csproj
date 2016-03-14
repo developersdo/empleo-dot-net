@@ -138,6 +138,7 @@
     <Compile Include="Web\Controllers\JobOpportunityControllerTest.cs" />
     <Compile Include="Web\Controllers\UnderMaintenanceControllerTest.cs" />
     <Compile Include="Web\Helpers\CookieHelperTest.cs" />
+    <Compile Include="Web\Helpers\TrimModelBinderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EmpleoDotNet.AppServices\EmpleoDotNet.AppServices.csproj">

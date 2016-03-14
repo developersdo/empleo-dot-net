@@ -262,7 +262,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobOpportunityController.cs" />
     <Compile Include="Controllers\UnderMaintenanceController.cs" />
-    <Compile Include="Core\EmpleoDotNetHttpContext.cs" />
+    <Compile Include="Code\EmpleoDotNetHttpContext.cs" />
+    <Compile Include="Code\TrimModelBinder.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

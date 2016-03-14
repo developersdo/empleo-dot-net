@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web;
-using EmpleoDotNet.Core;
+using EmpleoDotNet.Code;
 
 namespace EmpleoDotNet.Helpers
 {

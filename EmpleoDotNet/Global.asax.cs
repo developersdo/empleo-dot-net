@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using EmpleoDotNet.Code;
 
 namespace EmpleoDotNet
 {
@@ -13,6 +14,8 @@ namespace EmpleoDotNet
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            ModelBinders.Binders.DefaultBinder = new TrimModelBinder();
         }
     }
 }
