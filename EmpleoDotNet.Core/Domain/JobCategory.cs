@@ -71,6 +71,12 @@ namespace EmpleoDotNet.Core.Domain
         /// DBA
         /// </summary>
         [Display(Name = "Administrador de base de datos")]
-        DataBaseAdministrator = 128
+        DataBaseAdministrator = 128,
+
+        ///<summary>
+        ///Desarrollo de Videojuegos
+        ///</summary>
+        [Display(Name ="Desarrollo de Videojuegos")]
+        VideogameDevelopment = 256
     }
 }
