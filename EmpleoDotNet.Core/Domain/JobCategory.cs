@@ -77,6 +77,6 @@ namespace EmpleoDotNet.Core.Domain
         ///Desarrollo de Videojuegos
         ///</summary>
         [Display(Name ="Desarrollo de Videojuegos")]
-        VideogameDevelopment = 256
+        GameDevelopment = 256
     }
 }
