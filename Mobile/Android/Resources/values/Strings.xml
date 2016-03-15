@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Hello">Hello World, Click Me!</string>
-    <string name="ApplicationName">Android</string>
+    <string name="ApplicationName">Emplea.do</string>
+
+    <string name="first_page_description">Encuentra empleos, envia CV, y mas</string>
+    <string name="first_page_title">Emplea.do Movil</string>
+
+    <string name="second_page_description">Encuentra el empleo de tus sueños</string>
+    <string name="second_page_title">No mas milla extra</string>
+
+    <string name="third_page_description">Unete a la nueva moda de empleos remoto</string>
+    <string name="third_page_title">Trabajos remoto</string>
 </resources>
