@@ -1,5 +1,6 @@
 ﻿.img-company {
-    height: 195px;
+    height: auto;
+    width: 245px;
 }
 
 .job-title h5 {
