@@ -59,25 +59,26 @@ namespace EmpleoDotNet.ViewModel
         public JobType JobType { get; set; }
 
         public Core.Domain.JobOpportunity ToEntity()
-            => new Core.Domain.JobOpportunity 
-        {
-            Title = Title,
-            Category = Category,
-            Description = Description,
-            CompanyName = CompanyName,
-            CompanyUrl = CompanyUrl,
-            CompanyLogoUrl = CompanyLogoUrl,
-            CompanyEmail = CompanyEmail,
-            PublishedDate = DateTime.Now,
-            IsRemote = IsRemote,
-            JobType = JobType,
-            HowApply = HowApply,
-            JobOpportunityLocation = new JobOpportunityLocation {
-                Latitude = LocationLatitude,
-                Longitude = LocationLongitude,
-                Name = LocationName,
-                PlaceId = LocationPlaceId
-            }
-        };
+            => new Core.Domain.JobOpportunity
+            {
+                Title = Title,
+                Category = Category,
+                Description = Description,
+                CompanyName = CompanyName,
+                CompanyUrl = CompanyUrl,
+                CompanyLogoUrl = CompanyLogoUrl,
+                CompanyEmail = CompanyEmail,
+                PublishedDate = DateTime.Now,
+                IsRemote = IsRemote,
+                JobType = JobType,
+                HowApply = HowApply,
+                JobOpportunityLocation = new JobOpportunityLocation
+                {
+                    Latitude = LocationLatitude,
+                    Longitude = LocationLongitude,
+                    Name = LocationName,
+                    PlaceId = LocationPlaceId
+                }
+            };
     }
 }
