@@ -85,11 +85,18 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Description)
-                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control textarea", @data_parsley_group="job-details", @data_parsley_errors_container="#description_errors", required="" })
-                    @Html.ValidationMessageFor(m => m.Description)
+                    @Html.LabelFor(m => m.Requisitos)
+                    @Html.TextAreaFor(m => m.Requisitos, new { @class = "form-control textarea", @data_parsley_group="job-details", @data_parsley_errors_container="#description_errors", required="" })
+                    @Html.ValidationMessageFor(m => m.Requisitos)
                     <span><b>Tip:</b> Se lo mas explicito posible, si eres de recursos humanos consulta con una persona de 
                     tecnolog&iacute;a sobre cuales son los requerimientos t&eacute;cnicos.</span>
+                    <span id="description_errors" class="danger"></span>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Beneficios)
+                    @Html.TextAreaFor(m => m.Beneficios, new { @class = "form-control textarea", @data_parsley_group = "job-details", @data_parsley_errors_container = "#description_errors", required = "" })
+                    @Html.ValidationMessageFor(m => m.Beneficios)
                     <span id="description_errors" class="danger"></span>
                 </div>
                 <a class="btn-prev btn btn-warning btn-lg">Anterior</a>

@@ -5,7 +5,7 @@
 @model JobOpportunity
 @{
     ViewBag.Title = Model.Title;
-    ViewBag.Description = Regex.Replace(Model.Description, @"<(.|\n)*?>", "");
+    ViewBag.Description = Regex.Replace(Model.Requirements, @"<(.|\n)*?>", "");
     ViewBag.ImageUrl = Model.CompanyLogoUrl;
 }
 
@@ -52,7 +52,11 @@
                 <article>
                     <h2>Detalles del Puesto</h2>
                     <article>
-                        @Html.Raw(Model.Description)
+                        @Html.Raw(Model.Requirements)
+                    </article>
+                    <h2>Beneficios del Puesto</h2>
+                    <article>
+                        @Html.Raw(Model.Benefits)
                     </article>
                     <h3>Como aplicar</h3>
                     <p>
