@@ -82,6 +82,11 @@ namespace EmpleoDotNet.Core.Domain
 
         public int? JobOpportunityLocationId { get; set; }
 
+        /// <summary>
+        /// para especificar la forma de como se aplica para el empleo
+        /// </summary>
+        public string HowApply{ get; set; }
+
         #endregion
 
         #region Navegation Properties

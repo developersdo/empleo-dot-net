@@ -39,6 +39,10 @@ namespace EmpleoDotNet.ViewModel
         [Display(Name = "Email")]
         public string CompanyEmail { get; set; }
 
+        [Required(ErrorMessage = "El campo como aplicar es requerido"), StringLength(int.MaxValue)]
+        [Display(Name = "Cómo Aplicar")]
+        public string HowApply { get; set; }
+
         [StringLength(int.MaxValue), Url(ErrorMessage = "El Logo de la compañia debe ser un Url valido.")]
         [Display(Name = "Logo")]
         public string CompanyLogoUrl { get; set; }
@@ -67,6 +71,7 @@ namespace EmpleoDotNet.ViewModel
             PublishedDate = DateTime.Now,
             IsRemote = IsRemote,
             JobType = JobType,
+            HowApply = HowApply,
             JobOpportunityLocation = new JobOpportunityLocation {
                 Latitude = LocationLatitude,
                 Longitude = LocationLongitude,

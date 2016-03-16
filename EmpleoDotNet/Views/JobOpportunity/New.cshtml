@@ -94,6 +94,11 @@
                 @Html.TextBoxFor(m => m.CompanyEmail, new { @class = "form-control", placeholder = "email@companyx.com" })
                 @Html.ValidationMessageFor(m => m.CompanyEmail)
             </div>
+            <div class="form-group" id="how-apply-group">  
+                @Html.LabelFor(m => m.HowApply)       
+                @Html.TextAreaFor(m => m.HowApply, new { @class = "form-control textarea" })
+                @Html.ValidationMessageFor(m => m.HowApply)
+            </div>
             <div class="form-group" id="company-website-group">
                 <label for="CompanyUrl">Web Site (Opcional)</label>
                 @Html.TextBoxFor(m => m.CompanyUrl, new { @class = "form-control", placeholder = "companyx.com" })
@@ -117,14 +122,14 @@
         </div>
     </div>
 
-    <div class="row">
+    @*<div class="row">
         <div class="col-sm-12">
             <div class="form-group">
                 @Html.Recaptcha()
                 @Html.ValidationMessage("ReCaptcha")
             </div>
         </div>
-    </div>
+    </div>*@
 
     <div class="row">
         <div class="col-sm-12">
