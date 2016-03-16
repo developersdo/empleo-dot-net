@@ -17,7 +17,7 @@ namespace EmpleoDotNet.Controllers
             var model = _jobOpportunityRepository.GetLatestJobOpportunity(7);
 
             return View(model)
-                .WithInfo("Emplea.do tiene un nuevo template, pruébalo haciendo <b><a href='" + ConfigurationManager.AppSettings["UrlNewTemplate"] + "'>click aquí</a></b>"); ;
+                .WithInfo("Emplea.do tiene un nuevo template, pruébalo haciendo <b><a href='" + ConfigurationManager.AppSettings["UrlNewTemplate"] + "'>click aquí</a></b>"); 
         }
 
         public HomeController(IJobOpportunityRepository jobOpportunityRepository)
