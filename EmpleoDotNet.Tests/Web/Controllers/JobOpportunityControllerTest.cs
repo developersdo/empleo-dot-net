@@ -279,7 +279,8 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             var model = new NewJobOpportunityViewModel {
                 Title = "myTitle",
                 Category = JobCategory.MobileDevelopment,
-                Description = "My description",
+                Requisitos = "My requirements",
+                Beneficios = "My benefits",
                 CompanyName = "Company",
                 CompanyUrl = "http://example.com",
                 CompanyLogoUrl = "http://example.com/logo.png",
@@ -314,7 +315,8 @@ namespace EmpleoDotNet.Tests.Web.Controllers
         {
             entity.Title.Should().Be(model.Title);
             entity.Category.Should().Be(model.Category);
-            entity.Description.Should().Be(model.Description);
+            entity.Requirements.Should().Be(model.Requisitos);
+            entity.Benefits.Should().Be(model.Beneficios);
             entity.CompanyName.Should().Be(model.CompanyName);
             entity.CompanyUrl.Should().Be(model.CompanyUrl);
             entity.CompanyLogoUrl.Should().Be(model.CompanyLogoUrl);
