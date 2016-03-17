@@ -1,12 +1,15 @@
-﻿<Properties RefactoringSettings.EnableRefactorings="True" StartupItem="Android/Android.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.TA98907SVL" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Android/Activities/LandingPage/LandingPagerAdapter.cs">
-    <Files>
-      <File FileName="Android/Activities/LandingPage/LandingPageActivity.cs" Line="22" Column="24" />
-      <File FileName="Android/Activities/LandingPage/LandingPageFragment.cs" Line="19" Column="32" />
-      <File FileName="Android/Activities/LandingPage/LandingPageInfo.cs" Line="8" Column="1" />
-      <File FileName="Android/Activities/LandingPage/LandingPagerAdapter.cs" Line="56" Column="38" />
-    </Files>
+﻿<Properties StartupItem="Android/Android.csproj" RefactoringSettings.EnableRefactorings="True">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.192.168.57.101:5555" />
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Mobile" expanded="True">
+            <Node name="Android" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/JobCardTitleTextView"
+        android:text="Title"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
+    <TextView
+        android:id="@+id/JobCardCompanyTextView"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Company"
+        android:textColor="#000"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/location" />
+        <TextView
+            android:id="@+id/JobCardLocationTextView"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_weight="100"
+            android:gravity="left" />
+        <TextView
+            android:id="@+id/JobCardRemoteTextView"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_weight="100"
+            android:gravity="right" />
+        <ImageView
+            android:id="@+id/JobCardRemoteImageView"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/signal" />
+    </LinearLayout>
+</LinearLayout>

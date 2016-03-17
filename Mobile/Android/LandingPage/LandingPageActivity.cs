@@ -12,10 +12,11 @@ using com.refractored;
 using Android.Support.V7.App;
 using Android.Support.V4.View;
 using Android.Util;
+using Android.Activities;
 
 namespace Android
 {
-	[Activity(MainLauncher = true,Theme="@style/AppBaseTheme")]
+	[Activity(MainLauncher = true,Theme="@style/LandingPageTheme")]
 	public class LandingPageActivity : AppCompatActivity
 	{
 		Android.Support.V7.Widget.Toolbar _toolbar;
@@ -68,7 +69,7 @@ namespace Android
 
 		void OnStartAppSelected (object sender, EventArgs e)
 		{
-			
+			StartActivity(typeof(MainPageActivity));
 		}
 
 		void SetUpActionBar ()

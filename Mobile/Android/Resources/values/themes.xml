@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <resources>
 
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="LandingPageTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@color/background_window</item>
         <item name="colorPrimary">@color/green</item>
         <item name="colorPrimaryDark">@color/greenDark</item>
@@ -12,8 +12,15 @@
         <item name="pstsUnderlineColor">#FFF</item>
     </style>
 
-    <style name="AppTheme" parent="AppBaseTheme">
-
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    	<item name="android:windowBackground">@color/background_window</item>
+    	<item name="colorPrimary">#BC494E</item>
+        <item name="colorPrimaryDark">#8A363A</item>
+        <item name="android:editTextColor">@android:color/black</item>
+        <item name="colorAccent">#BC494E</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorHint">#000</item>
+        <item name="searchHintIcon">@null</item>
     </style>
 
 </resources>
