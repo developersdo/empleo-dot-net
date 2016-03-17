@@ -88,7 +88,7 @@
                     @Html.LabelFor(m => m.Requisitos)
                     @Html.TextAreaFor(m => m.Requisitos, new { @class = "form-control textarea", @data_parsley_group="job-details", @data_parsley_errors_container="#description_errors", required="" })
                     @Html.ValidationMessageFor(m => m.Requisitos)
-                    <span><b>Tip:</b> Se lo mas explicito posible, si eres de recursos humanos consulta con una persona de 
+                    <span><b>Tip:</b> Se lo mas expl&iacute;cito posible, si eres de recursos humanos consulta con una persona de 
                     tecnolog&iacute;a sobre cuales son los requerimientos t&eacute;cnicos.</span>
                     <span id="description_errors" class="danger"></span>
                 </div>
@@ -97,6 +97,9 @@
                     @Html.LabelFor(m => m.Beneficios)
                     @Html.TextAreaFor(m => m.Beneficios, new { @class = "form-control textarea", @data_parsley_group = "job-details", @data_parsley_errors_container = "#description_errors", required = "" })
                     @Html.ValidationMessageFor(m => m.Beneficios)
+                    <span>
+                        <b>Tip:</b> Explicale a los aplicantes que beneficios obtienen al estar en este puesto.
+                    </span>
                     <span id="description_errors" class="danger"></span>
                 </div>
                 <a class="btn-prev btn btn-warning btn-lg">Anterior</a>
@@ -157,13 +160,13 @@
                     @Html.LabelFor(m => m.HasHallwayTests)
                 </div>
                 <div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            @Html.Recaptcha()
-                            @Html.ValidationMessage("ReCaptcha")
-                        </div>
-                    </div>
-                </div>
+        <div class="col-sm-12">
+            <div class="form-group">
+                @Html.Recaptcha()
+                @Html.ValidationMessage("ReCaptcha")
+            </div>
+        </div>
+    </div>
                 <a class="btn-prev btn btn-warning btn-lg">Anterior</a>
                 <button type="submit" class="btn btn-primary btn-lg">Crear Empleo</button>
             </div>
