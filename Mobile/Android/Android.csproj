@@ -102,6 +102,16 @@
     <AndroidResource Include="Resources\layout\FavoritesFragmentLayout.xml" />
     <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\layout\CategoriesFragmentLayout.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_perm_scan_wifi_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_room_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_perm_scan_wifi_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_room_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_perm_scan_wifi_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_room_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_perm_scan_wifi_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_room_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_perm_scan_wifi_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_room_black_48dp.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -121,14 +131,19 @@
     <Folder Include="Resources\drawable\" />
     <Folder Include="LandingPage\" />
     <Folder Include="MainPage\" />
+    <Folder Include="Resources\drawable-hdpi\" />
+    <Folder Include="Resources\drawable-mdpi\" />
+    <Folder Include="Resources\drawable-xhdpi\" />
+    <Folder Include="Resources\drawable-xxhdpi\" />
+    <Folder Include="Resources\drawable-xxxhdpi\" />
   </ItemGroup>
   <ItemGroup>
-    <XamarinComponentReference Include="PagerSlidingTabStrip">
-      <Version>1.0.9</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
     <XamarinComponentReference Include="xamandroidsupportv7cardview">
       <Version>22.2.0.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="PagerSlidingTabStrip">
+      <Version>1.0.9</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

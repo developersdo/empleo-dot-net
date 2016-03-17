@@ -6,6 +6,8 @@ using Android.App;
 using Android.Widget;
 
 using Android.ViewModels;
+using Android.Graphics;
+using Android.Support.V7.Widget;
 
 namespace Android
 {
@@ -34,48 +36,29 @@ namespace Android
 					Title = "Junior Mobile Developer",
 					IsRemote = true,
 					CompanyName = "Megsoft Consulting",
-					Location = "Santo Domingo"
+					Location = "Santo Domingo",
+					Category = "Software"
 				},
 				new JobItemViewModel {
 					Title = "Senior Mobile Developer",
 					IsRemote = true,
 					Location = "New York",
-					CompanyName = "Megsoft Consulting"
+					CompanyName = "Pepe Consulting",
+					Category = "Software"
 				},
 				new JobItemViewModel {
-					Title = "Junior Web Developer",
+					Title = "Abuelo Web Developer",
 					IsRemote = true,
-					CompanyName = "Megsoft Consulting"
+					Location = "Egipto",
+					CompanyName = "Raul Consulting",
+					Category = "Software"
 				},
 				new JobItemViewModel {
-					Title = "Junior Mobile Developer",
+					Title = ".Net Developer",
 					IsRemote = false,
-					CompanyName = "Megsoft Consulting"
-				},
-				new JobItemViewModel {
-					Title = "Senior Mobile Developer",
-					IsRemote = true,
-					CompanyName = "Megsoft Consulting"
-				},
-				new JobItemViewModel {
-					Title = "Junior Web Developer",
-					IsRemote = true,
-					CompanyName = "Megsoft Consulting"
-				},
-				new JobItemViewModel {
-					Title = "Junior Mobile Developer",
-					IsRemote = false,
-					CompanyName = "Megsoft Consulting"
-				},
-				new JobItemViewModel {
-					Title = "Senior Mobile Developer",
-					IsRemote = true,
-					CompanyName = "Megsoft Consulting"
-				},
-				new JobItemViewModel {
-					Title = "Junior Web Developer",
-					IsRemote = true,
-					CompanyName = "Megsoft Consulting"
+					CompanyName = "PHd Consulting",
+					Location = "Santiago",
+					Category = "Software"
 				}
 			};
 		}
@@ -92,13 +75,21 @@ namespace Android
 
 			var location = view.FindViewById<TextView> (Resource.Id.JobCardLocationTextView);
 
+			var locationIcon = view.FindViewById<AppCompatImageView>(Resource.Id.locationIcon);
+
 			var remote = view.FindViewById<TextView> (Resource.Id.JobCardRemoteTextView);
 
 			var isRemoteIcon = view.FindViewById<ImageView> (Resource.Id.JobCardRemoteImageView);
 
+			var category = view.FindViewById<TextView>(Resource.Id.JobCategory);
+
 			title.Text = data.Title;
 
 			company.Text = data.CompanyName;
+
+			category.Text = data.Category;
+
+			locationIcon.Visibility = string.IsNullOrEmpty(data.Location) ? ViewStates.Invisible : ViewStates.Visible;
 
 			location.Text = data.Location;
 
