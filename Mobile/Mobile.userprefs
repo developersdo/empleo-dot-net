@@ -5,7 +5,11 @@
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Mobile" expanded="True">
-            <Node name="Android" selected="True" />
+            <Node name="Android" expanded="True">
+              <Node name="ComponentReferenceFolder" expanded="True">
+                <Node name="ComponentReference" selected="True" />
+              </Node>
+            </Node>
           </Node>
         </State>
       </Pad>

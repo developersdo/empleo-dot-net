@@ -5,6 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="40dp"
+    android:id="@+id/cardview"
     card_view:cardUseCompatPadding="true"
     card_view:cardCornerRadius="4dp"
     card_view:cardElevation="4dp"
@@ -21,27 +22,51 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:textColor="@android:color/background_dark"
+            android:textColor="@android:color/black"
             android:layout_width="match_parent" />
-        <TextView
-            android:id="@+id/JobCardCompanyTextView"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Company"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="14sp"
-            android:paddingTop="8dp"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent" />
+            android:layout_width="match_parent"
+            android:paddingTop="8dp">
+            <TextView
+                android:id="@+id/JobCardCompanyTextView"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Company"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
+            <TextView
+                android:id="@+id/separator"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="|"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
+            <TextView
+                android:id="@+id/JobCategory"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Category"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="12sp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content" />
+        </LinearLayout>
         <LinearLayout
             android:layout_height="wrap_content"
             android:paddingTop="30dp"
             android:layout_width="match_parent"
             android:orientation="horizontal">
             <ImageView
-                android:layout_width="12dp"
-                android:layout_height="12dp"
-                android:gravity="bottom"
-                android:src="@drawable/location" />
+                android:id="@+id/locationIcon"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/ic_room_black_48dp" />
             <TextView
                 android:id="@+id/JobCardLocationTextView"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -50,8 +75,8 @@
                 android:textColor="@android:color/darker_gray"
                 android:textSize="14sp"
                 android:layout_weight="100"
-                android:paddingLeft="8dp"
-                android:gravity="left" />
+                android:layout_gravity="bottom|left"
+                android:paddingLeft="8dp" />
             <TextView
                 android:id="@+id/JobCardRemoteTextView"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -60,13 +85,14 @@
                 android:layout_weight="100"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="14sp"
-                android:gravity="right" />
+                android:paddingRight="10dp"
+                android:gravity="right|bottom" />
             <ImageView
                 android:id="@+id/JobCardRemoteImageView"
-                android:layout_width="12dp"
-                android:layout_height="12dp"
-                android:gravity="bottom"
-                android:src="@drawable/signal" />
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/ic_perm_scan_wifi_black_48dp" />
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>
