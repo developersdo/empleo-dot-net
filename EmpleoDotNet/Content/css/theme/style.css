@@ -2000,3 +2000,24 @@ header {
     .http-error {
         color: #dc143c;
     }
+
+/* JobOpportunity/Detail
+    ------------------------------------------------------*/
+
+.job-title h5 {
+    color: #14b1bb;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.like-job.disabled {
+     color: #ccc;
+ }
+
+.like-job.like:hover:not(.disabled) {
+    color: #3c763d;
+}
+
+.like-job.dislike:hover:not(.disabled) {
+    color: #a94442;
+}

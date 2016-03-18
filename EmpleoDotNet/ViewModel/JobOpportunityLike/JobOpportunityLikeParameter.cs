@@ -1,3 +1,5 @@
+using JobOpportunityLikeEntity = EmpleoDotNet.Core.Domain.JobOpportunityLike;
+
 namespace EmpleoDotNet.ViewModel.JobOpportunityLike
 {
     public class JobOpportunityLikeParameter
@@ -6,11 +8,11 @@ namespace EmpleoDotNet.ViewModel.JobOpportunityLike
 
         public bool Like { get; set; }
 
-        public Core.Domain.JobOpportunityLike ToModel()
+        public JobOpportunityLikeEntity ToModel()
         {
-            return new Core.Domain.JobOpportunityLike
+            return new JobOpportunityLikeEntity
             {
-                JobOpportinutyId = JobOpportunityId,
+                JobOpportunityId = JobOpportunityId,
                 Like = Like
             };
         }

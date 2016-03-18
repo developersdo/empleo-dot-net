@@ -12,15 +12,14 @@ namespace EmpleoDotNet.Core.Domain
 
         public bool Like { get; set; }
 
-        public int JobOpportinutyId { get; set; }
+        public int JobOpportunityId { get; set; }
 
         #endregion
 
         #region Navegation Properties
 
-        public JobOpportunity JobOpportinuty { get; set; }
+        public JobOpportunity JobOpportunity { get; set; }
 
         #endregion
-
     }
 }
