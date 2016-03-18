@@ -12,9 +12,9 @@
 
         req.success(function (response) {
             $link.find('span').html(like ? response.data.Likes : response.data.DisLikes);
-            $link.parent().addClass('disabled');
             $('.like-job').each(function () {
                 $(this).data('canlike', false);
+                $(this).addClass('disabled');
             });
         });
 

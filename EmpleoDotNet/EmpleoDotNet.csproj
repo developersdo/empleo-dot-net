@@ -274,6 +274,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\NumberExtensions.cs" />
     <Compile Include="Helpers\UnderMaintenanceFilterAttribute.cs" />
     <Compile Include="Helpers\Alerts\Alert.cs" />
     <Compile Include="Helpers\Alerts\AlertDecoratorResult.cs" />
@@ -352,7 +353,6 @@
     <Content Include="Content\css\theme\owl.carousel.css" />
     <Content Include="Content\css\theme\style.css" />
     <Content Include="Content\JobOpportunity\Wizard.css" />
-    <Content Include="Content\JobOpportunity\Detail.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

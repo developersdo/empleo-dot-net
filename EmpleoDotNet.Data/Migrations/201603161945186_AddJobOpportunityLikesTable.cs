@@ -13,19 +13,18 @@ namespace EmpleoDotNet.Data.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Like = c.Boolean(nullable: false),
-                        JobOpportinutyId = c.Int(nullable: false),
+                        JobOpportunityId = c.Int(nullable: false),
                         Created = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.JobOpportunities", t => t.JobOpportinutyId, cascadeDelete: true)
-                .Index(t => t.JobOpportinutyId);
-            
+                .ForeignKey("dbo.JobOpportunities", t => t.JobOpportunityId, cascadeDelete: true)
+                .Index(t => t.JobOpportunityId);
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.JobOpportunityLikes", "JobOpportinutyId", "dbo.JobOpportunities");
-            DropIndex("dbo.JobOpportunityLikes", new[] { "JobOpportinutyId" });
+            DropForeignKey("dbo.JobOpportunityLikes", "JobOpportunityId", "dbo.JobOpportunities");
+            DropIndex("dbo.JobOpportunityLikes", new[] { "JobOpportunityId" });
             DropTable("dbo.JobOpportunityLikes");
         }
     }

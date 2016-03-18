@@ -8,10 +8,6 @@
     ViewBag.Description = Regex.Replace(Model.Description, @"<(.|\n)*?>", "");
     ViewBag.ImageUrl = Model.CompanyLogoUrl;
 }
-
-@section styles{
-    @Styles.Render("~/Content/JobOpportunity/Detail.css")
-        }
 @section scripts
 {
     <script type="text/javascript">
@@ -74,15 +70,18 @@
             <div class="col-sm-4" id="sidebar">
                 <div class="sidebar-widget" id="likes">
                     <h2>Likes</h2>
-                    <div class="@Html.Raw(!ViewBag.CanLike ? "disabled" : "")">
-                        <a href="#" class="like-job" title="Me gusta" data-job="@Model.Id" data-like="true" data-canlike="@ViewBag.CanLike.ToString().ToLower()">
+                    <div>
+                        @{
+                            var disabledClass = @Html.Raw(!ViewBag.CanLike ? "disabled" : "");
+                        }
+                        <a href="#" class="like-job like @disabledClass" title="Me gusta" data-job="@Model.Id" data-like="true" data-canlike="@ViewBag.CanLike.ToString().ToLower()">
                             <i class="fa fa-lg fa-thumbs-o-up"></i>
-                            <span>@string.Format(Model.JobOpportunityLikes.Count(x => x.Like).ToString(), "{1:#,0}")</span>
+                            <span>@Model.JobOpportunityLikes.Count(x => x.Like).FormatThousand()</span>
                         </a>
                         &nbsp;
-                        <a href="#" class="like-job" title="No me gusta" data-job="@Model.Id" data-like="false" data-canlike="@ViewBag.CanLike.ToString().ToLower()">
+                        <a href="#" class="like-job dislike @disabledClass" title="No me gusta" data-job="@Model.Id" data-like="false" data-canlike="@ViewBag.CanLike.ToString().ToLower()">
                             <i class="fa fa-lg fa-thumbs-o-down"></i>
-                            <span>@string.Format(Model.JobOpportunityLikes.Count(x => !x.Like).ToString(), "{1:#,0}")</span>
+                            <span>@Model.JobOpportunityLikes.Count(x => !x.Like).FormatThousand()</span>
                         </a>
                     </div>
                 </div>
@@ -130,7 +129,7 @@
                             }
                         </ul>
                     </div>
-                        <hr>
+                    <hr>
                 }
 
                 <div class="sidebar-widget" id="view-count">

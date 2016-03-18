@@ -17,7 +17,7 @@ namespace EmpleoDotNet.Repository
 
         public List<JobOpportunityLike> GetByJobOpportunityId(int jobOpportunityId)
         {
-            return DbSet.Where(x => x.JobOpportinutyId == jobOpportunityId).ToList();
+            return DbSet.Where(x => x.JobOpportunityId == jobOpportunityId).ToList();
         }
     }
 }
