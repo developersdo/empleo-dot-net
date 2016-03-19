@@ -5,7 +5,7 @@
 *.suo
 *.user
 *.sln.docstates
-
+*.orig
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -15,6 +15,7 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
+Auth.config
 
 # MSTest test Results
 [Tt]est[Rr]esult*/

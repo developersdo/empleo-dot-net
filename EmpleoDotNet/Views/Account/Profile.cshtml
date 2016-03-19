@@ -1,0 +1,51 @@
+﻿@model EmpleoDotNet.Core.Domain.UserProfile
+
+@{
+    ViewBag.Title = "Mi perfil";
+}
+<div class="container">
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div>
+                        <h2>Mi perfil</h2>
+                    </div>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Nombre
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Name)
+                        </dd>
+
+                        <dt>
+                            Email
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Email)
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div>
+                        <h2>Mis ofertas de empleo</h2>
+                    </div>
+                    @if (Model.JobOpportunities.Any())
+                    {
+                        @Html.Partial("_JobListPartial", Model.JobOpportunities)
+                    }
+                    else
+                    {
+                        <span>No has creado una oferta de empleo, <a href="@Url.Action("Wizard","JobOpportunity")">comienza aquí</a></span>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+ </div>
