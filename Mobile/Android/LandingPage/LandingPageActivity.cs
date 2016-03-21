@@ -8,16 +8,19 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using com.refractored;
 using Android.Support.V7.App;
 using Android.Support.V4.View;
 using Android.Util;
 using Android.Activities;
+using Microsoft.Practices.ServiceLocation;
+using com.refractored;
+using Praeclarum.Bind;
+using GalaSoft.MvvmLight.Helpers;
 
 namespace Android
 {
-	[Activity(MainLauncher = true,Theme="@style/LandingPageTheme")]
-	public class LandingPageActivity : AppCompatActivity
+	[Activity(Theme="@style/LandingPageTheme")]
+	public class LandingPageActivity : AppCompatActivityBase
 	{
 		Android.Support.V7.Widget.Toolbar _toolbar;
 
@@ -27,11 +30,15 @@ namespace Android
 
 		Button _startAppButton;
 
+		LandingPageViewModel _viewModel;
+
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 
 			SetContentView(Resource.Layout.LandingPageLayout);
+
+			GetServices();
 
 			GetViewReferences();
 
@@ -46,14 +53,26 @@ namespace Android
 		{
 			base.OnStart ();
 
-			_startAppButton.Click += OnStartAppSelected;
+			_startAppButton.SetCommand("Click", _viewModel.NavigateToHomeScreenCommand);
+		}
+
+		protected override void OnResume ()
+		{
+			base.OnResume ();
+
+			_viewModel.OnResume();
 		}
 
 		protected override void OnStop ()
 		{
 			base.OnStop ();
 
-			_startAppButton.Click -= OnStartAppSelected;
+			_viewModel.OnStop();
+		}
+
+		void GetServices ()
+		{
+			_viewModel = ServiceLocator.Current.GetInstance<LandingPageViewModel>();
 		}
 
 		void GetViewReferences ()
@@ -65,11 +84,6 @@ namespace Android
 			_tabs = FindViewById<PagerSlidingTabStrip> (Resource.Id.tabs);
 
 			_startAppButton = FindViewById<Button>(Resource.Id.done);
-		}
-
-		void OnStartAppSelected (object sender, EventArgs e)
-		{
-			StartActivity(typeof(MainPageActivity));
 		}
 
 		void SetUpActionBar ()
