@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using System.Security.Principal;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using EmpleoDotNet.AppServices;
 using EmpleoDotNet.Controllers;
 using EmpleoDotNet.Core.Domain;
@@ -14,6 +17,7 @@ using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.ViewModel.JobOpportunity;
 using FluentAssertions;
 using NSubstitute;
+using NSubstitute.ReturnsExtensions;
 using NUnit.Framework;
 using PagedList;
 using reCAPTCHA.MVC;
@@ -233,7 +237,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             var result = (AlertDecoratorResult)await _sut.New(model, false);
 
             // Assert
-            _jobOpportunityService.DidNotReceiveWithAnyArgs().CreateNewJobOpportunity(null);
+            _jobOpportunityService.DidNotReceiveWithAnyArgs().CreateNewJobOpportunity(null, string.Empty);
             await _twitterService.DidNotReceiveWithAnyArgs().PostNewJobOpportunity(null);
 
             _sut.ModelState.IsValid.Should().BeFalse();
@@ -258,7 +262,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             var result = (AlertDecoratorResult)await _sut.New(model, false);
 
             // Assert
-            _jobOpportunityService.DidNotReceiveWithAnyArgs().CreateNewJobOpportunity(null);
+            _jobOpportunityService.DidNotReceiveWithAnyArgs().CreateNewJobOpportunity(null,string.Empty);
             await _twitterService.DidNotReceiveWithAnyArgs().PostNewJobOpportunity(null);
 
             _sut.ModelState.IsValid.Should().BeFalse();
@@ -291,8 +295,8 @@ namespace EmpleoDotNet.Tests.Web.Controllers
                 LocationLongitude = "-69.22222",
                 JobType = JobType.FullTime
             };
-
-            _jobOpportunityService.WhenForAnyArgs(x => x.CreateNewJobOpportunity(null))
+            _sut.ControllerContext = GenerateControllerContext(_sut);
+            _jobOpportunityService.WhenForAnyArgs(x => x.CreateNewJobOpportunity(null, null))
                 .Do(x => { x.Arg<JobOpportunity>().Id = 1; });
 
             // Act
@@ -300,12 +304,22 @@ namespace EmpleoDotNet.Tests.Web.Controllers
 
             // Assert
             _jobOpportunityService.Received(1).CreateNewJobOpportunity(
-                Arg.Do<JobOpportunity>(entity => VerifyGeneratedJobOpportunityEntity(model, entity)));
+                Arg.Do<JobOpportunity>(entity => VerifyGeneratedJobOpportunityEntity(model, entity)), null);
             await _twitterService.Received(1).PostNewJobOpportunity(
                 Arg.Do<JobOpportunity>(entity => VerifyGeneratedJobOpportunityEntity(model, entity)));
 
             result.RouteValues["action"].Should().Be(nameof(_sut.Detail));
             result.RouteValues["id"].Should().Be(UrlHelperExtensions.SeoUrl(1, "myTitle"));
+        }
+
+        private ControllerContext GenerateControllerContext(ControllerBase controller)
+        {
+            var fakeIdentity = new GenericIdentity("Jimmy");
+            var fakeUser = new GenericPrincipal(fakeIdentity, null);
+            var httpContext = new Moq.Mock<HttpContextBase>();
+            httpContext.Setup(x => x.User).Returns(fakeUser);
+            var reqContext = new RequestContext(httpContext.Object, new RouteData());
+            return new ControllerContext(reqContext, controller);
         }
 
         private static void VerifyGeneratedJobOpportunityEntity(

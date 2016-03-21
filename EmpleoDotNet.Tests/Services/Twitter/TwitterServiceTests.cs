@@ -1,6 +1,5 @@
 ﻿using System;
 using EmpleoDotNet.Core.Domain;
-using EmpleoDotNet.Models;
 using EmpleoDotNet.Services.Social.Twitter;
 using FluentAssertions;
 using NUnit.Framework;

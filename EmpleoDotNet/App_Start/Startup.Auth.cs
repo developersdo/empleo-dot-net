@@ -1,7 +1,15 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System.Collections.Generic;
+using System.Configuration;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.Facebook;
+using Microsoft.Owin.Security.Google;
+using Microsoft.Owin.Security.MicrosoftAccount;
 using Owin;
+using Tweetinvi;
 
 namespace EmpleoDotNet
 {
@@ -20,19 +28,40 @@ namespace EmpleoDotNet
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+            var msAuthOptions = new MicrosoftAccountAuthenticationOptions();
+            msAuthOptions.Scope.Add("wl.basic");
+            msAuthOptions.Scope.Add("wl.emails");
+            msAuthOptions.ClientId = ConfigurationManager.AppSettings["msClientId"];
+            msAuthOptions.ClientSecret = ConfigurationManager.AppSettings["msClientSecret"];
+            app.UseMicrosoftAccountAuthentication(msAuthOptions);
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+//            app.UseTwitterAuthentication(
+//                consumerKey: ConfigurationManager.AppSettings["consumerKey"],
+//                consumerSecret: ConfigurationManager.AppSettings["consumerSecret"]
+//            );
 
-            //app.UseFacebookAuthentication(
-            //   appId: "BLAH",
-            // appSecret: "BLAH");
-
-            //app.UseGoogleAuthentication();
+            var fbAuthOptions = new FacebookAuthenticationOptions
+            {
+                AppId = ConfigurationManager.AppSettings["fbAppId"],
+                AppSecret = ConfigurationManager.AppSettings["fbAppSecret"]
+            };
+            
+            fbAuthOptions.Scope.Add("email");
+            fbAuthOptions.Scope.Add("public_profile");
+            fbAuthOptions.Scope.Add("user_friends");
+            fbAuthOptions.Provider = new FacebookAuthenticationProvider
+            {
+                OnAuthenticated = context =>
+                {
+                    context.Identity.AddClaim(new Claim("FacebookAccessToken",context.AccessToken));
+                    return Task.FromResult(true);
+                }
+            };
+            app.UseFacebookAuthentication(fbAuthOptions);
+            app.UseGoogleAuthentication(
+                clientId: ConfigurationManager.AppSettings["googleClientId"],
+                clientSecret: ConfigurationManager.AppSettings["googleClientSecret"]
+            );
         }
     }
 }

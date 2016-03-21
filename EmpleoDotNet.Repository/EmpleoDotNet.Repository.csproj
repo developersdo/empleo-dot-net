@@ -72,10 +72,12 @@
     <Compile Include="Contracts\IJobOpportunityRepository.cs" />
     <Compile Include="Contracts\ITagRepository.cs" />
     <Compile Include="Dto\NearbyJobOpportunityLocation.cs" />
+    <Compile Include="Contracts\IUserProfileRepository.cs" />
     <Compile Include="Helpers\QueryableExtensions.cs" />
     <Compile Include="JobOpportunityRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TagRepository.cs" />
+    <Compile Include="UserProfileRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EmpleoDotNet.Core\EmpleoDotNet.Core.csproj">
