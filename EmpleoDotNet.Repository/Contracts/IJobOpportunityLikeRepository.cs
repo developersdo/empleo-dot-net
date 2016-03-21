@@ -5,6 +5,6 @@ namespace EmpleoDotNet.Repository.Contracts
 {
     public interface IJobOpportunityLikeRepository : IBaseRepository<JobOpportunityLike>
     {
-        List<JobOpportunityLike> GetByJobOpportunityId(int jobOpportunityId);
+        List<JobOpportunityLike> GetLikesByJobOpportunityId(int jobOpportunityId);
     }
 }
