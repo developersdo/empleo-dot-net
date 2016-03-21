@@ -24,7 +24,12 @@ namespace EmpleoDotNet.Core.Domain
         /// <summary>
         /// Descripción de los requerimientos necesarios para aplicar al empleo
         /// </summary>
-        public string Description { get; set; }
+        public string Requirements { get; set; }
+
+        /// <summary>
+        /// Descripción de los beneficios del puesto
+        /// </summary>
+        public string Benefits { get; set; }
 
         /// <summary>
         /// Nombre de la compañía

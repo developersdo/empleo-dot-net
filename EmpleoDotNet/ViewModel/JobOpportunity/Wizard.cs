@@ -26,7 +26,11 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
 
         [Required(ErrorMessage = "Debes especificar al menos un requisito."), StringLength(int.MaxValue)]
         [Display(Name = "Requisitos para aplicar")]
-        public string Description { get; set; }
+        public string Requirements { get; set; }
+
+        [Required(ErrorMessage = "Debes especificar al menos un beneficios."), StringLength(int.MaxValue)]
+        [Display(Name = "Beneficios del puesto")]
+        public string Benefits { get; set; }
 
         [Required(ErrorMessage = "El nombre de la empresa es requerido."), StringLength(50)]
         [Display(Name = "Nombre")]
@@ -90,7 +94,8 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
             {
                 Title = Title,
                 Category = Category,
-                Description = Description,
+                Requirements = Requirements,
+                Benefits = Benefits,
                 CompanyName = CompanyName,
                 CompanyUrl = CompanyUrl,
                 CompanyLogoUrl = CompanyLogoUrl,
