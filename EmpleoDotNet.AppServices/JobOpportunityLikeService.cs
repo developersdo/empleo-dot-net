@@ -24,9 +24,9 @@ namespace EmpleoDotNet.AppServices
             _jobOpportunityLikeRepository.SaveChanges();
         }
 
-        public List<JobOpportunityLike> GetByJobOpportunityId(int jobOpportunityId)
+        public List<JobOpportunityLike> GetLikesByJobOpportunityId(int jobOpportunityId)
         {
-            return _jobOpportunityLikeRepository.GetByJobOpportunityId(jobOpportunityId);
+            return _jobOpportunityLikeRepository.GetLikesByJobOpportunityId(jobOpportunityId);
         }
     }
 }

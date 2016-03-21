@@ -11,6 +11,7 @@ using reCAPTCHA.MVC;
 using System;
 using System.Linq;
 using System.Net;
+using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.ViewModel.JobOpportunityLike;
 using Microsoft.AspNet.Identity;
 
@@ -144,35 +145,29 @@ namespace EmpleoDotNet.Controllers
         }
 
         [HttpPost]
-        public JsonResult Like(JobOpportunityLikeParameter model)
+        public JsonResult Like(JobOpportunityLike model)
         {
             var cookieName = GetLikeCookieName(model.JobOpportunityId);
-
-            try
+            
+            if (CookieHelper.Exists(cookieName))
             {
-                if (CookieHelper.Exists(cookieName)) throw new Exception("Ya has votado por este empleo.");
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(new { error = true, message = "Ya has votado por este empleo." });
+            }
 
-                var jopOpportunityLike = model.ToModel();
+            _jobOpportunityLikeService.CreateNewLike(model);
 
-                _jobOpportunityLikeService.CreateNewLike(jopOpportunityLike);
+            CookieHelper.Set(cookieName, model.JobOpportunityId.ToString());
 
-                CookieHelper.Set(cookieName, model.JobOpportunityId.ToString());
+            var jobLikeData = _jobOpportunityLikeService.GetLikesByJobOpportunityId(model.JobOpportunityId);
 
-                var jobLikeData = _jobOpportunityLikeService.GetByJobOpportunityId(model.JobOpportunityId);
-
-                var jobOpportunityLikeData = new JobOpportunityLikeViewModel
-                {
-                    Likes = jobLikeData.Count(x => x.Like),
-                    DisLikes = jobLikeData.Count(x => !x.Like)
-                };
+            var jobOpportunityLikeData = new JobOpportunityLikeViewModel
+            {
+                Likes = jobLikeData.Count(x => x.Like),
+                DisLikes = jobLikeData.Count(x => !x.Like)
+            };
                 
-                return Json(new { error = false, data = jobOpportunityLikeData });
-            }
-            catch (Exception ex)
-            {
-                Response.StatusCode = (int) HttpStatusCode.BadRequest;
-                return Json(new { error = true, message = ex.Message });
-            }
+            return Json(new { error = false, data = jobOpportunityLikeData });
         }
 
         /// <summary>

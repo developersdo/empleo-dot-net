@@ -11,6 +11,6 @@ namespace EmpleoDotNet.AppServices
     {
         void CreateNewLike(JobOpportunityLike jopOpportunityLike);
 
-        List<JobOpportunityLike> GetByJobOpportunityId(int jobOpportunityId);
+        List<JobOpportunityLike> GetLikesByJobOpportunityId(int jobOpportunityId);
     }
 }

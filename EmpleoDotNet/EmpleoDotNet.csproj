@@ -299,7 +299,6 @@
     <Compile Include="ViewModel\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModel\Account\VerifyCodeViewModel.cs" />
     <Compile Include="ViewModel\ErrorViewModel.cs" />
-    <Compile Include="ViewModel\JobOpportunityLike\JobOpportunityLikeParameter.cs" />
     <Compile Include="ViewModel\JobOpportunityLike\JobOpportunityLikeViewModel.cs" />
     <Compile Include="ViewModel\JobOpportunitySearchViewModel.cs" />
     <Compile Include="ViewModel\JobOpportunity\Wizard.cs" />
