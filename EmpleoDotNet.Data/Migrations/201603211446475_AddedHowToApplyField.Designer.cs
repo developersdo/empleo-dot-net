@@ -7,13 +7,13 @@ namespace EmpleoDotNet.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddedHowApplyField : IMigrationMetadata
+    public sealed partial class AddedHowToApplyField : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedHowApplyField));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedHowToApplyField));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603161501039_AddedHowApplyField"; }
+            get { return "201603211446475_AddedHowToApplyField"; }
         }
         
         string IMigrationMetadata.Source

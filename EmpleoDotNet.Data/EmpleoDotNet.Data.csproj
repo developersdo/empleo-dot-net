@@ -121,9 +121,9 @@
     <Compile Include="Migrations\201603062359441_AddedRelationshipBetweenJobOpportunitiesAndUsers.Designer.cs">
       <DependentUpon>201603062359441_AddedRelationshipBetweenJobOpportunitiesAndUsers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603161501039_AddedHowApplyField.cs" />
-    <Compile Include="Migrations\201603161501039_AddedHowApplyField.Designer.cs">
-      <DependentUpon>201603161501039_AddedHowApplyField.cs</DependentUpon>
+    <Compile Include="Migrations\201603211446475_AddedHowToApplyField.cs" />
+    <Compile Include="Migrations\201603211446475_AddedHowToApplyField.Designer.cs">
+      <DependentUpon>201603211446475_AddedHowToApplyField.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -175,8 +175,8 @@
     <EmbeddedResource Include="Migrations\201603062359441_AddedRelationshipBetweenJobOpportunitiesAndUsers.resx">
       <DependentUpon>201603062359441_AddedRelationshipBetweenJobOpportunitiesAndUsers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603161501039_AddedHowApplyField.resx">
-      <DependentUpon>201603161501039_AddedHowApplyField.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603211446475_AddedHowToApplyField.resx">
+      <DependentUpon>201603211446475_AddedHowToApplyField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

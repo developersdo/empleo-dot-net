@@ -86,7 +86,7 @@ namespace EmpleoDotNet.Core.Domain
         /// <summary>
         /// para especificar la forma de como se aplica para el empleo
         /// </summary>
-        public string HowApply { get; set; }
+        public string HowToApply { get; set; }
 
         #endregion
 
