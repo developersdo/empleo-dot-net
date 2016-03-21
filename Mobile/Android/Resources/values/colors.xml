@@ -1,7 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="background_window">#FFE5E5E5</color>
     <color name="green">#689F38</color>
     <color name="greenDark">#3E5F22</color>
     <color name="banana">#FFCC00</color>
+    <color name="colorPrimary">#125688</color>
+    <color name="colorPrimaryDark">#125688</color>
+    <color name="colorPrimary">#14B1BB</color>
+    <color name="colorPrimaryDark">#14B1BB</color>
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="windowBackground">#14B1BB</color>
+    <color name="navigationBarColor">#FFFFFF</color>
+    <color name="colorAccent">#c8e8ff</color>
 </resources>

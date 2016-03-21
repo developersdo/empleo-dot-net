@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="Android.Android" android:versionCode="1" android:versionName="1.0">
 	<uses-sdk android:minSdkVersion="22" android:targetSdkVersion="22" />
-	<application android:label="Android" android:icon="@drawable/Icon"></application>
+	<application android:icon="@drawable/person" android:label="Emplea.do"></application>
+	<uses-sdk android:minSdkVersion="22" />
+	<application android:theme="@style/MyTheme" android:label="Android" android:icon="@drawable/Icon"></application>
 </manifest>

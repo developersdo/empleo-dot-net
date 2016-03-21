@@ -82,6 +82,7 @@ namespace EmpleoDotNet.Core.Domain
 
         public int? JobOpportunityLocationId { get; set; }
 
+        public int? UserProfileId { get; set; } 
         /// <summary>
         /// para especificar la forma de como se aplica para el empleo
         /// </summary>
@@ -96,6 +97,8 @@ namespace EmpleoDotNet.Core.Domain
         public JoelTest JoelTest { get; set; }
 
         public JobOpportunityLocation JobOpportunityLocation { get; set; }
+
+        public virtual UserProfile UserProfile { get; set; }
 
         public Location Location { get; set; }
 

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -43,24 +43,38 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
-    <Reference Include="Xamarin.Android.Support.v4">
-      <HintPath>..\packages\Xamarin.Android.Support.v4.22.1.1.1\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
-      <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.22.1.1.1\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+    <Reference Include="Xamarin.Android.Support.v7.CardView">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.CardView.23.1.1.1\lib\MonoAndroid403\Xamarin.Android.Support.v7.CardView.dll</HintPath>
     </Reference>
     <Reference Include="Refractored.PagerSlidingTabStrip">
-      <HintPath>..\packages\Refractored.PagerSlidingTabStrip.1.0.9\lib\MonoAndroid10\Refractored.PagerSlidingTabStrip.dll</HintPath>
+      <HintPath>..\packages\Refractored.PagerSlidingTabStrip.1.1.2\lib\MonoAndroid10\Refractored.PagerSlidingTabStrip.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\packages\Xamarin.Android.Support.v4.23.1.1.1\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.23.1.1.1\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.RecyclerView">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.RecyclerView.23.1.1.1\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Design">
+      <HintPath>..\packages\Xamarin.Android.Support.Design.23.1.1.1\lib\MonoAndroid403\Xamarin.Android.Support.Design.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android.Export" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Activities\LandingPage\LandingPageActivity.cs" />
-    <Compile Include="Activities\LandingPage\LandingPagerAdapter.cs" />
-    <Compile Include="Activities\LandingPage\LandingPageFragment.cs" />
-    <Compile Include="Activities\LandingPage\LandingPageInfo.cs" />
+    <Compile Include="LandingPage\LandingPageActivity.cs" />
+    <Compile Include="LandingPage\LandingPageFragment.cs" />
+    <Compile Include="LandingPage\LandingPagerAdapter.cs" />
+    <Compile Include="MainPage\CategoriesFragment.cs" />
+    <Compile Include="MainPage\FavoritesFragment.cs" />
+    <Compile Include="MainPage\JobListAdapter.cs" />
+    <Compile Include="MainPage\JobsFragment.cs" />
+    <Compile Include="MainPage\MainPageActivity.cs" />
+    <Compile Include="MainPage\PagerAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -77,6 +91,27 @@
     <AndroidResource Include="Resources\drawable\person.png" />
     <AndroidResource Include="Resources\drawable\pizza.png" />
     <AndroidResource Include="Resources\drawable\remote.png" />
+    <AndroidResource Include="Resources\layout\MainPageLayout.axml" />
+    <AndroidResource Include="Resources\values\dimens.xml" />
+    <AndroidResource Include="Resources\layout\JobsFragmentLayout.axml" />
+    <AndroidResource Include="Resources\layout\JobCardLayout.axml" />
+    <AndroidResource Include="Resources\layout\Temp.axml" />
+    <AndroidResource Include="Resources\drawable\location.png" />
+    <AndroidResource Include="Resources\drawable\signal.png" />
+    <AndroidResource Include="Resources\values\arrays.xml" />
+    <AndroidResource Include="Resources\layout\FavoritesFragmentLayout.xml" />
+    <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\layout\CategoriesFragmentLayout.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_perm_scan_wifi_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_room_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_perm_scan_wifi_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_room_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_perm_scan_wifi_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_room_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_perm_scan_wifi_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_room_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_perm_scan_wifi_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_room_black_48dp.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -93,14 +128,29 @@
   </Target>
   -->
   <ItemGroup>
-    <Folder Include="Activities\" />
-    <Folder Include="Activities\LandingPage\" />
     <Folder Include="Resources\drawable\" />
+    <Folder Include="LandingPage\" />
+    <Folder Include="MainPage\" />
+    <Folder Include="Resources\drawable-hdpi\" />
+    <Folder Include="Resources\drawable-mdpi\" />
+    <Folder Include="Resources\drawable-xhdpi\" />
+    <Folder Include="Resources\drawable-xxhdpi\" />
+    <Folder Include="Resources\drawable-xxxhdpi\" />
   </ItemGroup>
   <ItemGroup>
+    <XamarinComponentReference Include="xamandroidsupportv7cardview">
+      <Version>22.2.0.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
     <XamarinComponentReference Include="PagerSlidingTabStrip">
       <Version>1.0.9</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{E2F64C8E-F63A-4BBC-A45A-985C2D87A481}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

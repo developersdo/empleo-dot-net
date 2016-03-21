@@ -10,13 +10,7 @@
 }
 
 @section styles{
-    <style>
-        .job-title h5 {
-            color: #14b1bb;
-            margin-top: 8px;
-            margin-bottom: 8px;
-        }
-    </style>
+    <link href="~/Content/JobOpportunity/Detail.css" rel="stylesheet" />
 }
 
 <section id="title">
@@ -25,7 +19,8 @@
             <div class="col-sm-12 text-center">
                 <h1>@Model.Title</h1>
                 <div class="job-title">
-                    @if (Model.JobOpportunityLocation == null) {
+                    @if (Model.JobOpportunityLocation == null)
+                    {
                         <h5><i class="fa fa-map-marker"></i> N/A</h5>
                     }
                     else {
@@ -33,8 +28,9 @@
                     }
 
                     <h5><i class="fa fa-cog"></i> @Model.Category.ToEnumDescription()</h5>
-                    
-                    @if (Model.IsRemote) {
+
+                    @if (Model.IsRemote)
+                    {
                         <h5><i class="fa fa-globe"></i> Remoto</h5>
                     }
                     <h5><i class="fa fa-info"></i> @Model.JobType.ToEnumDescription()</h5>
@@ -90,14 +86,15 @@
 
                 <div class="sidebar-widget" id="company">
                     <h2>Sobre la Compañía</h2>
+
                     <a href="@Model.CompanyUrl">
                         @if (string.IsNullOrWhiteSpace(@Model.CompanyLogoUrl))
                         {
-                            <img src="~/Content/img/company-logo-placeholder.png" />
+                            <img src="~/Content/img/company-logo-placeholder.png" alt="Logo Compañ&iacute;a" class="img-company img-responsive" />
                         }
                         else
                         {
-                            <img src="@Model.CompanyLogoUrl" alt="" class="img-responsive">
+                            <img src="@Model.CompanyLogoUrl" alt="Logo Compañ&iacute;a" class="img-company img-responsive">
                         }
                     </a>
                     <h5>@Model.CompanyName</h5>
@@ -119,7 +116,7 @@
                             }
                         </ul>
                     </div>
-                        <hr>
+                    <hr>
                 }
 
                 <div class="sidebar-widget" id="view-count">
