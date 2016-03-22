@@ -75,6 +75,8 @@
     <Compile Include="MainPage\JobsFragment.cs" />
     <Compile Include="MainPage\MainPageActivity.cs" />
     <Compile Include="MainPage\PagerAdapter.cs" />
+    <Compile Include="SearchPage\SearchActivity.cs" />
+    <Compile Include="SearchPage\SearchLocationAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -112,6 +114,18 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_room_black_48dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_perm_scan_wifi_black_48dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_room_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_place_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_place_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_place_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_place_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_place_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_near_me_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_near_me_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_near_me_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_near_me_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_near_me_black_48dp.png" />
+    <AndroidResource Include="Resources\layout\SearchActivityLayout.axml" />
+    <AndroidResource Include="Resources\layout\SearchItemCard.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -136,6 +150,7 @@
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
     <Folder Include="Resources\drawable-xxxhdpi\" />
+    <Folder Include="SearchPage\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="xamandroidsupportv7cardview">
