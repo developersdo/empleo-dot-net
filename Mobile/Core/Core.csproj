@@ -33,10 +33,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\LandingPage\LandingPageInfo.cs" />
     <Compile Include="LandingPage\JobItemViewModel.cs" />
+    <Compile Include="MainPage\CategoriesViewModel.cs" />
+    <Compile Include="Services\IBitmapResizer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Shared\" />
     <Folder Include="LandingPage\" />
+    <Folder Include="MainPage\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 </Project>

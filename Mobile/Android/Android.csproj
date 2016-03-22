@@ -75,6 +75,9 @@
     <Compile Include="MainPage\JobsFragment.cs" />
     <Compile Include="MainPage\MainPageActivity.cs" />
     <Compile Include="MainPage\PagerAdapter.cs" />
+    <Compile Include="MainPage\CategoriesFragmentAdapter.cs" />
+    <Compile Include="Services\BitmapResizer.cs" />
+    <Compile Include="EmpleadoApp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -112,6 +115,12 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_room_black_48dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_perm_scan_wifi_black_48dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_room_black_48dp.png" />
+    <AndroidResource Include="Resources\layout\CategoriesLayout.axml" />
+    <AndroidResource Include="Resources\drawable\image1.png" />
+    <AndroidResource Include="Resources\drawable\image2.png" />
+    <AndroidResource Include="Resources\drawable\image3.png" />
+    <AndroidResource Include="Resources\drawable\image4.png" />
+    <AndroidResource Include="Resources\drawable\image5.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -136,6 +145,7 @@
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
     <Folder Include="Resources\drawable-xxxhdpi\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="xamandroidsupportv7cardview">
