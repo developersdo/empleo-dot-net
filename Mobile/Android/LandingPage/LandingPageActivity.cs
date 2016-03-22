@@ -16,7 +16,7 @@ using Android.Activities;
 
 namespace Android
 {
-	[Activity(MainLauncher = true,Theme="@style/LandingPageTheme")]
+	[Activity(Theme="@style/LandingPageTheme")]
 	public class LandingPageActivity : AppCompatActivity
 	{
 		Android.Support.V7.Widget.Toolbar _toolbar;
