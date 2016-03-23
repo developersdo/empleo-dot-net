@@ -113,10 +113,6 @@
     <Compile Include="Migrations\201603021507582_AddedJobTypeField.Designer.cs">
       <DependentUpon>201603021507582_AddedJobTypeField.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603161945186_AddJobOpportunityLikesTable.cs" />
-    <Compile Include="Migrations\201603161945186_AddJobOpportunityLikesTable.Designer.cs">
-      <DependentUpon>201603161945186_AddJobOpportunityLikesTable.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201603062240382_AddedUserProfileEntity.cs" />
     <Compile Include="Migrations\201603062240382_AddedUserProfileEntity.Designer.cs">
       <DependentUpon>201603062240382_AddedUserProfileEntity.cs</DependentUpon>
@@ -124,6 +120,10 @@
     <Compile Include="Migrations\201603062359441_AddedRelationshipBetweenJobOpportunitiesAndUsers.cs" />
     <Compile Include="Migrations\201603062359441_AddedRelationshipBetweenJobOpportunitiesAndUsers.Designer.cs">
       <DependentUpon>201603062359441_AddedRelationshipBetweenJobOpportunitiesAndUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603230155240_AddJobOpportunityLikesTable.cs" />
+    <Compile Include="Migrations\201603230155240_AddJobOpportunityLikesTable.Designer.cs">
+      <DependentUpon>201603230155240_AddJobOpportunityLikesTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -169,18 +169,20 @@
     <EmbeddedResource Include="Migrations\201603021507582_AddedJobTypeField.resx">
       <DependentUpon>201603021507582_AddedJobTypeField.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603161945186_AddJobOpportunityLikesTable.resx">
-      <DependentUpon>201603161945186_AddJobOpportunityLikesTable.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603062240382_AddedUserProfileEntity.resx">
       <DependentUpon>201603062240382_AddedUserProfileEntity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603062359441_AddedRelationshipBetweenJobOpportunitiesAndUsers.resx">
       <DependentUpon>201603062359441_AddedRelationshipBetweenJobOpportunitiesAndUsers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603230155240_AddJobOpportunityLikesTable.resx">
+      <DependentUpon>201603230155240_AddJobOpportunityLikesTable.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

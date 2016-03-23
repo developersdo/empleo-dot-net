@@ -13,7 +13,7 @@ namespace EmpleoDotNet.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201603161945186_AddJobOpportunityLikesTable"; }
+            get { return "201603230155240_AddJobOpportunityLikesTable"; }
         }
         
         string IMigrationMetadata.Source
