@@ -16,7 +16,10 @@ namespace EmpleoDotNet.Repository
     {
         public List<JobOpportunity> GetAllJobOpportunities()
         {
-            var jobOpportunities = DbSet.Include(x => x.JobOpportunityLocation).OrderByDescending(x => x.PublishedDate);
+            var jobOpportunities = DbSet
+                .Include(x => x.JobOpportunityLocation)
+                .Include(x => x.JobOpportunityLikes)
+                .OrderByDescending(x => x.PublishedDate);
             
             return jobOpportunities.ToList();
         }
@@ -58,6 +61,7 @@ namespace EmpleoDotNet.Repository
 
             return DbSet.Include(x => x.JobOpportunityLocation)
                         .Include(x => x.JoelTest)
+                        .Include(x => x.JobOpportunityLikes)
                         .FirstOrDefault(x => x.Id.Equals(id.Value));
         }
 
@@ -76,7 +80,9 @@ namespace EmpleoDotNet.Repository
             if (parameter.PageSize <= 0)
                 parameter.PageSize = 15;
 
-            var jobs = DbSet.Include(x => x.JobOpportunityLocation);
+            var jobs = DbSet
+                .Include(x => x.JobOpportunityLocation)
+                .Include(x => x.JobOpportunityLikes);
 
             jobs = jobs.OrderByDescending(x => x.Id);
             
@@ -153,6 +159,7 @@ namespace EmpleoDotNet.Repository
         {
             return GetAll().OrderByDescending(m => m.PublishedDate)
                 .Include(m => m.JobOpportunityLocation)
+                .Include(x => x.JobOpportunityLikes)
                 .Take(quantity)
                 .ToList();
         }

@@ -45,6 +45,7 @@
     <Compile Include="Domain\EntityBase.cs" />
     <Compile Include="Domain\JobCategory.cs" />
     <Compile Include="Domain\JobOpportunity.cs" />
+    <Compile Include="Domain\JobOpportunityLike.cs" />
     <Compile Include="Domain\JobOpportunityLocation.cs" />
     <Compile Include="Domain\JobType.cs" />
     <Compile Include="Domain\JoelTest.cs" />
