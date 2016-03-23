@@ -22,9 +22,19 @@ namespace EmpleoDotNet.Core.Domain
         public int? LocationId { get; set; }
 
         /// <summary>
-        /// Descripción de los requerimientos necesarios para aplicar al empleo
+        /// Descripción general del puesto
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Descripción de los requisitos necesarios para aplicar al empleo
+        /// </summary>
+        public string Requirements { get; set; }
+  
+         /// <summary>
+         /// Descripción de los beneficios del puesto
+         /// </summary>
+         public string Benefits { get; set; }
 
         /// <summary>
         /// Nombre de la compañía
