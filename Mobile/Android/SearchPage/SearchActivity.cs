@@ -15,7 +15,7 @@ using Android.Graphics;
 
 namespace Android
 {
-	[Activity (Label = "@string/SearchActivityTitle",Theme="@style/SearchScreenTheme")]
+	[Activity (Label = "@string/SearchActivityTitle",Theme="@style/AppTheme")]
 	public class SearchActivity : AppCompatActivity
 	{
 		Android.Support.V7.Widget.Toolbar _toolBar;

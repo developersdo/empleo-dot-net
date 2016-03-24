@@ -34,11 +34,16 @@
     <Compile Include="Shared\LandingPage\LandingPageInfo.cs" />
     <Compile Include="LandingPage\JobItemViewModel.cs" />
     <Compile Include="Search\SearchResultItem.cs" />
+    <Compile Include="MainPage\CategoriesViewModel.cs" />
+    <Compile Include="Services\IBitmapResizer.cs" />
+    <Compile Include="Bind.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Shared\" />
     <Folder Include="LandingPage\" />
     <Folder Include="Search\" />
+    <Folder Include="MainPage\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 </Project>
