@@ -1,19 +1,9 @@
 ﻿<Properties StartupItem="Android/Android.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.192.168.57.101:5555" />
-  <MonoDevelop.Ide.Workbench>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="Mobile" expanded="True">
-            <Node name="Android" expanded="True">
-              <Node name="ComponentReferenceFolder" expanded="True">
-                <Node name="ComponentReference" selected="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Nexus 4 (Lollipop)" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Android/MainPage/MainPageActivity.cs">
+    <Files>
+      <File FileName="Android/MainPage/MainPageActivity.cs" Line="89" Column="15" />
+    </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
