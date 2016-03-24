@@ -3,37 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Android.App;
+using Android.Content;
 using Android.OS;
-using View = Android.Views.View;
+using Android.Runtime;
+using Android.Views;
 using Android.Widget;
-using Android.Support.V4.View;
-using Android.Support.V4.App;
 using Android.Support.V7.App;
-using Android.Support.V7.View;
-using V7Toolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.Design.Widget;
+using Android.Support.V4.View;
 using Android.Graphics;
 
-namespace Android.Activities
+namespace Android
 {
-	[Activity (Theme="@style/AppTheme")]
-	public class MainPageActivity : AppCompatActivityBase
+	[Activity (Label = "@string/SearchActivityTitle",Theme="@style/AppTheme")]
+	public class SearchActivity : AppCompatActivity
 	{
-		V7Toolbar _toolBar;
-
-		TabLayout _tabLayout;
-
-		ViewPager _viewPager;
+		Android.Support.V7.Widget.Toolbar _toolBar;
 
 		SearchView _searchView;
 
 		View _searchLayout;
 
+		ListView _listView;
+
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 
-			SetContentView (Resource.Layout.MainPageLayout);
+			SetContentView (Resource.Layout.SearchActivityLayout);
 
 			SetViewReferences();
 
@@ -42,15 +39,15 @@ namespace Android.Activities
 
 		void SetViewReferences ()
 		{
-			_toolBar = FindViewById<V7Toolbar>(Resource.Id.MainToolbar);
-
-			_viewPager = FindViewById<ViewPager>(Resource.Id.MainViewPager);
-
-			_tabLayout = FindViewById<TabLayout>(Resource.Id.MainPageTabLayout);
-
 			_searchView = FindViewById<SearchView> (Resource.Id.MainSearchView);
 
 			_searchLayout = FindViewById (Resource.Id.MainSearchLayout);
+
+			_toolBar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.MainToolbar);
+
+			_listView = FindViewById<ListView>(Resource.Id.resultList);
+
+			_listView.Adapter = new SearchLocationAdapter(this);
 		}
 
 		void SetUpScreen()
@@ -59,21 +56,20 @@ namespace Android.Activities
 
 			Title = GetString(Resource.String.MainPage);
 
-			_viewPager.Adapter = new MainPagerAdapter (SupportFragmentManager, Resources);
-
-			_tabLayout.TabGravity = TabLayout.GravityFill;
-
-			_tabLayout.SetupWithViewPager(_viewPager);
-
 			_searchLayout.Click += OnSearchLayoutSelected;
 
 			_searchView.QueryTextSubmit += OnQueryTextSubmit;
 
 			_searchView.SetIconifiedByDefault(false);
 
-			_searchView.SetQueryHint(GetString(Resource.String.HomePageSearchBarHint));
+			_searchView.SetQueryHint(GetString(Resource.String.SearchPageSearchBarHint));
 
 			PersonalizeSearchView();
+		}
+
+		void OnQueryTextSubmit (object sender, SearchView.QueryTextSubmitEventArgs e)
+		{
+			
 		}
 
 		void PersonalizeSearchView ()
@@ -92,10 +88,6 @@ namespace Android.Activities
 		void OnSearchLayoutSelected(object sender, EventArgs e)
 		{
 			_searchView.RequestFocus();
-		}
-
-		void OnQueryTextSubmit(object sender, SearchView.QueryTextSubmitEventArgs e){
-			_viewPager.SetCurrentItem (0, true);
 		}
 	}
 }

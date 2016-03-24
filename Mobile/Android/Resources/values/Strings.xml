@@ -16,4 +16,6 @@
     <string name="IsRemote">Remoto</string>
     <string name="MainPage">Emplea.do</string>
     <string name="HomePageSearchBarHint">Busca un empleo aquí</string>
+    <string name="SearchPageSearchBarHint">Busca una dirección aquí</string>
+    <string name="SearchActivityTitle">Filtrar busqueda</string>
 </resources>

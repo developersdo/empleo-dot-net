@@ -90,6 +90,8 @@
     <Compile Include="MainPage\JobsFragment.cs" />
     <Compile Include="MainPage\MainPageActivity.cs" />
     <Compile Include="MainPage\PagerAdapter.cs" />
+    <Compile Include="SearchPage\SearchActivity.cs" />
+    <Compile Include="SearchPage\SearchLocationAdapter.cs" />
     <Compile Include="MainPage\CategoriesFragmentAdapter.cs" />
     <Compile Include="Services\BitmapResizer.cs" />
     <Compile Include="EmpleadoApp.cs" />
@@ -131,7 +133,6 @@
     <AndroidResource Include="Resources\drawable\signal.png" />
     <AndroidResource Include="Resources\values\arrays.xml" />
     <AndroidResource Include="Resources\layout\FavoritesFragmentLayout.xml" />
-    <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\layout\CategoriesFragmentLayout.axml" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_perm_scan_wifi_black_48dp.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_room_black_48dp.png" />
@@ -143,6 +144,18 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_room_black_48dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_perm_scan_wifi_black_48dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_room_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_place_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_place_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_place_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_place_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_place_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_near_me_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_near_me_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_near_me_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_near_me_black_48dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_near_me_black_48dp.png" />
+    <AndroidResource Include="Resources\layout\SearchActivityLayout.axml" />
+    <AndroidResource Include="Resources\layout\SearchItemCard.axml" />
     <AndroidResource Include="Resources\layout\CategoriesLayout.axml" />
     <AndroidResource Include="Resources\drawable\image1.png" />
     <AndroidResource Include="Resources\drawable\image2.png" />
@@ -176,6 +189,7 @@
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
     <Folder Include="Resources\drawable-xxxhdpi\" />
+    <Folder Include="SearchPage\" />
     <Folder Include="Services\" />
     <Folder Include="JobDetail\" />
     <Folder Include="Views\" />

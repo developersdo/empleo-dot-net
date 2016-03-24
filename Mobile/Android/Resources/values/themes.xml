@@ -1,10 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <resources>
 
-    <style name="LandingPageTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowBackground">@color/background_window</item>
-        <item name="colorPrimary">#14b1bb</item>
-        <item name="colorPrimaryDark">#10868F</item>
+    <style name="LandingPageTheme" parent="AppTheme">
         <item name="android:colorAccent">#14b1bb</item>
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="pstsIndicatorColor">#FFF</item>

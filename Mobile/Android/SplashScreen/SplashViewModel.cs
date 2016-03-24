@@ -23,7 +23,7 @@ namespace Android
 
 		public void Init()
 		{
-			_navigationService.NavigateTo(ScreenName.LandingPage);
+			_navigationService.NavigateTo(ScreenName.MainPage);
 		}
 	}
 }
