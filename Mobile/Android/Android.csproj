@@ -90,6 +90,7 @@
     <Compile Include="MainPage\JobsFragment.cs" />
     <Compile Include="MainPage\MainPageActivity.cs" />
     <Compile Include="MainPage\PagerAdapter.cs" />
+    <Compile Include="JobDetail\JobDetailActivity.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Framework\Bootstrapping\Bootstrapping.cs" />
@@ -139,6 +140,8 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\ic_room_black_48dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_perm_scan_wifi_black_48dp.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_room_black_48dp.png" />
+    <AndroidResource Include="Resources\layout\JobDetailActivityLayout.axml" />
+    <AndroidResource Include="Resources\values\attr.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -164,6 +167,8 @@
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
     <Folder Include="Resources\drawable-xxxhdpi\" />
+    <Folder Include="JobDetail\" />
+    <Folder Include="Views\" />
     <Folder Include="Framework\" />
     <Folder Include="Framework\Bootstrapping\" />
     <Folder Include="SplashScreen\" />

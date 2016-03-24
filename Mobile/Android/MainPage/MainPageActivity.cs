@@ -16,7 +16,7 @@ using Android.Graphics;
 
 namespace Android.Activities
 {
-	[Activity (Theme="@style/AppTheme")]
+	[Activity (Theme="@style/AppTheme", MainLauncher = true)]
 	public class MainPageActivity : AppCompatActivityBase
 	{
 		V7Toolbar _toolBar;
