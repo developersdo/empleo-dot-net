@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using EmpleoDotNet.AppServices;
-using EmpleoDotNet.Core.Domain;
-using EmpleoDotNet.Data;
-using EmpleoDotNet.Helpers.Alerts;
-using EmpleoDotNet.Repository;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;

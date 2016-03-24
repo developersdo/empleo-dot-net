@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Web;
+using System.Web.Mvc;
 using Tweetinvi.Core.Extensions;
 
 namespace EmpleoDotNet.Helpers
@@ -45,5 +47,13 @@ namespace EmpleoDotNet.Helpers
                 return false;
             }
         }
-    }
+
+        public static string AbsoluteUrl(this UrlHelper url, string actionName, string controllerName,
+            object routeValues = null)
+        {
+            if (url.RequestContext.HttpContext.Request.Url == null) return null;
+            var schema = url.RequestContext.HttpContext.Request.Url.Scheme;
+            return url.Action(actionName, controllerName, routeValues, schema);
+        }
+    }   
 }

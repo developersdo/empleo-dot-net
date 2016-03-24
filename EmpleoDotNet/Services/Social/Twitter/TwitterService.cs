@@ -1,5 +1,6 @@
 ﻿using System.Configuration;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using EmpleoDotNet.Core.Domain;
 using Tweetinvi;
 using EmpleoDotNet.Helpers;
@@ -29,7 +30,7 @@ namespace EmpleoDotNet.Services.Social.Twitter
             }).ConfigureAwait(false);
         }
 
-        public async Task PostNewJobOpportunity(JobOpportunity jobOpportunity)
+        public async Task PostNewJobOpportunity(JobOpportunity jobOpportunity, UrlHelper urlHelper)
         {
             if (string.IsNullOrWhiteSpace(jobOpportunity?.Title) || jobOpportunity.Id <= 0)
                 return;
@@ -38,7 +39,9 @@ namespace EmpleoDotNet.Services.Social.Twitter
                 ? jobOpportunity.Title.Substring(0, 80) 
                 : jobOpportunity.Title;
 
-            var message = $"Se busca: {title} http://emplea.do/JobOpportunity/Detail/{UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)}";
+            var action = UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title);
+            var url = urlHelper.AbsoluteUrl(action,"jobs");           
+            var message = $"Se busca: {title} {url}";
 
             await PostTweet(message).ConfigureAwait(false);
         }

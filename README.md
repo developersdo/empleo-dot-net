@@ -4,7 +4,7 @@ empleo-dot-net
 
 ### What is this ?
 
-The porpuse of this project is to bring a "real-in-production project" experiance for all developers interesting in learning ASP.Net MVC 5 and Xamarin.
+The porpuse of this project is to bring a "real-in-production project" experience for all developers interesting in learning ASP.Net MVC 5 and Xamarin.
 
 This project is here thanks to the initiative of Developers.do and [C#.DO](https://www.facebook.com/groups/csharp.do/)
 

@@ -231,14 +231,14 @@ namespace EmpleoDotNet.Tests.Web.Controllers
         {
             // Arrange
             var model = new NewJobOpportunityViewModel();
+            
             _sut.ModelState.AddModelError("", "");
 
             // Act
             var result = (AlertDecoratorResult)await _sut.New(model, false);
-
             // Assert
             _jobOpportunityService.DidNotReceiveWithAnyArgs().CreateNewJobOpportunity(null, string.Empty);
-            await _twitterService.DidNotReceiveWithAnyArgs().PostNewJobOpportunity(null);
+            await _twitterService.DidNotReceiveWithAnyArgs().PostNewJobOpportunity(null, _sut.Url);
 
             _sut.ModelState.IsValid.Should().BeFalse();
 
@@ -263,7 +263,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
 
             // Assert
             _jobOpportunityService.DidNotReceiveWithAnyArgs().CreateNewJobOpportunity(null,string.Empty);
-            await _twitterService.DidNotReceiveWithAnyArgs().PostNewJobOpportunity(null);
+            await _twitterService.DidNotReceiveWithAnyArgs().PostNewJobOpportunity(null, _sut.Url);
 
             _sut.ModelState.IsValid.Should().BeFalse();
             _sut.ModelState.Should().ContainKey(nameof(model.LocationName));
@@ -306,7 +306,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             _jobOpportunityService.Received(1).CreateNewJobOpportunity(
                 Arg.Do<JobOpportunity>(entity => VerifyGeneratedJobOpportunityEntity(model, entity)), null);
             await _twitterService.Received(1).PostNewJobOpportunity(
-                Arg.Do<JobOpportunity>(entity => VerifyGeneratedJobOpportunityEntity(model, entity)));
+                Arg.Do<JobOpportunity>(entity => VerifyGeneratedJobOpportunityEntity(model, entity)), _sut.Url);
 
             result.RouteValues["action"].Should().Be(nameof(_sut.Detail));
             result.RouteValues["id"].Should().Be(UrlHelperExtensions.SeoUrl(1, "myTitle"));
