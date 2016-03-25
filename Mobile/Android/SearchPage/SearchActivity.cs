@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -11,18 +10,22 @@ using Android.Widget;
 using Android.Support.V7.App;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
+using V7Toolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Graphics;
+using Android.Support.V4.App;
+using Android.App;
+using Android.Activities;
 
 namespace Android
 {
-	[Activity (Label = "@string/SearchActivityTitle",Theme="@style/AppTheme")]
-	public class SearchActivity : AppCompatActivity
+	[Activity (Theme="@style/AppTheme", Label = "@string/SearchActivityTitle",ParentActivity = typeof(MainPageActivity))]
+	public class SearchActivity : AppCompatActivityBase
 	{
-		Android.Support.V7.Widget.Toolbar _toolBar;
+		V7Toolbar _toolBar;
 
 		SearchView _searchView;
 
-		View _searchLayout;
+		ViewGroup _searchLayout;
 
 		ListView _listView;
 
@@ -30,31 +33,31 @@ namespace Android
 		{
 			base.OnCreate (savedInstanceState);
 
-			SetContentView (Resource.Layout.SearchActivityLayout);
+			SetContentView(Resource.Layout.SearchActivityLayout);
 
-			SetViewReferences();
+			GetViewReferences();
 
-			SetUpScreen ();
+			SetupScreen();
 		}
 
-		void SetViewReferences ()
+		void GetViewReferences ()
 		{
 			_searchView = FindViewById<SearchView> (Resource.Id.MainSearchView);
 
-			_searchLayout = FindViewById (Resource.Id.MainSearchLayout);
+			_searchLayout = FindViewById<ViewGroup>(Resource.Id.MainSearchViewParent);
 
-			_toolBar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.MainToolbar);
+			_toolBar = FindViewById<V7Toolbar>(Resource.Id.MainToolbar);
 
 			_listView = FindViewById<ListView>(Resource.Id.resultList);
-
-			_listView.Adapter = new SearchLocationAdapter(this);
 		}
 
-		void SetUpScreen()
+		public void SetupScreen()
 		{
 			SetSupportActionBar(_toolBar);
 
-			Title = GetString(Resource.String.MainPage);
+			SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+
+			_listView.Adapter = new SearchLocationAdapter(this);
 
 			_searchLayout.Click += OnSearchLayoutSelected;
 
@@ -65,6 +68,7 @@ namespace Android
 			_searchView.SetQueryHint(GetString(Resource.String.SearchPageSearchBarHint));
 
 			PersonalizeSearchView();
+
 		}
 
 		void OnQueryTextSubmit (object sender, SearchView.QueryTextSubmitEventArgs e)

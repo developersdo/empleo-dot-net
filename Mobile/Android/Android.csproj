@@ -111,6 +111,8 @@
     <Compile Include="MainPage\BackPressImpl.cs" />
     <Compile Include="MainPage\JobsFragmentViewModel.cs" />
     <Compile Include="MainPage\FavoritesViewModel.cs" />
+    <Compile Include="MainPage\MainPageFragment.cs" />
+    <Compile Include="MainPage\MainPageFragmentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -170,6 +172,7 @@
     <AndroidResource Include="Resources\values\attr.xml" />
     <AndroidResource Include="Resources\layout\HomePageViewPagerLayout.axml" />
     <AndroidResource Include="Resources\transition\job_list_to_detail.axml" />
+    <AndroidResource Include="Resources\layout\MainPageFragmentLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

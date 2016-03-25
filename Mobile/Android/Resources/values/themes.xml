@@ -9,7 +9,6 @@
         <item name="pstsUnderlineColor">#FFF</item>
     </style>
 
-
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
     	<item name="android:windowBackground">@color/background_window</item>
     	<item name="colorPrimary">#14b1bb</item>
@@ -20,6 +19,12 @@
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:textColorHint">#000</item>
         <item name="searchHintIcon">@null</item>
+        <item name="searchViewStyle">@style/SearchViewMy</item>
     </style>
+
+	<style name="SearchViewMy" parent="Widget.AppCompat.Light.SearchView">
+	    <item name="android:submitBackground">@null</item>
+	    <item name="android:queryBackground">@null</item>
+	</style>
 
 </resources>

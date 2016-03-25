@@ -17,5 +17,5 @@
     <string name="MainPage">Emplea.do</string>
     <string name="HomePageSearchBarHint">Busca empleo aquí</string>
     <string name="SearchPageSearchBarHint">Busca una dirección aquí</string>
-    <string name="SearchActivityTitle">Filtrar busqueda</string>
+    <string name="SearchActivityTitle">Filtrar búsqueda</string>
 </resources>

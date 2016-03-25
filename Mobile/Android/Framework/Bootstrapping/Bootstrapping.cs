@@ -31,6 +31,8 @@ namespace Empleado
 
 				nav.Configure(ScreenName.MainPage, typeof(MainPageActivity));
 
+				nav.Configure(ScreenName.FilterLocationScreen, typeof(SearchActivity));
+
 				SimpleIoc.Default.Register<INavigationService>(() => nav);
 			}
 		}
@@ -53,6 +55,7 @@ namespace Empleado
 			SimpleIoc.Default.Register<SplashViewModel,SplashViewModel>();
 			SimpleIoc.Default.Register<JobsFragmentViewModel,JobsFragmentViewModel>();
 			SimpleIoc.Default.Register<FavoritesViewModel,FavoritesViewModel>();
+			SimpleIoc.Default.Register<MainPageFragmentViewModel,MainPageFragmentViewModel>();
 		}
 	}
 }
