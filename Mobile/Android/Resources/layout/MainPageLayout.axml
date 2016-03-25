@@ -22,20 +22,20 @@
             app:cardCornerRadius="4dp"
             android:layout_margin="5dp">
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
+                android:weightSum="1"
                 android:layout_height="wrap_content">
                 <SearchView
                     android:id="@+id/MainSearchView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:paddingRight="10dp" />
+                    android:layout_width="0dp"
+                    android:layout_weight="0.70"
+                    android:layout_height="50dp" />
                 <ImageView
                     android:id="@+id/locationIcon"
-                    android:layout_width="26dp"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.30"
                     android:alpha="0.6"
+                    android:layout_gravity="center_horizontal|center_vertical"
                     android:src="@drawable/ic_near_me_black_48dp"
                     android:layout_height="26dp" />
             </LinearLayout>

@@ -7,6 +7,6 @@
         android:id="@+id/JobsListView"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:paddingLeft="14dp"
-        android:paddingRight="14dp" />
+        android:divider="@android:color/transparent"
+        android:dividerHeight="4dp" />
 </FrameLayout>
