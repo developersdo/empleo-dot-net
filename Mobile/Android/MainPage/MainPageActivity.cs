@@ -19,11 +19,9 @@ namespace Android.Activities
 	[Activity (Theme="@style/AppTheme")]
 	public class MainPageActivity : AppCompatActivityBase
 	{
+		ViewPagerFragment _viewPagerFragment;
+
 		V7Toolbar _toolBar;
-
-		TabLayout _tabLayout;
-
-		ViewPager _viewPager;
 
 		SearchView _searchView;
 
@@ -33,37 +31,20 @@ namespace Android.Activities
 		{
 			base.OnCreate (savedInstanceState);
 
-			SetContentView (Resource.Layout.MainPageLayout);
+			SetContentView(Resource.Layout.MainPageLayout);
+
+			Init(savedInstanceState);
 
 			SetViewReferences();
 
 			SetUpScreen ();
 		}
 
-		void SetViewReferences ()
-		{
-			_toolBar = FindViewById<V7Toolbar>(Resource.Id.MainToolbar);
-
-			_viewPager = FindViewById<ViewPager>(Resource.Id.MainViewPager);
-
-			_tabLayout = FindViewById<TabLayout>(Resource.Id.MainPageTabLayout);
-
-			_searchView = FindViewById<SearchView> (Resource.Id.MainSearchView);
-
-			_searchLayout = FindViewById (Resource.Id.MainSearchLayout);
-		}
-
 		void SetUpScreen()
 		{
-			SetSupportActionBar(_toolBar);
-
 			Title = GetString(Resource.String.MainPage);
 
-			_viewPager.Adapter = new MainPagerAdapter (SupportFragmentManager, Resources);
-
-			_tabLayout.TabGravity = TabLayout.GravityFill;
-
-			_tabLayout.SetupWithViewPager(_viewPager);
+			SetSupportActionBar(_toolBar);
 
 			_searchLayout.Click += OnSearchLayoutSelected;
 
@@ -95,7 +76,45 @@ namespace Android.Activities
 		}
 
 		void OnQueryTextSubmit(object sender, SearchView.QueryTextSubmitEventArgs e){
-			_viewPager.SetCurrentItem (0, true);
+			
+		}
+
+		void SetViewReferences ()
+		{
+			_toolBar = FindViewById<V7Toolbar>(Resource.Id.MainToolbar);
+
+			_searchView = FindViewById<SearchView> (Resource.Id.MainSearchView);
+
+			_searchLayout = FindViewById (Resource.Id.MainSearchLayout);
+		}
+
+		void Init (Bundle savedInstanceState)
+		{
+			if (savedInstanceState == null) {
+				
+				SetupInnerFragment();
+
+			} else {
+				
+				_viewPagerFragment = (ViewPagerFragment) SupportFragmentManager.Fragments[0];
+			}
+		}
+
+		void SetupInnerFragment ()
+		{
+			_viewPagerFragment = new ViewPagerFragment();
+
+			SupportFragmentManager
+				.BeginTransaction()
+				.Replace(Resource.Id.container, _viewPagerFragment)
+				.Commit();
+		}
+
+		public override void OnBackPressed ()
+		{
+			if (!_viewPagerFragment.OnBackPressed()) {
+				base.OnBackPressed();
+			}
 		}
 	}
 }

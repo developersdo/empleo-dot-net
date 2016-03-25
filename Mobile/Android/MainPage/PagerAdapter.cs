@@ -16,6 +16,8 @@ namespace Android.Activities
 
 		IList<ICharSequence> _titles;
 
+		IList<IBackPressed>_backPressedListFragmet;
+
 		Resources _resources;
 
 		public override int Count
@@ -32,16 +34,30 @@ namespace Android.Activities
 
 			_fragments = new List<Fragment> ();
 
+			_backPressedListFragmet = new List<IBackPressed>();
+
 			InitPages();
 		}
 
 		void InitPages ()
 		{
-			_fragments.Add (new JobsFragment ());
+			var jobsFragment = new JobsFragment ();
 
-			_fragments.Add (new CategoriesFragment ());
+			var categoriesFragment = new CategoriesFragment();
 
-			_fragments.Add (new FavoritesFragment ());
+			var favoritesFragment = new FavoritesFragment();
+
+			_fragments.Add (jobsFragment);
+
+			_backPressedListFragmet.Add(jobsFragment);
+
+			_fragments.Add (categoriesFragment);
+
+			_backPressedListFragmet.Add(categoriesFragment);
+
+			_fragments.Add (favoritesFragment);
+
+			_backPressedListFragmet.Add(favoritesFragment);
 
 			var pagesTitle = _resources.GetStringArray(Resource.Array.HomeTitles);
 
@@ -53,10 +69,14 @@ namespace Android.Activities
 			return _fragments [position];
 		}
 
+		public IBackPressed GetFragment(int position)
+		{
+			return _backPressedListFragmet[position];
+		}
+
 		public override ICharSequence GetPageTitleFormatted (int position)
 		{
 			return  _titles [position]; 
 		}
 	}
 }
-
