@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace Android
 {
-	public class CategoriesFragment : Fragment
+	public class CategoriesFragment : Fragment, IBackPressed
 	{
 		ListView _listview;
 
@@ -35,6 +35,11 @@ namespace Android
 			base.OnViewCreated (view, savedInstanceState);
 
 			_listview.Adapter = new CategoriesFragmentAdapter(this.Activity);
+		}
+
+		public bool OnBackPressed ()
+		{
+			return new BackPressImpl(this).OnBackPressed();
 		}
 	}
 }

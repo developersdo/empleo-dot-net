@@ -51,6 +51,7 @@ namespace Empleado
 		{
 			SimpleIoc.Default.Register<LandingPageViewModel, LandingPageViewModel>();
 			SimpleIoc.Default.Register<SplashViewModel,SplashViewModel>();
+			SimpleIoc.Default.Register<JobsFragmentViewModel,JobsFragmentViewModel>();
 		}
 	}
 }

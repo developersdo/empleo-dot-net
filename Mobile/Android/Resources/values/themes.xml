@@ -9,6 +9,7 @@
         <item name="pstsUnderlineColor">#FFF</item>
     </style>
 
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
     	<item name="android:windowBackground">@color/background_window</item>
     	<item name="colorPrimary">#14b1bb</item>

@@ -86,7 +86,6 @@
     <Compile Include="LandingPage\LandingPagerAdapter.cs" />
     <Compile Include="MainPage\CategoriesFragment.cs" />
     <Compile Include="MainPage\FavoritesFragment.cs" />
-    <Compile Include="MainPage\JobListAdapter.cs" />
     <Compile Include="MainPage\JobsFragment.cs" />
     <Compile Include="MainPage\MainPageActivity.cs" />
     <Compile Include="MainPage\PagerAdapter.cs" />
@@ -95,7 +94,6 @@
     <Compile Include="MainPage\CategoriesFragmentAdapter.cs" />
     <Compile Include="Services\BitmapResizer.cs" />
     <Compile Include="EmpleadoApp.cs" />
-    <Compile Include="JobDetail\JobDetailActivity.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Framework\Bootstrapping\Bootstrapping.cs" />
@@ -107,6 +105,11 @@
     <Compile Include="Framework\AppCompatActivityBase.cs" />
     <Compile Include="Framework\AppCompatNavigationService.cs" />
     <Compile Include="Framework\AppCompatDialogService.cs" />
+    <Compile Include="JobDetail\JobDetail.cs" />
+    <Compile Include="MainPage\ViewPagerFragment.cs" />
+    <Compile Include="MainPage\IBackPressed.cs" />
+    <Compile Include="MainPage\BackPressImpl.cs" />
+    <Compile Include="MainPage\JobsFragmentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -164,6 +167,8 @@
     <AndroidResource Include="Resources\drawable\image5.png" />
     <AndroidResource Include="Resources\layout\JobDetailActivityLayout.axml" />
     <AndroidResource Include="Resources\values\attr.xml" />
+    <AndroidResource Include="Resources\layout\HomePageViewPagerLayout.axml" />
+    <AndroidResource Include="Resources\transition\job_list_to_detail.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -196,6 +201,7 @@
     <Folder Include="Framework\" />
     <Folder Include="Framework\Bootstrapping\" />
     <Folder Include="SplashScreen\" />
+    <Folder Include="Resources\transition\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="xamandroidsupportv7cardview">

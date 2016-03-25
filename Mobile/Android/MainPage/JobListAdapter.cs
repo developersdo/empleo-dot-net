@@ -32,34 +32,7 @@ namespace Android
 			_inflater = activity.LayoutInflater;
 
 			_items = new List<JobItemViewModel> {
-				new JobItemViewModel {
-					Title = "Junior Mobile Developer",
-					IsRemote = true,
-					CompanyName = "Megsoft Consulting",
-					Location = "Santo Domingo",
-					Category = "Software"
-				},
-				new JobItemViewModel {
-					Title = "Senior Mobile Developer",
-					IsRemote = true,
-					Location = "New York",
-					CompanyName = "Pepe Consulting",
-					Category = "Software"
-				},
-				new JobItemViewModel {
-					Title = "Abuelo Web Developer",
-					IsRemote = true,
-					Location = "Egipto",
-					CompanyName = "Raul Consulting",
-					Category = "Software"
-				},
-				new JobItemViewModel {
-					Title = ".Net Developer",
-					IsRemote = false,
-					CompanyName = "PHd Consulting",
-					Location = "Santiago",
-					Category = "Software"
-				}
+				
 			};
 		}
 

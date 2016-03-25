@@ -9,6 +9,21 @@ namespace Android
 		public ViewModelBase ()
 		{
 		}
+
+		public virtual void OnCreate()
+		{
+			
+		}
+
+		public virtual void OnStop ()
+		{
+
+		}
+
+		public virtual void OnResume ()
+		{
+
+		}
 	}
 }
 

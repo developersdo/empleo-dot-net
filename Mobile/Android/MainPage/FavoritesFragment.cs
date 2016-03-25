@@ -14,7 +14,7 @@ using Android.Widget;
 
 namespace Android
 {
-	public class FavoritesFragment : Fragment
+	public class FavoritesFragment : Fragment, IBackPressed
 	{
 		public override void OnCreate (Bundle savedInstanceState)
 		{
@@ -29,6 +29,11 @@ namespace Android
 			// return inflater.Inflate(Resource.Layout.YourFragment, container, false);
 
 			return base.OnCreateView (inflater, container, savedInstanceState);
+		}
+
+		public bool OnBackPressed ()
+		{
+			return new BackPressImpl(this).OnBackPressed();
 		}
 	}
 }
