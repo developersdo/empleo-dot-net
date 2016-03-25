@@ -1,5 +1,6 @@
 ﻿using System;
 using EmpleoDotNet.Core.Domain;
+using EmpleoDotNet.Services;
 using EmpleoDotNet.Services.Social.Twitter;
 using FluentAssertions;
 using NUnit.Framework;
@@ -13,7 +14,7 @@ namespace EmpleoDotNet.Tests.Services.Twitter
 
         public TwitterServiceTests()
         {
-            _sut = new TwitterService();
+            _sut = new TwitterService(new ConfigurationManagerSettingsProvider());
         }
 
         [Test]

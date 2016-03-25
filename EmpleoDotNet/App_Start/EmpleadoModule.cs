@@ -1,14 +1,17 @@
 ﻿using System.Data.Entity;
+using System.Web.Mvc;
 using EmpleoDotNet.Data;
 using EmpleoDotNet.Repository;
 using EmpleoDotNet.Repository.Contracts;
 using EmpleoDotNet.AppServices;
+using EmpleoDotNet.Helpers;
 using EmpleoDotNet.Services;
 using EmpleoDotNet.Services.Social.Twitter;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Ninject.Modules;
 using Ninject.Web.Common;
+using Ninject.Web.Mvc.FilterBindingSyntax;
 
 namespace EmpleoDotNet.App_Start
 {
@@ -30,6 +33,10 @@ namespace EmpleoDotNet.App_Start
             Kernel.Bind<IUserProfileSocialService>().To<UserProfileSocialService>();
 
             Kernel.Bind<ITwitterService>().To<TwitterService>();
+
+            Kernel.Bind<ISettingsProvider>().To<ConfigurationManagerSettingsProvider>();
+
+            Kernel.BindFilter<UnderMaintenanceFilterAttribute>(FilterScope.Global, 1).InRequestScope();
         }
     }
 }

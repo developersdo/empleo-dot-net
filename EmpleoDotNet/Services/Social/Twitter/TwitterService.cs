@@ -1,19 +1,21 @@
 ﻿using System.Configuration;
 using System.Threading.Tasks;
+using EmpleoDotNet.AppServices;
 using EmpleoDotNet.Core.Domain;
 using Tweetinvi;
 using EmpleoDotNet.Helpers;
+using Ninject;
 
 namespace EmpleoDotNet.Services.Social.Twitter
 {
     public class TwitterService : ITwitterService
     {
-        public TwitterService()
+        public TwitterService(ISettingsProvider settings)
         {
-            var consumerKey = ConfigurationManager.AppSettings["consumerKey"];
-            var consumerSecret = ConfigurationManager.AppSettings["consumerSecret"];
-            var accessToken = ConfigurationManager.AppSettings["accessToken"];
-            var accessTokenSecret = ConfigurationManager.AppSettings["accessTokenSecret"];
+            var consumerKey = settings.Get("consumerKey");
+            var consumerSecret = settings.Get("consumerSecret");
+            var accessToken = settings.Get("accessToken");
+            var accessTokenSecret = settings.Get("accessTokenSecret");
 
             Auth.SetUserCredentials(consumerKey, consumerSecret, accessToken, accessTokenSecret);
         }

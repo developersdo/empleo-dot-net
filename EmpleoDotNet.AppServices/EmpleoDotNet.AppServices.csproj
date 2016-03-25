@@ -82,6 +82,7 @@
   <ItemGroup>
     <Compile Include="IJobOpportunityService.cs" />
     <Compile Include="IAuthenticationService.cs" />
+    <Compile Include="ISettingsProvider.cs" />
     <Compile Include="IUserProfileSocialService.cs" />
     <Compile Include="JobOpportunityService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
