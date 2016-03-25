@@ -110,6 +110,7 @@
     <Compile Include="MainPage\IBackPressed.cs" />
     <Compile Include="MainPage\BackPressImpl.cs" />
     <Compile Include="MainPage\JobsFragmentViewModel.cs" />
+    <Compile Include="MainPage\FavoritesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
