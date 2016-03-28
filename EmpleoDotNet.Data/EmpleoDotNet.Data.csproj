@@ -113,6 +113,18 @@
     <Compile Include="Migrations\201603021507582_AddedJobTypeField.Designer.cs">
       <DependentUpon>201603021507582_AddedJobTypeField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603062240382_AddedUserProfileEntity.cs" />
+    <Compile Include="Migrations\201603062240382_AddedUserProfileEntity.Designer.cs">
+      <DependentUpon>201603062240382_AddedUserProfileEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603062359441_AddedRelationshipBetweenJobOpportunitiesAndUsers.cs" />
+    <Compile Include="Migrations\201603062359441_AddedRelationshipBetweenJobOpportunitiesAndUsers.Designer.cs">
+      <DependentUpon>201603062359441_AddedRelationshipBetweenJobOpportunitiesAndUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603211446475_AddedHowToApplyField.cs" />
+    <Compile Include="Migrations\201603211446475_AddedHowToApplyField.Designer.cs">
+      <DependentUpon>201603211446475_AddedHowToApplyField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableConfigurations\BaseTableConfiguration.cs" />
@@ -156,6 +168,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603021507582_AddedJobTypeField.resx">
       <DependentUpon>201603021507582_AddedJobTypeField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603062240382_AddedUserProfileEntity.resx">
+      <DependentUpon>201603062240382_AddedUserProfileEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603062359441_AddedRelationshipBetweenJobOpportunitiesAndUsers.resx">
+      <DependentUpon>201603062359441_AddedRelationshipBetweenJobOpportunitiesAndUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603211446475_AddedHowToApplyField.resx">
+      <DependentUpon>201603211446475_AddedHowToApplyField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

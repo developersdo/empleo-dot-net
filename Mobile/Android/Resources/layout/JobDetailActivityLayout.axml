@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:background="@android:color/white"
+    android:layout_height="wrap_content">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.CardView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:id="@+id/container1"
+                android:layout_height="wrap_content"
+                custom:cardCornerRadius="4dp"
+                custom:cardElevation="2dp">
+                <RelativeLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/companyIcon"
+                        android:layout_width="128dp"
+                        android:layout_height="128dp"
+                        android:src="@drawable/person"
+                        android:layout_centerHorizontal="true"
+                        android:paddingTop="30dp" />
+                    <TextView
+                        android:id="@+id/companyName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pepe Consulting"
+                        android:textColor="@android:color/black"
+                        android:alpha="0.8"
+                        android:textSize="26sp"
+                        android:paddingTop="10dp"
+                        android:textStyle="bold"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/companyIcon" />
+                    <TextView
+                        android:id="@+id/isRemote"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Remoto"
+                        android:layout_below="@+id/companyName"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20dp"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/darker_gray" />
+                    <View
+                        android:id="@+id/separator1"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:alpha="0.4"
+                        android:background="@android:color/darker_gray"
+                        android:layout_below="@+id/isRemote"
+                        android:layout_marginTop="20dp" />
+                    <LinearLayout
+                        android:id="@+id/jobQuickDetail"
+                        android:layout_below="@+id/separator1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="1"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_weight="0.33"
+                            android:orientation="vertical"
+                            android:padding="20dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:gravity="center_horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/black"
+                                android:text="Software" />
+                            <TextView
+                                android:gravity="center_horizontal"
+                                android:layout_width="match_parent"
+                                android:paddingTop="10dp"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/darker_gray"
+                                android:text="Tipo" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_weight="0.33"
+                            android:layout_width="0dp"
+                            android:padding="20dp"
+                            android:orientation="vertical"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:gravity="center_horizontal"
+                                android:layout_width="match_parent"
+                                android:textSize="16sp"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/black"
+                                android:text="Colombia" />
+                            <TextView
+                                android:gravity="center_horizontal"
+                                android:paddingTop="10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/darker_gray"
+                                android:text="Locación" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_weight="0.33"
+                            android:layout_width="0dp"
+                            android:padding="20dp"
+                            android:orientation="vertical"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:gravity="center_horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:textColor="@android:color/black"
+                                android:text="30" />
+                            <TextView
+                                android:gravity="center_horizontal"
+                                android:paddingTop="10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@android:color/darker_gray"
+                                android:text="Visitas" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <View
+                        android:id="@+id/separator2"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:alpha="0.4"
+                        android:background="@android:color/darker_gray"
+                        android:layout_below="@+id/jobQuickDetail" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/container1"
+                android:id="@+id/container2"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                custom:cardCornerRadius="0dp"
+                custom:cardElevation="2dp">
+                <RelativeLayout
+                    android:paddingBottom="20dp"
+                    android:paddingTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/jobDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Estamos buscando un desarrollador para convertir reportes de Foxpro a C#  .NET  conectando a bases de datos MS SQL en diferentes versiones.  El trabajo es por contrato y se paga según la experiencia del programador escogido.  Este trabajo require al menos 40 horas semanales con una duración mínima de 2 meses.  El acceso es remoto.  Por favor especificar en su propuesta su experiencia con cada uno de estas plataformas."
+                        android:gravity="center_horizontal"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="40dp"
+                        android:textSize="16sp"
+                        android:layout_marginRight="40dp"
+                        android:layout_marginTop="20dp"
+                        android:alpha="0.8"
+                        android:textColor="@android:color/black" />
+                    <Button
+                        android:id="@+id/sendCV"
+                        android:background="@android:color/transparent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10dp"
+                        android:text="Enviar CV"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:layout_below="@+id/jobDescription"
+                        android:layout_centerHorizontal="true" />
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>

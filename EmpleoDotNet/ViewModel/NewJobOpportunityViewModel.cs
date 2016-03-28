@@ -30,7 +30,7 @@ namespace EmpleoDotNet.ViewModel
         [Required(ErrorMessage = "Debe especificar al menos un requisito."), StringLength(int.MaxValue)]
         [Display(Name = "Requisitos para aplicar")]
         public string Requirements { get; set; }
-  
+
         [Required(ErrorMessage = "Debe especificar al menos un beneficio."), StringLength(int.MaxValue)]
         [Display(Name = "Beneficios del puesto")]
         public string Benefits { get; set; }
@@ -46,6 +46,10 @@ namespace EmpleoDotNet.ViewModel
         [Required(ErrorMessage = "El campo email es requerido"), StringLength(int.MaxValue), EmailAddress(ErrorMessage = "Email invalido.")]
         [Display(Name = "Email")]
         public string CompanyEmail { get; set; }
+
+        [Required(ErrorMessage = "El campo como aplicar es requerido"), StringLength(int.MaxValue)]
+        [Display(Name = "Cómo Aplicar")]
+        public string HowToApply { get; set; }
 
         [StringLength(int.MaxValue), Url(ErrorMessage = "El Logo de la compañia debe ser un Url valido.")]
         [Display(Name = "Logo")]
@@ -63,26 +67,28 @@ namespace EmpleoDotNet.ViewModel
         public JobType JobType { get; set; }
 
         public Core.Domain.JobOpportunity ToEntity()
-            => new Core.Domain.JobOpportunity 
-        {
-            Title = Title,
-            Category = Category,
-            Description = Description,
-            Requirements = Requirements,
-            Benefits = Benefits,
-            CompanyName = CompanyName,
-            CompanyUrl = CompanyUrl,
-            CompanyLogoUrl = CompanyLogoUrl,
-            CompanyEmail = CompanyEmail,
-            PublishedDate = DateTime.Now,
-            IsRemote = IsRemote,
-            JobType = JobType,
-            JobOpportunityLocation = new JobOpportunityLocation {
-                Latitude = LocationLatitude,
-                Longitude = LocationLongitude,
-                Name = LocationName,
-                PlaceId = LocationPlaceId
-            }
-        };
+            => new Core.Domain.JobOpportunity
+            {
+                Title = Title,
+                Category = Category,
+                Description = Description,
+                Requirements = Requirements,
+                Benefits = Benefits,
+                CompanyName = CompanyName,
+                CompanyUrl = CompanyUrl,
+                CompanyLogoUrl = CompanyLogoUrl,
+                CompanyEmail = CompanyEmail,
+                PublishedDate = DateTime.Now,
+                IsRemote = IsRemote,
+                JobType = JobType,
+                HowToApply = HowToApply,
+                JobOpportunityLocation = new JobOpportunityLocation
+                {
+                    Latitude = LocationLatitude,
+                    Longitude = LocationLongitude,
+                    Name = LocationName,
+                    PlaceId = LocationPlaceId
+                }
+            };
     }
 }

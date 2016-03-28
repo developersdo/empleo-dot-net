@@ -94,6 +94,11 @@
                 @Html.TextBoxFor(m => m.CompanyEmail, new { @class = "form-control", placeholder = "email@companyx.com" })
                 @Html.ValidationMessageFor(m => m.CompanyEmail)
             </div>
+            <div class="form-group" id="how-apply-group">  
+                @Html.LabelFor(m => m.HowToApply)       
+                @Html.TextAreaFor(m => m.HowToApply, new { @class = "form-control textarea" })
+                @Html.ValidationMessageFor(m => m.HowToApply)
+            </div>
             <div class="form-group" id="company-website-group">
                 <label for="CompanyUrl">Web Site (Opcional)</label>
                 @Html.TextBoxFor(m => m.CompanyUrl, new { @class = "form-control", placeholder = "companyx.com" })

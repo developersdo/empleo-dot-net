@@ -12,23 +12,34 @@ using Android.Widget;
 
 namespace Android
 {
-	public class CategoriesFragment : Fragment
+	public class CategoriesFragment : Fragment, IBackPressed
 	{
+		ListView _listview;
+
 		public override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
-
-			// Create your fragment here
 		}
 
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
-			// Use this to return your custom view for this Fragment
-			// return inflater.Inflate(Resource.Layout.YourFragment, container, false);
+			var layout = inflater.Inflate(Resource.Layout.CategoriesFragmentLayout, container, false);
 
-//			return inflater.Inflate(Resource.Layout.CategoriesFragmentLayout, container, true);
-			return base.OnCreateView (inflater, container, savedInstanceState);
+			_listview = layout.FindViewById<ListView> (Resource.Id.categoriesFragment);
+
+			return layout;
+		}
+
+		public override void OnViewCreated (View view, Bundle savedInstanceState)
+		{
+			base.OnViewCreated (view, savedInstanceState);
+
+			_listview.Adapter = new CategoriesFragmentAdapter(this.Activity);
+		}
+
+		public bool OnBackPressed ()
+		{
+			return new BackPressImpl(this).OnBackPressed();
 		}
 	}
 }
-
