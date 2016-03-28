@@ -51,9 +51,18 @@
                         @Html.Raw(Model.Description)
                     </article>
                     <h3>Como aplicar</h3>
-                    <p>
-                        Enviar CV <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a>
-                    </p>
+                    @if (Model.HowToApply != null)
+                    {
+                        <article>
+                            @Html.Raw(Model.HowToApply)
+                        </article>
+                    }
+                    else {
+                        <p>
+                            Enviar CV <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a>
+                        </p>
+                    }
+                   
                 </article>
                 <article>
                     @if (Model.JoelTest != null)
