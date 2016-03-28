@@ -7,6 +7,8 @@ namespace Android
 		public static readonly string LandingPage = "LandingPage";
 
 		public static readonly string MainPage = "MainPage";
+
+		public static readonly string FilterLocationScreen = "FilterLocationScreen";
 	}
 }
 

@@ -22,6 +22,7 @@
             app:cardCornerRadius="4dp"
             android:layout_margin="5dp">
             <LinearLayout
+                android:id="@+id/MainSearchViewParent"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

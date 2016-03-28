@@ -2,52 +2,17 @@
 <android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/appbarlayout"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
     <android.support.v7.widget.Toolbar
         android:id="@+id/MainToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary" />
-    <LinearLayout
-        android:id="@+id/MainSearchLayout"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:contextClickable="true">
-        <android.support.v7.widget.CardView
-            android:id="@+id/card_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="4dp"
-            android:layout_margin="5dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:weightSum="1"
-                android:layout_height="wrap_content">
-                <SearchView
-                    android:id="@+id/MainSearchView"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.70"
-                    android:layout_height="50dp" />
-                <ImageView
-                    android:id="@+id/locationIcon"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.30"
-                    android:alpha="0.6"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:src="@drawable/ic_near_me_black_48dp"
-                    android:layout_height="26dp" />
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-        <ImageView
-            android:id="@+id/MainSearchLocationImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right" />
-        <FrameLayout
-            android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:id="@+id/parent_container"
+        android:layout_height="fill_parent"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 </android.support.design.widget.AppBarLayout>
