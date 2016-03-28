@@ -3,5 +3,5 @@
 	<uses-sdk android:minSdkVersion="22" android:targetSdkVersion="22" />
 	<application android:icon="@drawable/person" android:label="Emplea.do"></application>
 	<uses-sdk android:minSdkVersion="22" />
-	<application android:theme="@style/MyTheme" android:label="Android" android:icon="@drawable/Icon"></application>
+	<application android:theme="@style/AppTheme" android:label="Android" android:icon="@drawable/Icon"></application>
 </manifest>

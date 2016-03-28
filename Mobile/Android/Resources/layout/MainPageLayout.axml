@@ -11,7 +11,7 @@
         android:background="?attr/colorPrimary" />
     <LinearLayout
         android:id="@+id/MainSearchLayout"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:contextClickable="true">
@@ -21,27 +21,33 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="4dp"
             android:layout_margin="5dp">
-            <SearchView
-                android:id="@+id/MainSearchView"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:weightSum="1"
+                android:layout_height="wrap_content">
+                <SearchView
+                    android:id="@+id/MainSearchView"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.70"
+                    android:layout_height="50dp" />
+                <ImageView
+                    android:id="@+id/locationIcon"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.30"
+                    android:alpha="0.6"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:src="@drawable/ic_near_me_black_48dp"
+                    android:layout_height="26dp" />
+            </LinearLayout>
         </android.support.v7.widget.CardView>
         <ImageView
             android:id="@+id/MainSearchLocationImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right" />
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
-    <android.support.design.widget.TabLayout
-        android:id="@+id/MainPageTabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tabMode="fixed"
-        app:tabGravity="fill" />
-    <android.support.v4.view.ViewPager
-        android:id="@+id/MainViewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white"
-        android:foregroundGravity="fill" />
 </android.support.design.widget.AppBarLayout>
