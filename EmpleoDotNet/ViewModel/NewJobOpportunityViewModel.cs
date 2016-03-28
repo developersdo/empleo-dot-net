@@ -39,6 +39,10 @@ namespace EmpleoDotNet.ViewModel
         [Display(Name = "Email")]
         public string CompanyEmail { get; set; }
 
+        [Required(ErrorMessage = "El campo como aplicar es requerido"), StringLength(int.MaxValue)]
+        [Display(Name = "Cómo Aplicar")]
+        public string HowToApply { get; set; }
+
         [StringLength(int.MaxValue), Url(ErrorMessage = "El Logo de la compañia debe ser un Url valido.")]
         [Display(Name = "Logo")]
         public string CompanyLogoUrl { get; set; }
@@ -55,24 +59,26 @@ namespace EmpleoDotNet.ViewModel
         public JobType JobType { get; set; }
 
         public Core.Domain.JobOpportunity ToEntity()
-            => new Core.Domain.JobOpportunity 
-        {
-            Title = Title,
-            Category = Category,
-            Description = Description,
-            CompanyName = CompanyName,
-            CompanyUrl = CompanyUrl,
-            CompanyLogoUrl = CompanyLogoUrl,
-            CompanyEmail = CompanyEmail,
-            PublishedDate = DateTime.Now,
-            IsRemote = IsRemote,
-            JobType = JobType,
-            JobOpportunityLocation = new JobOpportunityLocation {
-                Latitude = LocationLatitude,
-                Longitude = LocationLongitude,
-                Name = LocationName,
-                PlaceId = LocationPlaceId
-            }
-        };
+            => new Core.Domain.JobOpportunity
+            {
+                Title = Title,
+                Category = Category,
+                Description = Description,
+                CompanyName = CompanyName,
+                CompanyUrl = CompanyUrl,
+                CompanyLogoUrl = CompanyLogoUrl,
+                CompanyEmail = CompanyEmail,
+                PublishedDate = DateTime.Now,
+                IsRemote = IsRemote,
+                JobType = JobType,
+                HowToApply = HowToApply,
+                JobOpportunityLocation = new JobOpportunityLocation
+                {
+                    Latitude = LocationLatitude,
+                    Longitude = LocationLongitude,
+                    Name = LocationName,
+                    PlaceId = LocationPlaceId
+                }
+            };
     }
 }

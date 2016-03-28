@@ -30,7 +30,7 @@
                     @Html.LabelFor(m => m.CompanyEmail)
                     @Html.TextBoxFor(m => m.CompanyEmail, new {@class = "form-control", type="email", placeholder = "email@companyx.com", required = "", @data_parsley_group = "business-details" })
                     @Html.ValidationMessageFor(m => m.CompanyEmail)
-                </div>
+                </div>          
                 <div class="form-group" id="company-website-group">
                     @Html.LabelFor(m => m.CompanyUrl)
                     @Html.TextBoxFor(m => m.CompanyUrl, new {@class = "form-control", type="url", @data_parsley_type="url", placeholder = "companyx.com", @data_parsley_group = "business-details" })
@@ -65,6 +65,13 @@
                     @Html.LabelFor(m => m.JobType)
                     @Html.EnumDropListFor(e => e.JobType, new { @class = "form-control", id = "job-type" })
                 </div>
+
+                <div class="form-group" id="how-apply-group">
+                    @Html.LabelFor(m => m.HowToApply)
+                    @Html.TextAreaFor(m => m.HowToApply, new { @class = "form-control textarea", required = "", @data_parsley_group = "job-details" })
+                    @Html.ValidationMessageFor(m => m.HowToApply)
+                </div>
+
                 <div class="form-group" id="job-location-group">
                     @Html.LabelFor(m => m.LocationName)
                     @Html.TextBoxFor(m => m.LocationName, new
