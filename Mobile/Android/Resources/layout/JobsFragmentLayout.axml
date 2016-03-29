@@ -9,4 +9,32 @@
         android:layout_width="match_parent"
         android:divider="@android:color/transparent"
         android:dividerHeight="4dp" />
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:indeterminate="true" />
+    <LinearLayout
+        android:id="@+id/contentNotFound"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical|center_horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:alpha="0.8"
+            android:text="@string/contentNotFound"
+            android:textSize="20sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/darker_gray"
+            android:alpha="0.8"
+            android:text="@string/contentNotFoundSubtitle"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:textSize="16sp" />
+    </LinearLayout>
 </FrameLayout>

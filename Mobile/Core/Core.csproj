@@ -37,6 +37,7 @@
     <Compile Include="MainPage\CategoriesViewModel.cs" />
     <Compile Include="Services\IBitmapResizer.cs" />
     <Compile Include="Bind.cs" />
+    <Compile Include="IValueConverter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

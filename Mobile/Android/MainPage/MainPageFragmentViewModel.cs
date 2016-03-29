@@ -12,10 +12,31 @@ namespace Android
 
 		INavigationService _navigationService;
 
+		public string SearchText { get; set; }
+
+		public RelayCommand UserClearedTextCommand { get; set; }
+
+		public RelayCommand<string> UserIsTypingCommand { get; set; }
+
 		[PreferredConstructor]
 		public MainPageFragmentViewModel () : this(ServiceLocator.Current.GetInstance<INavigationService>())
 		{
-			
+			UserIsTypingCommand = new RelayCommand<string>(OnUserIsTyping);
+
+			UserClearedTextCommand = new RelayCommand(OnUserClearedText);
+		}
+
+		void OnUserClearedText ()
+		{
+			MessengerInstance.Send<NotifyUserClearedText>(null);
+		}
+
+		void OnUserIsTyping (string parameter)
+		{
+			MessengerInstance.Send<NotifyUserChangedQuery>(new NotifyUserChangedQuery
+				{
+					Query = parameter
+				});
 		}
 
 		public MainPageFragmentViewModel (INavigationService navigationService)

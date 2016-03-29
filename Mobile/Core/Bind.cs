@@ -20,6 +20,7 @@ using System.Linq;
 using System.Reflection;
 using System.Diagnostics;
 using System.ComponentModel;
+using Core;
 
 namespace Praeclarum.Bind
 {
@@ -43,6 +44,11 @@ namespace Praeclarum.Bind
 		/// </summary>
 		/// <param name="specifications">The binding specifications.</param>
 		public static Binding Create<T> (Expression<Func<T>> specifications)
+		{
+			return BindExpression (specifications.Body);
+		}
+
+		public static Binding Create<T> (Expression<Func<T>> specifications, IValueConverter converter)
 		{
 			return BindExpression (specifications.Body);
 		}

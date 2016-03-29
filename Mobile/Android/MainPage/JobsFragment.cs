@@ -14,6 +14,7 @@ using Microsoft.Practices.ServiceLocation;
 using GalaSoft.MvvmLight.Helpers;
 using Android.ViewModels;
 using Android.Support.V7.Widget;
+using Core;
 
 namespace Android
 {
@@ -21,15 +22,35 @@ namespace Android
 	{
 		ListView _listView;
 
-		JobsFragmentViewModel _viewModel;
+		public JobsFragmentViewModel _viewModel { get; set; }
+
+		ProgressBar _loading;
+
+		View _queryNotFound;
+
+		List<Binding<bool, ViewStates>> binding;
 
 		public override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 
+			InitStuff();
+
 			GetDependencies();
 
 			_viewModel.OnCreate();
+		}
+
+		void InitStuff ()
+		{
+			binding = new List<Binding<bool, ViewStates>>();
+		}
+
+		void SetBindings ()
+		{
+			binding.Add(this.SetBinding (() => _viewModel.IsLoading, _loading, () => _loading.Visibility, BindingMode.OneWay).ConvertSourceToTarget(Converters.BoolToVisibilityReverseConverter));
+
+			binding.Add(this.SetBinding (() => _viewModel.QueryNotFound, _queryNotFound, () => _queryNotFound.Visibility, BindingMode.OneWay).ConvertSourceToTarget(Converters.BoolToVisibilityReverseConverter));
 		}
 
 		void GetDependencies ()
@@ -43,6 +64,10 @@ namespace Android
 
 			_listView = view.FindViewById<ListView> (Resource.Id.JobsListView);
 
+			_loading =  view.FindViewById<ProgressBar>(Resource.Id.loading);
+
+			_queryNotFound = view.FindViewById<View>(Resource.Id.contentNotFound);
+
 			return view;
 		}
 
@@ -51,6 +76,8 @@ namespace Android
 			base.OnActivityCreated (savedInstanceState);
 
 			SetUp ();
+
+			SetBindings();
 		}
 
 		public override void OnResume ()
@@ -77,7 +104,7 @@ namespace Android
 
 		void SetUp()
 		{
-			_listView.Adapter = _viewModel.People.GetAdapter(OnJobAdapterView);
+			_listView.Adapter = _viewModel.Jobs.GetAdapter(OnJobAdapterView);
 		}
 
 		void OnListViewItemClick (object sender, AdapterView.ItemClickEventArgs e)
@@ -138,6 +165,14 @@ namespace Android
 		public bool OnBackPressed ()
 		{
 			return new BackPressImpl(this).OnBackPressed();
+		}
+
+		public override void OnDestroy ()
+		{
+			base.OnDestroy ();
+
+			foreach(var bind in binding)
+				bind.Detach();
 		}
 	}
 }
