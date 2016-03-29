@@ -56,7 +56,9 @@ namespace Android
 		{
 			_searchLayout.Click += OnSearchLayoutSelected;
 
-			_searchView.QueryTextSubmit += OnQueryTextSubmit;
+			_searchView.QueryTextSubmit += OnQuerySubmit;
+
+			_searchView.QueryTextChange += OnQueryTextChanged;
 
 			_searchView.SetIconifiedByDefault(false);
 
@@ -88,6 +90,7 @@ namespace Android
 		void SetBindings ()
 		{
 			_locationContainer.SetCommand("Click", _viewModel.NavigateToFilterScreenCommand);
+
 		}
 
 		public override void OnViewCreated (View view, Bundle savedInstanceState)
@@ -102,8 +105,25 @@ namespace Android
 			_searchView.RequestFocus();
 		}
 
-		void OnQueryTextSubmit(object sender, SearchView.QueryTextSubmitEventArgs e){
+		//I know this is wrong, but i will fix this later.
+		// MvvmLight does not support EventHandler<T> binding
+		//Binding library in the core project, does not support binding to event-to-command
+		//So somehow i need to accomplish this task
+		void OnQuerySubmit(object sender, SearchView.QueryTextSubmitEventArgs e)
+		{
+			_viewModel.UserIsTypingCommand.Execute(_searchView.Query);
+		}
 
+		//I know this is wrong, but i will fix this later.
+		// MvvmLight does not support EventHandler<T> binding
+		//Binding library in the core project, does not support binding to event-to-command
+		//So somehow i need to accomplish this task
+		void OnQueryTextChanged (object sender, SearchView.QueryTextChangeEventArgs e)
+		{
+			if(string.IsNullOrEmpty(e.NewText))
+			{
+				_viewModel.UserClearedTextCommand.Execute(null);
+			}
 		}
 
 		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

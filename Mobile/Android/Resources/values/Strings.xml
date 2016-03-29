@@ -18,4 +18,7 @@
     <string name="HomePageSearchBarHint">Busca empleo aquí</string>
     <string name="SearchPageSearchBarHint">Busca una dirección aquí</string>
     <string name="SearchActivityTitle">Filtrar búsqueda</string>
+
+    <string name="contentNotFound">La búsqueda no tuvo resultados</string>
+    <string name="contentNotFoundSubtitle">Intenta más tarde</string>
 </resources>

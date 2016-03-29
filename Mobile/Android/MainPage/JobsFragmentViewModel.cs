@@ -2,20 +2,41 @@
 using Android.ViewModels;
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Command;
+using Android.Views;
+using System.Linq;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Android
 {
 	public class JobsFragmentViewModel : ViewModelBase
 	{
-		public ObservableCollection<JobItemViewModel> People { get; private set; }
+		public ObservableCollection<JobItemViewModel> Jobs { get; private set; }
+
+		ObservableCollection<JobItemViewModel> _lastUpdatedJobs;
 
 		public RelayCommand OnJobSelectedCommand;
 
 		public event EventHandler OnJobSelectedEvent;
 
-		public JobsFragmentViewModel ()
+		public bool IsLoading { get; set; }
+
+		public bool QueryNotFound { get; set; }
+
+		IJobRepository _jobRepository;
+
+		public JobsFragmentViewModel (IJobRepository jobRepository)
 		{
+			_jobRepository = jobRepository;
+
+			Jobs = new ObservableCollection<JobItemViewModel>();
+
 			OnJobSelectedCommand = new RelayCommand(OnJobSelected);
+
+			IsLoading = false;
+
+			SubscribeToMessages();
 		}
 
 		void OnJobSelected ()
@@ -23,44 +44,88 @@ namespace Android
 			OnJobSelectedEvent(this, null);
 		}
 
-		public override void OnCreate()
+		void SubscribeToMessages ()
 		{
-			People = new ObservableCollection<JobItemViewModel>
+			MessengerInstance.Register<NotifyUserChangedQuery>(this, OnUserSearch);
+			MessengerInstance.Register<NotifyUserClearedText>(this, OnUserClearedText);
+		}
+
+		void OnUserClearedText (NotifyUserClearedText pr)
+		{
+			RemoveAnyState();
+
+			AddToJobs(_lastUpdatedJobs, true);
+		}
+
+		async void OnUserSearch(NotifyUserChangedQuery qr)
+		{
+			var query = qr.Query;
+
+			if(string.IsNullOrEmpty(query))
+				return;
+
+			Jobs.Clear();
+
+			ShowLoadingState();
+
+			await Task.Delay(2000);
+
+			ShowEmptyState();
+		}
+
+		void ShowEmptyState()
+		{
+			IsLoading = false;
+
+			QueryNotFound = true;
+		}
+
+		void ShowLoadingState()
+		{
+			IsLoading = true;
+
+			QueryNotFound = false;
+		}
+
+		void RemoveAnyState ()
+		{
+			IsLoading = false;
+
+			QueryNotFound = false;
+		}
+
+		public override async void OnCreate()
+		{
+			if(!Jobs.Any())
 			{
-				new JobItemViewModel {
-					Title = "Junior Mobile Developer",
-					IsRemote = true,
-					CompanyName = "Megsoft Consulting",
-					Location = "Santo Domingo",
-					Category = "Software"
-				},
-				new JobItemViewModel {
-					Title = "Senior Mobile Developer",
-					IsRemote = true,
-					Location = "New York",
-					CompanyName = "Pepe Consulting",
-					Category = "Software"
-				},
-				new JobItemViewModel {
-					Title = "Abuelo Web Developer",
-					IsRemote = true,
-					Location = "Egipto",
-					CompanyName = "Raul Consulting",
-					Category = "Software"
-				},
-				new JobItemViewModel {
-					Title = ".Net Developer",
-					IsRemote = false,
-					CompanyName = "PHd Consulting",
-					Location = "Santiago",
-					Category = "Software"
-				}
-			};
+				await GetMostRecentJobs();
+			}
+		}
+
+		async Task GetMostRecentJobs ()
+		{
+			IsLoading = true;
+
+			_lastUpdatedJobs = await _jobRepository.GetMostRecentJobs ();
+
+			AddToJobs(_lastUpdatedJobs);
+		}
+
+		void AddToJobs(IEnumerable<JobItemViewModel> recentJobs, bool clear = false)
+		{
+			if(clear)
+				Jobs.Clear();
+			
+			foreach(var item in recentJobs)
+			{
+				Jobs.Add(item);
+			}
+
+			IsLoading = false;
 		}
 
 		public override void OnStop ()
 		{
-			
 		}
 
 		public override void OnResume ()

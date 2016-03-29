@@ -113,6 +113,11 @@
     <Compile Include="MainPage\FavoritesViewModel.cs" />
     <Compile Include="MainPage\MainPageFragment.cs" />
     <Compile Include="MainPage\MainPageFragmentViewModel.cs" />
+    <Compile Include="MainPage\Converters.cs" />
+    <Compile Include="MainPage\ViewStateToBool.cs" />
+    <Compile Include="Services\IJobRepository.cs" />
+    <Compile Include="MainPage\NotifyUserChangedQuery.cs" />
+    <Compile Include="MainPage\NotifyUserClearedText.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

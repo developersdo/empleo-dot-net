@@ -17,6 +17,7 @@ namespace Empleado
 			Init();
 
 			RegisterViewModels();
+
 		}
 
 		void Init ()
@@ -34,6 +35,8 @@ namespace Empleado
 				nav.Configure(ScreenName.FilterLocationScreen, typeof(SearchActivity));
 
 				SimpleIoc.Default.Register<INavigationService>(() => nav);
+
+				Run();
 			}
 		}
 
@@ -45,7 +48,7 @@ namespace Empleado
 			}
 			else
 			{
-
+				SimpleIoc.Default.Register<IJobRepository, JobRepository>();
 			}
 		}
 
