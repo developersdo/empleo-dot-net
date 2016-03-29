@@ -15,6 +15,7 @@ using Android.Graphics;
 using Android.Activities;
 using Android.Support.V4.App;
 using Android.Content.Res;
+using Microsoft.Practices.ServiceLocation;
 
 namespace Android
 {
@@ -25,6 +26,48 @@ namespace Android
 		ViewPager _viewPager;
 
 		MainPagerAdapter _adapter;
+
+		ViewPagerFragmentViewModel _viewModel;
+
+		public override void OnCreate (Bundle savedInstanceState)
+		{
+			base.OnCreate (savedInstanceState);
+
+			if(savedInstanceState == null)
+			{
+				GetDependencies();
+
+				_viewModel.OnCreate();
+			}
+		}
+
+		void GetDependencies ()
+		{
+			_viewModel = ServiceLocator.Current.GetInstance<ViewPagerFragmentViewModel>();
+		}
+
+		public override void OnViewCreated (View view, Bundle savedInstanceState)
+		{
+			base.OnViewCreated (view, savedInstanceState);
+
+			_viewModel.SwipeToTabEvent += OnSwipeToTab;
+		}
+
+		void OnSwipeToTab (object sender, SwipeToTabEventHandler e)
+		{
+			switch(e.Tab)
+			{
+				case Tab.JobSearch:
+				{
+					_viewPager.SetCurrentItem(0, true);
+				}
+				break;
+
+			default:
+
+				break;
+			}
+		}
 
 		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
