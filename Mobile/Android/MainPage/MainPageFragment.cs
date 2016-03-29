@@ -13,6 +13,8 @@ using Android.Support.V4.App;
 using Android.App;
 using GalaSoft.MvvmLight.Helpers;
 using Microsoft.Practices.ServiceLocation;
+using GalaSoft.MvvmLight.Messaging;
+using Android.Support.V4.View;
 
 namespace Android
 {
@@ -28,18 +30,36 @@ namespace Android
 
 		MainPageFragmentViewModel _viewModel;
 
+		IMessenger _messenger;
+
+		ViewPager _viewPager;
+
 		public override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 
 			GetServices();
 
+			RegisterMessages();
+
 			Init();
+		}
+
+		void RegisterMessages ()
+		{
+			_messenger.Register<NotifySearchBarPutText>(this, OnTextReceived);
+		}
+
+		void OnTextReceived (NotifySearchBarPutText model)
+		{
+			_searchView.SetQuery(model.Query, true);
 		}
 
 		void GetServices ()
 		{
 			_viewModel = ServiceLocator.Current.GetInstance<MainPageFragmentViewModel>();
+
+			_messenger = GalaSoft.MvvmLight.Messaging.Messenger.Default;
 		}
 
 		void Init ()
@@ -90,7 +110,6 @@ namespace Android
 		void SetBindings ()
 		{
 			_locationContainer.SetCommand("Click", _viewModel.NavigateToFilterScreenCommand);
-
 		}
 
 		public override void OnViewCreated (View view, Bundle savedInstanceState)

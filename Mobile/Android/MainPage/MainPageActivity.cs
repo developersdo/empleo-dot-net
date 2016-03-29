@@ -13,6 +13,7 @@ using Android.Support.V7.View;
 using V7Toolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.Design.Widget;
 using Android.Graphics;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Android.Activities
 {

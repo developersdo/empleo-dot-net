@@ -5,6 +5,8 @@ using GalaSoft.MvvmLight.Ioc;
 using Android.Activities;
 using GalaSoft.MvvmLight;
 using Android;
+using Android.Graphics;
+using Core;
 
 namespace Empleado
 {
@@ -49,6 +51,7 @@ namespace Empleado
 			else
 			{
 				SimpleIoc.Default.Register<IJobRepository, JobRepository>();
+				SimpleIoc.Default.Register<IBitmapResizer<Bitmap>, BitmapResizer>();
 			}
 		}
 
@@ -59,6 +62,8 @@ namespace Empleado
 			SimpleIoc.Default.Register<JobsFragmentViewModel,JobsFragmentViewModel>();
 			SimpleIoc.Default.Register<FavoritesViewModel,FavoritesViewModel>();
 			SimpleIoc.Default.Register<MainPageFragmentViewModel,MainPageFragmentViewModel>();
+			SimpleIoc.Default.Register<CategoriesFragmentViewModel,CategoriesFragmentViewModel>();
+			SimpleIoc.Default.Register<ViewPagerFragmentViewModel,ViewPagerFragmentViewModel>();
 		}
 	}
 }

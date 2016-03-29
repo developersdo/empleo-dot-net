@@ -26,6 +26,13 @@ namespace Android
 			UserClearedTextCommand = new RelayCommand(OnUserClearedText);
 		}
 
+		public MainPageFragmentViewModel (INavigationService navigationService)
+		{
+			_navigationService = navigationService;
+
+			NavigateToFilterScreenCommand = new RelayCommand(OnNavigateToFilterScreen);
+		}
+
 		void OnUserClearedText ()
 		{
 			MessengerInstance.Send<NotifyUserClearedText>(null);
@@ -37,13 +44,6 @@ namespace Android
 				{
 					Query = parameter
 				});
-		}
-
-		public MainPageFragmentViewModel (INavigationService navigationService)
-		{
-			_navigationService = navigationService;
-
-			NavigateToFilterScreenCommand = new RelayCommand(OnNavigateToFilterScreen);
 		}
 
 		void OnNavigateToFilterScreen ()
