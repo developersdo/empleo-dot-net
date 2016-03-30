@@ -21,7 +21,7 @@ namespace Android
 		[PreferredConstructor]
 		public MainPageFragmentViewModel () : this(ServiceLocator.Current.GetInstance<INavigationService>())
 		{
-			UserIsTypingCommand = new RelayCommand<string>(OnUserIsTyping);
+			UserIsTypingCommand = new RelayCommand<string>(OnUserSubmitText);
 
 			UserClearedTextCommand = new RelayCommand(OnUserClearedText);
 		}
@@ -38,7 +38,7 @@ namespace Android
 			MessengerInstance.Send<NotifyUserClearedText>(null);
 		}
 
-		void OnUserIsTyping (string parameter)
+		void OnUserSubmitText (string parameter)
 		{
 			MessengerInstance.Send<NotifyUserChangedQuery>(new NotifyUserChangedQuery
 				{

@@ -32,8 +32,6 @@ namespace Android
 
 		IMessenger _messenger;
 
-		ViewPager _viewPager;
-
 		public override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
@@ -130,6 +128,8 @@ namespace Android
 		//So somehow i need to accomplish this task
 		void OnQuerySubmit(object sender, SearchView.QueryTextSubmitEventArgs e)
 		{
+
+
 			_viewModel.UserIsTypingCommand.Execute(_searchView.Query);
 		}
 

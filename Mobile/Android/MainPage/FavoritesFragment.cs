@@ -21,15 +21,35 @@ namespace Android
 	{
 		ListView _listView;
 
-		FavoritesViewModel _viewModel;
+		public FavoritesViewModel _viewModel { get; set; }
+
+		ProgressBar _loading;
+
+		View _queryNotFound;
+
+		List<Binding<bool, ViewStates>> binding;
 
 		public override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 
+			InitStuff();
+
 			GetDependencies();
 
 			_viewModel.OnCreate();
+		}
+
+		void InitStuff ()
+		{
+			binding = new List<Binding<bool, ViewStates>>();
+		}
+
+		void SetUpBindings ()
+		{
+			binding.Add(this.SetBinding (() => _viewModel.IsLoading, _loading, () => _loading.Visibility, BindingMode.OneWay).ConvertSourceToTarget(Converters.BoolToVisibilityReverseConverter));
+
+			binding.Add(this.SetBinding (() => _viewModel.QueryNotFound, _queryNotFound, () => _queryNotFound.Visibility, BindingMode.OneWay).ConvertSourceToTarget(Converters.BoolToVisibilityReverseConverter));
 		}
 
 		void GetDependencies ()
@@ -43,12 +63,18 @@ namespace Android
 
 			_listView = view.FindViewById<ListView> (Resource.Id.JobsListView);
 
+			_loading =  view.FindViewById<ProgressBar>(Resource.Id.loading);
+
+			_queryNotFound = view.FindViewById<View>(Resource.Id.contentNotFound);
+
 			return view;
 		}
 
 		public override void OnActivityCreated (Bundle savedInstanceState)
 		{
 			base.OnActivityCreated (savedInstanceState);
+
+			SetUpBindings();
 
 			SetUp ();
 		}
@@ -77,7 +103,7 @@ namespace Android
 
 		void SetUp()
 		{
-			_listView.Adapter = _viewModel.People.GetAdapter(OnJobAdapterView);
+			_listView.Adapter = _viewModel.Jobs.GetAdapter(OnJobAdapterView);
 		}
 
 		void OnListViewItemClick (object sender, AdapterView.ItemClickEventArgs e)
