@@ -13,7 +13,7 @@ namespace EmpleoDotNet.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201603211446475_AddedHowToApplyField"; }
+            get { return "201603301645403_AddedHowToApplyField"; }
         }
         
         string IMigrationMetadata.Source
