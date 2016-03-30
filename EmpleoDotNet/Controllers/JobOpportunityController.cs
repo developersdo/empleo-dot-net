@@ -9,6 +9,10 @@ using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.ViewModel.JobOpportunity;
 using reCAPTCHA.MVC;
 using System;
+using System.Linq;
+using System.Net;
+using EmpleoDotNet.Core.Domain;
+using EmpleoDotNet.ViewModel.JobOpportunityLike;
 using Microsoft.AspNet.Identity;
 
 namespace EmpleoDotNet.Controllers
@@ -39,23 +43,26 @@ namespace EmpleoDotNet.Controllers
             if (string.IsNullOrWhiteSpace(id))
                 return RedirectToAction(nameof(Index));
 
-            var value = GetIdFromTitle(id);
-            if (value == 0)
+            var jobOpportunityId = GetIdFromTitle(id);
+
+            if (jobOpportunityId == 0)
                 return RedirectToAction(nameof(Index));
 
-            var viewModel = _jobOpportunityService.GetJobOpportunityById(value);
+            var viewModel = _jobOpportunityService.GetJobOpportunityById(jobOpportunityId);
 
             if (viewModel == null)
                 return View(nameof(Index))
                     .WithError("La vacante solicitada no existe. Por favor escoge una vacante válida del listado");
 
-            var expectedUrl = UrlHelperExtensions.SeoUrl(value, viewModel.Title.SanitizeUrl());
+            var expectedUrl = UrlHelperExtensions.SeoUrl(jobOpportunityId, viewModel.Title.SanitizeUrl());
 
             if (!expectedUrl.Equals(id, StringComparison.OrdinalIgnoreCase))
                 return RedirectToActionPermanent(nameof(Detail), new { id = expectedUrl });
 
             ViewBag.RelatedJobs =
-                _jobOpportunityService.GetCompanyRelatedJobs(value, viewModel.CompanyName);
+                _jobOpportunityService.GetCompanyRelatedJobs(jobOpportunityId, viewModel.CompanyName);
+
+            ViewBag.CanLike = !CookieHelper.Exists(GetLikeCookieName(jobOpportunityId));
 
             var cookieView = $"JobView{viewModel.Id}";
             if (!CookieHelper.Exists(cookieView))
@@ -137,6 +144,32 @@ namespace EmpleoDotNet.Controllers
             });
         }
 
+        [HttpPost]
+        public JsonResult Like(JobOpportunityLike model)
+        {
+            var cookieName = GetLikeCookieName(model.JobOpportunityId);
+            
+            if (CookieHelper.Exists(cookieName))
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(new { error = true, message = "Ya has votado por este empleo." });
+            }
+
+            _jobOpportunityLikeService.CreateNewLike(model);
+
+            CookieHelper.Set(cookieName, model.JobOpportunityId.ToString());
+
+            var jobLikeData = _jobOpportunityLikeService.GetLikesByJobOpportunityId(model.JobOpportunityId);
+
+            var jobOpportunityLikeData = new JobOpportunityLikeViewModel
+            {
+                Likes = jobLikeData.Count(x => x.Like),
+                DisLikes = jobLikeData.Count(x => !x.Like)
+            };
+                
+            return Json(new { error = false, data = jobOpportunityLikeData });
+        }
+
         /// <summary>
         /// Transform JobOpportunityPagingParameter into JobOpportunitySearchViewModel with Locations
         /// </summary>
@@ -165,6 +198,11 @@ namespace EmpleoDotNet.Controllers
             return viewModel;
         }
 
+        private static string GetLikeCookieName(int jobOpportunityId)
+        {
+            return $"JobLike{jobOpportunityId}";
+        }
+
         private static int GetIdFromTitle(string title)
         {
             int id;
@@ -178,13 +216,16 @@ namespace EmpleoDotNet.Controllers
 
         public JobOpportunityController(
             IJobOpportunityService jobOpportunityService,
-            ITwitterService twitterService)
+            ITwitterService twitterService, 
+            IJobOpportunityLikeService jobOpportunityLikeService)
         {
             _jobOpportunityService = jobOpportunityService;
             _twitterService = twitterService;
+            _jobOpportunityLikeService = jobOpportunityLikeService;
         }
 
         private readonly IJobOpportunityService _jobOpportunityService;
         private readonly ITwitterService _twitterService;
+        private readonly IJobOpportunityLikeService _jobOpportunityLikeService;
     }
 }

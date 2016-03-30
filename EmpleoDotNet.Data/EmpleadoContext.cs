@@ -27,6 +27,7 @@ namespace EmpleoDotNet.Data
         public DbSet<JobOpportunityLocation> JobOpportunityLocation { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<UserProfile> UserProfile { get; set; }
+        public DbSet<JobOpportunityLike> JobOpportunityLikes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
