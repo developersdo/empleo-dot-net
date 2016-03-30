@@ -16,6 +16,7 @@ using Android.Activities;
 using Android.Support.V4.App;
 using Android.Content.Res;
 using Microsoft.Practices.ServiceLocation;
+using GalaSoft.MvvmLight.Helpers;
 
 namespace Android
 {
@@ -84,9 +85,16 @@ namespace Android
 		{
 			base.OnActivityCreated (savedInstanceState);
 
+			SetupViewPager();
+		}
+
+		void SetupViewPager ()
+		{
 			_adapter = new MainPagerAdapter (ChildFragmentManager, Resources);
 
 			_viewPager.Adapter = _adapter;
+
+			_viewPager.PageScrolled += OnPageScrolled;
 
 			_tabLayout.TabGravity = TabLayout.GravityFill;
 
@@ -103,6 +111,11 @@ namespace Android
 			}
 
 			return false;
+		}
+
+		void OnPageScrolled (object sender, ViewPager.PageScrolledEventArgs e)
+		{
+			_viewModel.PageScrolledCommand.Execute(e.Position);
 		}
 	}
 }

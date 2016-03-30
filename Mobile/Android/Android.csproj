@@ -122,6 +122,8 @@
     <Compile Include="MainPage\ViewPagerFragmentViewModel.cs" />
     <Compile Include="MainPage\SwipeToTabEventHandler.cs" />
     <Compile Include="MainPage\Tab.cs" />
+    <Compile Include="MainPage\NotifyJobListUserChangedQuery.cs" />
+    <Compile Include="MainPage\NotifyFavoriteListUserChangedQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

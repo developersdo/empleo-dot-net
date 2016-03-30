@@ -46,7 +46,7 @@ namespace Android
 
 		void SubscribeToMessages ()
 		{
-			MessengerInstance.Register<NotifyUserChangedQuery>(this, OnUserSearch);
+			MessengerInstance.Register<NotifyJobListUserChangedQuery>(this, OnUserSearch);
 			MessengerInstance.Register<NotifyUserClearedText>(this, OnUserClearedText);
 		}
 
@@ -57,7 +57,7 @@ namespace Android
 			AddToJobs(_lastUpdatedJobs, true);
 		}
 
-		async void OnUserSearch(NotifyUserChangedQuery qr)
+		async void OnUserSearch(NotifyJobListUserChangedQuery qr)
 		{
 			var query = qr.Query;
 

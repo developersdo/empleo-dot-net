@@ -6,7 +6,7 @@ namespace Android
 	{
 		JobSearch,
 		Categories,
-		FavoriteCategories
+		Favorite
 	}
 }
 
