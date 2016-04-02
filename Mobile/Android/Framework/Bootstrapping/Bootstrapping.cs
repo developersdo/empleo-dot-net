@@ -52,6 +52,7 @@ namespace Empleado
 			{
 				SimpleIoc.Default.Register<IJobRepository, JobRepository>();
 				SimpleIoc.Default.Register<IBitmapResizer<Bitmap>, BitmapResizer>();
+				SimpleIoc.Default.Register<IGeolocationService, GeolocationService>();
 			}
 		}
 
@@ -64,6 +65,9 @@ namespace Empleado
 			SimpleIoc.Default.Register<MainPageFragmentViewModel,MainPageFragmentViewModel>();
 			SimpleIoc.Default.Register<CategoriesFragmentViewModel,CategoriesFragmentViewModel>();
 			SimpleIoc.Default.Register<ViewPagerFragmentViewModel,ViewPagerFragmentViewModel>();
+			SimpleIoc.Default.Register<SearchViewModel,SearchViewModel>();
+			SimpleIoc.Default.Register<ILanguageService, LanguageService>();
+			SimpleIoc.Default.Register<IContextService,ContextService>();
 		}
 	}
 }

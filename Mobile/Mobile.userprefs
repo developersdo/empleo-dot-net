@@ -1,9 +1,22 @@
 ﻿<Properties StartupItem="Android/Android.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Nexus 4 (Lollipop)" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Android/MainPage/MainPageActivity.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.192.168.57.101:5555" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Android/SearchPage/SearchActivity.cs">
     <Files>
-      <File FileName="Android/MainPage/MainPageActivity.cs" Line="89" Column="15" />
+      <File FileName="Android/Services/EmptyClass.cs" Line="9" Column="4" />
+      <File FileName="Android/SearchPage/SearchActivity.cs" Line="82" Column="3" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Mobile" expanded="True">
+            <Node name="Android" expanded="True" selected="True">
+              <Node name="Properties" expanded="True" />
+              <Node name="SearchPage" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
