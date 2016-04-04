@@ -43,6 +43,7 @@
     <Compile Include="IGeolocationService.cs" />
     <Compile Include="IContextService.cs" />
     <Compile Include="UserLocationChangedEventArgs.cs" />
+    <Compile Include="ICache.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

@@ -142,6 +142,7 @@
     <Compile Include="Services\JobRepository.cs" />
     <Compile Include="Services\GeolocationService.cs" />
     <Compile Include="Services\ContextService.cs" />
+    <Compile Include="Services\AkavacheAndroidImpl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
