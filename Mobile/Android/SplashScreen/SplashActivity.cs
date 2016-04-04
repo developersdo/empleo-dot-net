@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -15,21 +14,18 @@ using Microsoft.Practices.ServiceLocation;
 
 namespace Android
 {
-	[Activity (Label = "@string/ApplicationName", MainLauncher = true, NoHistory = true, Theme="@style/AppTheme")]			
+	[Activity (Label = "@string/ApplicationName",MainLauncher = true, NoHistory = true, Theme="@style/AppTheme")]			
 	public class SplashActivity : AppCompatActivityBase
 	{
 		SplashViewModel _viewModel;
 
-		protected override void OnCreate (Bundle savedInstanceState)
+		protected override async void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 
-			SetupScreen();
-		}
+			SetContentView (Resource.Layout.SplashScreenLayout);
 
-		protected override async void OnResume ()
-		{
-			base.OnResume ();
+			SetupScreen();
 
 			await Run();
 
@@ -40,14 +36,16 @@ namespace Android
 
 		void SetupScreen ()
 		{
-			this.Window.AddFlags(WindowManagerFlags.Fullscreen);
-			SetContentView (Resource.Layout.SplashScreenLayout);
+			Window.AddFlags(WindowManagerFlags.Fullscreen);
 		}
 
 		async Task Run ()
 		{
-			await Task.Run(()=>{
+			await Task.Run(async()=>{
+				
 				new Bootstrapping();
+
+				await Task.Delay(1000);
 			});
 		}
 
@@ -58,7 +56,9 @@ namespace Android
 
 		void NavigateTo ()
 		{
-			_viewModel.Init();
+			RunOnUiThread(()=>{
+				_viewModel.Init();
+			});
 		}
 	}
 }

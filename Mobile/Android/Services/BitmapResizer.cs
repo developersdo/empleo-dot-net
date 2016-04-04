@@ -15,7 +15,9 @@ namespace Android
 
 			var options = new BitmapFactory.Options
 			{
-				InJustDecodeBounds = false
+				InJustDecodeBounds = false,
+				OutHeight = reqHeight,
+				OutWidth = reqWidth
 			};
 
 			options.InSampleSize = CalculateInSampleSize(options, reqWidth, reqHeight);

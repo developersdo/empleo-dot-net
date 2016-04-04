@@ -9,17 +9,9 @@ namespace Android
 	[ImplementPropertyChanged]
 	public class ViewModelBase : GalaSoft.MvvmLight.ViewModelBase, INotifyPropertyChanged
 	{
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected virtual void OnPropertyChanged (PropertyChangedEventArgs e)
-		{
-			var handler = PropertyChanged;
-			if (handler != null)
-				handler (this, e);
-		}
-
 		public ViewModelBase ()
 		{
+			
 		}
 
 		public virtual void OnCreate()
