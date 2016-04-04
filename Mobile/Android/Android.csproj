@@ -171,6 +171,8 @@
     <Compile Include="Services\ContextService.cs" />
     <Compile Include="Services\AkavacheAndroidImpl.cs" />
     <Compile Include="AkavacheSqliteLinkerOverride.cs" />
+    <Compile Include="Services\XMLStorage.cs" />
+    <Compile Include="Services\AppInfoService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

@@ -53,6 +53,8 @@ namespace Empleado
 				SimpleIoc.Default.Register<IJobRepository, JobRepository>();
 				SimpleIoc.Default.Register<IBitmapResizer<Bitmap>, BitmapResizer>();
 				SimpleIoc.Default.Register<IGeolocationService, GeolocationService>();
+				SimpleIoc.Default.Register<IXMLStorage, XMLStorage>();
+				SimpleIoc.Default.Register<IAppInfoService, AppInfoService>();
 			}
 		}
 

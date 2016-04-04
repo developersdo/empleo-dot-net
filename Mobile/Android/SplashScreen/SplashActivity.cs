@@ -31,7 +31,7 @@ namespace Android
 
 			GetServices();
 
-			NavigateTo();
+			await NavigateTo();
 		}
 
 		void SetupScreen ()
@@ -54,11 +54,9 @@ namespace Android
 			_viewModel = ServiceLocator.Current.GetInstance<SplashViewModel> ();
 		}
 
-		void NavigateTo ()
+		async Task NavigateTo ()
 		{
-			RunOnUiThread(()=>{
-				_viewModel.Init();
-			});
+			await _viewModel.Init();
 		}
 	}
 }
