@@ -15,16 +15,21 @@ using Microsoft.Practices.ServiceLocation;
 
 namespace Android
 {
-	[Activity (Label = "@string/ApplicationName", MainLauncher = true, Theme="@style/LandingPageTheme")]			
+	[Activity (Label = "@string/ApplicationName", MainLauncher = true, NoHistory = true, Theme="@style/AppTheme")]			
 	public class SplashActivity : AppCompatActivityBase
 	{
 		SplashViewModel _viewModel;
 
-		protected override async void OnCreate (Bundle savedInstanceState)
+		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 
 			SetupScreen();
+		}
+
+		protected override async void OnResume ()
+		{
+			base.OnResume ();
 
 			await Run();
 
@@ -36,6 +41,7 @@ namespace Android
 		void SetupScreen ()
 		{
 			this.Window.AddFlags(WindowManagerFlags.Fullscreen);
+			SetContentView (Resource.Layout.SplashScreenLayout);
 		}
 
 		async Task Run ()

@@ -151,7 +151,6 @@
     <None Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Main.axml" />
     <AndroidResource Include="Resources\layout\LandingPageLayout.axml" />
     <AndroidResource Include="Resources\values\themes.xml" />
     <AndroidResource Include="Resources\values\colors.xml" />
@@ -203,6 +202,8 @@
     <AndroidResource Include="Resources\layout\HomePageViewPagerLayout.axml" />
     <AndroidResource Include="Resources\transition\job_list_to_detail.axml" />
     <AndroidResource Include="Resources\layout\MainPageFragmentLayout.axml" />
+    <AndroidResource Include="Resources\layout\SplashScreenLayout.axml" />
+    <AndroidResource Include="Resources\drawable-xhdpi\logo.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
