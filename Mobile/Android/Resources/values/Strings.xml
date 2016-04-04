@@ -15,4 +15,6 @@
     <string name="SearchActivityTitle">Filtrar búsqueda</string>
     <string name="contentNotFound">La búsqueda no tuvo resultados</string>
     <string name="contentNotFoundSubtitle">Intenta más tarde</string>
+    <string name="searchNearBy">Búsqueda cerca de mi</string>
+    <string name="searchNearByLoading">Buscando tu locación...</string>
 </resources>

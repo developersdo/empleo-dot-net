@@ -38,6 +38,11 @@
     <Compile Include="Services\IBitmapResizer.cs" />
     <Compile Include="Bind.cs" />
     <Compile Include="IValueConverter.cs" />
+    <Compile Include="LocationData.cs" />
+    <Compile Include="ILanguageService.cs" />
+    <Compile Include="IGeolocationService.cs" />
+    <Compile Include="IContextService.cs" />
+    <Compile Include="UserLocationChangedEventArgs.cs" />
     <Compile Include="ICache.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
