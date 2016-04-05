@@ -1,22 +1,10 @@
 ﻿<Properties StartupItem="Android/Android.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.192.168.57.101:5555" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Android/SearchPage/SearchActivity.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.TA98907SVL" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Api/JobsApiService.cs">
     <Files>
-      <File FileName="Android/Services/EmptyClass.cs" Line="9" Column="4" />
-      <File FileName="Android/SearchPage/SearchActivity.cs" Line="82" Column="3" />
+      <File FileName="Api/JobsApiService.cs" Line="16" Column="72" />
+      <File FileName="Api.Contract/IJobsApiService.cs" Line="12" Column="3" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="Mobile" expanded="True">
-            <Node name="Android" expanded="True" selected="True">
-              <Node name="Properties" expanded="True" />
-              <Node name="SearchPage" expanded="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

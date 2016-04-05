@@ -7,6 +7,9 @@ using GalaSoft.MvvmLight;
 using Android;
 using Android.Graphics;
 using Core;
+using Api.Contract;
+using Api;
+using APIs;
 
 namespace Empleado
 {
@@ -19,7 +22,6 @@ namespace Empleado
 			Init();
 
 			RegisterViewModels();
-
 		}
 
 		void Init ()
@@ -55,6 +57,9 @@ namespace Empleado
 				SimpleIoc.Default.Register<IGeolocationService, GeolocationService>();
 				SimpleIoc.Default.Register<IXMLStorage, XMLStorage>();
 				SimpleIoc.Default.Register<IAppInfoService, AppInfoService>();
+				SimpleIoc.Default.Register<ILanguageService, LanguageService>();
+				SimpleIoc.Default.Register<IContextService,ContextService>();
+				SimpleIoc.Default.Register<IJobsApiService, FakeJobsApiService>();
 			}
 		}
 
@@ -68,8 +73,7 @@ namespace Empleado
 			SimpleIoc.Default.Register<CategoriesFragmentViewModel,CategoriesFragmentViewModel>();
 			SimpleIoc.Default.Register<ViewPagerFragmentViewModel,ViewPagerFragmentViewModel>();
 			SimpleIoc.Default.Register<SearchViewModel,SearchViewModel>();
-			SimpleIoc.Default.Register<ILanguageService, LanguageService>();
-			SimpleIoc.Default.Register<IContextService,ContextService>();
+			SimpleIoc.Default.Register<JobDetailFragmentViewModel,JobDetailFragmentViewModel>();
 		}
 	}
 }

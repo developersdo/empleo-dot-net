@@ -113,7 +113,7 @@ namespace Android
 
 		void OnJobSelected (object sender, EventArgs e)
 		{
-			var jobDetailFragment = new JobDetail
+			var jobDetailFragment = new JobDetailFragment(string.Empty)
 			{
 				EnterTransition = new Fade(),
 				ExitTransition = new Fade()

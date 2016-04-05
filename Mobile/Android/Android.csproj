@@ -118,6 +118,10 @@
     <Reference Include="PropertyChanged">
       <HintPath>..\packages\PropertyChanged.Fody.1.50.4\Lib\portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
     </Reference>
+    <Reference Include="Refit">
+      <HintPath>..\packages\refit.2.4.1\lib\MonoAndroid\Refit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -144,7 +148,6 @@
     <Compile Include="Framework\AppCompatActivityBase.cs" />
     <Compile Include="Framework\AppCompatNavigationService.cs" />
     <Compile Include="Framework\AppCompatDialogService.cs" />
-    <Compile Include="JobDetail\JobDetail.cs" />
     <Compile Include="MainPage\ViewPagerFragment.cs" />
     <Compile Include="MainPage\IBackPressed.cs" />
     <Compile Include="MainPage\BackPressImpl.cs" />
@@ -173,6 +176,8 @@
     <Compile Include="AkavacheSqliteLinkerOverride.cs" />
     <Compile Include="Services\XMLStorage.cs" />
     <Compile Include="Services\AppInfoService.cs" />
+    <Compile Include="MainPage\JobDetailFragmentViewModel.cs" />
+    <Compile Include="MainPage\JobDetailFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -244,6 +249,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.2\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.2\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
+  <Import Project="..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets" Condition="Exists('..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
      Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -287,6 +293,14 @@
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{E2F64C8E-F63A-4BBC-A45A-985C2D87A481}</Project>
       <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Api.Contract\Api.Contract.csproj">
+      <Project>{BECA9261-37EF-4883-883D-020F2080DF1B}</Project>
+      <Name>Api.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\APIs\APIs.csproj">
+      <Project>{B9BC593D-5A47-4153-8102-02E112360FEE}</Project>
+      <Name>APIs</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
