@@ -7,16 +7,19 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Api.Contract;
 
 namespace Android
 {
 	public class JobsFragmentViewModel : ViewModelBase
 	{
-		public ObservableCollection<JobItemViewModel> Jobs { get; private set; }
+		public ObservableCollection<JobCardDTO> Jobs { get; private set; }
 
-		ObservableCollection<JobItemViewModel> _lastUpdatedJobs;
+		public JobCardDTO SelectedJob { get; private set; }
 
-		public RelayCommand OnJobSelectedCommand;
+		ObservableCollection<JobCardDTO> _lastUpdatedJobs;
+
+		public RelayCommand<int> OnJobSelectedCommand;
 
 		public event EventHandler OnJobSelectedEvent;
 
@@ -24,23 +27,25 @@ namespace Android
 
 		public bool QueryNotFound { get; set; }
 
-		IJobRepository _jobRepository;
+		IJobsApiService _jobsAPiService;
 
-		public JobsFragmentViewModel (IJobRepository jobRepository)
+		public JobsFragmentViewModel(IJobsApiService jobsAPiService)
 		{
-			_jobRepository = jobRepository;
+			_jobsAPiService = jobsAPiService;
 
-			Jobs = new ObservableCollection<JobItemViewModel>();
+			Jobs = new ObservableCollection<JobCardDTO>();
 
-			OnJobSelectedCommand = new RelayCommand(OnJobSelected);
+			OnJobSelectedCommand = new RelayCommand<int>(OnJobSelected);
 
 			IsLoading = false;
 
 			SubscribeToMessages();
 		}
 
-		void OnJobSelected ()
+		void OnJobSelected (int position)
 		{
+			SelectedJob = Jobs.ElementAtOrDefault(position);
+
 			OnJobSelectedEvent(this, null);
 		}
 
@@ -106,12 +111,17 @@ namespace Android
 		{
 			IsLoading = true;
 
-			_lastUpdatedJobs = await _jobRepository.GetMostRecentJobs ();
+			var list = await _jobsAPiService.GetCardJobs();
 
-			AddToJobs(_lastUpdatedJobs);
+			if(list != null && (list.Jobs != null && list.Jobs.Any()))
+			{
+				_lastUpdatedJobs = new ObservableCollection<JobCardDTO>(list.Jobs);
+
+				AddToJobs(_lastUpdatedJobs);
+			}
 		}
 
-		void AddToJobs(IEnumerable<JobItemViewModel> recentJobs, bool clear = false)
+		void AddToJobs(IEnumerable<JobCardDTO> recentJobs, bool clear = false)
 		{
 			if(clear)
 				Jobs.Clear();

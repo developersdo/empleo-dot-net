@@ -26,12 +26,13 @@
                 android:layout_height="50dp"
                 android:background="#f0f0f0"
                 android:layout_width="0dp"
+                android:clickable="true"
                 android:layout_weight="0.20">
                 <ImageView
                     android:id="@+id/locationIcon"
                     android:layout_width="0dp"
                     android:layout_weight="0.30"
-                    android:clickable="true"
+                    android:clickable="false"
                     android:alpha="0.6"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:src="@drawable/ic_near_me_black_48dp"

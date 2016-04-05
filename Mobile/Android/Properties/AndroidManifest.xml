@@ -3,7 +3,7 @@
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="21" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<application android:icon="@drawable/person" android:label="Emplea.do">
-		<meta-data android:name="com.google.android.geo.API_KEY" android:value="YOUR_API_KEY" />
+		<meta-data android:name="com.google.android.geo.API_KEY" android:value="YOUR_API_KEY_GOES_HERE" />
 		<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 		<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	</application>

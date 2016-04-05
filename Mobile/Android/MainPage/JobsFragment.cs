@@ -15,6 +15,7 @@ using GalaSoft.MvvmLight.Helpers;
 using Android.ViewModels;
 using Android.Support.V7.Widget;
 using Core;
+using Api.Contract;
 
 namespace Android
 {
@@ -109,12 +110,12 @@ namespace Android
 
 		void OnListViewItemClick (object sender, AdapterView.ItemClickEventArgs e)
 		{
-			_viewModel.OnJobSelectedCommand.Execute(null);
+			_viewModel.OnJobSelectedCommand.Execute(e.Position);
 		}
 
 		void OnJobSelected (object sender, EventArgs e)
 		{
-			var jobDetailFragment = new JobDetail
+			var jobDetailFragment = new JobDetailFragment(_viewModel.SelectedJob.Link)
 			{
 				EnterTransition = new Fade(),
 				ExitTransition = new Fade()
@@ -127,7 +128,7 @@ namespace Android
 				.Commit();
 		}
 
-		View OnJobAdapterView (int position, JobItemViewModel model, View convertView)
+		View OnJobAdapterView (int position, JobCardDTO model, View convertView)
 		{
 			var view = convertView ?? LayoutInflater.From(Context).Inflate (Resource.Layout.JobCardLayout, null);
 
@@ -145,11 +146,11 @@ namespace Android
 
 			var category = view.FindViewById<TextView>(Resource.Id.JobCategory);
 
-			title.Text = model.Title;
+			title.Text = model.Job;
 
-			company.Text = model.CompanyName;
+			company.Text = model.Employee;
 
-			category.Text = model.Category;
+			category.Text = model.JobType;
 
 			locationIcon.Visibility = string.IsNullOrEmpty(model.Location) ? ViewStates.Invisible : ViewStates.Visible;
 
