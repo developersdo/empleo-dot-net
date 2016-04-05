@@ -10,5 +10,12 @@ namespace Android
 
 		public static readonly string FilterLocationScreen = "FilterLocationScreen";
 	}
+
+	public class Extras
+	{
+		public static readonly string SHARED_PREFERENCE_NAME = "Emplea.do.shared.preferences";
+
+		public static string WHICH_USER_OPEN_APP_VERSION = "WHICH_USER_OPEN_APP_VERSION";
+	}
 }
 

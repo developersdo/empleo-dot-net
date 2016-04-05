@@ -44,6 +44,8 @@
     <Compile Include="IContextService.cs" />
     <Compile Include="UserLocationChangedEventArgs.cs" />
     <Compile Include="ICache.cs" />
+    <Compile Include="IXMLStorage.cs" />
+    <Compile Include="IAppInfoService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
