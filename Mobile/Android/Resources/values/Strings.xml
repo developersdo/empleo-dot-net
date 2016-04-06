@@ -17,4 +17,11 @@
     <string name="contentNotFoundSubtitle">Intenta más tarde</string>
     <string name="searchNearBy">Búsqueda cerca de mi</string>
     <string name="searchNearByLoading">Buscando tu locación...</string>
+    <string name="about">Agradecimientos</string>
+    <string name="PullRequestSubmitedContributors">Pull requests: {0}</string>
+    <string name="AboutWhoWeAre">Quienes somos?</string>
+    <string name="AboutWhoWeAreDetail">El propósito de este proyecto es brindar una experiencia real para todos los developers interesado en aprender ASP.Net 5 y Xamarin.</string>
+    <string name="AboutHowToCollaborate">Como puedo colaborar?</string>
+    <string name="AboutHowToCollaborateDetail"><a href="http://www.yahoo.com">Si quieres colaborar en este proyecto, ve a nuestro repositorio y fork it.</a></string>
+    <string name="AboutCollaboratorsTitle">Gracias a la contribuciones de</string>
 </resources>

@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
 using GalaSoft.MvvmLight.Ioc;
+using Core;
 
 namespace Android
 {
@@ -18,17 +19,17 @@ namespace Android
 
 		public RelayCommand<string> UserIsTypingCommand { get; set; }
 
-		[PreferredConstructor]
-		public MainPageFragmentViewModel () : this(ServiceLocator.Current.GetInstance<INavigationService>())
+		IGithubContributorService githubContributors;
+
+		public MainPageFragmentViewModel (INavigationService navigationService, 
+			IGithubContributorService githubContributors)
 		{
+			this.githubContributors = githubContributors;
+			_navigationService = navigationService;
+
 			UserIsTypingCommand = new RelayCommand<string>(OnUserSubmitText);
 
 			UserClearedTextCommand = new RelayCommand(OnUserClearedText);
-		}
-
-		public MainPageFragmentViewModel (INavigationService navigationService)
-		{
-			_navigationService = navigationService;
 
 			NavigateToFilterScreenCommand = new RelayCommand(OnNavigateToFilterScreen);
 		}
