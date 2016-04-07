@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/MainSearchLayout"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:contextClickable="true">
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="4dp"
+        android:layout_margin="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:weightSum="1"
+            android:layout_height="wrap_content">
+            <SearchView
+                android:id="@+id/MainSearchView"
+                android:layout_width="0dp"
+                android:layout_weight="0.80"
+                android:layout_height="50dp" />
+            <LinearLayout
+                android:id="@+id/locationContainer"
+                android:layout_height="50dp"
+                android:background="#f0f0f0"
+                android:layout_width="0dp"
+                android:clickable="true"
+                android:layout_weight="0.20">
+                <ImageView
+                    android:id="@+id/locationIcon"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.30"
+                    android:clickable="false"
+                    android:alpha="0.6"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:src="@drawable/ic_near_me_black_48dp"
+                    android:layout_height="26dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <ImageView
+        android:id="@+id/MainSearchLocationImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right" />
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

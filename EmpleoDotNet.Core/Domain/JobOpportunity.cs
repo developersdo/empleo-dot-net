@@ -112,6 +112,8 @@ namespace EmpleoDotNet.Core.Domain
 
         public Location Location { get; set; }
 
+        public List<JobOpportunityLike> JobOpportunityLikes { get; set; }
+
         #endregion
     }
 }

@@ -26,6 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,6 +36,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -74,9 +76,52 @@
     <Reference Include="GalaSoft.MvvmLight.Platform">
       <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\monoandroid1\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.GooglePlayServices.Basement">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Basement.29.0.0.1\lib\MonoAndroid41\Xamarin.GooglePlayServices.Basement.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.GooglePlayServices.Base">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Base.29.0.0.1\lib\MonoAndroid41\Xamarin.GooglePlayServices.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.GooglePlayServices.Maps">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Maps.29.0.0.1\lib\MonoAndroid41\Xamarin.GooglePlayServices.Maps.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.GooglePlayServices.Location">
+      <HintPath>..\packages\Xamarin.GooglePlayServices.Location.29.0.0.1\lib\MonoAndroid41\Xamarin.GooglePlayServices.Location.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\packages\Rx-Interfaces.2.2.5\lib\portable-windows8+net45+wp8\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\packages\Rx-Core.2.2.5\lib\portable-windows8+net45+wp8\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\packages\Rx-Linq.2.2.5\lib\portable-windows8+net45+wp8\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\packages\Rx-PlatformServices.2.2.5\lib\portable-windows8+net45+wp8\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Splat">
+      <HintPath>..\packages\Splat.1.3.3\lib\monoandroid\Splat.dll</HintPath>
+    </Reference>
+    <Reference Include="Akavache">
+      <HintPath>..\packages\akavache.core.4.1.2\lib\MonoAndroid\Akavache.dll</HintPath>
+    </Reference>
+    <Reference Include="SQLitePCL.raw">
+      <HintPath>..\packages\SQLitePCL.raw_basic.0.7.0\lib\MonoAndroid\SQLitePCL.raw.dll</HintPath>
+    </Reference>
+    <Reference Include="Akavache.Sqlite3">
+      <HintPath>..\packages\akavache.sqlite3.4.1.2\lib\Portable-Net45+Win8+WP8+Wpa81\Akavache.Sqlite3.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PropertyChanged">
       <HintPath>..\packages\PropertyChanged.Fody.1.50.4\Lib\portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
     </Reference>
+    <Reference Include="Refit">
+      <HintPath>..\packages\refit.2.4.1\lib\MonoAndroid\Refit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -90,8 +135,6 @@
     <Compile Include="MainPage\MainPageActivity.cs" />
     <Compile Include="MainPage\PagerAdapter.cs" />
     <Compile Include="SearchPage\SearchActivity.cs" />
-    <Compile Include="SearchPage\SearchLocationAdapter.cs" />
-    <Compile Include="MainPage\CategoriesFragmentAdapter.cs" />
     <Compile Include="Services\BitmapResizer.cs" />
     <Compile Include="EmpleadoApp.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -105,12 +148,36 @@
     <Compile Include="Framework\AppCompatActivityBase.cs" />
     <Compile Include="Framework\AppCompatNavigationService.cs" />
     <Compile Include="Framework\AppCompatDialogService.cs" />
-    <Compile Include="JobDetail\JobDetail.cs" />
     <Compile Include="MainPage\ViewPagerFragment.cs" />
     <Compile Include="MainPage\IBackPressed.cs" />
     <Compile Include="MainPage\BackPressImpl.cs" />
     <Compile Include="MainPage\JobsFragmentViewModel.cs" />
     <Compile Include="MainPage\FavoritesViewModel.cs" />
+    <Compile Include="MainPage\MainPageFragment.cs" />
+    <Compile Include="MainPage\MainPageFragmentViewModel.cs" />
+    <Compile Include="MainPage\Converters.cs" />
+    <Compile Include="MainPage\ViewStateToBool.cs" />
+    <Compile Include="Services\IJobRepository.cs" />
+    <Compile Include="MainPage\NotifyUserChangedQuery.cs" />
+    <Compile Include="MainPage\NotifyUserClearedText.cs" />
+    <Compile Include="MainPage\CategoriesFragmentViewModel.cs" />
+    <Compile Include="MainPage\NotifySearchBarPutText.cs" />
+    <Compile Include="MainPage\ViewPagerFragmentViewModel.cs" />
+    <Compile Include="MainPage\SwipeToTabEventHandler.cs" />
+    <Compile Include="MainPage\Tab.cs" />
+    <Compile Include="MainPage\NotifyJobListUserChangedQuery.cs" />
+    <Compile Include="MainPage\NotifyFavoriteListUserChangedQuery.cs" />
+    <Compile Include="SearchPage\SearchViewModel.cs" />
+    <Compile Include="Services\LanguageService.cs" />
+    <Compile Include="Services\JobRepository.cs" />
+    <Compile Include="Services\GeolocationService.cs" />
+    <Compile Include="Services\ContextService.cs" />
+    <Compile Include="Services\AkavacheAndroidImpl.cs" />
+    <Compile Include="AkavacheSqliteLinkerOverride.cs" />
+    <Compile Include="Services\XMLStorage.cs" />
+    <Compile Include="Services\AppInfoService.cs" />
+    <Compile Include="MainPage\JobDetailFragmentViewModel.cs" />
+    <Compile Include="MainPage\JobDetailFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -119,7 +186,6 @@
     <None Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Main.axml" />
     <AndroidResource Include="Resources\layout\LandingPageLayout.axml" />
     <AndroidResource Include="Resources\values\themes.xml" />
     <AndroidResource Include="Resources\values\colors.xml" />
@@ -170,6 +236,10 @@
     <AndroidResource Include="Resources\values\attr.xml" />
     <AndroidResource Include="Resources\layout\HomePageViewPagerLayout.axml" />
     <AndroidResource Include="Resources\transition\job_list_to_detail.axml" />
+    <AndroidResource Include="Resources\layout\MainPageFragmentLayout.axml" />
+    <AndroidResource Include="Resources\layout\SplashScreenLayout.axml" />
+    <AndroidResource Include="Resources\drawable\logo.png" />
+    <AndroidResource Include="Resources\drawable\progress_drawable_blue.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -179,6 +249,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.2\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.2\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
+  <Import Project="..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets" Condition="Exists('..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
      Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -213,11 +284,23 @@
       <Version>1.0.9</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
+    <XamarinComponentReference Include="googleplayservices-location">
+      <Version>29.0.0.1</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{E2F64C8E-F63A-4BBC-A45A-985C2D87A481}</Project>
       <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Api.Contract\Api.Contract.csproj">
+      <Project>{BECA9261-37EF-4883-883D-020F2080DF1B}</Project>
+      <Name>Api.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\APIs\APIs.csproj">
+      <Project>{B9BC593D-5A47-4153-8102-02E112360FEE}</Project>
+      <Name>APIs</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

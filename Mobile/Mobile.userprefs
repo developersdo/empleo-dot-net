@@ -1,8 +1,9 @@
 ﻿<Properties StartupItem="Android/Android.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Nexus 4 (Lollipop)" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Android/MainPage/MainPageActivity.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.TA98907SVL" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Api/JobsApiService.cs">
     <Files>
-      <File FileName="Android/MainPage/MainPageActivity.cs" Line="89" Column="15" />
+      <File FileName="Api/JobsApiService.cs" Line="16" Column="72" />
+      <File FileName="Api.Contract/IJobsApiService.cs" Line="12" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

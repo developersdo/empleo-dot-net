@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -15,7 +14,7 @@ using Microsoft.Practices.ServiceLocation;
 
 namespace Android
 {
-	[Activity (Label = "@string/ApplicationName", MainLauncher = true, Theme="@style/LandingPageTheme")]			
+	[Activity (Label = "@string/ApplicationName",MainLauncher = true, NoHistory = true, Theme="@style/AppTheme")]			
 	public class SplashActivity : AppCompatActivityBase
 	{
 		SplashViewModel _viewModel;
@@ -24,24 +23,29 @@ namespace Android
 		{
 			base.OnCreate (savedInstanceState);
 
+			SetContentView (Resource.Layout.SplashScreenLayout);
+
 			SetupScreen();
 
 			await Run();
 
 			GetServices();
 
-			NavigateTo();
+			await NavigateTo();
 		}
 
 		void SetupScreen ()
 		{
-			this.Window.AddFlags(WindowManagerFlags.Fullscreen);
+			Window.AddFlags(WindowManagerFlags.Fullscreen);
 		}
 
 		async Task Run ()
 		{
-			await Task.Run(()=>{
+			await Task.Run(async()=>{
+				
 				new Bootstrapping();
+
+				await Task.Delay(1000);
 			});
 		}
 
@@ -50,9 +54,9 @@ namespace Android
 			_viewModel = ServiceLocator.Current.GetInstance<SplashViewModel> ();
 		}
 
-		void NavigateTo ()
+		async Task NavigateTo ()
 		{
-			_viewModel.Init();
+			await _viewModel.Init();
 		}
 	}
 }

@@ -6,47 +6,87 @@
     ViewBag.Title = "Nuevo Empleo";
 }
 
-<section>
+@if (!Html.ViewData.ModelState.IsValid)
+{
+    <div class="container" id="validation-errors">
+        <div class='validation-summary-errors" panel panel-danger' data-valmsg-summary="true">
+            <div class="panel-heading">
+                Errores:
+            </div>
+            <div class="panel-body">
+                <ul>
+                    @foreach (var m in ViewData.ModelState)
+                    {
+                        if (m.Value.Errors.Any())
+                        {
+                            <li>
+                                <a href="javascript:void(0)" data-field="@m.Key" class="text-danger">
+                                    @m.Value.Errors.First().ErrorMessage
+                                </a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+
+<section class="wizard-container">
     <div class="container">
-    @using (Html.BeginForm("Wizard", "JobOpportunity", FormMethod.Post, new {role = "form"}))
+        @using (Html.BeginForm("Wizard", "JobOpportunity", FormMethod.Post, new { role = "form" }))
     {
         @Html.AntiForgeryToken()
         <div>
             <span class="h2 section-title"></span>
-            <hr />
-            <div class="tab section-1">1</div>
-            <div class="tab section-2">2</div>
-            <div class="tab section-3">3</div>
+            <hr class="hidden-xs" />
+            <div class="tab section-1">
+                <span class="hidden-xs">1</span>
+                <span class="hidden-lg hidden-md hidden-sm hidden-print">Paso 1 de 3</span>
+            </div>
+            <div class="tab section-2">
+                <span class="hidden-xs">2</span>
+                <span class="hidden-lg hidden-md hidden-sm hidden-print">Paso 2 de 3</span>
+            </div>
+            <div class="tab section-3">
+                <span class="hidden-xs">3</span>
+                <span class="hidden-lg hidden-md hidden-sm hidden-print">Paso 3 de 3</span>
+            </div>
         </div>
         <div id="wizard" class="owl-carousel owl-theme">
             <div class="item" data-parsley-group="business-details">
                 <div class="form-group" id="company-name-group">
                     @Html.LabelFor(m => m.CompanyName)
-                    @Html.TextBoxFor(m => m.CompanyName, new {@class = "form-control", placeholder = "CompanyX, SRL.", required="", @data_parsley_group= "business-details"})
+                        @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", placeholder = "CompanyX, SRL.", required = "", @data_parsley_group = "business-details" })
                     <span><b>Tip:</b> Los mejores candidatos tienden a hacer caso omiso de propuestas an&oacute;nimas</span>
+                        <br />
                     @Html.ValidationMessageFor(m => m.CompanyName)
                 </div>
                 <div class="form-group" id="company-email-group">
                     @Html.LabelFor(m => m.CompanyEmail)
-                    @Html.TextBoxFor(m => m.CompanyEmail, new {@class = "form-control", type="email", placeholder = "email@companyx.com", required = "", @data_parsley_group = "business-details" })
+                        @Html.TextBoxFor(m => m.CompanyEmail, new { @class = "form-control", type = "email", placeholder = "email@companyx.com", required = "", @data_parsley_group = "business-details" })
                     @Html.ValidationMessageFor(m => m.CompanyEmail)
                 </div>          
                 <div class="form-group" id="company-website-group">
                     @Html.LabelFor(m => m.CompanyUrl)
-                    @Html.TextBoxFor(m => m.CompanyUrl, new {@class = "form-control", type="url", @data_parsley_type="url", placeholder = "companyx.com", @data_parsley_group = "business-details" })
+                        @Html.TextBoxFor(m => m.CompanyUrl, new { @class = "form-control", type = "url", @data_parsley_type = "url", placeholder = "companyx.com", @data_parsley_group = "business-details" })
                     <span>
                         <b>Tip:</b> Muchos aplicantes visitar&aacute;n tu sitio web y lo tomar&aacute;n 
                         como referencia antes de decidirse por t&iacute;. Si tu empresa no tiene un sitio web 
                         o crees que necesita unas mejoras, considera buscar un web developer en
                          <a href="@Url.Action("Index", "Home")">emplea.do</a>
                     </span>
+                        <br />
                     @Html.ValidationMessageFor(m => m.CompanyUrl)
                 </div>
                 <div class="form-group" id="company-logo-group">
                     @Html.LabelFor(m => m.CompanyLogoUrl)
-                    @Html.TextBoxFor(m => m.CompanyLogoUrl, new {@class = "form-control", type = "url", @data_parsley_type = "url", placeholder = "http://companyx.com/logo.png"})
-                    <span>Asegurate de que el servidor donde est&eacute; alojado el logo acepte hotlinks. 
-                    Si no sabes que es eso, no te preocupes, sube el logo a <a href="https://imgur.com" target="_blank">imgur</a> y pega la url aqu&iacute;</span>
+                        @Html.TextBoxFor(m => m.CompanyLogoUrl, new { @class = "form-control", type = "url", @data_parsley_type = "url", placeholder = "http://companyx.com/logo.png" })
+                        <span>
+                            Asegurate de que el servidor donde est&eacute; alojado el logo acepte hotlinks.
+                            Si no sabes que es eso, no te preocupes, sube el logo a <a href="https://imgur.com" target="_blank">imgur</a> y pega la url aqu&iacute;
+                        </span>
+                        <br />
                     @Html.ValidationMessageFor(m => m.CompanyLogoUrl)
                 </div>
                 <a class="btn-next btn btn-primary btn-lg">Siguiente</a>
@@ -54,12 +94,12 @@
             <div class="item" data-parsley-group="job-details">
                 <div class="form-group" id="job-title-group">
                     @Html.LabelFor(m => m.Title)
-                    @Html.TextBoxFor(m => m.Title, new {@class = "form-control", placeholder = "ejemp. Se busca Web Designer", @data_parsley_group = "job-details", required="" })
+                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "ejemp. Se busca Web Designer", @data_parsley_group = "job-details", required = "" })
                     @Html.ValidationMessageFor(m => m.Title)
                 </div>
                 <div class="form-group" id="job-category-group">
                     @Html.LabelFor(m => m.Category)
-                    @Html.EnumDropListFor(e => e.Category, new {@class = "form-control", id = "category", @data_parsley_group = "job-details"})
+                        @Html.EnumDropListFor(e => e.Category, new { @class = "form-control", id = "category", @data_parsley_group = "job-details" })
                 </div>
                 <div class="form-group" id="job-category-group">
                     @Html.LabelFor(m => m.JobType)
@@ -85,6 +125,7 @@
                     @Html.HiddenFor(m => m.LocationLatitude, new { id = "location-latitude", @data_parsley_group = "job-details" })
                     @Html.HiddenFor(m => m.LocationLongitude, new { id = "location-longitude", @data_parsley_group = "job-details" })
                     @Html.HiddenFor(m => m.LocationPlaceId, new { id = "location-placeid", @data_parsley_group = "job-details" })
+                        @Html.ValidationMessageFor(x => x.LocationName)
                 </div>
                 <div class="form-group">
                     @Html.CheckBoxFor(m => m.IsRemote)
@@ -93,8 +134,9 @@
 
                 <div class="form-group">
                     @Html.LabelFor(m => m.Description)
-                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control textarea", @data_parsley_group="job-details", @data_parsley_errors_container="#description_errors", required="" })
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control textarea", @data_parsley_group = "job-details", @data_parsley_errors_container = "#description_errors", required = "" })
                     @Html.ValidationMessageFor(m => m.Description)
+<<<<<<< HEAD
                     <span><b>Tip:</b> Describa las actividades y actitudes que se esperan de quien ocupa este puesto de trabajo.</span>
                     <span id="description_errors" class="danger"></span>
                 </div>
@@ -117,6 +159,12 @@
                     <span>
                         <b>Tip:</b> Expl&iacute;cale a los candidatos que ganan al trabajar en este puesto.
                     </span>
+=======
+                        <span>
+                            <b>Tip:</b> Se lo mas explicito posible, si eres de recursos humanos consulta con una persona de
+                            tecnolog&iacute;a sobre cuales son los requerimientos t&eacute;cnicos.
+                        </span>
+>>>>>>> upstream/develop
                     <span id="description_errors" class="danger"></span>
                 </div>
                 <a class="btn-prev btn btn-warning btn-lg">Anterior</a>
@@ -124,10 +172,12 @@
 
             </div>
             <div class="item">
-                <p>Si no sabes que es puedes 
+                    <p>
+                        Si no sabes que es puedes
                 <a href="http://local.joelonsoftware.com/wiki/El_Test_de_Joel:_12_pasos_hacia_un_c%C3%B3digo_mejor" target="_blank">leer aqu&iacute;</a>.
                     En resumen, es un cuestionario para medir la calidad del equipo de desarrollo de tu empresa. Coteja las opciones que apliquen.
-                    <br/>**Este paso es opcional y solo aplica para posiciones relacionadas al Desarrollo de Software</p>
+                        <br />**Este paso es opcional y solo aplica para posiciones relacionadas al Desarrollo de Software
+                    </p>
                 <div class="form-group">
                     @Html.CheckBoxFor(m => m.HasSourceControl)
                     @Html.LabelFor(m => m.HasSourceControl)
@@ -179,6 +229,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
+                                <input type="hidden" name="ReCaptcha" value="" />
                             @Html.Recaptcha()
                             @Html.ValidationMessage("ReCaptcha")
                         </div>

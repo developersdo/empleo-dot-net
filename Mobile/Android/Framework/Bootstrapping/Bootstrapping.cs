@@ -5,6 +5,11 @@ using GalaSoft.MvvmLight.Ioc;
 using Android.Activities;
 using GalaSoft.MvvmLight;
 using Android;
+using Android.Graphics;
+using Core;
+using Api.Contract;
+using Api;
+using APIs;
 
 namespace Empleado
 {
@@ -31,7 +36,11 @@ namespace Empleado
 
 				nav.Configure(ScreenName.MainPage, typeof(MainPageActivity));
 
+				nav.Configure(ScreenName.FilterLocationScreen, typeof(SearchActivity));
+
 				SimpleIoc.Default.Register<INavigationService>(() => nav);
+
+				Run();
 			}
 		}
 
@@ -43,7 +52,14 @@ namespace Empleado
 			}
 			else
 			{
-
+				SimpleIoc.Default.Register<IJobRepository, JobRepository>();
+				SimpleIoc.Default.Register<IBitmapResizer<Bitmap>, BitmapResizer>();
+				SimpleIoc.Default.Register<IGeolocationService, GeolocationService>();
+				SimpleIoc.Default.Register<IXMLStorage, XMLStorage>();
+				SimpleIoc.Default.Register<IAppInfoService, AppInfoService>();
+				SimpleIoc.Default.Register<ILanguageService, LanguageService>();
+				SimpleIoc.Default.Register<IContextService,ContextService>();
+				SimpleIoc.Default.Register<IJobsApiService, FakeJobsApiService>();
 			}
 		}
 
@@ -53,6 +69,11 @@ namespace Empleado
 			SimpleIoc.Default.Register<SplashViewModel,SplashViewModel>();
 			SimpleIoc.Default.Register<JobsFragmentViewModel,JobsFragmentViewModel>();
 			SimpleIoc.Default.Register<FavoritesViewModel,FavoritesViewModel>();
+			SimpleIoc.Default.Register<MainPageFragmentViewModel,MainPageFragmentViewModel>();
+			SimpleIoc.Default.Register<CategoriesFragmentViewModel,CategoriesFragmentViewModel>();
+			SimpleIoc.Default.Register<ViewPagerFragmentViewModel,ViewPagerFragmentViewModel>();
+			SimpleIoc.Default.Register<SearchViewModel,SearchViewModel>();
+			SimpleIoc.Default.Register<JobDetailFragmentViewModel,JobDetailFragmentViewModel>();
 		}
 	}
 }

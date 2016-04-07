@@ -7,9 +7,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyTitle ("Core")]
 [assembly: AssemblyDescription ("")]
 [assembly: AssemblyConfiguration ("")]
-[assembly: AssemblyCompany ("Ziti")]
 [assembly: AssemblyProduct ("")]
-[assembly: AssemblyCopyright ("Luis Nunez")]
 [assembly: AssemblyTrademark ("")]
 [assembly: AssemblyCulture ("")]
 

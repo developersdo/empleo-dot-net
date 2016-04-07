@@ -22,14 +22,16 @@
             app:cardCornerRadius="4dp"
             android:layout_margin="5dp">
             <LinearLayout
+                android:id="@+id/MainSearchViewParent"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <SearchView
-                    android:id="@+id/MainSearchView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:paddingRight="10dp" />
+                <fragment
+                    android:id="@+id/place_autocomplete_fragment"
+                    android:layout_width="match_parent"
+                    android:background="@android:color/background_dark"
+                    android:layout_height="wrap_content"
+                    android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>
@@ -62,7 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:text="Search Nearby"
+                        android:text="@string/searchNearBy"
                         android:textStyle="bold"
                         android:textColor="@android:color/darker_gray"
                         android:alpha="0.6"
@@ -70,10 +72,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:text="Carretera de Mendoza, Villa Faro"
+                        android:id="@+id/Address"
                         android:textStyle="bold"
                         android:textColor="@android:color/black"
                         android:alpha="0.6"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
                         android:textSize="14sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />

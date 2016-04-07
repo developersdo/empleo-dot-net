@@ -10,7 +10,7 @@ namespace Android
 		public string Title { get; set; }
 
 		public int Image { get; set; }
+
+		public string Query { get; set; }
 	}
-
-
 }

@@ -274,6 +274,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\NumberExtensions.cs" />
     <Compile Include="Helpers\UnderMaintenanceFilterAttribute.cs" />
     <Compile Include="Helpers\Alerts\Alert.cs" />
     <Compile Include="Helpers\Alerts\AlertDecoratorResult.cs" />
@@ -298,6 +299,7 @@
     <Compile Include="ViewModel\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModel\Account\VerifyCodeViewModel.cs" />
     <Compile Include="ViewModel\ErrorViewModel.cs" />
+    <Compile Include="ViewModel\JobOpportunityLike\JobOpportunityLikeViewModel.cs" />
     <Compile Include="ViewModel\JobOpportunitySearchViewModel.cs" />
     <Compile Include="ViewModel\JobOpportunity\Wizard.cs" />
     <Compile Include="ViewModel\NewJobOpportunityViewModel.cs" />
@@ -333,7 +335,6 @@
     <Content Include="Content\img\find-a-job.jpg" />
     <Content Include="Content\img\logo-empleado.png" />
     <Content Include="Content\img\post-a-job.jpg" />
-    <Content Include="Content\JobOpportunity\Detail.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\responsive.css" />
     <Content Include="Content\css\theme\animate.css" />
@@ -424,6 +425,7 @@
     <Content Include="Scripts\i18n\zh-CN.js" />
     <Content Include="Scripts\i18n\zh-TW.js" />
     <None Include="Scripts\jquery-1.11.2.intellisense.js" />
+    <Content Include="Scripts\JobOpportunity\Likes.js" />
     <Content Include="Scripts\JobOpportunity\Wizard.js" />
     <Content Include="Scripts\jquery-1.11.2.js" />
     <Content Include="Scripts\jquery-1.11.2.min.js" />

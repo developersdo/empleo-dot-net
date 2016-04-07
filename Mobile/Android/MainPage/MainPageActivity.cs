@@ -13,19 +13,17 @@ using Android.Support.V7.View;
 using V7Toolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.Design.Widget;
 using Android.Graphics;
+using GalaSoft.MvvmLight.Messaging;
+using Android.Content.PM;
 
 namespace Android.Activities
 {
-	[Activity (Theme="@style/AppTheme")]
+	[Activity (Theme="@style/AppTheme", Label="@string/MainPage")]
 	public class MainPageActivity : AppCompatActivityBase
 	{
-		ViewPagerFragment _viewPagerFragment;
+		MainPageFragment _viewPagerFragment;
 
 		V7Toolbar _toolBar;
-
-		SearchView _searchView;
-
-		View _searchLayout;
 
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
@@ -37,55 +35,12 @@ namespace Android.Activities
 
 			SetViewReferences();
 
-			SetUpScreen ();
-		}
-
-		void SetUpScreen()
-		{
-			Title = GetString(Resource.String.MainPage);
-
 			SetSupportActionBar(_toolBar);
-
-			_searchLayout.Click += OnSearchLayoutSelected;
-
-			_searchView.QueryTextSubmit += OnQueryTextSubmit;
-
-			_searchView.SetIconifiedByDefault(false);
-
-			_searchView.SetQueryHint(GetString(Resource.String.HomePageSearchBarHint));
-
-			PersonalizeSearchView();
-		}
-
-		void PersonalizeSearchView ()
-		{
-			var ll = (LinearLayout)_searchView.GetChildAt(0);  
-
-			var ll2 = (LinearLayout)ll.GetChildAt(2);  
-
-			var ll3 = (LinearLayout)ll2.GetChildAt(1);  
-
-			var p = (EditText)ll3.GetChildAt(0);
-
-			p.SetHintTextColor(Color.LightGray);
-		}
-
-		void OnSearchLayoutSelected(object sender, EventArgs e)
-		{
-			_searchView.RequestFocus();
-		}
-
-		void OnQueryTextSubmit(object sender, SearchView.QueryTextSubmitEventArgs e){
-			
 		}
 
 		void SetViewReferences ()
 		{
-			_toolBar = FindViewById<V7Toolbar>(Resource.Id.MainToolbar);
-
-			_searchView = FindViewById<SearchView> (Resource.Id.MainSearchView);
-
-			_searchLayout = FindViewById (Resource.Id.MainSearchLayout);
+			_toolBar = FindViewById<V7Toolbar> (Resource.Id.MainToolbar);
 		}
 
 		void Init (Bundle savedInstanceState)
@@ -96,25 +51,23 @@ namespace Android.Activities
 
 			} else {
 				
-				_viewPagerFragment = (ViewPagerFragment) SupportFragmentManager.Fragments[0];
+				_viewPagerFragment = (MainPageFragment) SupportFragmentManager.Fragments[0];
 			}
 		}
 
 		void SetupInnerFragment ()
 		{
-			_viewPagerFragment = new ViewPagerFragment();
+			_viewPagerFragment = new MainPageFragment();
 
 			SupportFragmentManager
 				.BeginTransaction()
-				.Replace(Resource.Id.container, _viewPagerFragment)
+				.Replace(Resource.Id.parent_container, _viewPagerFragment)
 				.Commit();
 		}
 
 		public override void OnBackPressed ()
 		{
-			if (!_viewPagerFragment.OnBackPressed()) {
-				base.OnBackPressed();
-			}
+			_viewPagerFragment.OnBackPressed();
 		}
 	}
 }
