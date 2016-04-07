@@ -8,7 +8,7 @@ namespace Core
 {
 	public class OctocatContributorService : IGithubContributorService
 	{
-		readonly string API_KEY = "c3c9feca9d1772f8418bc5000096f3d33a415af9";
+		readonly string API_KEY = "YOUR_GITHUB_API_KEY";
 
 		public async Task<List<GithubUser>> GetAllContributors (string productHeaderValue, string owner, string projectName)
 		{
