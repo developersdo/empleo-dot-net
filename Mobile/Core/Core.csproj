@@ -46,6 +46,9 @@
     <Compile Include="ICache.cs" />
     <Compile Include="IXMLStorage.cs" />
     <Compile Include="IAppInfoService.cs" />
+    <Compile Include="Github\IGithubContributorService.cs" />
+    <Compile Include="Github\GithubUser.cs" />
+    <Compile Include="Github\OctocatContributorService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -54,5 +57,23 @@
     <Folder Include="Search\" />
     <Folder Include="MainPage\" />
     <Folder Include="Services\" />
+    <Folder Include="Github\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Net.Http">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net40+sl4+win8+wp71+wpa81\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Octokit">
+      <HintPath>..\packages\Octokit.0.19.0\lib\portable-net45+wp80+win+wpa81\Octokit.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>
