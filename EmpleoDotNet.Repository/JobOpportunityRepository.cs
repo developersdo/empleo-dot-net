@@ -84,7 +84,9 @@ namespace EmpleoDotNet.Repository
                 .Include(x => x.JobOpportunityLocation)
                 .Include(x => x.JobOpportunityLikes);
 
-            jobs = jobs.OrderByDescending(x => x.Id);
+            jobs = jobs
+                .OrderByDescending(x => x.JobOpportunityLikes.Count(l => l.Like))
+                .ThenByDescending(x => x.Id);
             
             //Filter by JobCategory
             if ((parameter.JobCategory != JobCategory.All && parameter.JobCategory != JobCategory.Invalid))
@@ -158,6 +160,7 @@ namespace EmpleoDotNet.Repository
         public List<JobOpportunity> GetLatestJobOpportunity(int quantity)
         {
             return GetAll().OrderByDescending(m => m.PublishedDate)
+                .ThenByDescending(x => x.JobOpportunityLikes.Count(c => c.Like))
                 .Include(m => m.JobOpportunityLocation)
                 .Include(x => x.JobOpportunityLikes)
                 .Take(quantity)
