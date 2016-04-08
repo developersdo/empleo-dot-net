@@ -18,12 +18,12 @@ namespace APIs
 						{
 							new JobCardDTO
 							{
-									Job = "Hello World 1",
-									Employee = "Megsoft Consulting",
-									JobType = "Mobile Development",
-									Location = "New york",
-									IsRemote = true,
-									Link = "1"
+								Job = "Hello World 1",
+								Employee = "Megsoft Consulting",
+								JobType = "Mobile Development",
+								Location = "New york",
+								IsRemote = true,
+								Link = "1"
 							},
 							new JobCardDTO
 							{
@@ -60,10 +60,13 @@ namespace APIs
 				{
 					return new JobDetailResponse
 					{
-						Job = "Hello World 4",
-						Employee = "Megsoft Consulting",
+						JobTitle = "Hello World 4",
+						CompanyName = "Megsoft Consulting",
+						CompanyEmail = "dev@null.com",
 						JobType = "Mobile Development",
+						JobDescription = "This is a fake job.",
 						Location = "New york",
+						Visits = 40,
 						IsRemote = true
 					};
 				});
