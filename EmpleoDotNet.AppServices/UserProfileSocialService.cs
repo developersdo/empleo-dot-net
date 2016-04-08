@@ -21,9 +21,22 @@ namespace EmpleoDotNet.AppServices
                     return GetFromGoogle(identity);
                 case "Microsoft":
                     return GetFromMicrosoft(identity);
+                case "LinkedIn":
+                    return GetFromLinkedIn(identity);
                 default:
                     return new UserProfile();
             }
+        }
+
+        private UserProfile GetFromLinkedIn(ClaimsIdentity identity)
+        {
+            var email = identity.FindFirst(x => x.Type.Contains("emailaddress")).Value;
+            var name = identity.Name;
+            return new UserProfile
+            {
+                Email = email,
+                Name = name
+            };
         }
 
         private UserProfile GetFromMicrosoft(ClaimsIdentity identity)
