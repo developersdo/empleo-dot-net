@@ -123,6 +123,16 @@ namespace EmpleoDotNet.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
+        public ActionResult Edit(string title)
+        {
+            var id = GetIdFromTitle(title);
+            var job = _jobOpportunityService.GetJobOpportunityById(id);
+            var wizardvm = ViewModel.JobOpportunity.Wizard.FromEntity(job);
+
+            return View("Wizard", wizardvm);
+        }
+
         [HttpPost, ValidateAntiForgeryToken]
         [ValidateInput(false)]
         [CaptchaValidator(RequiredMessage = "Por favor confirma que no eres un robot")]

@@ -6,6 +6,7 @@
     <div class="jobs">
         @foreach (var jobOpportunity in Model)
         {
+            var jobId = UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title);
             <a href="@Url.Action("Detail", "JobOpportunity" , new { id=UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)})" class="featured">
                 <div class="row">
                     <div class="col-md-1 hidden-sm hidden-xs text-center">
@@ -17,7 +18,7 @@
                                  alt=""
                                  class="img-responsive"
                                  onclick="onJobOpportunityDetailClick(this);"
-                                 data-url="@Url.Action("Detail", "JobOpportunity" , new { id=UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)})" />
+                                 data-url="@Url.Action("Detail", "JobOpportunity" , new { id= jobId})" />
                         }
                         else
                         {
@@ -54,17 +55,18 @@
                         <p>
                             <span class="text-success">
                                 <i class="fa fa-lg fa-thumbs-o-up"></i>
-                                @jobOpportunity.JobOpportunityLikes.Count(x => x.Like).FormatThousand()
+                                @(jobOpportunity.JobOpportunityLikes?.Count(x => x.Like).FormatThousand())
                             </span>
                             &nbsp;
                             <span class="text-danger">
                                 <i class="fa fa-lg fa-thumbs-o-down"></i>
-                                @jobOpportunity.JobOpportunityLikes.Count(x => !x.Like).FormatThousand()
+                                @(jobOpportunity.JobOpportunityLikes?.Count(x => !x.Like).FormatThousand())
                             </span>
                         </p>
                     </div>
                 </div>
             </a>
+            <a href="@Url.Action("Edit","JobOpportunity", new { title = jobId })">Editar</a>
         }
     </div>
 }
