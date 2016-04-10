@@ -6,6 +6,7 @@
     <div class="jobs">
         @foreach (var jobOpportunity in Model)
         {
+            var jobId = UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title);
             <a href="@Url.Action("Detail", "JobOpportunity" , new { id=UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)})" class="featured">
                 <div class="row">
                     <div class="col-md-1 hidden-sm hidden-xs text-center">
@@ -17,7 +18,7 @@
                                  alt=""
                                  class="img-responsive"
                                  onclick="onJobOpportunityDetailClick(this);"
-                                 data-url="@Url.Action("Detail", "JobOpportunity" , new { id=UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)})" />
+                                 data-url="@Url.Action("Detail", "JobOpportunity" , new { id= jobId})" />
                         }
                         else
                         {
@@ -65,6 +66,7 @@
                     </div>
                 </div>
             </a>
+            <a href="@Url.Action("Edit","JobOpportunity", new { title = jobId })">Editar</a>
         }
     </div>
 }
