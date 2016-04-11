@@ -63,6 +63,7 @@ namespace Empleado
 				SimpleIoc.Default.Register<IContextService,ContextService>();
 				SimpleIoc.Default.Register<IJobsApiService, FakeJobsApiService>();
 				SimpleIoc.Default.Register<IGithubContributorService, OctocatContributorService>();
+				SimpleIoc.Default.Register<IEmailService, EmailService> ();
 			}
 		}
 

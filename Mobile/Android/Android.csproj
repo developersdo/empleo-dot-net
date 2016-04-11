@@ -185,6 +185,7 @@
     <Compile Include="About\AboutActivity.cs" />
     <Compile Include="About\AboutViewModel.cs" />
     <Compile Include="About\ContributorAddedEventHandler.cs" />
+    <Compile Include="Services\EmailService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
