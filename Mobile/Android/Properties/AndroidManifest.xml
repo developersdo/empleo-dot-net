@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.empleado.mobile">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.1" package="com.empleado.mobile" android:versionCode="2">
 	<uses-sdk android:minSdkVersion="16" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<application android:icon="@drawable/person" android:label="Emplea.do">
-		<meta-data android:name="com.google.android.geo.API_KEY" android:value="YOUR_API_KEY_GOES_HERE" />
+		<meta-data android:name="com.google.android.geo.API_KEY" android:value="" />
 		<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 		<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	</application>

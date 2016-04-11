@@ -141,7 +141,7 @@
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
                 android:layout_gravity="center"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_below="@+id/container1"
                 android:id="@+id/container2"
                 android:layout_marginTop="10dp"
@@ -160,9 +160,9 @@
                         android:text="Estamos buscando un desarrollador para convertir reportes de Foxpro a C#  .NET  conectando a bases de datos MS SQL en diferentes versiones.  El trabajo es por contrato y se paga según la experiencia del programador escogido.  Este trabajo require al menos 40 horas semanales con una duración mínima de 2 meses.  El acceso es remoto.  Por favor especificar en su propuesta su experiencia con cada uno de estas plataformas."
                         android:gravity="center_horizontal"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginLeft="40dp"
+                        android:layout_marginLeft="12dp"
                         android:textSize="16sp"
-                        android:layout_marginRight="40dp"
+                        android:layout_marginRight="12dp"
                         android:layout_marginTop="20dp"
                         android:alpha="0.8"
                         android:textColor="@android:color/black" />
