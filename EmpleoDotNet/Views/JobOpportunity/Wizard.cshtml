@@ -11,6 +11,7 @@
     @using (Html.BeginForm("Wizard", "JobOpportunity", FormMethod.Post, new {role = "form"}))
     {
         @Html.AntiForgeryToken()
+        @Html.HiddenFor(m=>m.Id)
         <div>
             <span class="h2 section-title"></span>
             <hr />
@@ -165,7 +166,7 @@
                     </div>
                 </div>
                 <a class="btn-prev btn btn-warning btn-lg">Anterior</a>
-                <button type="submit" class="btn btn-primary btn-lg">Crear Empleo</button>
+                <button type="submit" class="btn btn-primary btn-lg">Guardar información</button>
             </div>
         </div>
     }
