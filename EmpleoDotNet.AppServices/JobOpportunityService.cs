@@ -33,16 +33,30 @@ namespace EmpleoDotNet.AppServices
             existingJob.IsActive = updatedJob.IsActive;
             existingJob.IsRemote = updatedJob.IsRemote;
 
-            existingJob.JobOpportunityLikes = updatedJob.JobOpportunityLikes;
-            existingJob.JobOpportunityLocation = updatedJob.JobOpportunityLocation;
-            existingJob.JobOpportunityLocationId = updatedJob.JobOpportunityLocationId;
+            if (existingJob.JobOpportunityLocation != null)
+            {
+                existingJob.JobOpportunityLocation.Latitude = updatedJob.JobOpportunityLocation.Latitude;
+                existingJob.JobOpportunityLocation.Longitude = updatedJob.JobOpportunityLocation.Longitude;
+                existingJob.JobOpportunityLocation.Name = updatedJob.JobOpportunityLocation.Name;
+                existingJob.JobOpportunityLocation.PlaceId = updatedJob.JobOpportunityLocation.PlaceId;
+            }
 
             existingJob.JobType = updatedJob.JobType;
-            existingJob.JoelTest = updatedJob.JoelTest;
-            existingJob.JoelTestId = updatedJob.JoelTestId;
-            existingJob.Location = updatedJob.Location;
-            existingJob.LocationId = updatedJob.LocationId;
-            existingJob.Tags = updatedJob.Tags;
+            if (existingJob.JoelTest != null)
+            {
+                existingJob.JoelTest.HasBestTools = updatedJob.JoelTest.HasBestTools;
+                existingJob.JoelTest.HasBugDatabase = updatedJob.JoelTest.HasBugDatabase;
+                existingJob.JoelTest.HasBusFixedBeforeProceding = updatedJob.JoelTest.HasBusFixedBeforeProceding;
+                existingJob.JoelTest.HasDailyBuilds = updatedJob.JoelTest.HasDailyBuilds;
+                existingJob.JoelTest.HasHallwayTests = updatedJob.JoelTest.HasHallwayTests;
+                existingJob.JoelTest.HasOneStepBuilds = updatedJob.JoelTest.HasOneStepBuilds;
+                existingJob.JoelTest.HasQuiteEnvironment = updatedJob.JoelTest.HasQuiteEnvironment;
+                existingJob.JoelTest.HasSourceControl = updatedJob.JoelTest.HasSourceControl;
+                existingJob.JoelTest.HasSpec = updatedJob.JoelTest.HasSpec;
+                existingJob.JoelTest.HasTesters = updatedJob.JoelTest.HasTesters;
+                existingJob.JoelTest.HasUpToDateSchedule = updatedJob.JoelTest.HasUpToDateSchedule;
+                existingJob.JoelTest.HasWrittenTest = updatedJob.JoelTest.HasWrittenTest;
+            }
 
             _jobOpportunityRepository.SaveChanges();
 
