@@ -96,6 +96,7 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
         {
             var entity = new Core.Domain.JobOpportunity
             {
+                Id = Id,
                 Title = Title,
                 Category = Category,
                 Description = Description,
@@ -143,6 +144,7 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
         {
             var wizard = new Wizard()
             {
+                Id = entity.Id,
                 Title = entity.Title,
                 Category = entity.Category,
                 Description = entity.Description,
