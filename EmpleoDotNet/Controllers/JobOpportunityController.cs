@@ -152,12 +152,21 @@ namespace EmpleoDotNet.Controllers
                     .WithError("Han ocurrido errores de validación que no permiten continuar el proceso");
 
             var jobOpportunity = model.ToEntity();
+            var jobExists = _jobOpportunityService.JobExists(model.Id);
 
-            _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity, User.Identity.GetUserId());
+            if (!jobExists)
+            {
+                _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity, User.Identity.GetUserId());
+            }
+            else
+            {
+                _jobOpportunityService.UpdateJobOpportunity(model.Id, model.ToEntity());
+            }
 
             await _twitterService.PostNewJobOpportunity(jobOpportunity,Url);
 
-            return RedirectToAction(nameof(Detail), new {
+            return RedirectToAction(nameof(Detail), new
+            {
                 id = UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title),
                 fromWizard = 1
             });

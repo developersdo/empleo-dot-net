@@ -8,6 +8,8 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
 {
     public class Wizard
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "El campo título es requerido."), StringLength(int.MaxValue)]
         [Display(Name = "Título. ¿Qué estás buscando?")]
         public string Title { get; set; }

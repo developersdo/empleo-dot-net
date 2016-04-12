@@ -14,5 +14,6 @@ namespace EmpleoDotNet.Repository.Contracts
         List<JobOpportunity> GetLatestJobOpportunity(int quantity);
         List<JobOpportunity> GetRelatedJobs(int id, string name);
         List<JobCategoryCountDto> GetMainJobCategoriesCount();
+        bool JobExists(int id);
     }
 }

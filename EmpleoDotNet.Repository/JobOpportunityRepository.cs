@@ -65,6 +65,13 @@ namespace EmpleoDotNet.Repository
                         .FirstOrDefault(x => x.Id.Equals(id.Value));
         }
 
+        public bool JobExists(int id)
+        {
+            var job = DbSet.FirstOrDefault(m => m.Id == id);
+
+            return job != null;
+        }
+
         /// <summary>
         /// Obtener una lista de Empleos paginada por Ubicacion.
         /// </summary>
