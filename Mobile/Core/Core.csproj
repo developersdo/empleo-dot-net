@@ -50,6 +50,7 @@
     <Compile Include="Github\GithubUser.cs" />
     <Compile Include="Github\OctocatContributorService.cs" />
     <Compile Include="Services\IEmailService.cs" />
+    <Compile Include="IKeyboardService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

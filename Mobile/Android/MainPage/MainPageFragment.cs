@@ -15,6 +15,8 @@ using GalaSoft.MvvmLight.Helpers;
 using Microsoft.Practices.ServiceLocation;
 using GalaSoft.MvvmLight.Messaging;
 using Android.Support.V4.View;
+using Android.Views.InputMethods;
+using Core;
 
 namespace Android
 {
@@ -31,6 +33,8 @@ namespace Android
 		MainPageFragmentViewModel _viewModel;
 
 		IMessenger _messenger;
+
+		IKeyboardService _keyboardService;
 
 		public override void OnCreate (Bundle savedInstanceState)
 		{
@@ -57,6 +61,8 @@ namespace Android
 		{
 			_viewModel = ServiceLocator.Current.GetInstance<MainPageFragmentViewModel>();
 
+			_keyboardService = ServiceLocator.Current.GetInstance<IKeyboardService>();
+
 			_messenger = GalaSoft.MvvmLight.Messaging.Messenger.Default;
 		}
 
@@ -78,9 +84,13 @@ namespace Android
 
 			_searchView.QueryTextChange += OnQueryTextChanged;
 
-			_searchView.SetIconifiedByDefault(false);
+			_searchView.Focusable = true;
 
-			_searchView.SetQueryHint(GetString(Resource.String.HomePageSearchBarHint));
+			_searchView.RequestFocusFromTouch();
+
+			_searchView.ClearFocus();
+
+//			_searchView.SetQueryHint(GetString(Resource.String.HomePageSearchBarHint));
 
 			PersonalizeSearchView();
 		}
@@ -119,7 +129,11 @@ namespace Android
 
 		void OnSearchLayoutSelected(object sender, EventArgs e)
 		{
-			_searchView.RequestFocus();
+			_searchView.SetIconifiedByDefault(false);
+
+			_searchView.RequestFocusFromTouch();
+
+			_keyboardService.ShowKeyboard(_searchView);
 		}
 
 		//I know this is wrong, but i will fix this later.
@@ -128,8 +142,6 @@ namespace Android
 		//So somehow i need to accomplish this task
 		void OnQuerySubmit(object sender, SearchView.QueryTextSubmitEventArgs e)
 		{
-
-
 			_viewModel.UserIsTypingCommand.Execute(_searchView.Query);
 		}
 
@@ -149,7 +161,7 @@ namespace Android
 		{
 			var view = inflater.Inflate(Resource.Layout.MainPageFragmentLayout, container, false);
 
-			_searchLayout = view.FindViewById (Resource.Id.MainSearchLayout);
+			_searchLayout = view.FindViewById (Resource.Id.segueta);
 
 			_locationContainer = view.FindViewById<LinearLayout> (Resource.Id.locationContainer);
 
