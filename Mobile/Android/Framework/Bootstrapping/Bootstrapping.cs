@@ -10,6 +10,7 @@ using Core;
 using Api.Contract;
 using Api;
 using APIs;
+using Android.Views.InputMethods;
 
 namespace Empleado
 {
@@ -64,6 +65,7 @@ namespace Empleado
 				SimpleIoc.Default.Register<IJobsApiService, FakeJobsApiService>();
 				SimpleIoc.Default.Register<IGithubContributorService, OctocatContributorService>();
 				SimpleIoc.Default.Register<IEmailService, EmailService> ();
+				SimpleIoc.Default.Register<IKeyboardService, KeyboardService>();
 			}
 		}
 

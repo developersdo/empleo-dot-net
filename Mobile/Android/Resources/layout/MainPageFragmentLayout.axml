@@ -13,6 +13,8 @@
         app:cardCornerRadius="4dp"
         android:layout_margin="5dp">
         <LinearLayout
+            android:id="@+id/segueta"
+            android:clickable="true"
             android:layout_width="match_parent"
             android:weightSum="1"
             android:layout_height="wrap_content">
