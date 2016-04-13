@@ -1,4 +1,7 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Net;
+using System.Text.RegularExpressions;
+using Tweetinvi.Core.Extensions;
 
 namespace EmpleoDotNet.Helpers
 {
@@ -18,6 +21,29 @@ namespace EmpleoDotNet.Helpers
         public static string SeoUrl(int id, string title)
         {
             return string.IsNullOrEmpty(title) ? id.ToString() : $"{id}-{SanitizeUrl(title)}";
+        }
+
+        public static bool IsValidImageUrl(string imageUrl)
+        {
+            var regex = new Regex("^(http|https)://(.+).(png|jpg)$");
+            return !imageUrl.IsNullOrEmpty() && regex.IsMatch(imageUrl);
+        }
+
+        public static bool IsImageAvailable(string imageUrl)
+        {
+            if (!IsValidImageUrl(imageUrl)) return false;
+            var request = WebRequest.Create(imageUrl);
+            try
+            {
+                var response = (HttpWebResponse) request.GetResponse();
+                var statusCode = response.StatusCode;
+                response.Close();
+                return statusCode == HttpStatusCode.OK;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

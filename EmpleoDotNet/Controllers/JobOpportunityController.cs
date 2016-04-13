@@ -11,9 +11,11 @@ using reCAPTCHA.MVC;
 using System;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.ViewModel.JobOpportunityLike;
 using Microsoft.AspNet.Identity;
+using Tweetinvi.Core.Extensions;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -101,6 +103,11 @@ namespace EmpleoDotNet.Controllers
             {
                 ModelState.AddModelError(nameof(model.LocationName), "");
                 return View(model).WithError("Debe seleccionar una Localidad.");
+            }
+
+            if (!UrlHelperExtensions.IsImageAvailable(model.CompanyLogoUrl))
+            {
+                return View(model).WithError("La url del logo debe ser a una imagen en formato png o jpg");
             }
 
             var jobOpportunity = model.ToEntity();

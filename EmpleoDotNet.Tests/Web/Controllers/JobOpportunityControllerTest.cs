@@ -286,7 +286,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
                 Description = "My description",
                 CompanyName = "Company",
                 CompanyUrl = "http://example.com",
-                CompanyLogoUrl = "http://example.com/logo.png",
+                CompanyLogoUrl = "http://s22.postimg.org/ogi7669wh/batman.png",
                 CompanyEmail = "company@example.com",
                 IsRemote = true,
                 LocationName = "My location",
