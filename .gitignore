@@ -183,3 +183,11 @@ EmpleoDotNet.sln.ide
 #Azure publish profile
 *.pubxml
 *.tss
+
+## Xamarin
+Mobile/Components
+Mobile/[Pp]ackages
+Mobile/*.userprefs
+Mobile/**/*.Droid/**/[Rr]esource.[Dd]esigner.cs
+Mobile/**/*.Android/**/[Rr]esource.[Dd]esigner.cs
+Mobile/**/Android/**/[Rr]esource.[Dd]esigner.cs
