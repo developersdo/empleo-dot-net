@@ -58,7 +58,7 @@
                 <div class="form-group" id="company-name-group">
                     @Html.LabelFor(m => m.CompanyName)
                         @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", placeholder = "CompanyX, SRL.", required = "", @data_parsley_group = "business-details" })
-                    <span><b>Tip:</b> Los mejores candidatos tienden a hacer caso omiso de propuestas an&oacute;nimas</span>
+                    <span><b>Tip:</b> Los mejores candidatos tienden a hacer caso omiso de propuestas anónimas</span>
                         <br />
                     @Html.ValidationMessageFor(m => m.CompanyName)
                 </div>
@@ -71,8 +71,8 @@
                     @Html.LabelFor(m => m.CompanyUrl)
                         @Html.TextBoxFor(m => m.CompanyUrl, new { @class = "form-control", type = "url", @data_parsley_type = "url", placeholder = "companyx.com", @data_parsley_group = "business-details" })
                     <span>
-                        <b>Tip:</b> Muchos aplicantes visitar&aacute;n tu sitio web y lo tomar&aacute;n 
-                        como referencia antes de decidirse por t&iacute;. Si tu empresa no tiene un sitio web 
+                        <b>Tip:</b> Muchos aplicantes visitarán tu sitio web y lo tomarán 
+                        como referencia antes de decidirse por tí;. Si tu empresa no tiene un sitio web 
                         o crees que necesita unas mejoras, considera buscar un web developer en
                          <a href="@Url.Action("Index", "Home")">emplea.do</a>
                     </span>
@@ -83,8 +83,8 @@
                     @Html.LabelFor(m => m.CompanyLogoUrl)
                         @Html.TextBoxFor(m => m.CompanyLogoUrl, new { @class = "form-control", type = "url", @data_parsley_type = "url", placeholder = "http://companyx.com/logo.png" })
                         <span>
-                            Asegurate de que el servidor donde est&eacute; alojado el logo acepte hotlinks.
-                            Si no sabes que es eso, no te preocupes, sube el logo a <a href="https://imgur.com" target="_blank">imgur</a> y pega la url aqu&iacute;
+                            Asegurate de que el servidor donde esté; alojado el logo acepte hotlinks.
+                            Si no sabes que es eso, no te preocupes, sube el logo a <a href="https://imgur.com" target="_blank">imgur</a> y pega la url aquí;
                         </span>
                         <br />
                     @Html.ValidationMessageFor(m => m.CompanyLogoUrl)
@@ -136,7 +136,6 @@
                     @Html.LabelFor(m => m.Description)
                         @Html.TextAreaFor(m => m.Description, new { @class = "form-control textarea", @data_parsley_group = "job-details", @data_parsley_errors_container = "#description_errors", required = "" })
                     @Html.ValidationMessageFor(m => m.Description)
-<<<<<<< HEAD
                     <span><b>Tip:</b> Describa las actividades y actitudes que se esperan de quien ocupa este puesto de trabajo.</span>
                     <span id="description_errors" class="danger"></span>
                 </div>
@@ -146,8 +145,8 @@
                     @Html.TextAreaFor(m => m.Requirements, new { @class = "form-control textarea", @data_parsley_group = "job-details", @data_parsley_errors_container = "#description_errors", required = "" })
                     @Html.ValidationMessageFor(m => m.Requirements)
                     <span>
-                        <b>Tip:</b> Se lo mas explic&iacute;to posible, si eres de recursos humanos consulta con una persona de
-                        tecnolog&iacute;a sobre cuales son los requerimientos t&eacute;cnicos.
+                        <b>Tip:</b> Se lo mas explicíto posible, si eres de recursos humanos consulta con una persona de
+                        tecnología sobre cuales son los requerimientos técnicos.
                     </span>
                     <span id="description_errors" class="danger"></span>
                 </div>
@@ -157,14 +156,8 @@
                     @Html.TextAreaFor(m => m.Benefits, new { @class = "form-control textarea", @data_parsley_group = "job-details", @data_parsley_errors_container = "#description_errors", required = "" })
                     @Html.ValidationMessageFor(m => m.Benefits)
                     <span>
-                        <b>Tip:</b> Expl&iacute;cale a los candidatos que ganan al trabajar en este puesto.
+                        <b>Tip:</b> Explícale a los candidatos que ganan al trabajar en este puesto.
                     </span>
-=======
-                        <span>
-                            <b>Tip:</b> Se lo mas explicito posible, si eres de recursos humanos consulta con una persona de
-                            tecnolog&iacute;a sobre cuales son los requerimientos t&eacute;cnicos.
-                        </span>
->>>>>>> upstream/develop
                     <span id="description_errors" class="danger"></span>
                 </div>
                 <a class="btn-prev btn btn-warning btn-lg">Anterior</a>
@@ -174,7 +167,7 @@
             <div class="item">
                     <p>
                         Si no sabes que es puedes
-                <a href="http://local.joelonsoftware.com/wiki/El_Test_de_Joel:_12_pasos_hacia_un_c%C3%B3digo_mejor" target="_blank">leer aqu&iacute;</a>.
+                <a href="http://local.joelonsoftware.com/wiki/El_Test_de_Joel:_12_pasos_hacia_un_c%C3%B3digo_mejor" target="_blank">leer aquí</a>.
                     En resumen, es un cuestionario para medir la calidad del equipo de desarrollo de tu empresa. Coteja las opciones que apliquen.
                         <br />**Este paso es opcional y solo aplica para posiciones relacionadas al Desarrollo de Software
                     </p>
