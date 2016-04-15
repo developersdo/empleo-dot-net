@@ -7,82 +7,82 @@ namespace EmpleoDotNet.Core.Domain
     {
         #region Property
         /// <summary>
-        /// Titulo de la posición
+        /// Title of the position
         /// </summary>
         public string Title { get; set; }
 
         /// <summary>
-        /// Categoria del empleo
+        /// Category of the job
         /// </summary>
         public JobCategory Category { get; set; }
 
         /// <summary>
-        /// Locacion del empleo
+        /// Location of the job
         /// </summary>
         public int? LocationId { get; set; }
 
         /// <summary>
-        /// Descripción general del puesto
+        /// General description of the position
         /// </summary>
         public string Description { get; set; }
 
         /// <summary>
-        /// Descripción de los requisitos necesarios para aplicar al empleo
+        /// Description of the requirements
         /// </summary>
         public string Requirements { get; set; }
   
          /// <summary>
-         /// Descripción de los beneficios del puesto
+         /// Description of the benefits
          /// </summary>
          public string Benefits { get; set; }
 
         /// <summary>
-        /// Nombre de la compañía
+        /// Name of the company
         /// </summary>
         public string CompanyName { get; set; }
 
         /// <summary>
-        /// Dirección Website de la empresa
+        /// Direction of the company's website
         /// </summary>
         public string CompanyUrl { get; set; }
 
         /// <summary>
-        /// E-mail de contacto de la empresa
+        /// E-mail of the company's contact
         /// </summary>
         public string CompanyEmail { get; set; }
 
         /// <summary>
-        /// Logo de la empresa
+        /// Logo of the company
         /// </summary>
         public string CompanyLogoUrl { get; set; }
 
         /// <summary>
-        /// Fecha de publicación. 
+        /// Date of the publication. 
         /// </summary>
         /// <remarks>
-        /// Este campo se usa para poder hacer un "draft" antes de publicar, 
-        /// o para decidir si desplegar o no una oferta luego de que el cliente pague
+        /// This field is used to make a "draft" before publishing,
+        /// or to decide whether to show an offer before the client pays or not.
         /// </remarks>
         public DateTime? PublishedDate { get; set; }
 
         /// <summary>
-        /// Flag que representa si el empleo ha sido aprovado o no para mostrarse en la pantalla principal de empleos.
+        /// Flag which represents whether the job has been approved to be shown in the job's main page or not.
         /// </summary>
         public bool Approved { get; set; }
 
         /// <summary>
-        /// Flag que representa si el empleo es Remoto o no
+        /// Flag which represents whether the job is remote or not.
         /// </summary>
         public bool IsRemote { get; set; }
 
 
         /// <summary>
-        /// Contador de visitas realizadas a una publicación
+        /// View's counter of a publication.
         /// </summary>
         public int ViewCount { get; set; }
 
         /// <summary>
-        /// Especifica si el empleo es Tiempo Completo, Independiente, etc.
+        /// Specify if the job is Full Time, Independent, etc.
         /// </summary>
         public JobType JobType { get; set; }
 
@@ -94,7 +94,7 @@ namespace EmpleoDotNet.Core.Domain
 
         public int? UserProfileId { get; set; } 
         /// <summary>
-        /// para especificar la forma de como se aplica para el empleo
+        /// Specify the way to apply to a job.
         /// </summary>
         public string HowToApply { get; set; }
 
