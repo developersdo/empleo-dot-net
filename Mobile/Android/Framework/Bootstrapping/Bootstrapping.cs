@@ -11,6 +11,8 @@ using Api.Contract;
 using Api;
 using APIs;
 using Android.Views.InputMethods;
+using Xamarin;
+using Android.Content;
 
 namespace Empleado
 {
@@ -23,6 +25,10 @@ namespace Empleado
 			Init();
 
 			RegisterViewModels();
+
+			InitXamarinInsight
+				( ServiceLocator.Current.GetInstance<IContextService>()
+				, ServiceLocator.Current.GetInstance<IMobileConfigurationManager>());
 		}
 
 		void Init ()
@@ -55,6 +61,8 @@ namespace Empleado
 			}
 			else
 			{
+				SimpleIoc.Default.Register<IAssetReader, AssetReader>();
+				SimpleIoc.Default.Register<IMobileConfigurationManager, MobileConfigurationManager>();
 				SimpleIoc.Default.Register<IJobRepository, JobRepository>();
 				SimpleIoc.Default.Register<IBitmapResizer<Bitmap>, BitmapResizer>();
 				SimpleIoc.Default.Register<IGeolocationService, GeolocationService>();
@@ -82,6 +90,19 @@ namespace Empleado
 			SimpleIoc.Default.Register<JobDetailFragmentViewModel,JobDetailFragmentViewModel>();
 			SimpleIoc.Default.Register<MainPageActivityViewModel,MainPageActivityViewModel>();
 			SimpleIoc.Default.Register<AboutViewModel,AboutViewModel>();
+		}
+
+		void InitXamarinInsight (IContextService contextService, IMobileConfigurationManager configService)
+		{
+			Insights.Initialize(configService.MobileConfigurationFile.XamarinInsightKey, ((Context)contextService.GetContext()));
+
+			Insights.HasPendingCrashReport += async(sender, isStartupCrash) =>
+			{
+				if (isStartupCrash)
+				{
+					await Insights.PurgePendingCrashReports();
+				}
+			};
 		}
 	}
 }

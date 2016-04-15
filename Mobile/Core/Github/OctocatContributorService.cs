@@ -8,7 +8,16 @@ namespace Core
 {
 	public class OctocatContributorService : IGithubContributorService
 	{
-		readonly string API_KEY = "YOUR_GITHUB_API_KEY";
+		IMobileConfigurationManager _mobileConfigService;
+
+		readonly string API_KEY;
+
+		public OctocatContributorService (IMobileConfigurationManager mobileConfigService)
+		{
+			_mobileConfigService = mobileConfigService;
+
+			API_KEY = _mobileConfigService.MobileConfigurationFile.GitHubKey;
+		}
 
 		public async Task<List<GithubUser>> GetAllContributors (string productHeaderValue, string owner, string projectName)
 		{

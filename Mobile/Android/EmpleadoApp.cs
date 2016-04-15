@@ -21,22 +21,7 @@ namespace Android
 			base.OnCreate ();
 
 			AppContext = this;
-
-			SetupInsight();
-		}
-
-		void SetupInsight ()
-		{
-			Insights.Initialize(Keys.XAMARIN_INSIGHT_KEY, AppContext);
-
-			Insights.HasPendingCrashReport += async(sender, isStartupCrash) =>
-			{
-				if (isStartupCrash)
-				{
-					await Insights.PurgePendingCrashReports();
-				}
-			};
-		}
+		} 
 	}
 }
 
