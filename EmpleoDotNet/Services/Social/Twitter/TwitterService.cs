@@ -35,13 +35,22 @@ namespace EmpleoDotNet.Services.Social.Twitter
             if (string.IsNullOrWhiteSpace(jobOpportunity?.Title) || jobOpportunity.Id <= 0)
                 return;
 
-            var title = jobOpportunity.Title.Length > 80 
-                ? jobOpportunity.Title.Substring(0, 80) 
+            var length = 80;
+            var hashtag = string.Empty;
+
+            if (jobOpportunity.IsRemote)
+            {
+                length = 64;
+                hashtag = " #weworkremotely";
+            }
+
+            var title = jobOpportunity.Title.Length > length
+                ? jobOpportunity.Title.Substring(0, length)
                 : jobOpportunity.Title;
 
             var action = UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title);
-            var url = urlHelper.AbsoluteUrl(action,"jobs");           
-            var message = $"Se busca: {title} {url}";
+            var url = urlHelper.AbsoluteUrl(action, "jobs");
+            var message = $"Se busca: {title}{hashtag} {url}";
 
             await PostTweet(message).ConfigureAwait(false);
         }
