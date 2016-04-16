@@ -176,7 +176,6 @@
     <Compile Include="Services\JobRepository.cs" />
     <Compile Include="Services\GeolocationService.cs" />
     <Compile Include="Services\ContextService.cs" />
-    <Compile Include="Services\AkavacheAndroidImpl.cs" />
     <Compile Include="AkavacheSqliteLinkerOverride.cs" />
     <Compile Include="Services\XMLStorage.cs" />
     <Compile Include="Services\AppInfoService.cs" />
@@ -190,6 +189,7 @@
     <Compile Include="About\ContributorAddedEventHandler.cs" />
     <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\KeyboardService.cs" />
+    <Compile Include="Services\CacheService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
