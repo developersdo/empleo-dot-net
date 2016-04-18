@@ -51,6 +51,11 @@
     <Compile Include="Github\OctocatContributorService.cs" />
     <Compile Include="Services\IEmailService.cs" />
     <Compile Include="IKeyboardService.cs" />
+    <Compile Include="IAssetReader.cs" />
+    <Compile Include="MobileConfig.cs" />
+    <Compile Include="CrossPlatformStuff.cs" />
+    <Compile Include="IMobileConfigurationManager.cs" />
+    <Compile Include="MobileConfigurationManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -76,6 +81,9 @@
     </Reference>
     <Reference Include="Octokit">
       <HintPath>..\packages\Octokit.0.19.0\lib\portable-net45+wp80+win+wpa81\Octokit.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\portable-net45+wp80+win8+wpa81+dnxcore50\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

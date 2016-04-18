@@ -140,7 +140,6 @@
     <Compile Include="MainPage\PagerAdapter.cs" />
     <Compile Include="SearchPage\SearchActivity.cs" />
     <Compile Include="Services\BitmapResizer.cs" />
-    <Compile Include="EmpleadoApp.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Framework\Bootstrapping\Bootstrapping.cs" />
@@ -189,7 +188,9 @@
     <Compile Include="About\ContributorAddedEventHandler.cs" />
     <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\KeyboardService.cs" />
-    <Compile Include="Services\CacheService.cs" />
+    <Compile Include="Services\AssetReader.cs" />
+    <Compile Include="EmpleadoApp.cs" />
+    <Compile Include="Services\CacheService.cs" /> 
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -320,5 +321,8 @@
       <Project>{B9BC593D-5A47-4153-8102-02E112360FEE}</Project>
       <Name>APIs</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\MobileConfig.json" />
   </ItemGroup>
 </Project>

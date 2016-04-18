@@ -87,7 +87,7 @@ namespace Android
 		{
 			_autocompleteFragment = (PlaceAutocompleteFragment)
 				FragmentManager.FindFragmentById(Resource.Id.place_autocomplete_fragment);
-
+			
 			_searchLayout = FindViewById<ViewGroup>(Resource.Id.MainSearchViewParent);
 
 			_toolBar = FindViewById<V7Toolbar>(Resource.Id.MainToolbar);

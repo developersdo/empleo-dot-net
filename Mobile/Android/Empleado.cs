@@ -19,10 +19,5 @@ namespace Android
 
 		public static string WHICH_USER_OPEN_APP_VERSION = "WHICH_USER_OPEN_APP_VERSION";
 	}
-
-	public class Keys
-	{
-		public static string XAMARIN_INSIGHT_KEY = "";
-	}
 }
 
