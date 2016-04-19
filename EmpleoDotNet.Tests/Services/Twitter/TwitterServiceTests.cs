@@ -62,6 +62,27 @@ namespace EmpleoDotNet.Tests.Services.Twitter
         }
 
         [Test]
+        public void Should_Tweet_Remote_JobOpportunity_With_Hashtag()
+        {
+            //Arrange
+            _jobOpportunityController.Url = new UrlHelper(new RequestContext(MvcMoqHelpers.FakeHttpContext(), new RouteData()));
+
+            var title = Get80CharsTitle();
+
+            var jobOpportunity = new JobOpportunity
+            {
+                Id = 999999999,
+                Title = title,
+                IsRemote = true
+            };
+            //Act
+            Action act = () => _sut.PostNewJobOpportunity(jobOpportunity, _jobOpportunityController.Url).Wait();
+
+            //Assert
+            act.ShouldNotThrow();
+        }
+
+        [Test]
         public void Should_Not_Tweet_Null_Message()
         {
             //Act
