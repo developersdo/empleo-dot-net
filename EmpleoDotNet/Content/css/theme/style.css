@@ -876,15 +876,14 @@ header {
 }
 
 	.jobs a {
-		border-bottom: 1px solid #e7e7e7;
 		color: #888;
-		display: block;
-		padding: 15px 0;
+		display: inline-block;
+		padding-top: 8px;
 		position: relative;
-		width: 100%;
+		width: 93%;
 	}
 
-		.jobs a.featured {
+		.jobs a.featured, .jobs div.featured {
 			background: #f8f8f8;
 			border-bottom: 1px solid #14b1bb;
 		}
@@ -907,6 +906,13 @@ header {
 			color: #222;
 			font-weight: normal;
 		}
+
+        .jobs a.edit {
+            width: 6%;
+            display: inline-block;
+            position: relative;
+            bottom: 58px;
+        }
 
 	.jobs .hidden-job {
 		display: none;
