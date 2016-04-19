@@ -26,28 +26,29 @@ namespace Android
 		{
 			_contributorService = contributorService;
 
-			Contributors = new ObservableCollection<GithubUser>();
+			Contributors = new ObservableCollection<GithubUser> ();
 		}
 
 		public override async void OnResume ()
 		{
-			await GetUsers();
+			await GetUsers ();
 		}
 
 		async Task GetUsers ()
 		{
-			if(Contributors == null || !Contributors.Any())
-			{
-		 		var users = await _contributorService.GetAllContributors("empleado", "developersdo", "empleo-dot-net");
+			if (Contributors == null || !Contributors.Any ()) {
+				try {
+					var users = await _contributorService.GetAllContributors ("empleado", "developersdo", "empleo-dot-net");
 
-				foreach(var item in users)
-				{
-					Contributors.Add(item);
+					foreach (var item in users) {
+						Contributors.Add (item);
 
-					OnContributorAddedEvent(new ContributorAddedEventHandler
-						{
+						OnContributorAddedEvent (new ContributorAddedEventHandler {
 							User = item
 						});
+					}
+				} catch (Exception e) {
+					Xamarin.Insights.Report (e);
 				}
 			}
 		}
