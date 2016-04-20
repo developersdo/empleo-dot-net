@@ -1,4 +1,5 @@
 ﻿@using EmpleoDotNet.Helpers
+@using Microsoft.AspNet.Identity;
 @model IEnumerable<EmpleoDotNet.Core.Domain.JobOpportunity>
 
 @if (Model != null && Model.Any())
@@ -8,23 +9,23 @@
         {
             var jobId = UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title);
             <div class="featured">
-                <a href="@Url.Action("Detail", "JobOpportunity" , new { id=UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)})">
+                <a href="@Url.Action("Detail", "JobOpportunity", new { id = UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title) })">
                     <div class="row">
                         <div class="col-md-1 hidden-sm hidden-xs text-center">
                             @if (!string.IsNullOrEmpty(jobOpportunity.CompanyLogoUrl))
-                    {
+                            {
                         <img src="@jobOpportunity.CompanyLogoUrl"
                              width="60"
                              height="60"
                              alt=""
                              class="img-responsive"
                              onclick="onJobOpportunityDetailClick(this);"
-                             data-url="@Url.Action("Detail", "JobOpportunity" , new { id= jobId})" />
-                        }
-                        else
-                        {
+                             data-url="@Url.Action("Detail", "JobOpportunity", new { id = jobId })" />
+                            }
+                            else
+                            {
                         <h5 class="company-text-logo !important">@Html.FirstTwoLetters(jobOpportunity.CompanyName)</h5>
-                        }
+                            }
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
                             <h5>@jobOpportunity.Title</h5>
@@ -33,24 +34,24 @@
                         <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 job-location">
                             <p>
                                 @if (jobOpportunity.JobOpportunityLocation == null)
-                            {
+                                {
                             <strong>N/A</strong>
-                            }
-                            else
-                            {
+                                }
+                                else
+                                {
                             <strong>@jobOpportunity.JobOpportunityLocation.Name</strong>
-                            }
+                                }
                             </p>
                             <p class="hidden-xs">@jobOpportunity.Created.ToDominicanFormat()</p>
                         </div>
                         <div class="pull-left col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
                             @if (jobOpportunity.IsRemote)
-                    {
+                            {
                         <p class="badge full-time">
                             Remoto
                         </p>
                         <br />
-                        }
+                            }
                             <p class="badge">@jobOpportunity.Category.ToEnumDescription()</p>
                             <p>Visitas | @jobOpportunity.ViewCount</p>
                             <p>
@@ -67,7 +68,10 @@
                         </div>
                     </div>
                 </a>
-                <a href="@Url.Action("Edit","JobOpportunity", new { title = jobId })" class="edit">Editar</a>
+                @{var hideEdit = jobOpportunity.UserProfile?.UserId == User.Identity.GetUserId()
+                            ? "" : "visibility:hidden";}                
+                <a style="@hideEdit" href="@Url.Action("Edit", "JobOpportunity", new { title = jobId })" class="edit">Editar</a>
+                
             </div>
         }
     </div>
