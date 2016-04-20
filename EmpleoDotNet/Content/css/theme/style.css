@@ -888,7 +888,7 @@ header {
 			border-bottom: 1px solid #14b1bb;
 		}
 
-		.jobs a:hover,
+		.jobs .featured:hover,
 		.jobs a.featured:hover {
 			background: #f2f2f2;
 		}
