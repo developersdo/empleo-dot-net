@@ -137,9 +137,14 @@ namespace EmpleoDotNet.Controllers
         {
             var id = GetIdFromTitle(title);
             var job = _jobOpportunityService.GetJobOpportunityById(id);
-            var wizardvm = ViewModel.JobOpportunity.Wizard.FromEntity(job);
 
-            return View("Wizard", wizardvm);
+            if(job.UserProfile?.UserId == User.Identity.GetUserId())
+            {
+                var wizardvm = ViewModel.JobOpportunity.Wizard.FromEntity(job);
+                return View("Wizard", wizardvm);
+            }
+
+            return RedirectToAction("Detail", new { id = title });
         }
 
         [HttpPost, ValidateAntiForgeryToken]
