@@ -33,8 +33,12 @@ namespace EmpleoDotNet.AppServices
             existingJob.IsActive = updatedJob.IsActive;
             existingJob.IsRemote = updatedJob.IsRemote;
 
-            if (existingJob.JobOpportunityLocation != null)
+            if (updatedJob.JobOpportunityLocation != null)
             {
+                existingJob.JobOpportunityLocation = existingJob.JobOpportunityLocation == null
+                    ? new JobOpportunityLocation()
+                    : existingJob.JobOpportunityLocation;
+
                 existingJob.JobOpportunityLocation.Latitude = updatedJob.JobOpportunityLocation.Latitude;
                 existingJob.JobOpportunityLocation.Longitude = updatedJob.JobOpportunityLocation.Longitude;
                 existingJob.JobOpportunityLocation.Name = updatedJob.JobOpportunityLocation.Name;
@@ -42,8 +46,12 @@ namespace EmpleoDotNet.AppServices
             }
 
             existingJob.JobType = updatedJob.JobType;
-            if (existingJob.JoelTest != null)
+            if (updatedJob.JoelTest != null)
             {
+                existingJob.JoelTest = existingJob.JoelTest == null
+                    ? new JoelTest()
+                    : existingJob.JoelTest;
+
                 existingJob.JoelTest.HasBestTools = updatedJob.JoelTest.HasBestTools;
                 existingJob.JoelTest.HasBugDatabase = updatedJob.JoelTest.HasBugDatabase;
                 existingJob.JoelTest.HasBusFixedBeforeProceding = updatedJob.JoelTest.HasBusFixedBeforeProceding;
