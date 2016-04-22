@@ -54,12 +54,12 @@
                         <p>
                             <span class="text-success">
                                 <i class="fa fa-lg fa-thumbs-o-up"></i>
-                                @jobOpportunity.JobOpportunityLikes.Count(x => x.Like).FormatThousand()
+                                @(jobOpportunity.JobOpportunityLikes?.Count(x => x.Like).FormatThousand())
                             </span>
                             &nbsp;
                             <span class="text-danger">
                                 <i class="fa fa-lg fa-thumbs-o-down"></i>
-                                @jobOpportunity.JobOpportunityLikes.Count(x => !x.Like).FormatThousand()
+                                @(jobOpportunity.JobOpportunityLikes?.Count(x => !x.Like).FormatThousand())
                             </span>
                         </p>
                     </div>
