@@ -132,6 +132,21 @@ namespace EmpleoDotNet.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
+        public ActionResult Edit(string title)
+        {
+            var id = GetIdFromTitle(title);
+            var job = _jobOpportunityService.GetJobOpportunityById(id);
+
+            if(job.UserProfile?.UserId == User.Identity.GetUserId())
+            {
+                var wizardvm = ViewModel.JobOpportunity.Wizard.FromEntity(job);
+                return View("Wizard", wizardvm);
+            }
+
+            return RedirectToAction("Detail", new { id = title });
+        }
+
         [HttpPost, ValidateAntiForgeryToken]
         [ValidateInput(false)]
         [CaptchaValidator(RequiredMessage = "Por favor confirma que no eres un robot", ErrorMessage = "El captcha es incorrecto.")]
@@ -142,12 +157,21 @@ namespace EmpleoDotNet.Controllers
                     .WithError("Han ocurrido errores de validación que no permiten continuar el proceso");
 
             var jobOpportunity = model.ToEntity();
+            var jobExists = _jobOpportunityService.JobExists(model.Id);
 
-            _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity, User.Identity.GetUserId());
+            if (!jobExists)
+            {
+                _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity, User.Identity.GetUserId());
+            }
+            else
+            {
+                _jobOpportunityService.UpdateJobOpportunity(model.Id, model.ToEntity());
+            }
 
             await _twitterService.PostNewJobOpportunity(jobOpportunity,Url);
 
-            return RedirectToAction(nameof(Detail), new {
+            return RedirectToAction(nameof(Detail), new
+            {
                 id = UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title),
                 fromWizard = 1
             });

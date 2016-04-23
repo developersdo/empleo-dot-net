@@ -876,20 +876,19 @@ header {
 }
 
 	.jobs a {
-		border-bottom: 1px solid #e7e7e7;
 		color: #888;
-		display: block;
+		display: table-cell;
 		padding: 15px 0;
 		position: relative;
 		width: 100%;
 	}
 
-		.jobs a.featured {
+		.jobs a.featured, .jobs div.featured {
 			background: #f8f8f8;
 			border-bottom: 1px solid #14b1bb;
 		}
 
-		.jobs a:hover,
+		.jobs .featured:hover,
 		.jobs a.featured:hover {
 			background: #f2f2f2;
 		}
@@ -907,6 +906,15 @@ header {
 			color: #222;
 			font-weight: normal;
 		}
+
+        .jobs a.edit {
+            display: table-cell;
+            margin: 0 auto;
+            vertical-align: middle;
+            padding: 8px 20px;
+            background-color: rgba(20, 177, 187, 0.62);
+            color: #fff;
+        }
 
 	.jobs .hidden-job {
 		display: none;

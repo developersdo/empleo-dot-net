@@ -1,11 +1,15 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using EmpleoDotNet.Core.Domain;
+using EmpleoDotNet.Repository;
+using EmpleoDotNet.AppServices;
 
 namespace EmpleoDotNet.ViewModel.JobOpportunity
 {
     public class Wizard
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "El campo título es requerido."), StringLength(int.MaxValue)]
         [Display(Name = "Título. ¿Qué estás buscando?")]
         public string Title { get; set; }
@@ -92,6 +96,7 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
         {
             var entity = new Core.Domain.JobOpportunity
             {
+                Id = Id,
                 Title = Title,
                 Category = Category,
                 Description = Description,
@@ -133,6 +138,47 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
             }
 
             return entity;
+        }
+
+        public static Wizard FromEntity(Core.Domain.JobOpportunity entity)
+        {
+            var wizard = new Wizard()
+            {
+                Id = entity.Id,
+                Title = entity.Title,
+                Category = entity.Category,
+                Description = entity.Description,
+                CompanyName = entity.CompanyName,
+                CompanyUrl = entity.CompanyUrl,
+                CompanyLogoUrl = entity.CompanyLogoUrl,
+                CompanyEmail = entity.CompanyEmail,
+                IsRemote = entity.IsRemote,
+                JobType = entity.JobType,
+                HowToApply = entity.HowToApply,
+
+                LocationLatitude = entity.JobOpportunityLocation?.Latitude,
+                LocationLongitude = entity.JobOpportunityLocation?.Longitude,
+                LocationName = entity.JobOpportunityLocation?.Name,
+                LocationPlaceId = entity.JobOpportunityLocation?.PlaceId
+            };      
+
+            if(entity.JoelTest != null)
+            {
+                wizard.HasSourceControl = entity.JoelTest.HasSourceControl;
+                wizard.HasOneStepBuilds = entity.JoelTest.HasOneStepBuilds;
+                wizard.HasDailyBuilds = entity.JoelTest.HasDailyBuilds;
+                wizard.HasBugDatabase = entity.JoelTest.HasBugDatabase;
+                wizard.HasBusFixedBeforeProceding = entity.JoelTest.HasBusFixedBeforeProceding;
+                wizard.HasUpToDateSchedule = entity.JoelTest.HasUpToDateSchedule;
+                wizard.HasSpec = entity.JoelTest.HasSpec;
+                wizard.HasQuiteEnvironment = entity.JoelTest.HasQuiteEnvironment;
+                wizard.HasBestTools = entity.JoelTest.HasBestTools;
+                wizard.HasTesters = entity.JoelTest.HasTesters;
+                wizard.HasWrittenTest = entity.JoelTest.HasWrittenTest;
+                wizard.HasHallwayTests = entity.JoelTest.HasHallwayTests;
+            }
+
+            return wizard;
         }
     }
 }
