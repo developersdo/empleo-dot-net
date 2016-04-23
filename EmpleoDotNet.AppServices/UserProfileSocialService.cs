@@ -21,31 +21,26 @@ namespace EmpleoDotNet.AppServices
                     return GetFromGoogle(identity);
                 case "Microsoft":
                     return GetFromMicrosoft(identity);
+                case "LinkedIn":
+                    return GetFromLinkedIn(identity);
                 default:
                     return new UserProfile();
             }
         }
 
+        private UserProfile GetFromLinkedIn(ClaimsIdentity identity)
+        {
+            return FromCommonClaimsIdentity(identity);
+        }
+
         private UserProfile GetFromMicrosoft(ClaimsIdentity identity)
         {
-            var email = identity.FindFirst(x => x.Type.Contains("emailaddress")).Value;
-            var name = identity.Name;
-            return new UserProfile
-            {
-                Email = email,
-                Name = name
-            };
+            return FromCommonClaimsIdentity(identity);
         }
 
         private UserProfile GetFromGoogle(ClaimsIdentity identity)
         {
-            var email = identity.FindFirst(x => x.Type.Contains("emailaddress")).Value;
-            var name = identity.Name;
-            return new UserProfile
-            {
-                Email = email,
-                Name = name
-            };
+            return FromCommonClaimsIdentity(identity);
         }
 
         private UserProfile GetFromFacebook(ClaimsIdentity identity)
@@ -57,6 +52,19 @@ namespace EmpleoDotNet.AppServices
             {
                 Email = fbInfo.email,
                 Name = fbInfo.name
+            };
+        }
+
+        private UserProfile FromCommonClaimsIdentity(ClaimsIdentity identity)
+        {
+            var email = identity.FindFirst(x => x.Type.Contains("emailaddress"))?.Value ?? string.Empty;
+
+            var name = identity.Name;
+
+            return new UserProfile
+            {
+                Email = email,
+                Name = name
             };
         }
     }

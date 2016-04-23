@@ -9,6 +9,7 @@ using Microsoft.Owin.Security.Facebook;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.MicrosoftAccount;
 using Owin;
+using Owin.Security.Providers.LinkedIn;
 using Tweetinvi;
 
 namespace EmpleoDotNet
@@ -35,17 +36,17 @@ namespace EmpleoDotNet
             msAuthOptions.ClientSecret = ConfigurationManager.AppSettings["msClientSecret"];
             app.UseMicrosoftAccountAuthentication(msAuthOptions);
 
-//            app.UseTwitterAuthentication(
-//                consumerKey: ConfigurationManager.AppSettings["consumerKey"],
-//                consumerSecret: ConfigurationManager.AppSettings["consumerSecret"]
-//            );
+            //            app.UseTwitterAuthentication(
+            //                consumerKey: ConfigurationManager.AppSettings["consumerKey"],
+            //                consumerSecret: ConfigurationManager.AppSettings["consumerSecret"]
+            //            );
 
             var fbAuthOptions = new FacebookAuthenticationOptions
             {
                 AppId = ConfigurationManager.AppSettings["fbAppId"],
                 AppSecret = ConfigurationManager.AppSettings["fbAppSecret"]
             };
-            
+
             fbAuthOptions.Scope.Add("email");
             fbAuthOptions.Scope.Add("public_profile");
             fbAuthOptions.Scope.Add("user_friends");
@@ -53,15 +54,22 @@ namespace EmpleoDotNet
             {
                 OnAuthenticated = context =>
                 {
-                    context.Identity.AddClaim(new Claim("FacebookAccessToken",context.AccessToken));
+                    context.Identity.AddClaim(new Claim("FacebookAccessToken", context.AccessToken));
                     return Task.FromResult(true);
                 }
             };
             app.UseFacebookAuthentication(fbAuthOptions);
+
             app.UseGoogleAuthentication(
                 clientId: ConfigurationManager.AppSettings["googleClientId"],
                 clientSecret: ConfigurationManager.AppSettings["googleClientSecret"]
             );
+
+            app.UseLinkedInAuthentication(new LinkedInAuthenticationOptions
+            {
+                ClientId = ConfigurationManager.AppSettings["linkedinClientId"],
+                ClientSecret = ConfigurationManager.AppSettings["linkedinClientSecret"]
+            });
         }
     }
 }

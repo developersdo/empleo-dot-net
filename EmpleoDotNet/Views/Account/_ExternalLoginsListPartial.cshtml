@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div>
-            <h2>Inicia sesión</h2>
+                <h2>Inicia sesión</h2>
             </div>
             <div class="row">
                 <div class="col-sm-4">
@@ -23,7 +23,7 @@
                         {
                             string action = Model.Action;
                             string returnUrl = Model.ReturnUrl;
-                            using (Html.BeginForm(action, "Account", new {ReturnUrl = returnUrl}))
+                            using (Html.BeginForm(action, "Account", new { ReturnUrl = returnUrl }))
                             {
                                 @Html.AntiForgeryToken()
                                 <div id="socialLoginList">
@@ -53,6 +53,12 @@
                                             {
                                                 <button name="provider" value="@p.AuthenticationType" type="submit" class="btn btn-block btn-social btn-twitter">
                                                     <span class="fa fa-twitter"></span> Accede con Twitter
+                                                </button>
+                                            }
+                                            else if (p.AuthenticationType == "LinkedIn")
+                                            {
+                                                <button name="provider" value="@p.AuthenticationType" type="submit" class="btn btn-block btn-social btn-linkedin">
+                                                    <span class="fa fa-linkedin"></span> Accede con LinkedIn
                                                 </button>
                                             }
                                             else
