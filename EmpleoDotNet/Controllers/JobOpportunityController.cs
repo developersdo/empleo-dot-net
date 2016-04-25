@@ -107,7 +107,7 @@ namespace EmpleoDotNet.Controllers
                 return View(model).WithError("Debe seleccionar una Localidad.");
             }
 
-            if (!UrlHelperExtensions.IsImageAvailable(model.CompanyLogoUrl))
+            if (!string.IsNullOrWhiteSpace(model.CompanyLogoUrl) && !UrlHelperExtensions.IsImageAvailable(model.CompanyLogoUrl))
             {
                 return View(model).WithError("La url del logo debe ser a una imagen en formato png o jpg");
             }
