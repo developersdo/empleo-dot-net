@@ -137,8 +137,9 @@ namespace EmpleoDotNet.Controllers
         {
             var id = GetIdFromTitle(title);
             var job = _jobOpportunityService.GetJobOpportunityById(id);
+            var currentUser = User.Identity.GetUserId();
 
-            if(job.UserProfile?.UserId == User.Identity.GetUserId())
+            if(currentUser != null && job.UserProfile?.UserId == currentUser)
             {
                 var wizardvm = ViewModel.JobOpportunity.Wizard.FromEntity(job);
                 return View("Wizard", wizardvm);

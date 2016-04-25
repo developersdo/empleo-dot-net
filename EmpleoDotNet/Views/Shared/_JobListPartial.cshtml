@@ -68,8 +68,11 @@
                         </div>
                     </div>
                 </a>
-                @{var hideEdit = jobOpportunity.UserProfile?.UserId == User.Identity.GetUserId()
-                            ? "" : "visibility:hidden";}                
+                @{
+                    var currentUser = User.Identity.GetUserId();
+                    var hideEdit = currentUser != null && jobOpportunity.UserProfile?.UserId == currentUser
+                            ? "" : "visibility:hidden";
+                }                
                 <a style="@hideEdit" href="@Url.Action("Edit", "JobOpportunity", new { title = jobId })" class="edit">Editar</a>
                 
             </div>
