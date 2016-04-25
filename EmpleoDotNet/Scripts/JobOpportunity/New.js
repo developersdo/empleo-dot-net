@@ -20,6 +20,12 @@
 
     return {
 
+        preventSubmitOnEnter : function(e) {
+            if (e.keyCode == 13) {
+                e.preventDefault();
+            }
+        },
+
         googleMapDOMListener : function() {
                 google.maps.event.addDomListener(window,
                     'load',
@@ -41,4 +47,5 @@
 $(function() {
     var newJob = new NewJob();
     newJob.googleMapDOMListener();
+    $("#location-input").on("keypress", function (e) { newJob.preventSubmitOnEnter(e) });
 });
