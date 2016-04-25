@@ -90,7 +90,9 @@ namespace Android
 
 			_searchView.ClearFocus();
 
-//			_searchView.SetQueryHint(GetString(Resource.String.HomePageSearchBarHint));
+			_searchView.SetIconifiedByDefault(false);
+
+			_searchView.SetQueryHint(GetString(Resource.String.HomePageSearchBarHint));
 
 			PersonalizeSearchView();
 		}

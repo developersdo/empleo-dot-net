@@ -55,9 +55,9 @@ namespace Android.Activities
 
 			_backPressedListFragmet.Add(categoriesFragment);
 
-			_fragments.Add (favoritesFragment);
-
-			_backPressedListFragmet.Add(favoritesFragment);
+//			_fragments.Add (favoritesFragment);
+//
+//			_backPressedListFragmet.Add(favoritesFragment);
 
 			var pagesTitle = _resources.GetStringArray(Resource.Array.HomeTitles);
 
