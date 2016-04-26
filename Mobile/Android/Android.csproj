@@ -26,18 +26,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
-    <AndroidLinkSkip />
-    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+    <AndroidLinkSkip>
+    </AndroidLinkSkip>
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
-    <BundleAssemblies>False</BundleAssemblies>
-    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
-    <AndroidSupportedAbis />
-    <AndroidStoreUncompressedFileExtensions />
-    <MandroidI18n />
+    <AndroidSupportedAbis>
+    </AndroidSupportedAbis>
+    <AndroidStoreUncompressedFileExtensions>
+    </AndroidStoreUncompressedFileExtensions>
+    <MandroidI18n>
+    </MandroidI18n>
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <Debugger>Xamarin</Debugger>
-    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -145,9 +144,6 @@
     <Compile Include="LandingPage\LandingPageActivity.cs" />
     <Compile Include="LandingPage\LandingPageFragment.cs" />
     <Compile Include="LandingPage\LandingPagerAdapter.cs" />
-    <Compile Include="MainPage\CategoriesFragment.cs" />
-    <Compile Include="MainPage\FavoritesFragment.cs" />
-    <Compile Include="MainPage\JobsFragment.cs" />
     <Compile Include="MainPage\MainPageActivity.cs" />
     <Compile Include="MainPage\PagerAdapter.cs" />
     <Compile Include="SearchPage\SearchActivity.cs" />
@@ -164,24 +160,12 @@
     <Compile Include="Framework\AppCompatNavigationService.cs" />
     <Compile Include="Framework\AppCompatDialogService.cs" />
     <Compile Include="MainPage\ViewPagerFragment.cs" />
-    <Compile Include="MainPage\IBackPressed.cs" />
-    <Compile Include="MainPage\BackPressImpl.cs" />
-    <Compile Include="MainPage\JobsFragmentViewModel.cs" />
-    <Compile Include="MainPage\FavoritesViewModel.cs" />
     <Compile Include="MainPage\MainPageFragment.cs" />
     <Compile Include="MainPage\MainPageFragmentViewModel.cs" />
-    <Compile Include="MainPage\Converters.cs" />
-    <Compile Include="MainPage\ViewStateToBool.cs" />
     <Compile Include="Services\IJobRepository.cs" />
-    <Compile Include="MainPage\NotifyUserChangedQuery.cs" />
-    <Compile Include="MainPage\NotifyUserClearedText.cs" />
-    <Compile Include="MainPage\CategoriesFragmentViewModel.cs" />
-    <Compile Include="MainPage\NotifySearchBarPutText.cs" />
     <Compile Include="MainPage\ViewPagerFragmentViewModel.cs" />
     <Compile Include="MainPage\SwipeToTabEventHandler.cs" />
     <Compile Include="MainPage\Tab.cs" />
-    <Compile Include="MainPage\NotifyJobListUserChangedQuery.cs" />
-    <Compile Include="MainPage\NotifyFavoriteListUserChangedQuery.cs" />
     <Compile Include="SearchPage\SearchViewModel.cs" />
     <Compile Include="Services\LanguageService.cs" />
     <Compile Include="Services\JobRepository.cs" />
@@ -190,11 +174,7 @@
     <Compile Include="AkavacheSqliteLinkerOverride.cs" />
     <Compile Include="Services\XMLStorage.cs" />
     <Compile Include="Services\AppInfoService.cs" />
-    <Compile Include="MainPage\JobDetailFragmentViewModel.cs" />
-    <Compile Include="MainPage\JobDetailFragment.cs" />
     <Compile Include="MainPage\MainPageActivityViewModel.cs" />
-    <Compile Include="MainPage\OptionMenu.cs" />
-    <Compile Include="MainPage\ShowAs.cs" />
     <Compile Include="About\AboutActivity.cs" />
     <Compile Include="About\AboutViewModel.cs" />
     <Compile Include="About\ContributorAddedEventHandler.cs" />
@@ -203,6 +183,25 @@
     <Compile Include="Services\AssetReader.cs" />
     <Compile Include="EmpleadoApp.cs" />
     <Compile Include="Services\CacheService.cs" />
+    <Compile Include="MainPage\Tabs\Favorites\FavoritesFragment.cs" />
+    <Compile Include="MainPage\Tabs\Favorites\FavoritesViewModel.cs" />
+    <Compile Include="MainPage\Tabs\JobList\BackPressImpl.cs" />
+    <Compile Include="MainPage\Tabs\JobList\IBackPressed.cs" />
+    <Compile Include="MainPage\Tabs\JobList\JobDetailFragment.cs" />
+    <Compile Include="MainPage\Tabs\JobList\JobDetailFragmentViewModel.cs" />
+    <Compile Include="MainPage\Tabs\JobList\JobsFragment.cs" />
+    <Compile Include="MainPage\Tabs\JobList\JobsFragmentViewModel.cs" />
+    <Compile Include="MainPage\Tabs\Categories\CategoriesFragment.cs" />
+    <Compile Include="MainPage\Tabs\Categories\CategoriesFragmentViewModel.cs" />
+    <Compile Include="Framework\Converters\Converters.cs" />
+    <Compile Include="MainPage\Messaging\NotifyFavoriteListUserChangedQuery.cs" />
+    <Compile Include="MainPage\Messaging\NotifyJobListUserChangedQuery.cs" />
+    <Compile Include="MainPage\Messaging\NotifySearchBarPutText.cs" />
+    <Compile Include="MainPage\Messaging\NotifyUserChangedQuery.cs" />
+    <Compile Include="MainPage\Messaging\NotifyUserClearedText.cs" />
+    <Compile Include="Framework\Menu\OptionMenu.cs" />
+    <Compile Include="Framework\Menu\ShowAs.cs" />
+    <Compile Include="Framework\Converters\ViewStateToBool.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -287,8 +286,13 @@
   </Target>
   -->
   <ItemGroup>
-    <Folder Include="JobDetail\" />
-    <Folder Include="Views\" />
+    <Folder Include="MainPage\Tabs\" />
+    <Folder Include="MainPage\Tabs\Favorites\" />
+    <Folder Include="MainPage\Tabs\JobList\" />
+    <Folder Include="MainPage\Tabs\Categories\" />
+    <Folder Include="Framework\Converters\" />
+    <Folder Include="MainPage\Messaging\" />
+    <Folder Include="Framework\Menu\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="xamandroidsupportv7cardview">

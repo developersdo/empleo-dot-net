@@ -36,26 +36,26 @@
     <Compile Include="Search\SearchResultItem.cs" />
     <Compile Include="MainPage\CategoriesViewModel.cs" />
     <Compile Include="Services\IBitmapResizer.cs" />
-    <Compile Include="Bind.cs" />
     <Compile Include="IValueConverter.cs" />
-    <Compile Include="LocationData.cs" />
-    <Compile Include="ILanguageService.cs" />
-    <Compile Include="IGeolocationService.cs" />
     <Compile Include="IContextService.cs" />
-    <Compile Include="UserLocationChangedEventArgs.cs" />
-    <Compile Include="ICache.cs" />
-    <Compile Include="IXMLStorage.cs" />
     <Compile Include="IAppInfoService.cs" />
     <Compile Include="Github\IGithubContributorService.cs" />
     <Compile Include="Github\GithubUser.cs" />
     <Compile Include="Github\OctocatContributorService.cs" />
     <Compile Include="Services\IEmailService.cs" />
-    <Compile Include="IKeyboardService.cs" />
     <Compile Include="IAssetReader.cs" />
-    <Compile Include="MobileConfig.cs" />
     <Compile Include="CrossPlatformStuff.cs" />
-    <Compile Include="IMobileConfigurationManager.cs" />
-    <Compile Include="MobileConfigurationManager.cs" />
+    <Compile Include="Caching\ICache.cs" />
+    <Compile Include="Keyboard\IKeyboardService.cs" />
+    <Compile Include="Language\ILanguageService.cs" />
+    <Compile Include="Geolocation\IGeolocationService.cs" />
+    <Compile Include="Geolocation\UserLocationChangedEventArgs.cs" />
+    <Compile Include="Geolocation\LocationData.cs" />
+    <Compile Include="MobileConfiguration\IMobileConfigurationManager.cs" />
+    <Compile Include="MobileConfiguration\MobileConfig.cs" />
+    <Compile Include="MobileConfiguration\MobileConfigurationManager.cs" />
+    <Compile Include="XMLReader\IXMLStorage.cs" />
+    <Compile Include="Binding\Bind.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -65,6 +65,13 @@
     <Folder Include="MainPage\" />
     <Folder Include="Services\" />
     <Folder Include="Github\" />
+    <Folder Include="Caching\" />
+    <Folder Include="Keyboard\" />
+    <Folder Include="Language\" />
+    <Folder Include="Geolocation\" />
+    <Folder Include="MobileConfiguration\" />
+    <Folder Include="XMLReader\" />
+    <Folder Include="Binding\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
