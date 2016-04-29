@@ -6,16 +6,15 @@
         }
     };
 
-    $('form').submit(function () {
+    $('form[method="get"]').submit(function () {
         var self = $(this);
         var parameters = self.serialize().match(/(\w+=)/g);
-
+        
         for (var i = 0; i < parameters.length; i++) {
-            var param = parameters[i];
-            param = param.slice(0,param.length - 1);
+            var param = parameters[i].slice(0,-1);
             var formElem = self.find('*[name=' + param + ']');
 
-            if (!formElem.val()) {
+            if (!formElem.first().val() || !formElem.first().prop('checked') ) {
                 formElem.prop('disabled', true);
             }
         }
