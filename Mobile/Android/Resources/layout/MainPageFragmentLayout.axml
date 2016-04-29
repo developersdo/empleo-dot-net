@@ -21,9 +21,9 @@
             <SearchView
                 android:id="@+id/MainSearchView"
                 android:layout_width="0dp"
-                android:layout_weight="0.80"
+                android:layout_weight="1"
                 android:layout_height="50dp" />
-            <LinearLayout
+        <!--            <LinearLayout
                 android:id="@+id/locationContainer"
                 android:layout_height="50dp"
                 android:background="#f0f0f0"
@@ -39,7 +39,7 @@
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:src="@drawable/ic_near_me_black_48dp"
                     android:layout_height="26dp" />
-            </LinearLayout>
+            </LinearLayout>-->
         </LinearLayout>
     </android.support.v7.widget.CardView>
     <ImageView
