@@ -61,6 +61,7 @@ namespace Empleado
 			}
 			else
 			{
+				SimpleIoc.Default.Register<IProxy, HttpProxy>();
 				SimpleIoc.Default.Register<IAssetReader, AssetReader>();
 				SimpleIoc.Default.Register<IMobileConfigurationManager, MobileConfigurationManager>();
 				SimpleIoc.Default.Register<IJobRepository, JobRepository>();
