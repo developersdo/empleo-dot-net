@@ -99,6 +99,21 @@ body {
 	padding-top: 65px;
 }
 
+.layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.layout__header,
+.layout__footer {
+    flex: none;
+}
+
+.layout__content {
+    flex: 1;
+}
+
 	#home {
 		padding-top: 0;
 	}
