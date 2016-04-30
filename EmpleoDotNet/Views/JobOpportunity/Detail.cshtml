@@ -58,11 +58,10 @@
                             @Html.Raw(Model.HowToApply)
                         </article>
                     }
-                    else {
-                        <p>
-                            Enviar CV <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a>
-                        </p>
-                    }
+               
+                    <p>
+                        Enviar CV a <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a>, recuerda agregar tu cover letter.
+                    </p>
                    
                 </article>
                 <article>

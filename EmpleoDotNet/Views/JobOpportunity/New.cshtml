@@ -74,7 +74,7 @@
             </div>
             <div class="form-group" id="how-apply-group">  
                 @Html.LabelFor(m => m.HowToApply)       
-                @Html.TextAreaFor(m => m.HowToApply, new { @class = "form-control textarea" })
+                @Html.TextAreaFor(m => m.HowToApply, new { @class = "form-control textarea", placeholder = "Agrega los pasos que un candidato debe realizar para aplicar a el puesto, no hay que proporcionar el correo en este campo." })
                 @Html.ValidationMessageFor(m => m.HowToApply)
             </div>
             <div class="form-group" id="company-website-group">
