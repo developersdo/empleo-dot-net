@@ -36,94 +36,98 @@
     <meta property="og:url" content="@Request.Url.AbsoluteUri">
     <meta property="og:image" content="@ogImage">
 </head>
-<body id="home">
-    <!-- ============ NAVBAR START ============ -->
+<body id="home" >
+   <div class="layout">
+       <!-- Pre-loader -->
+       <div id="loader">
+           <i class="fa fa-cog fa-4x fa-spin"></i>
+       </div>
 
-    <div class="fm-container">
-        <!-- Menu -->
-        <div class="menu">
-            <div class="button-close text-right">
-                <a class="fm-button"><i class="fa fa-close fa-2x"></i></a>
-            </div>
-            <ul class="nav">
-                @if (User==null || !User.Identity.IsAuthenticated)
-                {
-                    <li class="@Html.IsSelected("Account", "Login")"><a href="@Url.Action("Login", "Account")">Iniciar sesión</a></li>
-                }
-                else
-                {
-                    <li><a href="@Url.Action("Profile", "Account")">Mi perfil</a>
-                        <ul><li><a href="@Url.Action("LogOff","Account")">Cerrar sesión</a></li></ul></li>
-                }
-                <li class="@Html.IsSelected("Home", "Index")"><a href="@Url.Action("Index", "Home")">Home</a></li>
-                <li class="@Html.IsSelected("JobOpportunity", "Index")"><a href="@Url.Action("Index", "JobOpportunity")">Lista de Empleos</a></li>
-                <li class="@Html.IsSelected("JobOpportunity", "New")"><a href="@Url.Action("New", "JobOpportunity")">Publicar un Empleo</a></li>
-                <li class="@Html.IsSelected("Credits", "Index")"><a href="@Url.Action("Index", "Credits")">Agradecimientos</a></li>
-            </ul>
-        </div>
-        <!-- end Menu -->
-    </div>
+       <div class="fm-container">
+           <!-- Menu -->
+           <div class="menu">
+               <div class="button-close text-right">
+                   <a class="fm-button"><i class="fa fa-close fa-2x"></i></a>
+               </div>
+               <ul class="nav">
+                   @if (User == null || !User.Identity.IsAuthenticated)
+                   {
+                       <li class="@Html.IsSelected("Account", "Login")"><a href="@Url.Action("Login", "Account")">Iniciar sesión</a></li>
+                   }
+                   else
+                   {
+                       <li>
+                           <a href="@Url.Action("Profile", "Account")">Mi perfil</a>
+                           <ul><li><a href="@Url.Action("LogOff","Account")">Cerrar sesión</a></li></ul>
+                       </li>
+                   }
+                   <li class="@Html.IsSelected("Home", "Index")"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                   <li class="@Html.IsSelected("JobOpportunity", "Index")"><a href="@Url.Action("Index", "JobOpportunity")">Lista de Empleos</a></li>
+                   <li class="@Html.IsSelected("JobOpportunity", "New")"><a href="@Url.Action("New", "JobOpportunity")">Publicar un Empleo</a></li>
+                   <li class="@Html.IsSelected("Credits", "Index")"><a href="@Url.Action("Index", "Credits")">Agradecimientos</a></li>
+               </ul>
+           </div>
+           <!-- end Menu -->
+       </div>
 
-    <!-- ============ NAVBAR END ============ -->
+       <!-- Header -->
+       <header class="layout__header">
+           <div id="header-background"></div>
+           <div class="container">
+               <div class="pull-left">
+                   <div>
+                       <a id="menu-action-icon" class="fm-button"><i class="fa fa-bars fa-lg"></i></a>
+                       <span><a href="@Url.Action("Index", "Home")"><i class="fa fa-users fa-2x"></i> Emplea.do { beta }</a></span>
+                   </div>
+               </div>
+               <div class="pull-right hidden-xs">
+                   <div>
+                       <a class="btn btn-default" href="@Url.Action("New", "JobOpportunity")"><i class="fa fa-user"></i> Publicar un Empleo</a>
+                   </div>
+               </div>
+           </div>
+       </header>
 
-    <header>
-        <div id="header-background"></div>
-        <div class="container">
-            <div class="pull-left">
-                <div>
-                    <a id="menu-action-icon" class="fm-button"><i class="fa fa-bars fa-lg"></i></a>
-                    <span><a href="@Url.Action("Index", "Home")"><i class="fa fa-users fa-2x"></i> Emplea.do { beta }</a></span>
-                </div>
-            </div>
-            <div class="pull-right hidden-xs">
-                <div>
-                    <a class="btn btn-default" href="@Url.Action("New", "JobOpportunity")"><i class="fa fa-user"></i> Publicar un Empleo</a>
-                </div>
-            </div>
-        </div>
-    </header>
+       <!-- Content -->
+       <main class="layout__content">
+          @Html.Partial("_Alerts")
+          @RenderBody()
+       </main>
 
-    <!-- ============ PAGE LOADER START ============ -->
-    <div id="loader">
-        <i class="fa fa-cog fa-4x fa-spin"></i>
-    </div>
-    <!-- ============ PAGE LOADER END ============ -->
+       <!-- Footer -->
+       <footer class="layout__footer">
+           <div id="prefooter">
+               <div class="container">
+                   <div class="row">
+                       <div class="col-sm-6" id="newsletter">
+                           <h2>Emplea.do</h2>
+                           <a href="https://www.facebook.com/empleadonet" class="btn btn-default"><i class="fa fa-facebook"></i></a>
+                           <a href="https://twitter.com/emplea_do" class="btn btn-default"><i class="fa fa-twitter"></i></a>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div id="credits">
+               <div class="container text-center">
+                   <div class="row">
+                       <div class="col-sm-3 hidden-xs">
+                           <a class="btn btn-default pull-left" href="https://github.com/developersdo/empleo-dot-net" target="_blank"><i class="fa fa-github"></i> Fork us on github</a>
+                       </div>
+                       <div class="col-sm-6">
+                           &copy; @DateTime.Today.Year Emplea.do<br>
+                           Made with <i class="fa fa-heart fa-inverse"></i> by <a href="@Url.Action("Index", "Credits")">all of us</a>
+                           <br /><span>ver. @Html.AssemblyVersion()</span>
 
-    @Html.Partial("_Alerts")
-    @RenderBody()
-
-    <footer>
-        <div id="prefooter">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6" id="newsletter">
-                        <h2>Emplea.do</h2>
-                        <a href="https://www.facebook.com/empleadonet" class="btn btn-default"><i class="fa fa-facebook"></i></a>
-                        <a href="https://twitter.com/emplea_do" class="btn btn-default"><i class="fa fa-twitter"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="credits">
-            <div class="container text-center">
-                <div class="row">
-                    <div class="col-sm-3 hidden-xs">
-                        <a class="btn btn-default pull-left" href="https://github.com/developersdo/empleo-dot-net" target="_blank"><i class="fa fa-github"></i> Fork us on github</a>
-                    </div>
-                    <div class="col-sm-6">
-                        &copy; @DateTime.Today.Year Emplea.do<br>
-                        Made with <i class="fa fa-heart fa-inverse"></i> by <a href="@Url.Action("Index", "Credits")">all of us</a>
-                        <br/><span>ver. @Html.AssemblyVersion()</span>
-                        
-                        <div class="text-center hidden-lg hidden-sm hidden-md">
-                            <br/>
-                            <a class="btn btn-default" href="https://github.com/developersdo/empleo-dot-net" target="_blank"><i class="fa fa-github"></i> Fork us on github</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+                           <div class="text-center hidden-lg hidden-sm hidden-md">
+                               <br />
+                               <a class="btn btn-default" href="https://github.com/developersdo/empleo-dot-net" target="_blank"><i class="fa fa-github"></i> Fork us on github</a>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </footer>
+   </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

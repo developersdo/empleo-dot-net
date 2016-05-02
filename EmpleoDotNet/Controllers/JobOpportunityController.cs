@@ -41,7 +41,7 @@ namespace EmpleoDotNet.Controllers
             return View(viewModel);
         }
 
-        // GET: /JobOpportunity/Detail/4-jobtitle
+        // GET: /jobs/4-jobtitle
         public ActionResult Detail(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
@@ -52,30 +52,33 @@ namespace EmpleoDotNet.Controllers
             if (jobOpportunityId == 0)
                 return RedirectToAction(nameof(Index));
 
-            var viewModel = _jobOpportunityService.GetJobOpportunityById(jobOpportunityId);
+            var jobOpportunity = _jobOpportunityService.GetJobOpportunityById(jobOpportunityId);
 
-            if (viewModel == null)
+            if (jobOpportunity == null)
                 return View(nameof(Index))
                     .WithError("La vacante solicitada no existe. Por favor escoge una vacante válida del listado");
 
-            var expectedUrl = UrlHelperExtensions.SeoUrl(jobOpportunityId, viewModel.Title.SanitizeUrl());
+            var expectedUrl = UrlHelperExtensions.SeoUrl(jobOpportunityId, jobOpportunity.Title.SanitizeUrl());
 
             if (!expectedUrl.Equals(id, StringComparison.OrdinalIgnoreCase))
                 return RedirectToActionPermanent(nameof(Detail), new { id = expectedUrl });
 
             ViewBag.RelatedJobs =
-                _jobOpportunityService.GetCompanyRelatedJobs(jobOpportunityId, viewModel.CompanyName);
+                _jobOpportunityService.GetCompanyRelatedJobs(jobOpportunityId, jobOpportunity.CompanyName);
 
             ViewBag.CanLike = !CookieHelper.Exists(GetLikeCookieName(jobOpportunityId));
 
-            var cookieView = $"JobView{viewModel.Id}";
-            if (!CookieHelper.Exists(cookieView))
-            {
-                _jobOpportunityService.UpdateViewCount(viewModel.Id);
-                CookieHelper.Set(cookieView, viewModel.Id.ToString());
+            var cookieView = $"JobView{jobOpportunity.Id}";
+
+            if (IsJobOpportunityPoster(jobOpportunity) || CookieHelper.Exists(cookieView))
+            {               
+                return View(nameof(Detail), jobOpportunity);
             }
 
-            return View(nameof(Detail), viewModel);
+            _jobOpportunityService.UpdateViewCount(jobOpportunity.Id);
+            CookieHelper.Set(cookieView, jobOpportunity.Id.ToString());
+
+            return View(nameof(Detail), jobOpportunity);
         }
 
         [HttpGet]
@@ -246,6 +249,11 @@ namespace EmpleoDotNet.Controllers
                 return 0;
 
             return id;
+        }
+
+        private static bool IsJobOpportunityPoster(JobOpportunity jobOpportunity)
+        {
+            return System.Web.HttpContext.Current.User.Identity.GetUserId() == jobOpportunity.UserProfile.UserId;
         }
 
         public JobOpportunityController(
