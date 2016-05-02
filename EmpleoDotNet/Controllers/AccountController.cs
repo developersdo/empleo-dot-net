@@ -208,7 +208,7 @@ namespace EmpleoDotNet.Controllers
 
         public ActionResult Profile()
         {
-            var user = _userProfileRepository.GetByUserId(this.User.Identity.GetUserId());
+            var user = _userProfileRepository.GetByUserId(User.Identity.GetUserId());
 
             return View(user);
         }
