@@ -42,7 +42,6 @@
     <Compile Include="Proxy\HttpResultMessageExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <Import Project="..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets" Condition="Exists('..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets')" />
   <ItemGroup>
     <ProjectReference Include="..\Api.Contract\Api.Contract.csproj">
       <Project>{BECA9261-37EF-4883-883D-020F2080DF1B}</Project>

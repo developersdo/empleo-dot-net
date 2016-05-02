@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Refit;
+//using Refit;
 using System.Threading;
 
 namespace Api.Contract
