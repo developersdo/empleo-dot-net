@@ -19,4 +19,15 @@
             }
         }
     });
+
+    $('#confirm-delete').on('show.bs.modal', function (e) {
+        $(this)
+            .find('.modal-body')
+            .html("<h4>" + $(e.relatedTarget)
+            .data('title') + "</h4>");
+        $(this)
+            .find('.btn-ok')
+            .attr('href', $(e.relatedTarget)
+            .data('href'));
+    });
 })()

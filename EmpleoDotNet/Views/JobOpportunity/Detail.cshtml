@@ -58,11 +58,11 @@
                             @Html.Raw(Model.HowToApply)
                         </article>
                     }
-               
+
                     <p>
                         Enviar CV a <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a>, recuerda agregar tu cover letter.
                     </p>
-                   
+
                 </article>
                 <article>
                     @if (Model.JoelTest != null)
@@ -74,12 +74,14 @@
             <div class="col-sm-4" id="sidebar">
                 @if (Model.UserProfile?.UserId == User.Identity.GetUserId())
                 {
-                    var title = UrlHelperExtensions.SeoUrl(Model.Id, Model.Title);
+                    var titleUrl = UrlHelperExtensions.SeoUrl(Model.Id, Model.Title);
                     <div class="sidebar-widget">
                         <h2>Administración</h2>
-                        <div>                       
-                            <a href="@Url.Action("Edit","JobOpportunity", new { title = title })" 
+                        <div>
+                            <a href="@Url.Action("Edit", "JobOpportunity", new {title = titleUrl})"
                                class="btn btn-primary">Editar</a>
+                            <a class="btn btn-danger" data-href="@Url.Action("Delete", "JobOpportunity", new {title = titleUrl, returnPrevious = false})"
+                               id="delete-btn" data-toggle="modal" data-target="#confirm-delete" data-title="@Model.Title">Borrar</a>
                         </div>
                     </div>
                 }
@@ -89,7 +91,7 @@
                         @{
                             var disabledClass = @Html.Raw(!ViewBag.CanLike ? "disabled" : "");
                         }
-                        <input type="hidden" id="like-url" value="@Url.Action("Like")" />
+                        <input type="hidden" id="like-url" value="@Url.Action("Like")"/>
                         <a href="#" class="like-job like @disabledClass" title="Me gusta" data-job="@Model.Id" data-like="true" data-canlike="@ViewBag.CanLike.ToString().ToLower()">
                             <i class="fa fa-lg fa-thumbs-o-up"></i>
                             <span>@Model.JobOpportunityLikes.Count(x => x.Like).FormatThousand()</span>
@@ -119,11 +121,11 @@
                     <a href="@Model.CompanyUrl">
                         @if (string.IsNullOrWhiteSpace(@Model.CompanyLogoUrl))
                         {
-                            <img src="~/Content/img/company-logo-placeholder.png" alt="Logo Compañ&iacute;a" class="img-company img-responsive" />
+                            <img src="~/Content/img/company-logo-placeholder.png" alt="Logo Compañía" class="img-company img-responsive"/>
                         }
                         else
                         {
-                            <img src="@Model.CompanyLogoUrl" alt="Logo Compañ&iacute;a" class="img-company img-responsive">
+                            <img src="@Model.CompanyLogoUrl" alt="Logo Compañía" class="img-company img-responsive">
                         }
                     </a>
                     <h5>@Model.CompanyName</h5>
@@ -134,14 +136,14 @@
 
                 <hr>
 
-                @if (((List<JobOpportunity>)ViewBag.RelatedJobs).Any())
+                @if (((List<JobOpportunity>) ViewBag.RelatedJobs).Any())
                 {
                     <div class="sidebar-widget" id="company-jobs">
                         <h2>Más empleos de esta Compañía</h2>
                         <ul>
-                            @foreach (var jobOpportunity in (List<JobOpportunity>)ViewBag.RelatedJobs)
+                            @foreach (var jobOpportunity in (List<JobOpportunity>) ViewBag.RelatedJobs)
                             {
-                                <li><a href="@Url.Action("Detail", new {id=UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)})">@jobOpportunity.Title</a></li>
+                                <li><a href="@Url.Action("Detail", new {id = UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)})">@jobOpportunity.Title</a></li>
                             }
                         </ul>
                     </div>
@@ -156,3 +158,5 @@
         </div>
     </div>
 </section>
+
+@Html.Partial("_ConfirmDeleteModal")
