@@ -96,7 +96,6 @@ namespace EmpleoDotNet.Repository
                 .ThenByDescending(x => x.Id);
             
             //Filter by JobCategory
-            if ((parameter.JobCategory != JobCategory.All && parameter.JobCategory != JobCategory.Invalid))
                 jobs = jobs.Where(x => x.Category == parameter.JobCategory);
 
             if (parameter.IsRemote)

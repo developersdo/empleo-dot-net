@@ -9,21 +9,10 @@ namespace EmpleoDotNet.Core.Domain
     public enum JobCategory
     {
         /// <summary>
-        /// Todas
-        /// </summary>
-        [Display(Name = "Invalid")]
-        Invalid = -2,
-        /// <summary>
-        /// Todas
-        /// </summary>
-        [Display(Name = "Todas")]
-        All = -1,
-
-        /// <summary>
         /// Ninguna
         /// </summary>
         [Display(Name = "N/A")]
-        None = 0,
+        None,
 
         /// <summary>
         /// Diseño Grafico

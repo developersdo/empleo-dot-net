@@ -46,12 +46,13 @@
                 @Html.HiddenFor(m => m.LocationPlaceId, new { id = "location-placeid" })
             </div>
             <div class="form-group" id="job-category-group">
-                <label for="Category">Categoría</label>
-                @Html.EnumDropListFor(e => e.Category, new { @class = "form-control", id = "category" })
+                <label for="category">Categoría</label>
+                
+                @Html.EnumDropDownListFor(e => e.Category, new { @class = "form-control", id = "category" })
             </div>
             <div class="form-group" id="job-category-group">
                 @Html.LabelFor(m => m.JobType)
-                @Html.EnumDropListFor(e => e.JobType, new { @class = "form-control", id = "job-type" })
+                @Html.EnumDropDownListFor(e => e.JobType, new { @class = "form-control", id = "job-type" })
             </div>
             <div class="form-group">
                 @Html.CheckBoxFor(m => m.IsRemote)
