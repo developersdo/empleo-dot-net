@@ -211,6 +211,16 @@ textarea {
 		border: 2px solid #fff;
 	}
 
+    .btn-danger {
+        color: #fff;
+        background: rgba(255, 0, 0, 0.69);
+        border-color: transparent;
+    }
+    .btn-danger:hover {
+        background: rgba(255, 0, 0, 1);
+        border-color: transparent;
+    }
+
 		article .btn-default {
 			border: 1px solid #14b1bb;
 			color: #14b1bb;
@@ -923,13 +933,19 @@ header {
 			font-weight: normal;
 		}
 
-        .jobs a.edit {
+        .jobs a.admin-btn {
             display: table-cell;
             margin: 0 auto;
             vertical-align: middle;
             padding: 0 5px;
-            background-color: rgba(20, 177, 187, 0.62);
             color: #fff;
+        }
+        .jobs a.edit-btn {
+            background-color: rgba(20, 177, 187, 0.62);
+        }
+
+        .jobs a.delete-btn {
+            background-color: rgba(255, 0, 0, 0.62);
         }
 
 	.jobs .hidden-job {

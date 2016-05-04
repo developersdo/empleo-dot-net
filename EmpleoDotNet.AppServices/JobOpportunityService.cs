@@ -70,6 +70,11 @@ namespace EmpleoDotNet.AppServices
 
         }
 
+        public void SoftDeleteJobOpportunity(JobOpportunity jobOpportunity)
+        {
+            jobOpportunity.IsActive = false;
+            _jobOpportunityRepository.SaveChanges();
+        }
         public List<JobOpportunity> GetCompanyRelatedJobs(int id, string name)
         {
             var result = _jobOpportunityRepository.GetRelatedJobs(id,name);

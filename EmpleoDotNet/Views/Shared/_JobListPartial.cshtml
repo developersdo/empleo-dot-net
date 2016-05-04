@@ -70,14 +70,17 @@
                 </a>
                 @{
                     var currentUser = User.Identity.GetUserId();
-                    var hideEdit = currentUser != null && jobOpportunity.UserProfile?.UserId == currentUser
+                    var hideAdminOptions = currentUser != null && jobOpportunity.UserProfile?.UserId == currentUser
                             ? "" : "visibility:hidden";
-                }                
-                <a style="@hideEdit" href="@Url.Action("Edit", "JobOpportunity", new { title = jobId })" class="edit">Editar</a>
+                }
+                <a style="@hideAdminOptions" href="@Url.Action("Edit", "JobOpportunity", new {title = jobId})" class="admin-btn edit-btn">Editar</a>
+                <a style="@hideAdminOptions" data-href="@Url.Action("Delete", "JobOpportunity", new {title = jobId})" 
+                   class="admin-btn delete-btn" data-toggle="modal" data-target="#confirm-delete" data-title="@jobOpportunity.Title" >Borrar</a>
                 
             </div>
-        }
+                    }
     </div>
+@Html.Partial("_ConfirmDeleteModal")
 }
 
 

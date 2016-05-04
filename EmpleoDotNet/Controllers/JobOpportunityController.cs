@@ -9,15 +9,11 @@ using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.ViewModel.JobOpportunity;
 using reCAPTCHA.MVC;
 using System;
-using System.Security.Policy;
 using System.Linq;
 using System.Net;
-using System.Text.RegularExpressions;
 using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.ViewModel.JobOpportunityLike;
-using System.Security.Policy;
 using Microsoft.AspNet.Identity;
-using Tweetinvi.Core.Extensions;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -70,7 +66,7 @@ namespace EmpleoDotNet.Controllers
 
             var cookieView = $"JobView{jobOpportunity.Id}";
 
-            if (IsJobOpportunityPoster(jobOpportunity) || CookieHelper.Exists(cookieView))
+            if (IsJobOpportunityOwner(id) || CookieHelper.Exists(cookieView))
             {               
                 return View(nameof(Detail), jobOpportunity);
             }
@@ -136,19 +132,37 @@ namespace EmpleoDotNet.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Edit(string title)
         {
             var id = GetIdFromTitle(title);
             var job = _jobOpportunityService.GetJobOpportunityById(id);
-            var currentUser = User.Identity.GetUserId();
 
-            if(currentUser != null && job.UserProfile?.UserId == currentUser)
+            if (!IsJobOpportunityOwner(title))
+                return RedirectToAction("Detail", new {id = title});
+
+            var wizardvm = ViewModel.JobOpportunity.Wizard.FromEntity(job);
+            return View("Wizard", wizardvm);
+        }
+
+        [Authorize]
+        public ActionResult Delete(string title, bool returnPrevious = true)
+        {
+            var jobId = GetIdFromTitle(title);
+            var jobOpportunity = _jobOpportunityService.GetJobOpportunityById(jobId);
+            if (IsJobOpportunityOwner(title))
             {
-                var wizardvm = ViewModel.JobOpportunity.Wizard.FromEntity(job);
-                return View("Wizard", wizardvm);
+                _jobOpportunityService.SoftDeleteJobOpportunity(jobOpportunity);
             }
 
-            return RedirectToAction("Detail", new { id = title });
+            if (Request.UrlReferrer == null || returnPrevious == false)
+            {
+                return RedirectToAction("Index", "Home")
+                        .WithSuccess($"Se ha borrado exitosamente la oportunidad de empleo: {jobOpportunity.Title}");
+            }
+
+            return Redirect(Request.UrlReferrer.ToString())
+                        .WithSuccess($"Se ha borrado exitosamente la oportunidad de empleo: {jobOpportunity.Title}");
         }
 
         [HttpPost, ValidateAntiForgeryToken]
@@ -251,9 +265,12 @@ namespace EmpleoDotNet.Controllers
             return id;
         }
 
-        private static bool IsJobOpportunityPoster(JobOpportunity jobOpportunity)
+        private bool IsJobOpportunityOwner(string title)
         {
-            return System.Web.HttpContext.Current.User.Identity.GetUserId() == jobOpportunity.UserProfile.UserId;
+            var id = GetIdFromTitle(title);
+            var jobOpportunity = _jobOpportunityService.GetJobOpportunityById(id);
+            var currentUser = User.Identity.GetUserId();
+            return (currentUser != null && jobOpportunity.UserProfile?.UserId == currentUser);
         }
 
         public JobOpportunityController(
