@@ -14,11 +14,33 @@ namespace EmpleoDotNet.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.SearchViewModel = new JobOpportunitySearchViewModel {
+            var allJobOpportunities = _jobOpportunityRepository.GetAllJobOpportunities();
+
+            var model = new HomeViewModel();
+
+            var jobCount = allJobOpportunities.Count;
+
+            var visits = allJobOpportunities.Sum(x => x.ViewCount);
+
+            var companyCount = (from jo in allJobOpportunities
+                group jo by jo.CompanyName
+                into grp
+                select new {Count = grp.Count()}).Count();
+
+            model.SearchPamameters = new JobOpportunitySearchViewModel
+            {
                 CategoriesCount = _jobOpportunityRepository.GetMainJobCategoriesCount()
             };
 
-            var model = _jobOpportunityRepository.GetLatestJobOpportunity(7);
+            model.Stats = new StatsViewModel
+            {
+                JobCount = jobCount,
+                Visits = visits,
+                CompanyCount = companyCount
+            };
+
+            model.JobOpportunities = allJobOpportunities.OrderByDescending(x => x.Id).Take(7).ToList();
+
             return View(model);
         }
 

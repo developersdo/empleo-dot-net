@@ -1,5 +1,5 @@
 ﻿@using EmpleoDotNet.ViewModel
-@model List<EmpleoDotNet.Core.Domain.JobOpportunity>
+@model HomeViewModel
 
 @{
     ViewBag.Title = "";
@@ -32,7 +32,7 @@
 }
 
 
-@Html.Partial("_FindJobsPartial", (JobOpportunitySearchViewModel)ViewBag.SearchViewModel)
+@Html.Partial("_FindJobsPartial", Model.SearchPamameters)
 
 <div class="container" style="margin-top: -50px;">
     <section id="jobs">
@@ -41,10 +41,40 @@
                 <div>
                     <h2>Empleos Recientes</h2>
                 </div>
-                @Html.Partial("_JobListPartial", Model)
-                <br />
+                @Html.Partial("_JobListPartial", Model.JobOpportunities)
+                <br/>
                 <a class="btn btn-primary" href="@Url.Action("Index", "JobOpportunity")">Mostrar mas empleos</a>
             </div>
         </div>
     </section>
 </div>
+
+<section id="stats" class="parallax text-center">
+    <div class="tint"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Estadisticas</h1>
+                <h4>Cuantas personas hemos ayudado</h4>
+            </div>
+        </div>
+        <div class="row" id="counter">
+
+            <div class="counter">
+                <div class="number">@Model.Stats.JobCount</div>
+                <div class="description">Trabajos</div>
+            </div>
+
+            <div class="counter">
+                <div class="number">@Model.Stats.Visits</div>
+                <div class="description">Visitas</div>
+            </div>
+
+            <div class="counter">
+                <div class="number">@Model.Stats.CompanyCount</div>
+                <div class="description">Empresas</div>
+            </div>
+
+        </div>
+    </div>
+</section>

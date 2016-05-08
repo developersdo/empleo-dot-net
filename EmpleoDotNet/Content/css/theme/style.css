@@ -1235,7 +1235,7 @@ header {
 	}
 
 #stats {
-	background-image: url(http://placehold.it/1400x900.jpg);
+    background-image: url('../../img/stats.jpeg');
 }
 
 #testimonials {
