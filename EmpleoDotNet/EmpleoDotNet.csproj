@@ -309,6 +309,7 @@
     <Compile Include="ViewModel\Account\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModel\Account\SendCodeViewModel.cs" />
     <Compile Include="ViewModel\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\ErrorViewModel.cs" />
     <Compile Include="ViewModel\JobOpportunityLike\JobOpportunityLikeViewModel.cs" />
     <Compile Include="ViewModel\JobOpportunitySearchViewModel.cs" />
@@ -346,6 +347,7 @@
     <Content Include="Content\img\find-a-job.jpg" />
     <Content Include="Content\img\logo-empleado.png" />
     <Content Include="Content\img\post-a-job.jpg" />
+    <Content Include="Content\img\stats.jpeg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\responsive.css" />
     <Content Include="Content\css\theme\animate.css" />
