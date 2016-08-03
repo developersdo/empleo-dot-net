@@ -48,7 +48,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             var param = new JobOpportunityPagingParameter {
                 SelectedLocationPlaceId = null,
                 SelectedLocationName = "Guachupita",
-                JobCategory = JobCategory.All,
+                JobCategory = JobCategory.None,
                 Keyword = "myKeyword",
                 IsRemote = true
             };
@@ -91,7 +91,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
                 SelectedLocationLatitude = "18.686868",
                 SelectedLocationLongitude = "-69.454545",
                 SelectedLocationPlaceId = "111",
-                JobCategory = JobCategory.All,
+                JobCategory = JobCategory.None,
                 Keyword = "myKeyword",
                 IsRemote = true
             };
@@ -132,7 +132,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
                 SelectedLocationLatitude = "18.686868",
                 SelectedLocationLongitude = "-69.454545",
                 SelectedLocationPlaceId = "111",
-                JobCategory = JobCategory.All,
+                JobCategory = JobCategory.None,
                 Keyword = "myKeyword",
                 IsRemote = true
             };
