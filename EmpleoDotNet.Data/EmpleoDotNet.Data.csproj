@@ -129,6 +129,10 @@
     <Compile Include="Migrations\201603301645403_AddedHowToApplyField.Designer.cs">
       <DependentUpon>201603301645403_AddedHowToApplyField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608010547100_AddIsHiddenColumn.cs" />
+    <Compile Include="Migrations\201608010547100_AddIsHiddenColumn.Designer.cs">
+      <DependentUpon>201608010547100_AddIsHiddenColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableConfigurations\BaseTableConfiguration.cs" />
@@ -184,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603301645403_AddedHowToApplyField.resx">
       <DependentUpon>201603301645403_AddedHowToApplyField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608010547100_AddIsHiddenColumn.resx">
+      <DependentUpon>201608010547100_AddIsHiddenColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

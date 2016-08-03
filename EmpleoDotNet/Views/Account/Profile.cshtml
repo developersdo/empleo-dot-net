@@ -38,6 +38,7 @@
                     </div>
                     @if (Model.JobOpportunities.Any())
                     {
+                        <link href = "/Content/toggleButton.css" rel = "stylesheet" />
                         @Html.Partial("_JobListPartial", Model.JobOpportunities)
                     }
                     else

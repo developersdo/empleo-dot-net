@@ -14,17 +14,17 @@
                         <div class="col-md-1 hidden-sm hidden-xs text-center">
                             @if (!string.IsNullOrEmpty(jobOpportunity.CompanyLogoUrl))
                             {
-                        <img src="@jobOpportunity.CompanyLogoUrl"
-                             width="60"
-                             height="60"
-                             alt=""
-                             class="img-responsive"
-                             onclick="onJobOpportunityDetailClick(this);"
-                             data-url="@Url.Action("Detail", "JobOpportunity", new { id = jobId })" />
+                                <img src="@jobOpportunity.CompanyLogoUrl"
+                                     width="60"
+                                     height="60"
+                                     alt=""
+                                     class="img-responsive"
+                                     onclick="onJobOpportunityDetailClick(this);"
+                                     data-url="@Url.Action("Detail", "JobOpportunity", new { id = jobId })" />
                             }
                             else
                             {
-                        <h5 class="company-text-logo !important">@Html.FirstTwoLetters(jobOpportunity.CompanyName)</h5>
+                                <h5 class="company-text-logo !important">@Html.FirstTwoLetters(jobOpportunity.CompanyName)</h5>
                             }
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
@@ -35,11 +35,11 @@
                             <p>
                                 @if (jobOpportunity.JobOpportunityLocation == null)
                                 {
-                            <strong>N/A</strong>
+                                    <strong>N/A</strong>
                                 }
                                 else
                                 {
-                            <strong>@jobOpportunity.JobOpportunityLocation.Name</strong>
+                                    <strong>@jobOpportunity.JobOpportunityLocation.Name</strong>
                                 }
                             </p>
                             <p class="hidden-xs">@jobOpportunity.Created.ToDominicanFormat()</p>
@@ -47,10 +47,10 @@
                         <div class="pull-left col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
                             @if (jobOpportunity.IsRemote)
                             {
-                        <p class="badge full-time">
-                            Remoto
-                        </p>
-                        <br />
+                                <p class="badge full-time">
+                                    Remoto
+                                </p>
+                                <br />
                             }
                             <p class="badge">@jobOpportunity.Category.ToEnumDescription()</p>
                             <p>Visitas | @jobOpportunity.ViewCount</p>
@@ -73,15 +73,32 @@
                     var hideAdminOptions = currentUser != null && jobOpportunity.UserProfile?.UserId == currentUser
                             ? "" : "visibility:hidden";
                 }
+
+                <div style="@hideAdminOptions" class="switch" data-href="@Url.Action("ToggleHide", "JobOpportunity")" data-title="@jobId">
+                    @if (jobOpportunity.IsHidden)
+                    {
+                        <input class="cmn-toggle cmn-toggle-yes-no" type="checkbox" checked>
+
+                    }
+                    else
+                    {
+                     <input class="cmn-toggle cmn-toggle-yes-no" type="checkbox">                      
+                    }
+                    <label data-on="Mostrar" data-off="Ocultar"></label>
+                </div>
+
                 <a style="@hideAdminOptions" href="@Url.Action("Edit", "JobOpportunity", new {title = jobId})" class="admin-btn edit-btn">Editar</a>
-                <a style="@hideAdminOptions" data-href="@Url.Action("Delete", "JobOpportunity", new {title = jobId})" 
-                   class="admin-btn delete-btn" data-toggle="modal" data-target="#confirm-delete" data-title="@jobOpportunity.Title" >Borrar</a>
-                
+
+                <a style="@hideAdminOptions" data-href="@Url.Action("Delete", "JobOpportunity", new {title = jobId})"
+                   class="admin-btn delete-btn" data-toggle="modal" data-target="#confirm-delete" data-title="@jobOpportunity.Title">Borrar</a>
+
             </div>
                     }
     </div>
-@Html.Partial("_ConfirmDeleteModal")
-}
+    @Html.Partial("_ConfirmDeleteModal")
+
+
+                    }
 
 
 

@@ -359,6 +359,7 @@
     <Content Include="Content\css\theme\owl.carousel.css" />
     <Content Include="Content\css\theme\style.css" />
     <Content Include="Content\JobOpportunity\Wizard.css" />
+    <Content Include="Content\toggleButton.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

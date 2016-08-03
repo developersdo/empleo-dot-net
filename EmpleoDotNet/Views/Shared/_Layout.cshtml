@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     @{
-        var branch = "Emplea.do";
+        const string branch = "Emplea.do";
         var title = string.IsNullOrEmpty(ViewBag.Title) ? branch : $"{ViewBag.Title}-{branch}";
     }
     <title>@title</title>
@@ -15,6 +15,7 @@
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/css/theme/font-awesome.min.css" rel="stylesheet" />
     @Styles.Render("~/bundles/theme/css")
+    @Scripts.Render("~/bundles/jquery")
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:700" rel="stylesheet" />
     <style>
         #menu-action-icon {
@@ -129,7 +130,7 @@
        </footer>
    </div>
 
-    @Scripts.Render("~/bundles/jquery")
+
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/theme/js")
     @Scripts.Render("~/bundles/app")
