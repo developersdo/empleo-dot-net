@@ -75,6 +75,13 @@ namespace EmpleoDotNet.AppServices
             jobOpportunity.IsActive = false;
             _jobOpportunityRepository.SaveChanges();
         }
+
+        public void ToggleHideState(JobOpportunity jobOpportunity)
+        {
+            jobOpportunity.IsHidden = !jobOpportunity.IsHidden;
+            _jobOpportunityRepository.SaveChanges();
+        }
+
         public List<JobOpportunity> GetCompanyRelatedJobs(int id, string name)
         {
             var result = _jobOpportunityRepository.GetRelatedJobs(id,name);
@@ -94,11 +101,11 @@ namespace EmpleoDotNet.AppServices
 
         public void UpdateViewCount(int id)
         {
-            var item = _jobOpportunityRepository.GetJobOpportunityById(id);
+            var jobOpportunity = _jobOpportunityRepository.GetJobOpportunityById(id);
 
-            if (item == null) return;
+            if (jobOpportunity == null) return;
 
-            item.ViewCount++;
+            jobOpportunity.ViewCount++;
             _jobOpportunityRepository.SaveChanges();           
         }
 

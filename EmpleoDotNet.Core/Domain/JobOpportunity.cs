@@ -61,12 +61,6 @@ namespace EmpleoDotNet.Core.Domain
         public bool Approved { get; set; }
 
         /// <summary>
-        /// Flag que representa si el empleo es Remoto o no
-        /// </summary>
-        public bool IsRemote { get; set; }
-
-
-        /// <summary>
         /// Contador de visitas realizadas a una publicación
         /// </summary>
         public int ViewCount { get; set; }
@@ -78,8 +72,6 @@ namespace EmpleoDotNet.Core.Domain
 
         public int? JoelTestId { get; set; }
 
-        public bool IsActive { get; set; } = true;
-
         public int? JobOpportunityLocationId { get; set; }
 
         public int? UserProfileId { get; set; } 
@@ -87,6 +79,19 @@ namespace EmpleoDotNet.Core.Domain
         /// para especificar la forma de como se aplica para el empleo
         /// </summary>
         public string HowToApply { get; set; }
+
+        /// <summary>
+        /// Flag que representa si el empleo es Remoto o no
+        /// </summary>
+        public bool IsRemote { get; set; }
+
+        public bool IsActive { get; set; } = true;
+
+        /// <summary>
+        /// Allow to hide this job opportunity from all jobs list, only vissible to the owner(company/user) of the
+        /// opportunity  
+        /// </summary>
+        public bool IsHidden { get; set; }
 
         #endregion
 
