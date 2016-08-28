@@ -24,7 +24,10 @@ namespace EmpleoDotNet.Helpers
                 .FirstOrDefault(e => e.Name == Enum.GetName(enumeration.GetType(), enumeration));
 
             if (field == null)
-                throw new ArgumentException("Esta enumeración no posee el atributo display.");
+                return "";
+            var displayAttribute = field.GetCustomAttribute<DisplayAttribute>();
+            if (displayAttribute == null)
+                    throw new ArgumentException("Esta enumeración no posee el atributo display.");
 
             return field.GetCustomAttribute<DisplayAttribute>().Name;
         }
