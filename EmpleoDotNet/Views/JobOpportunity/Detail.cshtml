@@ -110,12 +110,12 @@
                         <input type="hidden" id="like-url" value="@Url.Action("Like")" />
                         <a href="#" class="like-job like @disabledClass" title="Me gusta" data-job="@Model.Id" data-like="true" data-canlike="@ViewBag.CanLike.ToString().ToLower()">
                             <i class="fa fa-lg fa-thumbs-o-up"></i>
-                            <span>@Model.JobOpportunityLikes.Count(x => x.Like).FormatThousand()</span>
+                            <span>@Model.Likes.FormatThousand()</span>
                         </a>
                         &nbsp;
                         <a href="#" class="like-job dislike @disabledClass" title="No me gusta" data-job="@Model.Id" data-like="false" data-canlike="@ViewBag.CanLike.ToString().ToLower()">
                             <i class="fa fa-lg fa-thumbs-o-down"></i>
-                            <span>@Model.JobOpportunityLikes.Count(x => !x.Like).FormatThousand()</span>
+                            <span>@Model.DisLikes.FormatThousand()</span>
                         </a>
                     </div>
                 </div>

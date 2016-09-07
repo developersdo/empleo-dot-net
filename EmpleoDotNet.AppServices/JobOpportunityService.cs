@@ -119,6 +119,15 @@ namespace EmpleoDotNet.AppServices
             return _jobOpportunityRepository.JobExists(id);
         }
 
+        public void CreateNewReaction(int jobOpportunityId, bool like)
+        {
+            var job = _jobOpportunityRepository.GetJobOpportunityById(jobOpportunityId);
+            if (job == null) return;
+            if (like) job.Likes++;
+            else job.DisLikes++;
+            _jobOpportunityRepository.SaveChanges();
+        }
+
         public JobOpportunityService(
             IJobOpportunityRepository jobOpportunityRepository,
             IUserProfileRepository userProfileRepository
@@ -127,7 +136,6 @@ namespace EmpleoDotNet.AppServices
             _jobOpportunityRepository = jobOpportunityRepository;
             _userProfileRepository = userProfileRepository;
         }
-
         private readonly IJobOpportunityRepository _jobOpportunityRepository;
         private readonly IUserProfileRepository _userProfileRepository;
     }

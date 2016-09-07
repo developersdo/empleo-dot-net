@@ -26,7 +26,7 @@ namespace EmpleoDotNet.Tests.Services.Twitter
         {
             _sut = new TwitterService();
             _jobOpportunityService = Substitute.For<IJobOpportunityService>();
-            _jobOpportunityController = new JobOpportunityController(_jobOpportunityService, _sut, null);
+            _jobOpportunityController = new JobOpportunityController(_jobOpportunityService, _sut);
         }
  
         [Test]

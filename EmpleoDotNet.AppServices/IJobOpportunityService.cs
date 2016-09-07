@@ -17,5 +17,6 @@ namespace EmpleoDotNet.AppServices
         JobOpportunity GetJobOpportunityById(int? id);
         List<JobCategoryCountDto> GetMainJobCategoriesCount();
         bool JobExists(int id);
+        void CreateNewReaction(int jobOpportunityId, bool like);
     }
 }

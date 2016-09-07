@@ -9,12 +9,9 @@ using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.ViewModel.JobOpportunity;
 using reCAPTCHA.MVC;
 using System;
-using System.Linq;
 using System.Net;
 using EmpleoDotNet.Core.Domain;
-using EmpleoDotNet.ViewModel.JobOpportunityLike;
 using Microsoft.AspNet.Identity;
-using Tweetinvi.Logic.JsonConverters;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -213,29 +210,28 @@ namespace EmpleoDotNet.Controllers
         }
 
         [HttpPost]
-        public JsonResult Like(JobOpportunityLike model)
+        public JsonResult Like(int jobOpportunityId, bool like)
         {
-            var cookieName = GetLikeCookieName(model.JobOpportunityId);
+            var cookieName = GetLikeCookieName(jobOpportunityId);
 
             if (CookieHelper.Exists(cookieName))
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return Json(new { error = true, message = "Ya has votado por este empleo." });
             }
+                     
+            _jobOpportunityService.CreateNewReaction(jobOpportunityId, like);
 
-            _jobOpportunityLikeService.CreateNewLike(model);
+            CookieHelper.Set(cookieName, jobOpportunityId.ToString());
 
-            CookieHelper.Set(cookieName, model.JobOpportunityId.ToString());
-
-            var jobLikeData = _jobOpportunityLikeService.GetLikesByJobOpportunityId(model.JobOpportunityId);
-
-            var jobOpportunityLikeData = new JobOpportunityLikeViewModel
-            {
-                Likes = jobLikeData.Count(x => x.Like),
-                DisLikes = jobLikeData.Count(x => !x.Like)
-            };
-
-            return Json(new { error = false, data = jobOpportunityLikeData });
+            var jobOpportunity = _jobOpportunityService.GetJobOpportunityById(jobOpportunityId);
+            return jobOpportunity == null 
+                ? Json(new { error = true, message = "No se encuentra empleo con el id indicado" }) 
+                : Json(new { error = false, data = new 
+                {
+                    jobOpportunity.Likes,
+                    jobOpportunity.DisLikes
+                }});
         }
 
         /// <summary>
@@ -298,16 +294,13 @@ namespace EmpleoDotNet.Controllers
 
         public JobOpportunityController(
             IJobOpportunityService jobOpportunityService,
-            ITwitterService twitterService,
-            IJobOpportunityLikeService jobOpportunityLikeService)
+            ITwitterService twitterService)
         {
             _jobOpportunityService = jobOpportunityService;
             _twitterService = twitterService;
-            _jobOpportunityLikeService = jobOpportunityLikeService;
         }
 
         private readonly IJobOpportunityService _jobOpportunityService;
         private readonly ITwitterService _twitterService;
-        private readonly IJobOpportunityLikeService _jobOpportunityLikeService;
     }
 }
