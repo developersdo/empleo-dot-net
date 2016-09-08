@@ -112,11 +112,6 @@
                             <i class="fa fa-lg fa-thumbs-o-up"></i>
                             <span>@Model.Likes.FormatThousand()</span>
                         </a>
-                        &nbsp;
-                        <a href="#" class="like-job dislike @disabledClass" title="No me gusta" data-job="@Model.Id" data-like="false" data-canlike="@ViewBag.CanLike.ToString().ToLower()">
-                            <i class="fa fa-lg fa-thumbs-o-down"></i>
-                            <span>@Model.DisLikes.FormatThousand()</span>
-                        </a>
                     </div>
                 </div>
                 <div class="sidebar-widget" id="share">
