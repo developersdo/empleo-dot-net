@@ -31,8 +31,6 @@ namespace EmpleoDotNet.App_Start
 
             Kernel.Bind<ITwitterService>().To<TwitterService>();
 
-            Kernel.Bind<IJobOpportunityLikeService>().To<JobOpportunityLikeService>();
-            Kernel.Bind<IJobOpportunityLikeRepository>().To<JobOpportunityLikeRepository>();
         }
     }
 }

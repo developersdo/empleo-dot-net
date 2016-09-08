@@ -80,11 +80,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IJobOpportunityLikeService.cs" />
     <Compile Include="IJobOpportunityService.cs" />
     <Compile Include="IAuthenticationService.cs" />
     <Compile Include="IUserProfileSocialService.cs" />
-    <Compile Include="JobOpportunityLikeService.cs" />
     <Compile Include="JobOpportunityService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserProfileSocialService.cs" />

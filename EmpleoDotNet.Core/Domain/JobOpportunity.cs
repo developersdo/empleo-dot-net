@@ -66,6 +66,16 @@ namespace EmpleoDotNet.Core.Domain
         public int ViewCount { get; set; }
 
         /// <summary>
+        /// Contador de likes realizados a una publicación
+        /// </summary>
+        public int Likes { get; set; }
+
+        /// <summary>
+        /// Contador de dislikes realizados a una publicación
+        /// </summary>
+        public int DisLikes { get; set; }
+
+        /// <summary>
         /// Especifica si el empleo es Tiempo Completo, Independiente, etc.
         /// </summary>
         public JobType JobType { get; set; }
@@ -107,7 +117,6 @@ namespace EmpleoDotNet.Core.Domain
 
         public Location Location { get; set; }
 
-        public List<JobOpportunityLike> JobOpportunityLikes { get; set; }
 
         #endregion
     }
