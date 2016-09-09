@@ -9,7 +9,6 @@ using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.ViewModel.JobOpportunity;
 using reCAPTCHA.MVC;
 using System;
-using System.Net;
 using EmpleoDotNet.Core.Domain;
 using Microsoft.AspNet.Identity;
 
@@ -60,11 +59,7 @@ namespace EmpleoDotNet.Controllers
             ViewBag.RelatedJobs =
                 _jobOpportunityService.GetCompanyRelatedJobs(jobOpportunityId, jobOpportunity.CompanyName);
 
-            ViewBag.CanLike = !CookieHelper.Exists(GetLikeCookieName(jobOpportunityId));
-
-            var cookieView = $"JobView{jobOpportunity.Id}";
-
-            if (IsJobOpportunityOwner(id) || CookieHelper.Exists(cookieView))
+            if (IsJobOpportunityOwner(id))
             {
                 return jobOpportunity.IsHidden
                     ? View(nameof(Detail), jobOpportunity).WithInfo(Constants.JobDetailWithInfoMessage)
@@ -72,7 +67,6 @@ namespace EmpleoDotNet.Controllers
             }
 
             _jobOpportunityService.UpdateViewCount(jobOpportunity.Id);
-            CookieHelper.Set(cookieView, jobOpportunity.Id.ToString());
 
             return jobOpportunity.IsHidden
                 ? View(nameof(Detail), jobOpportunity).WithInfo(Constants.JobDetailWithInfoMessage)
@@ -209,31 +203,6 @@ namespace EmpleoDotNet.Controllers
             });
         }
 
-        [HttpPost]
-        public JsonResult Like(int jobOpportunityId, bool like)
-        {
-            var cookieName = GetLikeCookieName(jobOpportunityId);
-
-            if (CookieHelper.Exists(cookieName))
-            {
-                Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return Json(new { error = true, message = "Ya has votado por este empleo." });
-            }
-                     
-            _jobOpportunityService.CreateNewReaction(jobOpportunityId, like);
-
-            CookieHelper.Set(cookieName, jobOpportunityId.ToString());
-
-            var jobOpportunity = _jobOpportunityService.GetJobOpportunityById(jobOpportunityId);
-            return jobOpportunity == null 
-                ? Json(new { error = true, message = "No se encuentra empleo con el id indicado" }) 
-                : Json(new { error = false, data = new 
-                {
-                    jobOpportunity.Likes,
-                    jobOpportunity.DisLikes
-                }});
-        }
-
         /// <summary>
         /// Transform JobOpportunityPagingParameter into JobOpportunitySearchViewModel with Locations
         /// </summary>
@@ -261,11 +230,6 @@ namespace EmpleoDotNet.Controllers
             };
 
             return viewModel;
-        }
-
-        private static string GetLikeCookieName(int jobOpportunityId)
-        {
-            return $"JobLike{jobOpportunityId}";
         }
 
         private static int GetIdFromTitle(string title)

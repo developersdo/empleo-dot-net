@@ -437,7 +437,6 @@
     <Content Include="Scripts\i18n\zh-CN.js" />
     <Content Include="Scripts\i18n\zh-TW.js" />
     <None Include="Scripts\jquery-1.11.2.intellisense.js" />
-    <Content Include="Scripts\JobOpportunity\Likes.js" />
     <Content Include="Scripts\JobOpportunity\New.js" />
     <Content Include="Scripts\JobOpportunity\Wizard.js" />
     <Content Include="Scripts\jquery-1.11.2.js" />
