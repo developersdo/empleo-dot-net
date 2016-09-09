@@ -103,6 +103,7 @@ namespace EmpleoDotNet.Core.Domain
         /// </summary>
         public bool IsHidden { get; set; }
 
+       
         #endregion
 
         #region Navegation Properties

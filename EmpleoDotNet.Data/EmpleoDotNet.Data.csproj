@@ -137,9 +137,9 @@
     <Compile Include="Migrations\201609072254503_RemoveJobOpportunityLikeTableForLikeAndDislikeColumns.Designer.cs">
       <DependentUpon>201609072254503_RemoveJobOpportunityLikeTableForLikeAndDislikeColumns.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201609091929562_AddedSecurityTables.cs" />
-    <Compile Include="Migrations\201609091929562_AddedSecurityTables.Designer.cs">
-      <DependentUpon>201609091929562_AddedSecurityTables.cs</DependentUpon>
+    <Compile Include="Migrations\201609092119213_AddedRoles.cs" />
+    <Compile Include="Migrations\201609092119213_AddedRoles.Designer.cs">
+      <DependentUpon>201609092119213_AddedRoles.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -203,8 +203,8 @@
     <EmbeddedResource Include="Migrations\201609072254503_RemoveJobOpportunityLikeTableForLikeAndDislikeColumns.resx">
       <DependentUpon>201609072254503_RemoveJobOpportunityLikeTableForLikeAndDislikeColumns.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201609091929562_AddedSecurityTables.resx">
-      <DependentUpon>201609091929562_AddedSecurityTables.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609092119213_AddedRoles.resx">
+      <DependentUpon>201609092119213_AddedRoles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

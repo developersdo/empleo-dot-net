@@ -7,13 +7,13 @@ namespace EmpleoDotNet.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddedSecurityTables : IMigrationMetadata
+    public sealed partial class AddedRoles : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedSecurityTables));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedRoles));
         
         string IMigrationMetadata.Id
         {
-            get { return "201609091929562_AddedSecurityTables"; }
+            get { return "201609092119213_AddedRoles"; }
         }
         
         string IMigrationMetadata.Source
