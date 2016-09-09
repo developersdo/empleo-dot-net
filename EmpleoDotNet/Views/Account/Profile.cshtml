@@ -36,7 +36,7 @@
                     <div>
                         <h2>Mis ofertas de empleo</h2>
                     </div>
-                    @if (Model.JobOpportunities.Any())
+                    @if (Model.JobOpportunities != null && Model.JobOpportunities.Any())
                     {
                         <link href = "/Content/toggleButton.css" rel = "stylesheet" />
                         @Html.Partial("_JobListPartial", Model.JobOpportunities)
