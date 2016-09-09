@@ -21,7 +21,7 @@ namespace EmpleoDotNet.Services
         public AuthenticationService(
             IUserProfileRepository userProfileRepository, 
             IUserProfileSocialService userProfileSocialService,
-            UserManager<IdentityUser> userManager )
+            UserManager<IdentityUser> userManager)
         {
             _userProfileRepository = userProfileRepository;
             _userProfileSocialService = userProfileSocialService;
@@ -41,12 +41,17 @@ namespace EmpleoDotNet.Services
         public IdentityUser CreateUserWithSocialProvider(UserLoginInfo login, ClaimsIdentity identity)
         {
             var userProfile = _userProfileSocialService.GetFromSocialProvider(login.LoginProvider, identity);
+            if (string.IsNullOrEmpty(userProfile.Email))
+            {
+                throw new Exception("Debes proveer un correo para crear tu cuenta.");
+            }
             var user = new IdentityUser(GenerateUserName())
             {
                 Email = userProfile.Email
             };
 
             var userCreationResult = _userManager.Create(user);
+            _userManager.AddToRole(user.Id, "Client");
             if (userCreationResult.Succeeded)
             {
                 var userLoginResult = _userManager.AddLogin(user.Id, login);

@@ -22,16 +22,29 @@
 
             var like = $link.data('like');
 
-            var req = $.post(likeUrl, { jobOpportunityId: $link.data('job'), like: like });
+            var antiForgeryToken = $("input[name=__RequestVerificationToken]").val();
 
-            req.success(function (response) {
-                updateLikesCount($link, (like ? response.data.Likes : response.data.DisLikes));
-                disableLinks();
+            var req = $.post(likeUrl, { jobOpportunityId: $link.data('job'), like: like, __RequestVerificationToken: antiForgeryToken });
+
+            req.success(function (response, textStatus, request) {
+                console.log(textStatus);
+                console.log(request);
+                var header = request.getResponseHeader("X-Responded-JSON");
+                console.log(header);
+                if (typeof(header) !== 'undefined') {
+                    var headerJson = JSON.parse(header);
+                    if (headerJson.status == "401") {
+                        alert("Debes iniciar sesion para poder dar like a los empleos");
+                    }
+                }else{
+                    updateLikesCount($link, (like ? response.data.Likes : response.data.DisLikes));
+                    disableLinks();
+                }
             });
-
+            console.log(req);
             req.fail(function (response) {
                 // TODO: Find a better way to show this message.
-                alert(response.responseJSON.message);
+                alert("Ha ocurrido un error, disculpa los inconvenientes");
             });
         }
     };
