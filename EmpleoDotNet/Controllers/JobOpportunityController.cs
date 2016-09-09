@@ -209,7 +209,7 @@ namespace EmpleoDotNet.Controllers
             });
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken, Authorize]
         public JsonResult Like(int jobOpportunityId, bool like)
         {
             var cookieName = GetLikeCookieName(jobOpportunityId);

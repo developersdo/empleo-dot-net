@@ -21,6 +21,8 @@ namespace EmpleoDotNet.Data
         }
 
         //Tablas
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Permission> Permission { get; set; }
         public DbSet<JobOpportunity> JobOpportunities { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<JoelTest> JoelTest { get; set; }

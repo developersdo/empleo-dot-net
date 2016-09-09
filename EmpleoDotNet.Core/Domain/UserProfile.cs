@@ -14,5 +14,7 @@ namespace EmpleoDotNet.Core.Domain
         public string Email { get; set; }
 
         public virtual IList<JobOpportunity> JobOpportunities { get; set; }
+
+        public ICollection<Role> Roles { get; set; }
     }
 }
