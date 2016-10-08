@@ -55,7 +55,7 @@ namespace EmpleoDotNet.Helpers
                         Selected = e.Equals(meta.Model)
                     });
 
-            return helper.DropDownListFor(expression, items, string.Empty, htmlAttributes);
+            return helper.DropDownListFor(expression, items, htmlAttributes);
         }
 
     }
