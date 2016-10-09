@@ -88,14 +88,14 @@
             }
             <div class="row">
                 <p class="search-job-label">
-                    <strong>Keywords :</strong>
+                    <strong>Sugerencias :</strong>
                     @foreach (var keyword in keywords)
                     {
                         <span class="search-job-label-item"><a href="@keyword.Link">@keyword.Description</a></span>
                     }
                 </p>
                 <p class="search-job-label">
-                    <strong>Categorias :</strong>
+                    <strong>Categorías :</strong>
                     @foreach (var category in Model.CategoriesCount)
                     {
                         <span class="search-job-label-item"><a href="@Url.Action("Index", "JobOpportunity", new { category.JobCategory })">@category.JobCategory.ToEnumDescription() <span class="badge">@category.Count</span> </a></span>
