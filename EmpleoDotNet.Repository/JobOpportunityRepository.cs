@@ -77,7 +77,7 @@ namespace EmpleoDotNet.Repository
         /// </summary>
         /// <param name="parameter">Objeto con los parametros necesarios para realizar la consulta.</param>
         /// <returns>Objeto que representa una lista de datos paginados</returns>
-        public IPagedList<JobOpportunity> GetAllJobOpportunitiesPagedByFilters(JobOpportunityPagingParameter parameter)
+        public IPagedList<JobOpportunity> GetAllJobOpportunitiesPagedByFilters(JobOpportunityPagingParameters parameter)
         {
             IPagedList<JobOpportunity> result = new PagedList<JobOpportunity>(null, 1, 15);
 

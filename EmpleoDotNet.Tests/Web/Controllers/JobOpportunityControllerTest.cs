@@ -45,7 +45,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
         public void Index_LocationNameNotNull_PlaceIdNull_ReturnsViewWithError()
         {
             // Arrange
-            var param = new JobOpportunityPagingParameter {
+            var param = new JobOpportunityPagingParameters {
                 SelectedLocationPlaceId = null,
                 SelectedLocationName = "Guachupita",
                 JobCategory = JobCategory.All,
@@ -86,7 +86,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
         public void Index_ReturnsRequestedDataCorrectly_LocationEmpty()
         {
             // Arrange
-            var param = new JobOpportunityPagingParameter {
+            var param = new JobOpportunityPagingParameters {
                 SelectedLocationName = string.Empty,
                 SelectedLocationLatitude = "18.686868",
                 SelectedLocationLongitude = "-69.454545",
@@ -127,7 +127,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
         public void Index_ReturnsRequestedDataCorrectly_LocationNotEmpty()
         {
             // Arrange
-            var param = new JobOpportunityPagingParameter {
+            var param = new JobOpportunityPagingParameters {
                 SelectedLocationName = "Santo Domingo",
                 SelectedLocationLatitude = "18.686868",
                 SelectedLocationLongitude = "-69.454545",
