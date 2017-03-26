@@ -13,7 +13,7 @@ namespace EmpleoDotNet.AppServices
         void UpdateViewCount(int id);
         void ToggleHideState(JobOpportunity jobOpportunity);
         List<JobOpportunity> GetCompanyRelatedJobs(int id, string name);
-        IPagedList<JobOpportunity> GetAllJobOpportunitiesPagedByFilters(JobOpportunityPagingParameter parameter);
+        IPagedList<JobOpportunity> GetAllJobOpportunitiesPagedByFilters(JobOpportunityPagingParameters parameter);
         JobOpportunity GetJobOpportunityById(int? id);
         List<JobCategoryCountDto> GetMainJobCategoriesCount();
         bool JobExists(int id);

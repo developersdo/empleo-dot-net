@@ -140,6 +140,9 @@
     <Compile Include="Migrations\201609092119213_AddedRoles.cs" />
     <Compile Include="Migrations\201609092119213_AddedRoles.Designer.cs">
       <DependentUpon>201609092119213_AddedRoles.cs</DependentUpon>
+    <Compile Include="Migrations\201703261942403_FixSomeJoelTestFields.cs" />
+    <Compile Include="Migrations\201703261942403_FixSomeJoelTestFields.Designer.cs">
+      <DependentUpon>201703261942403_FixSomeJoelTestFields.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -205,6 +208,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609092119213_AddedRoles.resx">
       <DependentUpon>201609092119213_AddedRoles.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703261942403_FixSomeJoelTestFields.resx">
+      <DependentUpon>201703261942403_FixSomeJoelTestFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

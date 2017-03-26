@@ -17,7 +17,7 @@ namespace EmpleoDotNet.Controllers
 {
     public class JobOpportunityController : EmpleoDotNetController
     {
-        public ActionResult Index(JobOpportunityPagingParameter model)
+        public ActionResult Index(JobOpportunityPagingParameters model)
         {
             var viewModel = GetSearchViewModel(model);
 
@@ -239,7 +239,7 @@ namespace EmpleoDotNet.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        private JobOpportunitySearchViewModel GetSearchViewModel(JobOpportunityPagingParameter model)
+        private JobOpportunitySearchViewModel GetSearchViewModel(JobOpportunityPagingParameters model)
         {
             if (string.IsNullOrWhiteSpace(model.SelectedLocationName))
             {

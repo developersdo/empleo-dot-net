@@ -53,12 +53,12 @@ namespace EmpleoDotNet.AppServices
                     : existingJob.JoelTest;
 
                 existingJob.JoelTest.HasBestTools = updatedJob.JoelTest.HasBestTools;
-                existingJob.JoelTest.HasBugDatabase = updatedJob.JoelTest.HasBugDatabase;
-                existingJob.JoelTest.HasBusFixedBeforeProceding = updatedJob.JoelTest.HasBusFixedBeforeProceding;
+                existingJob.JoelTest.HasBugsDatabase = updatedJob.JoelTest.HasBugsDatabase;
+                existingJob.JoelTest.HasBugsFixedBeforeProceding = updatedJob.JoelTest.HasBugsFixedBeforeProceding;
                 existingJob.JoelTest.HasDailyBuilds = updatedJob.JoelTest.HasDailyBuilds;
                 existingJob.JoelTest.HasHallwayTests = updatedJob.JoelTest.HasHallwayTests;
                 existingJob.JoelTest.HasOneStepBuilds = updatedJob.JoelTest.HasOneStepBuilds;
-                existingJob.JoelTest.HasQuiteEnvironment = updatedJob.JoelTest.HasQuiteEnvironment;
+                existingJob.JoelTest.HasQuietEnvironment = updatedJob.JoelTest.HasQuietEnvironment;
                 existingJob.JoelTest.HasSourceControl = updatedJob.JoelTest.HasSourceControl;
                 existingJob.JoelTest.HasSpec = updatedJob.JoelTest.HasSpec;
                 existingJob.JoelTest.HasTesters = updatedJob.JoelTest.HasTesters;
@@ -89,7 +89,7 @@ namespace EmpleoDotNet.AppServices
             return result;
         }
 
-        public IPagedList<JobOpportunity> GetAllJobOpportunitiesPagedByFilters(JobOpportunityPagingParameter parameter)
+        public IPagedList<JobOpportunity> GetAllJobOpportunitiesPagedByFilters(JobOpportunityPagingParameters parameter)
         {
             return _jobOpportunityRepository.GetAllJobOpportunitiesPagedByFilters(parameter);
         }
