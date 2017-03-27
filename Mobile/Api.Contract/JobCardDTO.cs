@@ -8,7 +8,7 @@ namespace Api.Contract
 
 		public string Job{ get; set; }
 
-		public string Employee{ get; set; }
+		public string CompanyName{ get; set; }
 
 		public string JobType{ get; set; }
 
