@@ -10,6 +10,7 @@ namespace EmpleoDotNet.WebAPI.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using System.Reflection;
 
     public static class NinjectWebCommon 
     {
@@ -61,6 +62,7 @@ namespace EmpleoDotNet.WebAPI.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Load(Assembly.GetExecutingAssembly());
         }        
     }
 }

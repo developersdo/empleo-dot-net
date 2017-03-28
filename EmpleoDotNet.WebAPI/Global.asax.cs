@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EmpleoDotNet.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +19,9 @@ namespace EmpleoDotNet.WebAPI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            // Avoid EF telling the model changed
+            System.Data.Entity.Database.SetInitializer<EmpleadoContext>(null);
         }
     }
 }

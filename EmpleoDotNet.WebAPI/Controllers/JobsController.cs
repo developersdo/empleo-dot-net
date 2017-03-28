@@ -25,7 +25,6 @@ namespace EmpleoDotNet.WebAPI.Controllers
             return Json(jobCards);
         }
 
-        [Route("jobs/{id}")]
         public IHttpActionResult GetJobDetails(string id)
         {
             int jobId = 0;
