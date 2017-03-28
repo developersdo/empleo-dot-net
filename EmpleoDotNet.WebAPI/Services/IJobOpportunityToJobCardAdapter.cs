@@ -16,7 +16,8 @@ namespace EmpleoDotNet.WebAPI.Services
             var jobCard = new JobCardDTO();
             jobCard.CompanyName = jobOpportunity.CompanyName;
             jobCard.IsRemote = jobOpportunity.IsRemote;
-            jobCard.Job = jobOpportunity.JobType.GetDisplayName();
+            jobCard.Job = jobOpportunity.Description;
+            jobCard.JobType = jobOpportunity.JobType.GetDisplayName();
             jobCard.Link = jobOpportunity.Id.ToString();
             jobCard.Location = jobOpportunity.Location != null ? jobOpportunity.Location.Name : "N/A";
 
