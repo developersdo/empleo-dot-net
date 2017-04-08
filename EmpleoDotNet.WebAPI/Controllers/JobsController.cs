@@ -32,7 +32,7 @@ namespace EmpleoDotNet.WebAPI.Controllers
             var job = _jobsService.GetJobOpportunityById(jobId);
             var jobCard = _adapter.Convert(job);
 
-            return Json(job);
+            return Json(jobCard);
         }
 
         private IEnumerable<JobCardDTO> GetJobCards(int page, int pageSize)
