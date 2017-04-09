@@ -94,7 +94,7 @@ namespace EmpleoDotNet.Repository
                 .Include(x => x.JobOpportunityLocation);
 
             jobs = jobs
-                .OrderByDescending(x => x.Id);
+                .OrderByDescending(x => x.PublishedDate);
             
             //Filter by JobCategory
             if(parameter.JobCategory!= JobCategory.None)
