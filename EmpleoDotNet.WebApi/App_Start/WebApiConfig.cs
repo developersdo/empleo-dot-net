@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace EmpleoDotNet.WebApi
 {
@@ -17,7 +14,7 @@ namespace EmpleoDotNet.WebApi
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                defaults: new { controller = "Jobs", action = "Index", id = RouteParameter.Optional }
             );
         }
     }
