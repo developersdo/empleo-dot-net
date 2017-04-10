@@ -35,7 +35,7 @@ namespace EmpleoDotNet.WebAPI.Services
             jobDetails.JobTitle = jobOpportunity.Title;
             jobDetails.JobType = jobOpportunity.JobType.GetDisplayName();
             jobDetails.Link = jobOpportunity.Id.ToString();
-            jobDetails.Location = jobOpportunity.Location?.Name;
+            jobDetails.Location = jobOpportunity.Location != null ? jobOpportunity.Location.Name : "N/A";
             jobDetails.Visits = jobOpportunity.ViewCount;
 
             return jobDetails;

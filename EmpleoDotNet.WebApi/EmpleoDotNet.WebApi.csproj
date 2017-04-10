@@ -216,7 +216,7 @@
     </Compile>
     <Compile Include="Helpers\EnumExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IJobOpportunityToJobCardAdapter.cs" />
+    <Compile Include="Services\IJobOpportunityToMobileJobAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
