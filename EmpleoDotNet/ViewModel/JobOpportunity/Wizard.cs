@@ -65,10 +65,10 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
         public bool HasDailyBuilds { get; set; }
 
         [Display(Name = "¿Tienen una base de datos de bugs?")]
-        public bool HasBugDatabase { get; set; }
+        public bool HasBugsDatabase { get; set; }
 
         [Display(Name = "¿Corriges los bugs antes de añadir más código?")]
-        public bool HasBusFixedBeforeProceding { get; set; }
+        public bool HasBugsFixedBeforeProceding { get; set; }
 
         [Display(Name = "¿Tienes una planificación actualizada?")]
         public bool HasUpToDateSchedule { get; set; }
@@ -77,7 +77,7 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
         public bool HasSpec { get; set; }
 
         [Display(Name = "¿Están los programadores en un lugar tranquilo?")]
-        public bool HasQuiteEnvironment { get; set; }
+        public bool HasQuietEnvironment { get; set; }
 
         [Display(Name = "¿Utilizas las mejores herramientas que puedes comprar?")]
         public bool HasBestTools { get; set; }
@@ -113,11 +113,11 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
                     HasSourceControl = this.HasSourceControl,
                     HasOneStepBuilds = this.HasOneStepBuilds,
                     HasDailyBuilds = this.HasDailyBuilds,
-                    HasBugDatabase = this.HasBugDatabase,
-                    HasBusFixedBeforeProceding = this.HasBusFixedBeforeProceding,
+                    HasBugsDatabase = this.HasBugsDatabase,
+                    HasBugsFixedBeforeProceding = this.HasBugsFixedBeforeProceding,
                     HasUpToDateSchedule = this.HasUpToDateSchedule,
                     HasSpec = this.HasSpec,
-                    HasQuiteEnvironment = this.HasQuiteEnvironment,
+                    HasQuietEnvironment = this.HasQuietEnvironment,
                     HasBestTools = this.HasBestTools,
                     HasTesters = this.HasTesters,
                     HasWrittenTest = this.HasWrittenTest,
@@ -167,11 +167,11 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
                 wizard.HasSourceControl = entity.JoelTest.HasSourceControl;
                 wizard.HasOneStepBuilds = entity.JoelTest.HasOneStepBuilds;
                 wizard.HasDailyBuilds = entity.JoelTest.HasDailyBuilds;
-                wizard.HasBugDatabase = entity.JoelTest.HasBugDatabase;
-                wizard.HasBusFixedBeforeProceding = entity.JoelTest.HasBusFixedBeforeProceding;
+                wizard.HasBugsDatabase = entity.JoelTest.HasBugsDatabase;
+                wizard.HasBugsFixedBeforeProceding = entity.JoelTest.HasBugsFixedBeforeProceding;
                 wizard.HasUpToDateSchedule = entity.JoelTest.HasUpToDateSchedule;
                 wizard.HasSpec = entity.JoelTest.HasSpec;
-                wizard.HasQuiteEnvironment = entity.JoelTest.HasQuiteEnvironment;
+                wizard.HasQuietEnvironment = entity.JoelTest.HasQuietEnvironment;
                 wizard.HasBestTools = entity.JoelTest.HasBestTools;
                 wizard.HasTesters = entity.JoelTest.HasTesters;
                 wizard.HasWrittenTest = entity.JoelTest.HasWrittenTest;

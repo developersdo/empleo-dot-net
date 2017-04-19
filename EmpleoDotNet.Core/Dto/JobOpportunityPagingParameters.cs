@@ -4,9 +4,9 @@ using EmpleoDotNet.Core.Domain;
 namespace EmpleoDotNet.Core.Dto
 {
     /// <summary>
-    /// Parametro para realizar la consulta de empleos paginada por Ubicacion
+    /// Parametros para realizar la consulta de empleos paginada por Ubicacion
     /// </summary>
-    public class JobOpportunityPagingParameter
+    public class JobOpportunityPagingParameters
     {
         public string Keyword { get; set; }
         public string SelectedLocationPlaceId { get; set; } = string.Empty;

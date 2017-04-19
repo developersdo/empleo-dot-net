@@ -53,7 +53,7 @@
     <Compile Include="Domain\Role.cs" />
     <Compile Include="Domain\UserProfile.cs" />
     <Compile Include="Dto\JobCategoryCountDto.cs" />
-    <Compile Include="Dto\JobOpportunityPagingParameter.cs" />
+    <Compile Include="Dto\JobOpportunityPagingParameters.cs" />
     <Compile Include="Dto\PagedResult.cs" />
     <Compile Include="Dto\RelatedJobDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
