@@ -16,24 +16,14 @@ namespace EmpleoDotNet.Core.Dto
         public decimal LocationDistance { get; set; } = 15M;
         public int PageSize { get; set; } = 15;
         public int Page { get; set; } = 1;
-        public JobCategory JobCategory { get; set; } = JobCategory.Invalid;
+        public JobCategory JobCategory { get; set; } = JobCategory.None;
         public bool IsRemote { get; set; }
 
         public bool HasFilters
         {
             get
             {
-                var result = false;
-
-                if (JobCategory != JobCategory.All && JobCategory != JobCategory.Invalid)
-                    result = true;
-
-                if (!string.IsNullOrWhiteSpace(Keyword))
-                    result = true;
-
-                if (IsRemote)
-                    result = true;
-
+                var result = !string.IsNullOrWhiteSpace(Keyword) || IsRemote;
                 return result;
             }
         }

@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using EmpleoDotNet.AppServices;
-using EmpleoDotNet.Core.Domain;
-using EmpleoDotNet.Data;
-using EmpleoDotNet.Helpers.Alerts;
-using EmpleoDotNet.Repository;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
@@ -89,7 +84,7 @@ namespace EmpleoDotNet.Controllers
                     user = _authenticationService.CreateUserWithSocialProvider(login, result.Identity);
                     await SignInAsync(user, isPersistent: false).ConfigureAwait(false);
 
-                    return RedirectToAction("Profile", new { returnUrl });
+                    return RedirectToAction("Profile", new {returnUrl});
                 }
                 catch (Exception ex)
                 {
@@ -213,7 +208,7 @@ namespace EmpleoDotNet.Controllers
 
         public ActionResult Profile()
         {
-            var user = _userProfileRepository.GetByUserId(this.User.Identity.GetUserId());
+            var user = _userProfileRepository.GetByUserId(User.Identity.GetUserId());
 
             return View(user);
         }

@@ -16,14 +16,14 @@ namespace Android
 
 		public async Task RemoveObject(string key)
 		{
-			await BlobCache.LocalMachine.Invalidate(key);
+			await BlobCache.UserAccount.Invalidate(key);
 		}
 
 		public async Task<T> GetObject<T>(string key)
 		{
 			try
 			{
-				return await BlobCache.LocalMachine.GetObject<T>(key);
+				return await BlobCache.UserAccount.GetObject<T>(key);
 			}
 			catch (KeyNotFoundException)
 			{
@@ -31,9 +31,9 @@ namespace Android
 			}
 		}
 
-		public async Task InsertObject<T>(string key, T value)
+		public async Task InsertObject<T>(string key, T value, DateTimeOffset? expiration = default(DateTimeOffset?))
 		{
-			await BlobCache.LocalMachine.InsertObject(key, value);
+			await BlobCache.UserAccount.InsertObject(key, value, expiration);
 		}
 	}
 }

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Microsoft.Ajax.Utilities;
 
 namespace EmpleoDotNet.Helpers
 {
@@ -61,6 +63,7 @@ namespace EmpleoDotNet.Helpers
             }
             return string.Empty;
         }
+        /// <summary>
         /// Obtener de las dos primemras palabras su primera letra. Sí el texto solo posee una palabra solo se retorna la primera letra de la misma
         /// </summary>
         /// <param name="helper">Variable de extensión</param>
@@ -68,7 +71,7 @@ namespace EmpleoDotNet.Helpers
         /// <returns>HtmlString</returns>
         public static IHtmlString FirstTwoLetters(this HtmlHelper helper, string value)
         {
-            var splited = value.Split(' ');
+            var splited = Regex.Split(value, @"[_+-.,!@#$%^&*();\/|<> ]|[0-9]");
             var result = string.Empty;
 
             foreach (var currentValue in splited)

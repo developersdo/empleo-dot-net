@@ -1,6 +1,16 @@
 ﻿<Properties StartupItem="Android/Android.csproj" RefactoringSettings.EnableRefactorings="True">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.TA98907SVL" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.Nexus 10 (KitKat)" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="APIs/Proxy/HttpProxy.cs">
+    <Files>
+      <File FileName="APIs/JobsApiService.cs" Line="18" Column="3" />
+      <File FileName="APIs/Proxy/HttpProxy.cs" Line="41" Column="34" />
+      <File FileName="APIs/Constants.cs" Line="8" Column="52" />
+      <File FileName="Android/MainPage/Tabs/JobList/JobsFragment.cs" Line="59" Column="66" />
+      <File FileName="Android/MainPage/Tabs/JobList/JobsFragmentViewModel.cs" Line="85" Column="4" />
+      <File FileName="Api.Contract/IJobsApiService.cs" Line="10" Column="23" />
+      <File FileName="APIs/Proxy/IProxy.cs" Line="13" Column="27" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

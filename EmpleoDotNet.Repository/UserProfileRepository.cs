@@ -18,7 +18,7 @@ namespace EmpleoDotNet.Repository
 
         public UserProfile GetByUserId(string userId)
         {
-            return DbSet.Where(x => x.UserId == userId).Include(x=>x.JobOpportunities).FirstOrDefault();
+            return DbSet.FirstOrDefault(x => x.UserId == userId);
         }
     }
 }

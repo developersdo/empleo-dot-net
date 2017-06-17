@@ -37,7 +37,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
         {
             _jobOpportunityService = Substitute.For<IJobOpportunityService>();
             _twitterService = Substitute.For<ITwitterService>();
-            _sut = new JobOpportunityController(_jobOpportunityService, _twitterService, null);
+            _sut = new JobOpportunityController(_jobOpportunityService, _twitterService);
         }
 
         #region Index
@@ -48,7 +48,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             var param = new JobOpportunityPagingParameter {
                 SelectedLocationPlaceId = null,
                 SelectedLocationName = "Guachupita",
-                JobCategory = JobCategory.All,
+                JobCategory = JobCategory.None,
                 Keyword = "myKeyword",
                 IsRemote = true
             };
@@ -91,7 +91,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
                 SelectedLocationLatitude = "18.686868",
                 SelectedLocationLongitude = "-69.454545",
                 SelectedLocationPlaceId = "111",
-                JobCategory = JobCategory.All,
+                JobCategory = JobCategory.None,
                 Keyword = "myKeyword",
                 IsRemote = true
             };
@@ -132,7 +132,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
                 SelectedLocationLatitude = "18.686868",
                 SelectedLocationLongitude = "-69.454545",
                 SelectedLocationPlaceId = "111",
-                JobCategory = JobCategory.All,
+                JobCategory = JobCategory.None,
                 Keyword = "myKeyword",
                 IsRemote = true
             };
@@ -194,7 +194,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             var result = (AlertDecoratorResult)_sut.New();
 
             // Assert
-            result.AlertClass.Should().Be("alert-info");
+            result.AlertClass.Should().Be("alert-warning");
             result.Message.Should().Be(
                 "Prueba nuestro nuevo proceso guiado de creación de posiciones haciendo "
                 + "<b><a href='/jobs/wizard'>click aquí</a></b>");
@@ -231,14 +231,14 @@ namespace EmpleoDotNet.Tests.Web.Controllers
         {
             // Arrange
             var model = new NewJobOpportunityViewModel();
+            
             _sut.ModelState.AddModelError("", "");
 
             // Act
             var result = (AlertDecoratorResult)await _sut.New(model, false);
-
             // Assert
             _jobOpportunityService.DidNotReceiveWithAnyArgs().CreateNewJobOpportunity(null, string.Empty);
-            await _twitterService.DidNotReceiveWithAnyArgs().PostNewJobOpportunity(null);
+            await _twitterService.DidNotReceiveWithAnyArgs().PostNewJobOpportunity(null, _sut.Url);
 
             _sut.ModelState.IsValid.Should().BeFalse();
 
@@ -263,7 +263,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
 
             // Assert
             _jobOpportunityService.DidNotReceiveWithAnyArgs().CreateNewJobOpportunity(null,string.Empty);
-            await _twitterService.DidNotReceiveWithAnyArgs().PostNewJobOpportunity(null);
+            await _twitterService.DidNotReceiveWithAnyArgs().PostNewJobOpportunity(null, _sut.Url);
 
             _sut.ModelState.IsValid.Should().BeFalse();
             _sut.ModelState.Should().ContainKey(nameof(model.LocationName));
@@ -286,7 +286,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
                 Description = "My description",
                 CompanyName = "Company",
                 CompanyUrl = "http://example.com",
-                CompanyLogoUrl = "http://example.com/logo.png",
+                CompanyLogoUrl = "http://s22.postimg.org/ogi7669wh/batman.png",
                 CompanyEmail = "company@example.com",
                 IsRemote = true,
                 LocationName = "My location",
@@ -306,7 +306,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             _jobOpportunityService.Received(1).CreateNewJobOpportunity(
                 Arg.Do<JobOpportunity>(entity => VerifyGeneratedJobOpportunityEntity(model, entity)), null);
             await _twitterService.Received(1).PostNewJobOpportunity(
-                Arg.Do<JobOpportunity>(entity => VerifyGeneratedJobOpportunityEntity(model, entity)));
+                Arg.Do<JobOpportunity>(entity => VerifyGeneratedJobOpportunityEntity(model, entity)), _sut.Url);
 
             result.RouteValues["action"].Should().Be(nameof(_sut.Detail));
             result.RouteValues["id"].Should().Be(UrlHelperExtensions.SeoUrl(1, "myTitle"));

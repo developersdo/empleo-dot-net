@@ -2,28 +2,46 @@
 using Api.Contract;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Refit;
 using APIs;
+using System.Threading;
 
 namespace Api
 {
 	public class JobsApiService : IJobsApiService
 	{
-		IJobsApiService _jobsAPi;
+		IProxy _proxy;
 
-		public JobsApiService ()
+		public JobsApiService (IProxy proxy)
 		{
-			_jobsAPi = RestService.For<IJobsApiService> (Constants.Endpoint);
+			_proxy = proxy;
 		}
 
-		public async Task<JobCardListResponse> GetCardJobs (int limit = 25)
+		public async Task<JobCardListResponse> GetCardJobs (int page = 1, int pageSize = 25, CancellationToken token = default(CancellationToken))
 		{
-			return await _jobsAPi.GetCardJobs();
+			var result = await _proxy.Get<JobCardListResponse>(Constants.JobsEndpoint, Method.GET, token: token);
+
+			return result.Result;
 		}
 
-		public async Task<JobDetailResponse> GetJobDetailForId (string id)
+		public async Task<JobDetailResponse> GetJobDetailForId (string id, CancellationToken token)
 		{
-			return await _jobsAPi.GetJobDetailForId(id);
+			var result = await _proxy.Get<JobDetailResponse>(Constants.JobsEndpoint, Method.GET, 
+				new List<Parameter>
+				{
+					new Parameter
+					{
+						Property = "title",
+						Value = "demo"
+					},
+					new Parameter
+					{
+						Property = "id",
+						Value = "4035"
+					}
+				}
+				,token: token);
+
+			return result.Result;
 		}
 	}
 }

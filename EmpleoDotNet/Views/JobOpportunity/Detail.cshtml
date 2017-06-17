@@ -1,6 +1,7 @@
 ﻿@using System.Text.RegularExpressions
 @using EmpleoDotNet.Core.Domain
 @using EmpleoDotNet.Helpers
+@using Microsoft.AspNet.Identity;
 
 @model JobOpportunity
 @{
@@ -13,6 +14,7 @@
     @Scripts.Render("~/Scripts/JobOpportunity/Likes.js")
 }
 
+@Html.AntiForgeryToken()
 <section id="title">
     <div class="container">
         <div class="row">
@@ -23,12 +25,13 @@
                     {
                         <h5><i class="fa fa-map-marker"></i> N/A</h5>
                     }
-                    else {
+                    else
+                    {
                         <h5><i class="fa fa-map-marker"></i> @Model.JobOpportunityLocation.Name</h5>
                     }
 
                     <h5><i class="fa fa-cog"></i> @Model.Category.ToEnumDescription()</h5>
-                    
+
                     @if (Model.IsRemote)
                     {
                         <h5><i class="fa fa-globe"></i> Remoto</h5>
@@ -57,12 +60,11 @@
                             @Html.Raw(Model.HowToApply)
                         </article>
                     }
-                    else {
-                        <p>
-                            Enviar CV <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a>
-                        </p>
-                    }
-                   
+
+                    <p>
+                        Enviar CV a <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a>, recuerda agregar tu cover letter.
+                    </p>
+
                 </article>
                 <article>
                     @if (Model.JoelTest != null)
@@ -72,6 +74,34 @@
                 </article>
             </div>
             <div class="col-sm-4" id="sidebar">
+                @if (Model.UserProfile?.UserId == User.Identity.GetUserId())
+                {
+                    var titleUrl = UrlHelperExtensions.SeoUrl(Model.Id, Model.Title);
+                    <div class="sidebar-widget">
+                        <h2>Administración</h2>
+                        <div>
+                            @if (Model.IsHidden)
+                            {
+                                <button data-href="@Url.Action("ToggleHide", "JobOpportunity")" data-title="@titleUrl"
+                                        class="btn btn-admin btn-toggle-hide" id="switch-btn">
+                                    Mostrar
+                                </button>
+                            }
+                            else
+                            {
+                                <button data-href="@Url.Action("ToggleHide", "JobOpportunity")" data-title="@titleUrl"
+                                        class="btn btn-admin btn-toggle-show" id="switch-btn">
+                                    Ocultar
+                                </button>
+                            }
+
+                            <a href="@Url.Action("Edit", "JobOpportunity", new {title = titleUrl})"
+                               class="btn btn-admin btn-primary">Editar</a>
+                            <a class="btn btn-admin btn-danger" data-href="@Url.Action("Delete", "JobOpportunity", new {title = titleUrl, returnPrevious = false})"
+                               id="delete-btn" data-toggle="modal" data-target="#confirm-delete" data-title="@Model.Title">Borrar</a>
+                        </div>
+                    </div>
+                }
                 <div class="sidebar-widget" id="likes">
                     <h2>Likes</h2>
                     <div>
@@ -81,12 +111,7 @@
                         <input type="hidden" id="like-url" value="@Url.Action("Like")" />
                         <a href="#" class="like-job like @disabledClass" title="Me gusta" data-job="@Model.Id" data-like="true" data-canlike="@ViewBag.CanLike.ToString().ToLower()">
                             <i class="fa fa-lg fa-thumbs-o-up"></i>
-                            <span>@Model.JobOpportunityLikes.Count(x => x.Like).FormatThousand()</span>
-                        </a>
-                        &nbsp;
-                        <a href="#" class="like-job dislike @disabledClass" title="No me gusta" data-job="@Model.Id" data-like="false" data-canlike="@ViewBag.CanLike.ToString().ToLower()">
-                            <i class="fa fa-lg fa-thumbs-o-down"></i>
-                            <span>@Model.JobOpportunityLikes.Count(x => !x.Like).FormatThousand()</span>
+                            <span>@Model.Likes.FormatThousand()</span>
                         </a>
                     </div>
                 </div>
@@ -108,11 +133,11 @@
                     <a href="@Model.CompanyUrl">
                         @if (string.IsNullOrWhiteSpace(@Model.CompanyLogoUrl))
                         {
-                            <img src="~/Content/img/company-logo-placeholder.png" alt="Logo Compañ&iacute;a" class="img-company img-responsive" />
+                            <img src="~/Content/img/company-logo-placeholder.png" alt="Logo Compañía" class="img-company img-responsive" />
                         }
                         else
                         {
-                            <img src="@Model.CompanyLogoUrl" alt="Logo Compañ&iacute;a" class="img-company img-responsive">
+                            <img src="@Model.CompanyLogoUrl" alt="Logo Compañía" class="img-company img-responsive">
                         }
                     </a>
                     <h5>@Model.CompanyName</h5>
@@ -130,7 +155,7 @@
                         <ul>
                             @foreach (var jobOpportunity in (List<JobOpportunity>)ViewBag.RelatedJobs)
                             {
-                                <li><a href="@Url.Action("Detail", new {id=UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)})">@jobOpportunity.Title</a></li>
+                                <li><a href="@Url.Action("Detail", new {id = UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)})">@jobOpportunity.Title</a></li>
                             }
                         </ul>
                     </div>
@@ -145,3 +170,5 @@
         </div>
     </div>
 </section>
+
+@Html.Partial("_ConfirmDeleteModal")

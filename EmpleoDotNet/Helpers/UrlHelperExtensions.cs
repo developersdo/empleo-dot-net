@@ -1,4 +1,9 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Net;
+using System.Text.RegularExpressions;
+using System.Web;
+using System.Web.Mvc;
+using Tweetinvi.Core.Extensions;
 
 namespace EmpleoDotNet.Helpers
 {
@@ -19,5 +24,36 @@ namespace EmpleoDotNet.Helpers
         {
             return string.IsNullOrEmpty(title) ? id.ToString() : $"{id}-{SanitizeUrl(title)}";
         }
-    }
+
+        public static bool IsValidImageUrl(string imageUrl)
+        {
+            var regex = new Regex("^(http|https)://(.+).(png|jpg)$");
+            return !imageUrl.IsNullOrEmpty() && regex.IsMatch(imageUrl);
+        }
+
+        public static bool IsImageAvailable(string imageUrl)
+        {
+            if (!IsValidImageUrl(imageUrl)) return false;
+            var request = WebRequest.Create(imageUrl);
+            try
+            {
+                var response = (HttpWebResponse) request.GetResponse();
+                var statusCode = response.StatusCode;
+                response.Close();
+                return statusCode == HttpStatusCode.OK;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static string AbsoluteUrl(this UrlHelper url, string actionName, string controllerName,
+            object routeValues = null)
+        {
+            if (url.RequestContext.HttpContext.Request.Url == null) return null;
+            var schema = url.RequestContext.HttpContext.Request.Url.Scheme;
+            return url.Action(actionName, controllerName, routeValues, schema);
+        }
+    }   
 }

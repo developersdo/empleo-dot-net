@@ -46,12 +46,12 @@ namespace Android
 		{
 			OptionsMenu = new ObservableCollection<OptionMenu>
 			{
-				new OptionMenu
-				{
-					Text = _languageService.GetStringFor("about"),
-					Id = 0001,
-					OnSelected = OnFirstItemSelected
-				}
+//				new OptionMenu
+//				{
+//					Text = _languageService.GetStringFor("about"),
+//					Id = 0001,
+//					OnSelected = OnFirstItemSelected
+//				}
 			};
 		}
 	}

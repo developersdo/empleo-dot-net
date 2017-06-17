@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Mi perfil";
 }
-<div class="container">
+<div class="container page-content">
     <section>
         <div class="container">
             <div class="row">
@@ -36,8 +36,9 @@
                     <div>
                         <h2>Mis ofertas de empleo</h2>
                     </div>
-                    @if (Model.JobOpportunities.Any())
+                    @if (Model.JobOpportunities != null && Model.JobOpportunities.Any())
                     {
+                        <link href = "/Content/toggleButton.css" rel = "stylesheet" />
                         @Html.Partial("_JobListPartial", Model.JobOpportunities)
                     }
                     else

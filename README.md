@@ -1,10 +1,9 @@
-empleo-dot-net
+Emplea.do
 ==============
-[![Build status](https://ci.appveyor.com/api/projects/status/lmek7cwf3g8a2gk3/branch/master?svg=true)](https://ci.appveyor.com/project/amhed/empleo-dot-net/branch/master)
 
 ### What is this ?
 
-The porpuse of this project is to bring a "real-in-production project" experiance for all developers interesting in learning ASP.Net MVC 5 and Xamarin.
+The porpuse of this project is to bring a "real-in-production project" experience for all developers interesting in learning ASP.Net MVC 5 and Xamarin.
 
 This project is here thanks to the initiative of Developers.do and [C#.DO](https://www.facebook.com/groups/csharp.do/)
 

@@ -37,6 +37,7 @@
         @using (Html.BeginForm("Wizard", "JobOpportunity", FormMethod.Post, new { role = "form" }))
     {
         @Html.AntiForgeryToken()
+        @Html.HiddenFor(m=>m.Id)
         <div>
             <span class="h2 section-title"></span>
             <hr class="hidden-xs" />
@@ -108,7 +109,7 @@
 
                 <div class="form-group" id="how-apply-group">
                     @Html.LabelFor(m => m.HowToApply)
-                    @Html.TextAreaFor(m => m.HowToApply, new { @class = "form-control textarea", required = "", @data_parsley_group = "job-details" })
+                    @Html.TextAreaFor(m => m.HowToApply, new { @class = "form-control textarea", required = "", @data_parsley_group = "job-details", placeholder = "Agrega los pasos que un candidato debe realizar para aplicar a el puesto, no hay que proporcionar el correo en este campo." })
                     @Html.ValidationMessageFor(m => m.HowToApply)
                 </div>
 
@@ -211,7 +212,7 @@
                     </div>
                 </div>
                 <a class="btn-prev btn btn-warning btn-lg">Anterior</a>
-                <button type="submit" class="btn btn-primary btn-lg">Crear Empleo</button>
+                <button type="submit" class="btn btn-primary btn-lg">Guardar información</button>
             </div>
         </div>
     }

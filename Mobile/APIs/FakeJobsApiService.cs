@@ -3,12 +3,13 @@ using Api;
 using Api.Contract;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace APIs
 {
 	public class FakeJobsApiService : IJobsApiService
 	{
-		public async Task<JobCardListResponse> GetCardJobs (int limit = 25)
+		public async Task<JobCardListResponse> GetCardJobs (int from, int limit = 25, CancellationToken token = default(CancellationToken))
 		{
 			return await Task.Run<JobCardListResponse>(()=>
 				{
@@ -54,7 +55,7 @@ namespace APIs
 				});
 		}
 
-		public async Task<JobDetailResponse> GetJobDetailForId (string id)
+		public async Task<JobDetailResponse> GetJobDetailForId (string id, CancellationToken token)
 		{
 			return await Task.Run<JobDetailResponse>(()=>
 				{

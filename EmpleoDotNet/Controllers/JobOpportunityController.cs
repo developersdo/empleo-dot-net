@@ -9,10 +9,8 @@ using EmpleoDotNet.ViewModel;
 using EmpleoDotNet.ViewModel.JobOpportunity;
 using reCAPTCHA.MVC;
 using System;
-using System.Linq;
 using System.Net;
 using EmpleoDotNet.Core.Domain;
-using EmpleoDotNet.ViewModel.JobOpportunityLike;
 using Microsoft.AspNet.Identity;
 
 namespace EmpleoDotNet.Controllers
@@ -37,7 +35,7 @@ namespace EmpleoDotNet.Controllers
             return View(viewModel);
         }
 
-        // GET: /JobOpportunity/Detail/4-jobtitle
+        // GET: /jobs/4-jobtitle
         public ActionResult Detail(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
@@ -48,30 +46,37 @@ namespace EmpleoDotNet.Controllers
             if (jobOpportunityId == 0)
                 return RedirectToAction(nameof(Index));
 
-            var viewModel = _jobOpportunityService.GetJobOpportunityById(jobOpportunityId);
+            var jobOpportunity = _jobOpportunityService.GetJobOpportunityById(jobOpportunityId);
 
-            if (viewModel == null)
+            if (jobOpportunity == null)
                 return View(nameof(Index))
                     .WithError("La vacante solicitada no existe. Por favor escoge una vacante válida del listado");
 
-            var expectedUrl = UrlHelperExtensions.SeoUrl(jobOpportunityId, viewModel.Title.SanitizeUrl());
+            var expectedUrl = UrlHelperExtensions.SeoUrl(jobOpportunityId, jobOpportunity.Title.SanitizeUrl());
 
             if (!expectedUrl.Equals(id, StringComparison.OrdinalIgnoreCase))
                 return RedirectToActionPermanent(nameof(Detail), new { id = expectedUrl });
 
             ViewBag.RelatedJobs =
-                _jobOpportunityService.GetCompanyRelatedJobs(jobOpportunityId, viewModel.CompanyName);
+                _jobOpportunityService.GetCompanyRelatedJobs(jobOpportunityId, jobOpportunity.CompanyName);
 
             ViewBag.CanLike = !CookieHelper.Exists(GetLikeCookieName(jobOpportunityId));
 
-            var cookieView = $"JobView{viewModel.Id}";
-            if (!CookieHelper.Exists(cookieView))
+            var cookieView = $"JobView{jobOpportunity.Id}";
+
+            if (IsJobOpportunityOwner(id) || CookieHelper.Exists(cookieView))
             {
-                _jobOpportunityService.UpdateViewCount(viewModel.Id);
-                CookieHelper.Set(cookieView, viewModel.Id.ToString());
+                return jobOpportunity.IsHidden
+                    ? View(nameof(Detail), jobOpportunity).WithInfo(Constants.JobDetailWithInfoMessage)
+                    : View(nameof(Detail), jobOpportunity);
             }
 
-            return View(nameof(Detail), viewModel);
+            _jobOpportunityService.UpdateViewCount(jobOpportunity.Id);
+            CookieHelper.Set(cookieView, jobOpportunity.Id.ToString());
+
+            return jobOpportunity.IsHidden
+                ? View(nameof(Detail), jobOpportunity).WithInfo(Constants.JobDetailWithInfoMessage)
+                : View(nameof(Detail), jobOpportunity);
         }
 
         [HttpGet]
@@ -82,7 +87,7 @@ namespace EmpleoDotNet.Controllers
             var viewModel = new NewJobOpportunityViewModel();
 
             return View(viewModel)
-                .WithInfo("Prueba nuestro nuevo proceso guiado de creación de posiciones haciendo <b><a href='" + Url.Action("Wizard") + "'>click aquí</a></b>");
+                .WithWarning("Prueba nuestro nuevo proceso guiado de creación de posiciones haciendo <b><a href='" + Url.Action("Wizard") + "'>click aquí</a></b>");
         }
 
         [HttpPost, ValidateAntiForgeryToken]
@@ -103,14 +108,20 @@ namespace EmpleoDotNet.Controllers
                 return View(model).WithError("Debe seleccionar una Localidad.");
             }
 
+            if (!string.IsNullOrWhiteSpace(model.CompanyLogoUrl) && !UrlHelperExtensions.IsImageAvailable(model.CompanyLogoUrl))
+            {
+                return View(model).WithError("La url del logo debe ser a una imagen en formato png o jpg");
+            }
+
             var jobOpportunity = model.ToEntity();
             var userId = User.Identity.GetUserId();
 
             _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity, userId);
 
-            await _twitterService.PostNewJobOpportunity(jobOpportunity).ConfigureAwait(false);
+            await _twitterService.PostNewJobOpportunity(jobOpportunity, Url).ConfigureAwait(false);
 
-            return RedirectToAction(nameof(Detail), new {
+            return RedirectToAction(nameof(Detail), new
+            {
                 id = UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)
             });
         }
@@ -123,6 +134,51 @@ namespace EmpleoDotNet.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
+        [Authorize]
+        public ActionResult Edit(string title)
+        {
+            var job = GetJobOpportunityFromTitle(title);
+
+            if (!IsJobOpportunityOwner(title))
+                return RedirectToAction("Detail", new { id = title });
+
+            var wizardvm = ViewModel.JobOpportunity.Wizard.FromEntity(job);
+            return View("Wizard", wizardvm);
+        }
+
+        [Authorize]
+        public ActionResult Delete(string title, bool returnPrevious = true)
+        {
+            var jobOpportunity = GetJobOpportunityFromTitle(title);
+            if (IsJobOpportunityOwner(title))
+            {
+                _jobOpportunityService.SoftDeleteJobOpportunity(jobOpportunity);
+            }
+
+            if (Request.UrlReferrer == null || returnPrevious == false)
+            {
+                return RedirectToAction("Index", "Home")
+                        .WithSuccess($"Se ha borrado exitosamente la oportunidad de empleo: {jobOpportunity.Title}");
+            }
+
+            return Redirect(Request.UrlReferrer.ToString())
+                        .WithSuccess($"Se ha borrado exitosamente la oportunidad de empleo: {jobOpportunity.Title}");
+        }
+
+        [HttpPost]
+        public JsonResult ToggleHide(string title)
+        {
+            var jobOpportunity = GetJobOpportunityFromTitle(title);
+            if (IsJobOpportunityOwner(title))
+            {
+                _jobOpportunityService.ToggleHideState(jobOpportunity);
+            }
+
+            return Json(new { isHidden = jobOpportunity.IsHidden });
+
+        }
+
         [HttpPost, ValidateAntiForgeryToken]
         [ValidateInput(false)]
         [CaptchaValidator(RequiredMessage = "Por favor confirma que no eres un robot", ErrorMessage = "El captcha es incorrecto.")]
@@ -133,41 +189,49 @@ namespace EmpleoDotNet.Controllers
                     .WithError("Han ocurrido errores de validación que no permiten continuar el proceso");
 
             var jobOpportunity = model.ToEntity();
+            var jobExists = _jobOpportunityService.JobExists(model.Id);
 
-            _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity, User.Identity.GetUserId());
+            if (!jobExists)
+            {
+                _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity, User.Identity.GetUserId());
+            }
+            else
+            {
+                _jobOpportunityService.UpdateJobOpportunity(model.Id, model.ToEntity());
+            }
 
-            await _twitterService.PostNewJobOpportunity(jobOpportunity);
+            await _twitterService.PostNewJobOpportunity(jobOpportunity, Url);
 
-            return RedirectToAction(nameof(Detail), new {
+            return RedirectToAction(nameof(Detail), new
+            {
                 id = UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title),
                 fromWizard = 1
             });
         }
 
-        [HttpPost]
-        public JsonResult Like(JobOpportunityLike model)
+        [HttpPost, ValidateAntiForgeryToken, Authorize]
+        public JsonResult Like(int jobOpportunityId, bool like)
         {
-            var cookieName = GetLikeCookieName(model.JobOpportunityId);
+            var cookieName = GetLikeCookieName(jobOpportunityId);
             
             if (CookieHelper.Exists(cookieName))
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return Json(new { error = true, message = "Ya has votado por este empleo." });
             }
+                     
+            _jobOpportunityService.CreateNewReaction(jobOpportunityId, like);
 
-            _jobOpportunityLikeService.CreateNewLike(model);
+            CookieHelper.Set(cookieName, jobOpportunityId.ToString());
 
-            CookieHelper.Set(cookieName, model.JobOpportunityId.ToString());
-
-            var jobLikeData = _jobOpportunityLikeService.GetLikesByJobOpportunityId(model.JobOpportunityId);
-
-            var jobOpportunityLikeData = new JobOpportunityLikeViewModel
-            {
-                Likes = jobLikeData.Count(x => x.Like),
-                DisLikes = jobLikeData.Count(x => !x.Like)
-            };
-                
-            return Json(new { error = false, data = jobOpportunityLikeData });
+            var jobOpportunity = _jobOpportunityService.GetJobOpportunityById(jobOpportunityId);
+            return jobOpportunity == null 
+                ? Json(new { error = true, message = "No se encuentra empleo con el id indicado" }) 
+                : Json(new { error = false, data = new 
+                {
+                    jobOpportunity.Likes,
+                    jobOpportunity.DisLikes
+                }});
         }
 
         /// <summary>
@@ -184,7 +248,8 @@ namespace EmpleoDotNet.Controllers
                 model.SelectedLocationPlaceId = string.Empty;
             }
 
-            var viewModel = new JobOpportunitySearchViewModel {
+            var viewModel = new JobOpportunitySearchViewModel
+            {
                 SelectedLocationPlaceId = model.SelectedLocationPlaceId,
                 SelectedLocationName = model.SelectedLocationName,
                 SelectedLocationLongitude = model.SelectedLocationLongitude,
@@ -214,18 +279,28 @@ namespace EmpleoDotNet.Controllers
             return id;
         }
 
+        private JobOpportunity GetJobOpportunityFromTitle(string title)
+        {
+            var jobId = GetIdFromTitle(title);
+            return _jobOpportunityService.GetJobOpportunityById(jobId);
+        }
+
+        private bool IsJobOpportunityOwner(string title)
+        {
+            var jobOpportunity = GetJobOpportunityFromTitle(title);
+            var currentUser = User.Identity.GetUserId();
+            return (currentUser != null && jobOpportunity.UserProfile?.UserId == currentUser);
+        }
+
         public JobOpportunityController(
             IJobOpportunityService jobOpportunityService,
-            ITwitterService twitterService, 
-            IJobOpportunityLikeService jobOpportunityLikeService)
+            ITwitterService twitterService)
         {
             _jobOpportunityService = jobOpportunityService;
             _twitterService = twitterService;
-            _jobOpportunityLikeService = jobOpportunityLikeService;
         }
 
         private readonly IJobOpportunityService _jobOpportunityService;
         private readonly ITwitterService _twitterService;
-        private readonly IJobOpportunityLikeService _jobOpportunityLikeService;
     }
 }

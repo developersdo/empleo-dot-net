@@ -18,7 +18,6 @@ namespace EmpleoDotNet.Repository
         {
             var jobOpportunities = DbSet
                 .Include(x => x.JobOpportunityLocation)
-                .Include(x => x.JobOpportunityLikes)
                 .OrderByDescending(x => x.PublishedDate);
             
             return jobOpportunities.ToList();
@@ -41,16 +40,21 @@ namespace EmpleoDotNet.Repository
         public List<JobCategoryCountDto> GetMainJobCategoriesCount()
         {
             var result = (from c in DbSet
-                where (c.Category == JobCategory.MobileDevelopment ||
-                       c.Category == JobCategory.SoftwareDevelopment ||
-                       c.Category == JobCategory.WebDevelopment ||
-                       c.Category == JobCategory.GraphicDesign)
+                              /*where  (c.Category == JobCategory.MobileDevelopment ||
+                                     c.Category == JobCategory.SoftwareDevelopment ||
+                                     c.Category == JobCategory.WebDevelopment ||
+                                     c.Category == JobCategory.GraphicDesign)*/
+                where (c.Category >= 0)
                 group c by new { c.Category} into g
+
                 select new JobCategoryCountDto
                 {
                     JobCategory = g.Key.Category,
                     Count = g.Count()
-                }).ToList();
+                }).Where(x=>x.Count > 0)
+                  .OrderByDescending(x=>x.Count)
+                  .ThenBy(x=>x.JobCategory)
+                  .Take(5).ToList();
 
             return result;
         }
@@ -61,8 +65,14 @@ namespace EmpleoDotNet.Repository
 
             return DbSet.Include(x => x.JobOpportunityLocation)
                         .Include(x => x.JoelTest)
-                        .Include(x => x.JobOpportunityLikes)
                         .FirstOrDefault(x => x.Id.Equals(id.Value));
+        }
+
+        public bool JobExists(int id)
+        {
+            var job = DbSet.FirstOrDefault(m => m.Id == id);
+
+            return job != null;
         }
 
         /// <summary>
@@ -81,13 +91,13 @@ namespace EmpleoDotNet.Repository
                 parameter.PageSize = 15;
 
             var jobs = DbSet
-                .Include(x => x.JobOpportunityLocation)
-                .Include(x => x.JobOpportunityLikes);
+                .Include(x => x.JobOpportunityLocation);
 
-            jobs = jobs.OrderByDescending(x => x.Id);
+            jobs = jobs
+                .OrderByDescending(x => x.Id);
             
             //Filter by JobCategory
-            if ((parameter.JobCategory != JobCategory.All && parameter.JobCategory != JobCategory.Invalid))
+            if(parameter.JobCategory!= JobCategory.None)
                 jobs = jobs.Where(x => x.Category == parameter.JobCategory);
 
             if (parameter.IsRemote)
@@ -158,8 +168,8 @@ namespace EmpleoDotNet.Repository
         public List<JobOpportunity> GetLatestJobOpportunity(int quantity)
         {
             return GetAll().OrderByDescending(m => m.PublishedDate)
+                .ThenByDescending(x => x.Likes)
                 .Include(m => m.JobOpportunityLocation)
-                .Include(x => x.JobOpportunityLikes)
                 .Take(quantity)
                 .ToList();
         }

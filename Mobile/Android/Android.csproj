@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -18,7 +18,7 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
@@ -26,6 +26,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>false</RunCodeAnalysis>
+    <AndroidLinkSkip>
+    </AndroidLinkSkip>
+    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <AndroidSupportedAbis>
+    </AndroidSupportedAbis>
+    <AndroidStoreUncompressedFileExtensions>
+    </AndroidStoreUncompressedFileExtensions>
+    <MandroidI18n>
+    </MandroidI18n>
+    <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
+    <Debugger>Xamarin</Debugger>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -38,6 +49,7 @@
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <AndroidLinkMode>None</AndroidLinkMode>
     <AndroidSupportedAbis>armeabi;armeabi-v7a;x86;arm64-v8a;x86_64</AndroidSupportedAbis>
+    <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -119,9 +131,6 @@
     <Reference Include="PropertyChanged">
       <HintPath>..\packages\PropertyChanged.Fody.1.50.4\Lib\portable-net4+sl4+wp8+win8+wpa81+MonoAndroid16+MonoTouch40\PropertyChanged.dll</HintPath>
     </Reference>
-    <Reference Include="Refit">
-      <HintPath>..\packages\refit.2.4.1\lib\MonoAndroid\Refit.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="Xamarin.Insights">
       <HintPath>..\packages\Xamarin.Insights.1.12.3\lib\MonoAndroid10\Xamarin.Insights.dll</HintPath>
@@ -133,14 +142,10 @@
     <Compile Include="LandingPage\LandingPageActivity.cs" />
     <Compile Include="LandingPage\LandingPageFragment.cs" />
     <Compile Include="LandingPage\LandingPagerAdapter.cs" />
-    <Compile Include="MainPage\CategoriesFragment.cs" />
-    <Compile Include="MainPage\FavoritesFragment.cs" />
-    <Compile Include="MainPage\JobsFragment.cs" />
     <Compile Include="MainPage\MainPageActivity.cs" />
     <Compile Include="MainPage\PagerAdapter.cs" />
     <Compile Include="SearchPage\SearchActivity.cs" />
     <Compile Include="Services\BitmapResizer.cs" />
-    <Compile Include="EmpleadoApp.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Framework\Bootstrapping\Bootstrapping.cs" />
@@ -153,43 +158,48 @@
     <Compile Include="Framework\AppCompatNavigationService.cs" />
     <Compile Include="Framework\AppCompatDialogService.cs" />
     <Compile Include="MainPage\ViewPagerFragment.cs" />
-    <Compile Include="MainPage\IBackPressed.cs" />
-    <Compile Include="MainPage\BackPressImpl.cs" />
-    <Compile Include="MainPage\JobsFragmentViewModel.cs" />
-    <Compile Include="MainPage\FavoritesViewModel.cs" />
     <Compile Include="MainPage\MainPageFragment.cs" />
     <Compile Include="MainPage\MainPageFragmentViewModel.cs" />
-    <Compile Include="MainPage\Converters.cs" />
-    <Compile Include="MainPage\ViewStateToBool.cs" />
     <Compile Include="Services\IJobRepository.cs" />
-    <Compile Include="MainPage\NotifyUserChangedQuery.cs" />
-    <Compile Include="MainPage\NotifyUserClearedText.cs" />
-    <Compile Include="MainPage\CategoriesFragmentViewModel.cs" />
-    <Compile Include="MainPage\NotifySearchBarPutText.cs" />
     <Compile Include="MainPage\ViewPagerFragmentViewModel.cs" />
     <Compile Include="MainPage\SwipeToTabEventHandler.cs" />
     <Compile Include="MainPage\Tab.cs" />
-    <Compile Include="MainPage\NotifyJobListUserChangedQuery.cs" />
-    <Compile Include="MainPage\NotifyFavoriteListUserChangedQuery.cs" />
     <Compile Include="SearchPage\SearchViewModel.cs" />
     <Compile Include="Services\LanguageService.cs" />
     <Compile Include="Services\JobRepository.cs" />
     <Compile Include="Services\GeolocationService.cs" />
     <Compile Include="Services\ContextService.cs" />
-    <Compile Include="Services\AkavacheAndroidImpl.cs" />
     <Compile Include="AkavacheSqliteLinkerOverride.cs" />
     <Compile Include="Services\XMLStorage.cs" />
     <Compile Include="Services\AppInfoService.cs" />
-    <Compile Include="MainPage\JobDetailFragmentViewModel.cs" />
-    <Compile Include="MainPage\JobDetailFragment.cs" />
     <Compile Include="MainPage\MainPageActivityViewModel.cs" />
-    <Compile Include="MainPage\OptionMenu.cs" />
-    <Compile Include="MainPage\ShowAs.cs" />
     <Compile Include="About\AboutActivity.cs" />
     <Compile Include="About\AboutViewModel.cs" />
     <Compile Include="About\ContributorAddedEventHandler.cs" />
     <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\KeyboardService.cs" />
+    <Compile Include="Services\AssetReader.cs" />
+    <Compile Include="EmpleadoApp.cs" />
+    <Compile Include="Services\CacheService.cs" />
+    <Compile Include="MainPage\Tabs\Favorites\FavoritesFragment.cs" />
+    <Compile Include="MainPage\Tabs\Favorites\FavoritesViewModel.cs" />
+    <Compile Include="MainPage\Tabs\JobList\BackPressImpl.cs" />
+    <Compile Include="MainPage\Tabs\JobList\IBackPressed.cs" />
+    <Compile Include="MainPage\Tabs\JobList\JobDetailFragment.cs" />
+    <Compile Include="MainPage\Tabs\JobList\JobDetailFragmentViewModel.cs" />
+    <Compile Include="MainPage\Tabs\JobList\JobsFragment.cs" />
+    <Compile Include="MainPage\Tabs\JobList\JobsFragmentViewModel.cs" />
+    <Compile Include="MainPage\Tabs\Categories\CategoriesFragment.cs" />
+    <Compile Include="MainPage\Tabs\Categories\CategoriesFragmentViewModel.cs" />
+    <Compile Include="Framework\Converters\Converters.cs" />
+    <Compile Include="MainPage\Messaging\NotifyFavoriteListUserChangedQuery.cs" />
+    <Compile Include="MainPage\Messaging\NotifyJobListUserChangedQuery.cs" />
+    <Compile Include="MainPage\Messaging\NotifySearchBarPutText.cs" />
+    <Compile Include="MainPage\Messaging\NotifyUserChangedQuery.cs" />
+    <Compile Include="MainPage\Messaging\NotifyUserClearedText.cs" />
+    <Compile Include="Framework\Menu\OptionMenu.cs" />
+    <Compile Include="Framework\Menu\ShowAs.cs" />
+    <Compile Include="Framework\Converters\ViewStateToBool.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -264,7 +274,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.2\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.1.29.2\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
-  <Import Project="..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets" Condition="Exists('..\packages\refit.2.4.1\build\portable-net45+netcore45+wp8+wpa81+monoandroid+xamarin.ios10\refit.targets')" />
   <Import Project="..\packages\Xamarin.Insights.1.12.3\build\MonoAndroid10\Xamarin.Insights.targets" Condition="Exists('..\packages\Xamarin.Insights.1.12.3\build\MonoAndroid10\Xamarin.Insights.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
      Other similar extension points exist, see Microsoft.Common.targets.
@@ -274,24 +283,13 @@
   </Target>
   -->
   <ItemGroup>
-    <Folder Include="Resources\drawable\" />
-    <Folder Include="LandingPage\" />
-    <Folder Include="MainPage\" />
-    <Folder Include="Resources\drawable-hdpi\" />
-    <Folder Include="Resources\drawable-mdpi\" />
-    <Folder Include="Resources\drawable-xhdpi\" />
-    <Folder Include="Resources\drawable-xxhdpi\" />
-    <Folder Include="Resources\drawable-xxxhdpi\" />
-    <Folder Include="SearchPage\" />
-    <Folder Include="Services\" />
-    <Folder Include="JobDetail\" />
-    <Folder Include="Views\" />
-    <Folder Include="Framework\" />
-    <Folder Include="Framework\Bootstrapping\" />
-    <Folder Include="SplashScreen\" />
-    <Folder Include="Resources\transition\" />
-    <Folder Include="Resources\menu\" />
-    <Folder Include="About\" />
+    <Folder Include="MainPage\Tabs\" />
+    <Folder Include="MainPage\Tabs\Favorites\" />
+    <Folder Include="MainPage\Tabs\JobList\" />
+    <Folder Include="MainPage\Tabs\Categories\" />
+    <Folder Include="Framework\Converters\" />
+    <Folder Include="MainPage\Messaging\" />
+    <Folder Include="Framework\Menu\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="xamandroidsupportv7cardview">
@@ -320,5 +318,8 @@
       <Project>{B9BC593D-5A47-4153-8102-02E112360FEE}</Project>
       <Name>APIs</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\MobileConfig.json" />
   </ItemGroup>
 </Project>

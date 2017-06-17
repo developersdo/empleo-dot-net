@@ -60,12 +60,15 @@
                 {
                    @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
                     {
+                       Model.Keyword,
                        Model.SelectedLocationName,
                        Model.SelectedLocationLatitude,
                        Model.SelectedLocationLongitude,
                        Model.SelectedLocationPlaceId,
                        page,
-                       Model.Result.PageSize
+                       Model.Result.PageSize,
+                       Model.JobCategory,
+                       Model.IsRemote
                    }))
                 }
             }

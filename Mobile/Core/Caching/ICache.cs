@@ -7,7 +7,7 @@ namespace Core
 	{
 		Task<T> GetObject<T>(string key);
 
-		Task InsertObject<T>(string key, T value);
+		Task InsertObject<T>(string key, T value, DateTimeOffset? expiration = default(DateTimeOffset?));
 
 		Task RemoveObject(string key);
 	}

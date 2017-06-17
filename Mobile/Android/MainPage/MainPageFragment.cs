@@ -26,7 +26,7 @@ namespace Android
 
 		SearchView _searchView;
 
-		LinearLayout _locationContainer;
+//		LinearLayout _locationContainer;
 
 		ViewPagerFragment _viewPagerFragment;
 
@@ -90,7 +90,9 @@ namespace Android
 
 			_searchView.ClearFocus();
 
-//			_searchView.SetQueryHint(GetString(Resource.String.HomePageSearchBarHint));
+			_searchView.SetIconifiedByDefault(false);
+
+			_searchView.SetQueryHint(GetString(Resource.String.HomePageSearchBarHint));
 
 			PersonalizeSearchView();
 		}
@@ -117,7 +119,7 @@ namespace Android
 
 		void SetBindings ()
 		{
-			_locationContainer.SetCommand("Click", _viewModel.NavigateToFilterScreenCommand);
+//			_locationContainer.SetCommand("Click", _viewModel.NavigateToFilterScreenCommand);
 		}
 
 		public override void OnViewCreated (View view, Bundle savedInstanceState)
@@ -163,7 +165,7 @@ namespace Android
 
 			_searchLayout = view.FindViewById (Resource.Id.segueta);
 
-			_locationContainer = view.FindViewById<LinearLayout> (Resource.Id.locationContainer);
+//			_locationContainer = view.FindViewById<LinearLayout> (Resource.Id.locationContainer);
 
 			_searchView = view.FindViewById<SearchView> (Resource.Id.MainSearchView);
 

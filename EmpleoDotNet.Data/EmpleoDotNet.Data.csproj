@@ -129,6 +129,18 @@
     <Compile Include="Migrations\201603301645403_AddedHowToApplyField.Designer.cs">
       <DependentUpon>201603301645403_AddedHowToApplyField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608010547100_AddIsHiddenColumn.cs" />
+    <Compile Include="Migrations\201608010547100_AddIsHiddenColumn.Designer.cs">
+      <DependentUpon>201608010547100_AddIsHiddenColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609072254503_RemoveJobOpportunityLikeTableForLikeAndDislikeColumns.cs" />
+    <Compile Include="Migrations\201609072254503_RemoveJobOpportunityLikeTableForLikeAndDislikeColumns.Designer.cs">
+      <DependentUpon>201609072254503_RemoveJobOpportunityLikeTableForLikeAndDislikeColumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609092119213_AddedRoles.cs" />
+    <Compile Include="Migrations\201609092119213_AddedRoles.Designer.cs">
+      <DependentUpon>201609092119213_AddedRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableConfigurations\BaseTableConfiguration.cs" />
@@ -184,6 +196,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603301645403_AddedHowToApplyField.resx">
       <DependentUpon>201603301645403_AddedHowToApplyField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608010547100_AddIsHiddenColumn.resx">
+      <DependentUpon>201608010547100_AddIsHiddenColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609072254503_RemoveJobOpportunityLikeTableForLikeAndDislikeColumns.resx">
+      <DependentUpon>201609072254503_RemoveJobOpportunityLikeTableForLikeAndDislikeColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609092119213_AddedRoles.resx">
+      <DependentUpon>201609092119213_AddedRoles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
