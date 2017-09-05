@@ -36,7 +36,7 @@ All issues should fall into this scope, if an issue you propose is out of the sc
 * Use Case definitions (What should do the app?).
 * Basics MVC structure.
 * Entity Framework [Code-First](http://www.entityframeworktutorial.net/code-first/what-is-code-first.aspx)
-* Viewmodals and Views Rendering
+* Viewmodels and Views Rendering
 * Security Layer
 
 ### State 2 - Refactorings
