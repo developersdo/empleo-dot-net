@@ -147,9 +147,11 @@ namespace Android.Activities
 				.Commit();
 		}
 
-		public override void OnBackPressed ()
+		public override void OnBackPressed()
 		{
-			_viewPagerFragment.OnBackPressed();
+			if (!_viewPagerFragment.OnBackPressed ()) {
+				base.OnBackPressed ();
+			}
 		}
 	}
 }
