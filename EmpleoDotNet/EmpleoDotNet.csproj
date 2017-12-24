@@ -421,7 +421,6 @@
     <Content Include="Content\css\theme\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\css\theme\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\css\theme\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Auth.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
