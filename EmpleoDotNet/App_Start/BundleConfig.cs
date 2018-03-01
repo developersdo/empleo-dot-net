@@ -24,10 +24,12 @@ namespace EmpleoDotNet
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/sweetalert2.js"));
 
             bundles.Add(new StyleBundle("~/bundles/styles").Include(
                       "~/Content/bootstrap.min.css",
+                      "~/Content/sweetalert2.css",
                       "~/Content/site.css",
                       "~/Content/responsive.css"));
 
