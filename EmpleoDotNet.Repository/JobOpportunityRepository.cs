@@ -88,7 +88,7 @@ namespace EmpleoDotNet.Repository
                 parameter.Page = 1;
 
             if (parameter.PageSize <= 0)
-                parameter.PageSize = 15;
+                parameter.PageSize = parameter.PageSize;
 
             var jobs = DbSet
                 .Include(x => x.JobOpportunityLocation);
