@@ -42,7 +42,7 @@ All issues should fall into this scope. If an issue you present is out of the sc
 
 * [Design Patterns](https://sourcemaking.com/design_patterns).
 * Service Layer.
-* Repository Pattern.
+* Repository.
 * Unit of Work.
 * HTML/CSS/JS Optimizations.
 * JavaScript Refactoring.
