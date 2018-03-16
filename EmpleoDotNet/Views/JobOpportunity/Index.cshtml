@@ -28,6 +28,10 @@
                 }
             });
         });
+        $("#PageSize").change(function (e) {
+            e.preventDefault()
+            $("#formPageSize").submit();
+        });
     </script>
 }
 
@@ -35,43 +39,46 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12">
+        <div>
             @if (Model.Result == null || !Model.Result.Any())
             {
-                <div>
+                <div class="col-sm-12 col-md-12 col-lg-12">
                     <h5>No se encontraron resultados para esta búsqueda.</h5>
-                    <hr/>
                 </div>
             }
             else
             {
-                <div>
-                    <h5>@Model.Result.TotalItemCount Empleo(s) disponibles para esta búsqueda.</h5>
+                <div class="col-md-6 col-sm-7">
+                    <h5 class="count-info">@Model.Result.TotalItemCount Empleo(s) disponibles para esta búsqueda.</h5>
                 </div>
-
-                <br />
-
-                @Html.Partial("_JobListPartial", Model.Result)
-
-                <br />
+                <div class="col-md-6 col-sm-5">
+                    @using (Html.BeginForm("Index", "JobOpportunity", FormMethod.Get, new { id = "formPageSize" }))
+                    {
+                        <label> Cantidad De Registros:</label> @Html.DropDownList("PageSize", Model.PageList, new { @class = "btn btn-primary" })
+                    }
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    @Html.Partial("_JobListPartial", Model.Result)
+                </div>
 
                 @*Pagination*@
                 if (Model.Result.PageCount > 1)
                 {
-                   @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
+                    @Html.PagedListPager(Model.Result, page => Url.Action("Index", new
                     {
-                       Model.Keyword,
-                       Model.SelectedLocationName,
-                       Model.SelectedLocationLatitude,
-                       Model.SelectedLocationLongitude,
-                       Model.SelectedLocationPlaceId,
-                       page,
-                       Model.Result.PageSize,
-                       Model.JobCategory,
-                       Model.IsRemote
-                   }))
+                        Model.Keyword,
+                        Model.SelectedLocationName,
+                        Model.SelectedLocationLatitude,
+                        Model.SelectedLocationLongitude,
+                        Model.SelectedLocationPlaceId,
+                        page,
+                        Model.Result.PageSize,
+                        Model.JobCategory,
+                        Model.IsRemote
+                    }))
                 }
             }
         </div>
     </div>
 </div>
+

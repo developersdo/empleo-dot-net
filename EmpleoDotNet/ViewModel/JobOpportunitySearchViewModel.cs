@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using EmpleoDotNet.Core.Domain;
 using EmpleoDotNet.Core.Dto;
 using PagedList;
@@ -17,5 +18,6 @@ namespace EmpleoDotNet.ViewModel
         public JobCategory JobCategory { get; set; }
         public bool IsRemote { get; set; }
         public List<JobCategoryCountDto> CategoriesCount { get; set; }
+        public IList<SelectListItem> PageList { get; set; }
     }
 }

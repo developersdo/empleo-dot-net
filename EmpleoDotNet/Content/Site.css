@@ -2,8 +2,8 @@ body {
     padding-top: 50px;
 }
 
-.padding-top-80{
-    padding-top:80px;
+.padding-top-80 {
+    padding-top: 80px;
 }
 
 input, select {
@@ -98,9 +98,9 @@ input, select {
     text-align: center;
 }
 
-.company-text-logo{
-   color:#14B1BB; 
-   font-size:30px;
+.company-text-logo {
+    color: #14B1BB;
+    font-size: 30px;
 }
 
 .field-validation-error, .validation-summary-errors {
@@ -133,5 +133,11 @@ input[type=checkbox].input-validation-error {
     border-bottom: 2px solid #e6e6e6;
 }
 
+#formPageSize {
+    float: right
+}
 
-
+.count-info {
+    margin-top: 11.5px;
+    margin-bottom: 11.5px;
+}

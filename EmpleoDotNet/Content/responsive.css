@@ -8,3 +8,30 @@
         float:none;
     }
 }
+/*========== Bootstrap Media Query ==========*/
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px) {
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+    #formPageSize {
+        float: none
+    }
+    .count-info {
+        margin:0
+    }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+}

@@ -12,6 +12,7 @@ using System;
 using System.Net;
 using EmpleoDotNet.Core.Domain;
 using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -30,6 +31,13 @@ namespace EmpleoDotNet.Controllers
 
             var jobOpportunities = _jobOpportunityService.GetAllJobOpportunitiesPagedByFilters(model);
 
+            viewModel.PageList = new List<SelectListItem>()
+             {
+                 new SelectListItem() { Value="15", Text= "15" },
+                 new SelectListItem() { Value="30", Text= "30" },
+                 new SelectListItem() { Value="50", Text= "50" },
+                 new SelectListItem() { Value="100", Text= "100" }
+             };
             viewModel.Result = jobOpportunities;
 
             return View(viewModel);
@@ -213,25 +221,29 @@ namespace EmpleoDotNet.Controllers
         public JsonResult Like(int jobOpportunityId, bool like)
         {
             var cookieName = GetLikeCookieName(jobOpportunityId);
-            
+
             if (CookieHelper.Exists(cookieName))
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
                 return Json(new { error = true, message = "Ya has votado por este empleo." });
             }
-                     
+
             _jobOpportunityService.CreateNewReaction(jobOpportunityId, like);
 
             CookieHelper.Set(cookieName, jobOpportunityId.ToString());
 
             var jobOpportunity = _jobOpportunityService.GetJobOpportunityById(jobOpportunityId);
-            return jobOpportunity == null 
-                ? Json(new { error = true, message = "No se encuentra empleo con el id indicado" }) 
-                : Json(new { error = false, data = new 
+            return jobOpportunity == null
+                ? Json(new { error = true, message = "No se encuentra empleo con el id indicado" })
+                : Json(new
                 {
-                    jobOpportunity.Likes,
-                    jobOpportunity.DisLikes
-                }});
+                    error = false,
+                    data = new
+                    {
+                        jobOpportunity.Likes,
+                        jobOpportunity.DisLikes
+                    }
+                });
         }
 
         /// <summary>
