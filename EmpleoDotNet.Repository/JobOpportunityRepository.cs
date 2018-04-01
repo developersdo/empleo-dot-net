@@ -40,16 +40,21 @@ namespace EmpleoDotNet.Repository
         public List<JobCategoryCountDto> GetMainJobCategoriesCount()
         {
             var result = (from c in DbSet
-                where (c.Category == JobCategory.MobileDevelopment ||
-                       c.Category == JobCategory.SoftwareDevelopment ||
-                       c.Category == JobCategory.WebDevelopment ||
-                       c.Category == JobCategory.GraphicDesign)
+                              /*where  (c.Category == JobCategory.MobileDevelopment ||
+                                     c.Category == JobCategory.SoftwareDevelopment ||
+                                     c.Category == JobCategory.WebDevelopment ||
+                                     c.Category == JobCategory.GraphicDesign)*/
+                where (c.Category >= 0)
                 group c by new { c.Category} into g
+
                 select new JobCategoryCountDto
                 {
                     JobCategory = g.Key.Category,
                     Count = g.Count()
-                }).ToList();
+                }).Where(x=>x.Count > 0)
+                  .OrderByDescending(x=>x.Count)
+                  .ThenBy(x=>x.JobCategory)
+                  .Take(5).ToList();
 
             return result;
         }
@@ -89,10 +94,10 @@ namespace EmpleoDotNet.Repository
                 .Include(x => x.JobOpportunityLocation);
 
             jobs = jobs
-                .OrderByDescending(x => x.Likes)
-                .ThenByDescending(x => x.Id);
+                .OrderByDescending(x => x.PublishedDate);
             
             //Filter by JobCategory
+            if(parameter.JobCategory!= JobCategory.None)
                 jobs = jobs.Where(x => x.Category == parameter.JobCategory);
 
             if (parameter.IsRemote)

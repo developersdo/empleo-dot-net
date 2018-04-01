@@ -87,7 +87,7 @@ namespace EmpleoDotNet.Controllers
             var viewModel = new NewJobOpportunityViewModel();
 
             return View(viewModel)
-                .WithInfo("Prueba nuestro nuevo proceso guiado de creación de posiciones haciendo <b><a href='" + Url.Action("Wizard") + "'>click aquí</a></b>");
+                .WithWarning("Prueba nuestro nuevo proceso guiado de creación de posiciones haciendo <b><a href='" + Url.Action("Wizard") + "'>click aquí</a></b>");
         }
 
         [HttpPost, ValidateAntiForgeryToken]

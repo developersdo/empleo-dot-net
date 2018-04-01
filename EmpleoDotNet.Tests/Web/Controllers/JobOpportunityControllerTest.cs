@@ -194,7 +194,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
             var result = (AlertDecoratorResult)_sut.New();
 
             // Assert
-            result.AlertClass.Should().Be("alert-info");
+            result.AlertClass.Should().Be("alert-warning");
             result.Message.Should().Be(
                 "Prueba nuestro nuevo proceso guiado de creación de posiciones haciendo "
                 + "<b><a href='/jobs/wizard'>click aquí</a></b>");
