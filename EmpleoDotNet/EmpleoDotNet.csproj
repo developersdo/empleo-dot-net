@@ -327,6 +327,8 @@
     <Compile Include="Helpers\UrlHelperExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\RssResult.cs" />
+    <Compile Include="Services\Social\Slack\ISlackService.cs" />
+    <Compile Include="Services\Social\Slack\SlackService.cs" />
     <Compile Include="Services\Social\Twitter\ITwitterService.cs" />
     <Compile Include="Services\Social\Twitter\TwitterService.cs" />
     <Compile Include="Services\AuthenticationService.cs" />

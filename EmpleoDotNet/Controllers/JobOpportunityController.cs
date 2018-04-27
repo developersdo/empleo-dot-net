@@ -12,6 +12,8 @@ using System;
 using System.Net;
 using EmpleoDotNet.Core.Domain;
 using Microsoft.AspNet.Identity;
+using EmpleoDotNet.Services.Social.Slack;
+using System.Configuration;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -115,10 +117,12 @@ namespace EmpleoDotNet.Controllers
 
             var jobOpportunity = model.ToEntity();
             var userId = User.Identity.GetUserId();
+            jobOpportunity.Approved = false;        // new jobs unapproved by default
 
             _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity, userId);
 
             await _twitterService.PostNewJobOpportunity(jobOpportunity, Url).ConfigureAwait(false);
+            await _slackService.PostNewJobOpportunity(jobOpportunity, Url).ConfigureAwait(false);
 
             return RedirectToAction(nameof(Detail), new
             {
@@ -193,6 +197,7 @@ namespace EmpleoDotNet.Controllers
 
             if (!jobExists)
             {
+                jobOpportunity.Approved = false;        // new jobs unapproved by default
                 _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity, User.Identity.GetUserId());
             }
             else
@@ -201,6 +206,7 @@ namespace EmpleoDotNet.Controllers
             }
 
             await _twitterService.PostNewJobOpportunity(jobOpportunity, Url);
+            await _slackService.PostNewJobOpportunity(jobOpportunity, Url);
 
             return RedirectToAction(nameof(Detail), new
             {
@@ -232,6 +238,26 @@ namespace EmpleoDotNet.Controllers
                     jobOpportunity.Likes,
                     jobOpportunity.DisLikes
                 }});
+        }
+
+        [HttpPost]
+        public JsonResult Validate(int jobOpportunityId, string validationKey)
+        {
+            // TODO: Receive POST payload from request
+
+            if (validationKey == ConfigurationManager.AppSettings["slackPostValidationKey"])
+            {
+                var jobOpportunity = _jobOpportunityService.GetJobOpportunityById(jobOpportunityId);
+                jobOpportunity.Approved = true;
+                _jobOpportunityService.UpdateJobOpportunity(jobOpportunityId, jobOpportunity);
+                return Json(1);
+            }
+            else
+            {
+                // TODO: Proper error checking here
+                return Json(0);
+            }
+                
         }
 
         /// <summary>
@@ -294,13 +320,16 @@ namespace EmpleoDotNet.Controllers
 
         public JobOpportunityController(
             IJobOpportunityService jobOpportunityService,
+            ISlackService slackService,
             ITwitterService twitterService)
         {
             _jobOpportunityService = jobOpportunityService;
+            _slackService = slackService;
             _twitterService = twitterService;
         }
 
         private readonly IJobOpportunityService _jobOpportunityService;
         private readonly ITwitterService _twitterService;
+        private readonly ISlackService _slackService;
     }
 }
