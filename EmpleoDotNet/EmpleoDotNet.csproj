@@ -343,6 +343,8 @@
     <Compile Include="ViewModel\JobOpportunitySearchViewModel.cs" />
     <Compile Include="ViewModel\JobOpportunity\Wizard.cs" />
     <Compile Include="ViewModel\NewJobOpportunityViewModel.cs" />
+    <Compile Include="ViewModel\Slack\PayloadRequestDto.cs" />
+    <Compile Include="ViewModel\Slack\PayloadResponseDto.cs" />
     <Compile Include="ViewModel\RelatedJobDto.cs" />
   </ItemGroup>
   <ItemGroup>
