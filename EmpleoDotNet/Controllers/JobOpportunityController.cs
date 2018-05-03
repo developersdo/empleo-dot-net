@@ -16,6 +16,7 @@ using EmpleoDotNet.Services.Social.Slack;
 using System.Configuration;
 using EmpleoDotNet.ViewModel.Slack;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -248,31 +249,30 @@ namespace EmpleoDotNet.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<JsonResult> Validate(PayloadResponseDto model)
+        [ValidateInput(false)]
+        public async Task Validate()
         {
-            int jobOpportunityId = Convert.ToInt32(model.callback_id);
-            var isJobApproved = model.actions.FirstOrDefault()?.value == "approve";
-            var isJobRejected = model.actions.FirstOrDefault()?.value == "reject";
-            var isTokenValid = model.token == ConfigurationManager.AppSettings["slackVerificationToken"];
+            var payload = JsonConvert.DeserializeObject<PayloadResponseDto>(Request["payload"]);
+            int jobOpportunityId = Convert.ToInt32(payload.callback_id);
+            var isJobApproved = payload.actions.FirstOrDefault()?.value == "approve";
+            var isJobRejected = payload.actions.FirstOrDefault()?.value == "reject";
+            var isTokenValid = payload.token == ConfigurationManager.AppSettings["slackVerificationToken"];
 
             if (isTokenValid && isJobApproved)
             {
                 var jobOpportunity = _jobOpportunityService.GetJobOpportunityById(jobOpportunityId);
                 jobOpportunity.Approved = true;
                 _jobOpportunityService.UpdateJobOpportunity(jobOpportunityId, jobOpportunity);
-                await _slackService.PostJobOpportunityResponse(jobOpportunity, Url, model.response_url, model?.user?.id, true);
-                return Json(new { jobId = jobOpportunityId });
+                await _slackService.PostJobOpportunityResponse(jobOpportunity, Url, payload.response_url, payload?.user?.id, true);
             }
             else if (isTokenValid && isJobRejected)
             {
                 // Jobs are rejected by default, so there's no need to update the DB
                 var jobOpportunity = _jobOpportunityService.GetJobOpportunityById(jobOpportunityId);
-                await _slackService.PostJobOpportunityResponse(jobOpportunity, Url, model.response_url, model?.user?.id, false);
-                return Json(new { jobId = jobOpportunityId });
+                await _slackService.PostJobOpportunityResponse(jobOpportunity, Url, payload.response_url, payload?.user?.id, false);
             } else
             {
                 Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return Json(new { jobId = -1 });
             }  
         }
 
