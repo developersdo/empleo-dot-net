@@ -39,7 +39,7 @@
                     @if (Model.JobOpportunities != null && Model.JobOpportunities.Any())
                     {
                         <link href = "/Content/toggleButton.css" rel = "stylesheet" />
-                        @Html.Partial("_JobListPartial", Model.JobOpportunities)
+                        @Html.Partial("_JobListPartial", Model.JobOpportunities.OrderByDescending(x => x.Created))
                     }
                     else
                     {
