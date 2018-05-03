@@ -4,171 +4,177 @@
 @using Microsoft.AspNet.Identity;
 
 @model JobOpportunity
-@{
+@if (Model != null)
+{
     ViewBag.Title = Model.Title;
     ViewBag.Description = Regex.Replace(Model.Description, @"<(.|\n)*?>", "");
     ViewBag.ImageUrl = Model.CompanyLogoUrl;
+
+    @Html.AntiForgeryToken();
+
+    <section id="title">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h1>@Model.Title</h1>
+                    <div class="job-title">
+                        @if (Model.JobOpportunityLocation == null)
+                        {
+                            <h5><i class="fa fa-map-marker"></i> N/A</h5>
+                        }
+                        else
+                        {
+                            <h5><i class="fa fa-map-marker"></i> @Model.JobOpportunityLocation.Name</h5>
+                        }
+
+                        <h5><i class="fa fa-cog"></i> @Model.Category.ToEnumDescription()</h5>
+
+                        @if (Model.IsRemote)
+                        {
+                            <h5><i class="fa fa-globe"></i> Remoto</h5>
+                        }
+                        <h5><i class="fa fa-info"></i> @Model.JobType.ToEnumDescription()</h5>
+                    </div>
+                    <h5 class="text-center"><i class="fa fa-calendar"></i> @Model.Created.ToString("dd MMMM yyyy")</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="jobs">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <article>
+                        <h2>Detalles del Puesto</h2>
+                        <article>
+                            @Html.Raw(Model.Description)
+                        </article>
+                        <h3>Como aplicar</h3>
+                        @if (Model.HowToApply != null)
+                        {
+                            <article>
+                                @Html.Raw(Model.HowToApply)
+                            </article>
+                        }
+
+                        <p>
+                            Enviar CV a <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a>, recuerda agregar tu cover letter.
+                        </p>
+
+                    </article>
+                    <article>
+                        @if (Model.JoelTest != null)
+                        {
+                            Html.RenderPartial("_JoelTestResults", Model.JoelTest);
+                        }
+                    </article>
+                </div>
+                <div class="col-sm-4" id="sidebar">
+                    @if (Model.UserProfile?.UserId == User.Identity.GetUserId())
+                    {
+                        var titleUrl = UrlHelperExtensions.SeoUrl(Model.Id, Model.Title);
+                        <div class="sidebar-widget">
+                            <h2>Administración</h2>
+                            <div>
+                                @if (Model.IsHidden)
+                                {
+                                    <button data-href="@Url.Action("ToggleHide", "JobOpportunity")" data-title="@titleUrl"
+                                            class="btn btn-admin btn-toggle-hide" id="switch-btn">
+                                        Mostrar
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button data-href="@Url.Action("ToggleHide", "JobOpportunity")" data-title="@titleUrl"
+                                            class="btn btn-admin btn-toggle-show" id="switch-btn">
+                                        Ocultar
+                                    </button>
+                                }
+
+                                <a href="@Url.Action("Edit", "JobOpportunity", new {title = titleUrl})"
+                                   class="btn btn-admin btn-primary">Editar</a>
+                                <a class="btn btn-admin btn-danger" data-href="@Url.Action("Delete", "JobOpportunity", new {title = titleUrl, returnPrevious = false})"
+                                   id="delete-btn" data-toggle="modal" data-target="#confirm-delete" data-title="@Model.Title">Borrar</a>
+                            </div>
+                        </div>
+                    }
+                    <div class="sidebar-widget" id="likes">
+                        <h2>Likes</h2>
+                        <div>
+                            @{
+                                var disabledClass = @Html.Raw(!ViewBag.CanLike ? "disabled" : "");
+                            }
+                            <input type="hidden" id="like-url" value="@Url.Action("Like")" />
+                            <a href="#" class="like-job like @disabledClass" title="Me gusta" data-job="@Model.Id" data-like="true" data-canlike="@ViewBag.CanLike.ToString().ToLower()">
+                                <i class="fa fa-lg fa-thumbs-o-up"></i>
+                                <span>@Model.Likes.FormatThousand()</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="sidebar-widget" id="share">
+                        <h2>Compartir</h2>
+                        <ul>
+                            <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=@Request.Url"><i class="fa fa-facebook"></i></a></li>
+                            <li><a target="_blank" href="https://twitter.com/home?status=@Request.Url"><i class="fa fa-twitter"></i></a></li>
+                            <li><a target="_blank" href="https://plus.google.com/share?url=@Request.Url"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=@Request.Url&amp;summary=&amp;source="><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+
+                    <hr>
+
+                    <div class="sidebar-widget" id="company">
+                        <h2>Sobre la Compañía</h2>
+
+                        <a href="@Model.CompanyUrl">
+                            @if (string.IsNullOrWhiteSpace(@Model.CompanyLogoUrl))
+                            {
+                                <img src="~/Content/img/company-logo-placeholder.png" alt="Logo Compañía" class="img-company img-responsive" />
+                            }
+                            else
+                            {
+                                <img src="@Model.CompanyLogoUrl" alt="Logo Compañía" class="img-company img-responsive">
+                            }
+                        </a>
+                        <h5>@Model.CompanyName</h5>
+                        <p>
+                            <a href="@Model.CompanyUrl" class="btn btn-primary">Más sobre esta compañía</a>
+                        </p>
+                    </div>
+
+                    <hr>
+
+                    @if (((List<JobOpportunity>)ViewBag.RelatedJobs).Any())
+                    {
+                        <div class="sidebar-widget" id="company-jobs">
+                            <h2>Más empleos de esta Compañía</h2>
+                            <ul>
+                                @foreach (var jobOpportunity in (List<JobOpportunity>)ViewBag.RelatedJobs)
+                                {
+                                    <li><a href="@Url.Action("Detail", new {id = UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)})">@jobOpportunity.Title</a></li>
+                                }
+                            </ul>
+                        </div>
+                        <hr>
+                    }
+
+                    <div class="sidebar-widget" id="view-count">
+                        <h2>Visitas Realizadas</h2>
+                        <h3>@Model.ViewCount</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @Html.Partial("_ConfirmDeleteModal")
+
 }
+
 @section scripts
 {
     @Scripts.Render("~/Scripts/JobOpportunity/Likes.js")
 }
 
-@Html.AntiForgeryToken()
-<section id="title">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 text-center">
-                <h1>@Model.Title</h1>
-                <div class="job-title">
-                    @if (Model.JobOpportunityLocation == null)
-                    {
-                        <h5><i class="fa fa-map-marker"></i> N/A</h5>
-                    }
-                    else
-                    {
-                        <h5><i class="fa fa-map-marker"></i> @Model.JobOpportunityLocation.Name</h5>
-                    }
 
-                    <h5><i class="fa fa-cog"></i> @Model.Category.ToEnumDescription()</h5>
-
-                    @if (Model.IsRemote)
-                    {
-                        <h5><i class="fa fa-globe"></i> Remoto</h5>
-                    }
-                    <h5><i class="fa fa-info"></i> @Model.JobType.ToEnumDescription()</h5>
-                </div>
-                <h5 class="text-center"><i class="fa fa-calendar"></i> @Model.Created.ToString("dd MMMM yyyy")</h5>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="jobs">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-8">
-                <article>
-                    <h2>Detalles del Puesto</h2>
-                    <article>
-                        @Html.Raw(Model.Description)
-                    </article>
-                    <h3>Como aplicar</h3>
-                    @if (Model.HowToApply != null)
-                    {
-                        <article>
-                            @Html.Raw(Model.HowToApply)
-                        </article>
-                    }
-
-                    <p>
-                        Enviar CV a <a href="mailto:@Model.CompanyEmail">@Model.CompanyEmail</a>, recuerda agregar tu cover letter.
-                    </p>
-
-                </article>
-                <article>
-                    @if (Model.JoelTest != null)
-                    {
-                        Html.RenderPartial("_JoelTestResults", Model.JoelTest);
-                    }
-                </article>
-            </div>
-            <div class="col-sm-4" id="sidebar">
-                @if (Model.UserProfile?.UserId == User.Identity.GetUserId())
-                {
-                    var titleUrl = UrlHelperExtensions.SeoUrl(Model.Id, Model.Title);
-                    <div class="sidebar-widget">
-                        <h2>Administración</h2>
-                        <div>
-                            @if (Model.IsHidden)
-                            {
-                                <button data-href="@Url.Action("ToggleHide", "JobOpportunity")" data-title="@titleUrl"
-                                        class="btn btn-admin btn-toggle-hide" id="switch-btn">
-                                    Mostrar
-                                </button>
-                            }
-                            else
-                            {
-                                <button data-href="@Url.Action("ToggleHide", "JobOpportunity")" data-title="@titleUrl"
-                                        class="btn btn-admin btn-toggle-show" id="switch-btn">
-                                    Ocultar
-                                </button>
-                            }
-
-                            <a href="@Url.Action("Edit", "JobOpportunity", new {title = titleUrl})"
-                               class="btn btn-admin btn-primary">Editar</a>
-                            <a class="btn btn-admin btn-danger" data-href="@Url.Action("Delete", "JobOpportunity", new {title = titleUrl, returnPrevious = false})"
-                               id="delete-btn" data-toggle="modal" data-target="#confirm-delete" data-title="@Model.Title">Borrar</a>
-                        </div>
-                    </div>
-                }
-                <div class="sidebar-widget" id="likes">
-                    <h2>Likes</h2>
-                    <div>
-                        @{
-                            var disabledClass = @Html.Raw(!ViewBag.CanLike ? "disabled" : "");
-                        }
-                        <input type="hidden" id="like-url" value="@Url.Action("Like")" />
-                        <a href="#" class="like-job like @disabledClass" title="Me gusta" data-job="@Model.Id" data-like="true" data-canlike="@ViewBag.CanLike.ToString().ToLower()">
-                            <i class="fa fa-lg fa-thumbs-o-up"></i>
-                            <span>@Model.Likes.FormatThousand()</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="sidebar-widget" id="share">
-                    <h2>Compartir</h2>
-                    <ul>
-                        <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=@Request.Url"><i class="fa fa-facebook"></i></a></li>
-                        <li><a target="_blank" href="https://twitter.com/home?status=@Request.Url"><i class="fa fa-twitter"></i></a></li>
-                        <li><a target="_blank" href="https://plus.google.com/share?url=@Request.Url"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=@Request.Url&amp;summary=&amp;source="><i class="fa fa-linkedin"></i></a></li>
-                    </ul>
-                </div>
-
-                <hr>
-
-                <div class="sidebar-widget" id="company">
-                    <h2>Sobre la Compañía</h2>
-
-                    <a href="@Model.CompanyUrl">
-                        @if (string.IsNullOrWhiteSpace(@Model.CompanyLogoUrl))
-                        {
-                            <img src="~/Content/img/company-logo-placeholder.png" alt="Logo Compañía" class="img-company img-responsive" />
-                        }
-                        else
-                        {
-                            <img src="@Model.CompanyLogoUrl" alt="Logo Compañía" class="img-company img-responsive">
-                        }
-                    </a>
-                    <h5>@Model.CompanyName</h5>
-                    <p>
-                        <a href="@Model.CompanyUrl" class="btn btn-primary">Más sobre esta compañía</a>
-                    </p>
-                </div>
-
-                <hr>
-
-                @if (((List<JobOpportunity>)ViewBag.RelatedJobs).Any())
-                {
-                    <div class="sidebar-widget" id="company-jobs">
-                        <h2>Más empleos de esta Compañía</h2>
-                        <ul>
-                            @foreach (var jobOpportunity in (List<JobOpportunity>)ViewBag.RelatedJobs)
-                            {
-                                <li><a href="@Url.Action("Detail", new {id = UrlHelperExtensions.SeoUrl(jobOpportunity.Id, jobOpportunity.Title)})">@jobOpportunity.Title</a></li>
-                            }
-                        </ul>
-                    </div>
-                    <hr>
-                }
-
-                <div class="sidebar-widget" id="view-count">
-                    <h2>Visitas Realizadas</h2>
-                    <h3>@Model.ViewCount</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-@Html.Partial("_ConfirmDeleteModal")

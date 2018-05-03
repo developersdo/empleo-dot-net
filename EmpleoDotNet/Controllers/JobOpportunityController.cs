@@ -54,8 +54,12 @@ namespace EmpleoDotNet.Controllers
             var jobOpportunity = _jobOpportunityService.GetJobOpportunityById(jobOpportunityId);
 
             if (jobOpportunity == null)
-                return View(nameof(Index))
+                return View(nameof(Detail))
                     .WithError("La vacante solicitada no existe. Por favor escoge una vacante válida del listado");
+
+            if (jobOpportunity.Approved == false)
+                return View(nameof(Detail))
+                    .WithInfo("Esta vacante no ha sido aprobada. Revise de nuevo más tarde.");
 
             var expectedUrl = UrlHelperExtensions.SeoUrl(jobOpportunityId, jobOpportunity.Title.SanitizeUrl());
 
@@ -124,7 +128,6 @@ namespace EmpleoDotNet.Controllers
 
             _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity, userId);
 
-            await _twitterService.PostNewJobOpportunity(jobOpportunity, Url).ConfigureAwait(false);
             await _slackService.PostNewJobOpportunity(jobOpportunity, Url).ConfigureAwait(false);
 
             return RedirectToAction(nameof(Detail), new
@@ -207,8 +210,7 @@ namespace EmpleoDotNet.Controllers
             {
                 _jobOpportunityService.UpdateJobOpportunity(model.Id, model.ToEntity());
             }
-
-            await _twitterService.PostNewJobOpportunity(jobOpportunity, Url);
+            
             await _slackService.PostNewJobOpportunity(jobOpportunity, Url);
 
             return RedirectToAction(nameof(Detail), new
@@ -264,6 +266,7 @@ namespace EmpleoDotNet.Controllers
                 jobOpportunity.Approved = true;
                 _jobOpportunityService.UpdateJobOpportunity(jobOpportunityId, jobOpportunity);
                 await _slackService.PostJobOpportunityResponse(jobOpportunity, Url, payload.response_url, payload?.user?.id, true);
+                await _twitterService.PostNewJobOpportunity(jobOpportunity, Url).ConfigureAwait(false);
             }
             else if (isTokenValid && isJobRejected)
             {

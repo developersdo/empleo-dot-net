@@ -16,7 +16,7 @@ namespace EmpleoDotNet.Repository
     {
         public List<JobOpportunity> GetAllJobOpportunities()
         {
-            var jobOpportunities = DbSet
+            var jobOpportunities = DbSet.Where(x => x.IsHidden == false && x.Approved == true)
                 .Include(x => x.JobOpportunityLocation)
                 .OrderByDescending(x => x.PublishedDate);
             
@@ -28,7 +28,7 @@ namespace EmpleoDotNet.Repository
             var relatedJobs = DbSet
                 .Where(
                     x =>
-                        x.Id != id &&
+                        x.Id != id && x.IsHidden == false && x.Approved == true &&
                         (x.CompanyName.Equals(name,System.StringComparison.InvariantCultureIgnoreCase) 
                         )).OrderByDescending(x =>x.ViewCount)
                         .Take(5)
@@ -94,7 +94,7 @@ namespace EmpleoDotNet.Repository
                 .Include(x => x.JobOpportunityLocation);
 
             jobs = jobs
-                .OrderByDescending(x => x.PublishedDate);
+                .OrderByDescending(x => x.PublishedDate).Where(x => x.IsHidden == false && x.Approved == true);
             
             //Filter by JobCategory
             if(parameter.JobCategory!= JobCategory.None)
@@ -167,7 +167,8 @@ namespace EmpleoDotNet.Repository
 
         public List<JobOpportunity> GetLatestJobOpportunity(int quantity)
         {
-            return GetAll().OrderByDescending(m => m.PublishedDate)
+            return GetAll().Where(x => x.IsHidden == false && x.Approved == true)
+                .OrderByDescending(m => m.PublishedDate)
                 .ThenByDescending(x => x.Likes)
                 .Include(m => m.JobOpportunityLocation)
                 .Take(quantity)
