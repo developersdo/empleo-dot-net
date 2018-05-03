@@ -12,6 +12,11 @@ using System;
 using System.Net;
 using EmpleoDotNet.Core.Domain;
 using Microsoft.AspNet.Identity;
+using EmpleoDotNet.Services.Social.Slack;
+using System.Configuration;
+using EmpleoDotNet.ViewModel.Slack;
+using System.Linq;
+using Newtonsoft.Json;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -115,10 +120,12 @@ namespace EmpleoDotNet.Controllers
 
             var jobOpportunity = model.ToEntity();
             var userId = User.Identity.GetUserId();
+            jobOpportunity.Approved = false;        // new jobs unapproved by default
 
             _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity, userId);
 
             await _twitterService.PostNewJobOpportunity(jobOpportunity, Url).ConfigureAwait(false);
+            await _slackService.PostNewJobOpportunity(jobOpportunity, Url).ConfigureAwait(false);
 
             return RedirectToAction(nameof(Detail), new
             {
@@ -193,6 +200,7 @@ namespace EmpleoDotNet.Controllers
 
             if (!jobExists)
             {
+                jobOpportunity.Approved = false;        // new jobs unapproved by default
                 _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity, User.Identity.GetUserId());
             }
             else
@@ -201,6 +209,7 @@ namespace EmpleoDotNet.Controllers
             }
 
             await _twitterService.PostNewJobOpportunity(jobOpportunity, Url);
+            await _slackService.PostNewJobOpportunity(jobOpportunity, Url);
 
             return RedirectToAction(nameof(Detail), new
             {
@@ -232,6 +241,39 @@ namespace EmpleoDotNet.Controllers
                     jobOpportunity.Likes,
                     jobOpportunity.DisLikes
                 }});
+        }
+
+        /// <summary>
+        /// Validates the payload response that comes from the Slack interactive message actions
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateInput(false)]
+        public async Task Validate()
+        {
+            var payload = JsonConvert.DeserializeObject<PayloadResponseDto>(Request["payload"]);
+            int jobOpportunityId = Convert.ToInt32(payload.callback_id);
+            var isJobApproved = payload.actions.FirstOrDefault()?.value == "approve";
+            var isJobRejected = payload.actions.FirstOrDefault()?.value == "reject";
+            var isTokenValid = payload.token == ConfigurationManager.AppSettings["slackVerificationToken"];
+
+            if (isTokenValid && isJobApproved)
+            {
+                var jobOpportunity = _jobOpportunityService.GetJobOpportunityById(jobOpportunityId);
+                jobOpportunity.Approved = true;
+                _jobOpportunityService.UpdateJobOpportunity(jobOpportunityId, jobOpportunity);
+                await _slackService.PostJobOpportunityResponse(jobOpportunity, Url, payload.response_url, payload?.user?.id, true);
+            }
+            else if (isTokenValid && isJobRejected)
+            {
+                // Jobs are rejected by default, so there's no need to update the DB
+                var jobOpportunity = _jobOpportunityService.GetJobOpportunityById(jobOpportunityId);
+                await _slackService.PostJobOpportunityResponse(jobOpportunity, Url, payload.response_url, payload?.user?.id, false);
+            } else
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            }  
         }
 
         /// <summary>
@@ -294,13 +336,16 @@ namespace EmpleoDotNet.Controllers
 
         public JobOpportunityController(
             IJobOpportunityService jobOpportunityService,
+            ISlackService slackService,
             ITwitterService twitterService)
         {
             _jobOpportunityService = jobOpportunityService;
+            _slackService = slackService;
             _twitterService = twitterService;
         }
 
         private readonly IJobOpportunityService _jobOpportunityService;
         private readonly ITwitterService _twitterService;
+        private readonly ISlackService _slackService;
     }
 }
