@@ -256,27 +256,43 @@ namespace EmpleoDotNet.Controllers
         {
             var payload = JsonConvert.DeserializeObject<PayloadResponseDto>(Request["payload"]);
             int jobOpportunityId = Convert.ToInt32(payload.callback_id);
+            var jobOpportunity = _jobOpportunityService.GetJobOpportunityById(jobOpportunityId);
             var isJobApproved = payload.actions.FirstOrDefault()?.value == "approve";
             var isJobRejected = payload.actions.FirstOrDefault()?.value == "reject";
             var isTokenValid = payload.token == ConfigurationManager.AppSettings["slackVerificationToken"];
 
-            if (isTokenValid && isJobApproved)
+            try
             {
-                var jobOpportunity = _jobOpportunityService.GetJobOpportunityById(jobOpportunityId);
-                jobOpportunity.Approved = true;
-                _jobOpportunityService.UpdateJobOpportunity(jobOpportunityId, jobOpportunity);
-                await _slackService.PostJobOpportunityResponse(jobOpportunity, Url, payload.response_url, payload?.user?.id, true);
-                await _twitterService.PostNewJobOpportunity(jobOpportunity, Url).ConfigureAwait(false);
+                if (isTokenValid && isJobApproved)
+                {
+                    jobOpportunity.Approved = true;
+                    _jobOpportunityService.UpdateJobOpportunity(jobOpportunityId, jobOpportunity);
+                    await _slackService.PostJobOpportunityResponse(jobOpportunity, Url, payload.response_url, payload?.user?.id, true);
+                    await _twitterService.PostNewJobOpportunity(jobOpportunity, Url).ConfigureAwait(false);
+                }
+                else if (isTokenValid && isJobRejected)
+                {
+                    // Jobs are rejected by default, so there's no need to update the DB
+                    if (jobOpportunity == null)
+                    {
+                        await _slackService.PostJobOpportunityErrorResponse(jobOpportunity, Url, payload.response_url);
+                    } 
+                    else
+                    {
+                        await _slackService.PostJobOpportunityResponse(jobOpportunity, Url, payload.response_url, payload?.user?.id, false);
+                    }
+                }
+                else
+                {
+                    Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                }
             }
-            else if (isTokenValid && isJobRejected)
+            catch (Exception ex)
             {
-                // Jobs are rejected by default, so there's no need to update the DB
-                var jobOpportunity = _jobOpportunityService.GetJobOpportunityById(jobOpportunityId);
-                await _slackService.PostJobOpportunityResponse(jobOpportunity, Url, payload.response_url, payload?.user?.id, false);
-            } else
-            {
-                Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            }  
+                //Catches exceptions so that the raw HTML doesn't appear on the slack channel
+                await _slackService.PostJobOpportunityErrorResponse(jobOpportunity, Url, payload.response_url);
+                Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
+            }
         }
 
         /// <summary>

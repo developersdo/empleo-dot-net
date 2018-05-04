@@ -8,5 +8,6 @@ namespace EmpleoDotNet.Services.Social.Slack
     {
         Task PostNewJobOpportunity(JobOpportunity jobOpportunity, UrlHelper urlHelper);
         Task PostJobOpportunityResponse(JobOpportunity jobOpportunity, UrlHelper urlHelper, string responseUrl, string userId, bool approved);
+        Task PostJobOpportunityErrorResponse(JobOpportunity jobOpportunity, UrlHelper urlHelper, string responseUrl);
     }
 }
