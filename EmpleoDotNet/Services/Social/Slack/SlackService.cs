@@ -25,6 +25,42 @@ namespace EmpleoDotNet.Services.Social.Slack
             _slackWebhookUrl = "https://hooks.slack.com/services/" + slackWebhookEndpoint;
         }
 
+        public async Task PostJobOpportunityErrorResponse(JobOpportunity jobOpportunity, UrlHelper urlHelper, string responseUrl)
+        {
+            if (jobOpportunity == null)
+            {
+                var payloadObject = new PayloadRequestDto()
+                {
+                    text = "A new job posting has been created!",
+                    replace_original = true,
+                    attachments = new List<Attachment> { new Attachment {
+                        fallback = "Oops! Looks like this job was removed by its author.",
+                        text = "Oops! Looks like this job was removed by its author.",
+                        callback_id = "0",
+                        color = "danger",
+                        attachment_type = "default"
+                    }}
+                };
+                await PostNotification(payloadObject, responseUrl).ConfigureAwait(false);
+            } 
+            else
+            {
+                var payloadObject = new PayloadRequestDto()
+                {
+                    text = "A new job posting has been created!",
+                    replace_original = true,
+                    attachments = new List<Attachment> { new Attachment {
+                        fallback = "Oops! Looks like something went wrong with this job posting. Log in and check " + urlHelper.AbsoluteUrl("", "elmah.axd") + " for more details.",
+                        text = "Oops! Looks like something went wrong with this job posting. Log in and check " + urlHelper.AbsoluteUrl("", "elmah.axd") + " for more details.",
+                        callback_id = jobOpportunity?.Id.ToString(),
+                        color = "danger",
+                        attachment_type = "default"
+                    }}
+                };
+                await PostNotification(payloadObject, responseUrl).ConfigureAwait(false);
+            }
+        }
+
         public async Task PostJobOpportunityResponse(JobOpportunity jobOpportunity, UrlHelper urlHelper, string responseUrl, string userId, bool approved)
         {
             if (string.IsNullOrWhiteSpace(jobOpportunity?.Title) || jobOpportunity.Id <= 0)
