@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Ninject.Modules;
 using Ninject.Web.Common;
+using EmpleoDotNet.Services.Social.Slack;
 
 namespace EmpleoDotNet.App_Start
 {
@@ -30,6 +31,7 @@ namespace EmpleoDotNet.App_Start
             Kernel.Bind<IUserProfileSocialService>().To<UserProfileSocialService>();
 
             Kernel.Bind<ITwitterService>().To<TwitterService>();
+            Kernel.Bind<ISlackService>().To<SlackService>();
 
         }
     }
