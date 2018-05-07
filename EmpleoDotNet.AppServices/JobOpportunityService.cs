@@ -12,7 +12,10 @@ namespace EmpleoDotNet.AppServices
     {        
         public void CreateNewJobOpportunity(JobOpportunity jobOpportunity, string userid)
         {
-            jobOpportunity.UserProfile = _userProfileRepository.GetByUserId(userid);
+            if (string.IsNullOrEmpty(userid))
+                throw new Exception("The User Profile ID should not be empty!");
+            var userProfile = _userProfileRepository.GetByUserId(userid);
+            jobOpportunity.UserProfile = userProfile ?? throw new Exception("The user profile selected is invalid!");
             _jobOpportunityRepository.Add(jobOpportunity);
             _jobOpportunityRepository.SaveChanges();
         }
