@@ -6,15 +6,15 @@
     ViewBag.Title = "Nuevo Empleo";
 }
 @section styles{
-<style>
-    #Description {
-        height: 200px;
-    }
-</style>
+    <style>
+        #Description {
+            height: 200px;
+        }
+    </style>
 }
 
 @section scripts {
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=@(Model.MapsApiKey)&libraries=places"></script>
     <script type="text/javascript" src="~/Scripts/JobOpportunity/New.js"></script>
 }
 
@@ -22,99 +22,99 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="container" style="margin-top: 55px;">
-    <div class="row">
-        @*Job Details*@
-        <div class="col-sm-6">
-            <h2>Detalles del puesto</h2>
-            <div class="form-group" id="job-title-group">
-                <label for="Title">Título</label>
-                @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "ejemp. Web Designer" })
-                @Html.ValidationMessageFor(m => m.Title)
+    <div class="container" style="margin-top: 55px;">
+        <div class="row">
+            @*Job Details*@
+            <div class="col-sm-6">
+                <h2>Detalles del puesto</h2>
+                <div class="form-group" id="job-title-group">
+                    <label for="Title">Título</label>
+                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "ejemp. Web Designer" })
+                    @Html.ValidationMessageFor(m => m.Title)
+                </div>
+                <div class="form-group" id="job-location-group">
+                    <label for="Location">Localidad</label>
+                    @Html.TextBoxFor(m => m.LocationName, new
+                    {
+                        @class = "form-control",
+                        placeholder = "Selecciona una localidad",
+                        id = "location-input",
+                        autocomplete = "off"
+                    })
+                    @Html.HiddenFor(m => m.LocationLatitude, new { id = "location-latitude" })
+                    @Html.HiddenFor(m => m.LocationLongitude, new { id = "location-longitude" })
+                    @Html.HiddenFor(m => m.LocationPlaceId, new { id = "location-placeid" })
+                </div>
+                <div class="form-group" id="job-category-group">
+                    <label for="category">Categoría</label>
+
+                    @Html.EnumDropDownListFor(e => e.Category, new { @class = "form-control", id = "category" })
+                </div>
+                <div class="form-group" id="job-category-group">
+                    @Html.LabelFor(m => m.JobType)
+                    @Html.EnumDropDownListFor(e => e.JobType, new { @class = "form-control", id = "job-type" })
+                </div>
+                <div class="form-group">
+                    @Html.CheckBoxFor(m => m.IsRemote)
+                    <label for="IsRemote">Remoto?</label>
+                </div>
             </div>
-            <div class="form-group" id="job-location-group">
-                <label for="Location">Localidad</label>
-                @Html.TextBoxFor(m => m.LocationName, new
-                {
-                    @class = "form-control",
-                    placeholder = "Selecciona una localidad",
-                    id = "location-input",
-                    autocomplete = "off"
-                })
-                @Html.HiddenFor(m => m.LocationLatitude, new { id = "location-latitude"})
-                @Html.HiddenFor(m => m.LocationLongitude, new { id = "location-longitude" })
-                @Html.HiddenFor(m => m.LocationPlaceId, new { id = "location-placeid" })
-            </div>
-            <div class="form-group" id="job-category-group">
-                <label for="category">Categoría</label>
-                
-                @Html.EnumDropDownListFor(e => e.Category, new { @class = "form-control", id = "category" })
-            </div>
-            <div class="form-group" id="job-category-group">
-                @Html.LabelFor(m => m.JobType)
-                @Html.EnumDropDownListFor(e => e.JobType, new { @class = "form-control", id = "job-type" })
-            </div>
-            <div class="form-group">
-                @Html.CheckBoxFor(m => m.IsRemote)
-                <label for="IsRemote">Remoto?</label>
+
+            @*Company Details*@
+            <div class="col-sm-6">
+                <h2>Detalles de la Empresa</h2>
+                <div class="form-group" id="company-name-group">
+                    <label for="CompanyName">Nombre de la Empresa</label>
+                    @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", placeholder = "CompanyX, SRL." })
+                    @Html.ValidationMessageFor(m => m.CompanyName)
+                </div>
+                <div class="form-group" id="company-email-group">
+                    <label for="CompanyEmail">Email</label>
+                    @Html.TextBoxFor(m => m.CompanyEmail, new { @class = "form-control", placeholder = "email@companyx.com" })
+                    @Html.ValidationMessageFor(m => m.CompanyEmail)
+                </div>
+                <div class="form-group" id="how-apply-group">
+                    @Html.LabelFor(m => m.HowToApply)
+                    @Html.TextAreaFor(m => m.HowToApply, new { @class = "form-control textarea", placeholder = "Agrega los pasos que un candidato debe realizar para aplicar a el puesto, no hay que proporcionar el correo en este campo." })
+                    @Html.ValidationMessageFor(m => m.HowToApply)
+                </div>
+                <div class="form-group" id="company-website-group">
+                    <label for="CompanyUrl">Web Site (Opcional)</label>
+                    @Html.TextBoxFor(m => m.CompanyUrl, new { @class = "form-control", placeholder = "companyx.com" })
+                    @Html.ValidationMessageFor(m => m.CompanyUrl)
+                </div>
+                <div class="form-group" id="company-logo-group">
+                    <label for="CompanyLogoUrl">Logo (Opcional)</label>
+                    @Html.TextBoxFor(m => m.CompanyLogoUrl, new { @class = "form-control", placeholder = "http://companyx.com/logo.png" })
+                    @Html.ValidationMessageFor(m => m.CompanyLogoUrl)
+                </div>
             </div>
         </div>
 
-        @*Company Details*@
-        <div class="col-sm-6">
-            <h2>Detalles de la Empresa</h2>
-            <div class="form-group" id="company-name-group">
-                <label for="CompanyName">Nombre de la Empresa</label>
-                @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", placeholder = "CompanyX, SRL." })
-                @Html.ValidationMessageFor(m => m.CompanyName)
-            </div>
-            <div class="form-group" id="company-email-group">
-                <label for="CompanyEmail">Email</label>
-                @Html.TextBoxFor(m => m.CompanyEmail, new { @class = "form-control", placeholder = "email@companyx.com" })
-                @Html.ValidationMessageFor(m => m.CompanyEmail)
-            </div>
-            <div class="form-group" id="how-apply-group">  
-                @Html.LabelFor(m => m.HowToApply)       
-                @Html.TextAreaFor(m => m.HowToApply, new { @class = "form-control textarea", placeholder = "Agrega los pasos que un candidato debe realizar para aplicar a el puesto, no hay que proporcionar el correo en este campo." })
-                @Html.ValidationMessageFor(m => m.HowToApply)
-            </div>
-            <div class="form-group" id="company-website-group">
-                <label for="CompanyUrl">Web Site (Opcional)</label>
-                @Html.TextBoxFor(m => m.CompanyUrl, new { @class = "form-control", placeholder = "companyx.com" })
-                @Html.ValidationMessageFor(m => m.CompanyUrl)
-            </div>
-            <div class="form-group" id="company-logo-group">
-                <label for="CompanyLogoUrl">Logo (Opcional)</label>
-                @Html.TextBoxFor(m => m.CompanyLogoUrl, new { @class = "form-control", placeholder = "http://companyx.com/logo.png" })
-                @Html.ValidationMessageFor(m => m.CompanyLogoUrl)
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group" id="job-description-group">
+                    <h2>Descripcion del Puesto</h2>
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control textarea" })
+                    @Html.ValidationMessageFor(m => m.Description)
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="form-group" id="job-description-group">
-                <h2>Descripcion del Puesto</h2>
-                @Html.TextAreaFor(m => m.Description, new { @class = "form-control textarea" })
-                @Html.ValidationMessageFor(m => m.Description)
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    @Html.Recaptcha()
+                    @Html.ValidationMessage("ReCaptcha")
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-primary btn-lg">Crear Empleo</button>
             </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="form-group">
-                @Html.Recaptcha()
-                @Html.ValidationMessage("ReCaptcha")
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-12">
-            <button type="submit" class="btn btn-primary btn-lg">Crear Empleo</button>
-        </div>
-    </div>
-</div>
 }
 

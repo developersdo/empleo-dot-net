@@ -54,6 +54,7 @@ namespace EmpleoDotNet.ViewModel
         public string LocationLatitude { get; set; }
         public string LocationLongitude { get; set; }
         public string LocationPlaceId { get; set; }
+        public string MapsApiKey { get; set; }
 
         [Display(Name = "Tipo")]
         public JobType JobType { get; set; }

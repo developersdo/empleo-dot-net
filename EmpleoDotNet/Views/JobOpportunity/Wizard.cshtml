@@ -35,187 +35,187 @@
 <section class="wizard-container">
     <div class="container">
         @using (Html.BeginForm("Wizard", "JobOpportunity", FormMethod.Post, new { role = "form" }))
-    {
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(m=>m.Id)
-        <div>
-            <span class="h2 section-title"></span>
-            <hr class="hidden-xs" />
-            <div class="tab section-1">
-                <span class="hidden-xs">1</span>
-                <span class="hidden-lg hidden-md hidden-sm hidden-print">Paso 1 de 3</span>
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.Id)
+            <div>
+                <span class="h2 section-title"></span>
+                <hr class="hidden-xs" />
+                <div class="tab section-1">
+                    <span class="hidden-xs">1</span>
+                    <span class="hidden-lg hidden-md hidden-sm hidden-print">Paso 1 de 3</span>
+                </div>
+                <div class="tab section-2">
+                    <span class="hidden-xs">2</span>
+                    <span class="hidden-lg hidden-md hidden-sm hidden-print">Paso 2 de 3</span>
+                </div>
+                <div class="tab section-3">
+                    <span class="hidden-xs">3</span>
+                    <span class="hidden-lg hidden-md hidden-sm hidden-print">Paso 3 de 3</span>
+                </div>
             </div>
-            <div class="tab section-2">
-                <span class="hidden-xs">2</span>
-                <span class="hidden-lg hidden-md hidden-sm hidden-print">Paso 2 de 3</span>
-            </div>
-            <div class="tab section-3">
-                <span class="hidden-xs">3</span>
-                <span class="hidden-lg hidden-md hidden-sm hidden-print">Paso 3 de 3</span>
-            </div>
-        </div>
-        <div id="wizard" class="owl-carousel owl-theme">
-            <div class="item" data-parsley-group="business-details">
-                <div class="form-group" id="company-name-group">
-                    @Html.LabelFor(m => m.CompanyName)
+            <div id="wizard" class="owl-carousel owl-theme">
+                <div class="item" data-parsley-group="business-details">
+                    <div class="form-group" id="company-name-group">
+                        @Html.LabelFor(m => m.CompanyName)
                         @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", placeholder = "CompanyX, SRL.", required = "", @data_parsley_group = "business-details" })
-                    <span><b>Tip:</b> Los mejores candidatos tienden a hacer caso omiso de propuestas an&oacute;nimas</span>
+                        <span><b>Tip:</b> Los mejores candidatos tienden a hacer caso omiso de propuestas an&oacute;nimas</span>
                         <br />
-                    @Html.ValidationMessageFor(m => m.CompanyName)
-                </div>
-                <div class="form-group" id="company-email-group">
-                    @Html.LabelFor(m => m.CompanyEmail)
+                        @Html.ValidationMessageFor(m => m.CompanyName)
+                    </div>
+                    <div class="form-group" id="company-email-group">
+                        @Html.LabelFor(m => m.CompanyEmail)
                         @Html.TextBoxFor(m => m.CompanyEmail, new { @class = "form-control", type = "email", placeholder = "email@companyx.com", required = "", @data_parsley_group = "business-details" })
-                    @Html.ValidationMessageFor(m => m.CompanyEmail)
-                </div>          
-                <div class="form-group" id="company-website-group">
-                    @Html.LabelFor(m => m.CompanyUrl)
+                        @Html.ValidationMessageFor(m => m.CompanyEmail)
+                    </div>
+                    <div class="form-group" id="company-website-group">
+                        @Html.LabelFor(m => m.CompanyUrl)
                         @Html.TextBoxFor(m => m.CompanyUrl, new { @class = "form-control", type = "url", @data_parsley_type = "url", placeholder = "companyx.com", @data_parsley_group = "business-details" })
-                    <span>
-                        <b>Tip:</b> Muchos aplicantes visitar&aacute;n tu sitio web y lo tomar&aacute;n 
-                        como referencia antes de decidirse por t&iacute;. Si tu empresa no tiene un sitio web 
-                        o crees que necesita unas mejoras, considera buscar un web developer en
-                         <a href="@Url.Action("Index", "Home")">emplea.do</a>
-                    </span>
+                        <span>
+                            <b>Tip:</b> Muchos aplicantes visitar&aacute;n tu sitio web y lo tomar&aacute;n
+                            como referencia antes de decidirse por t&iacute;. Si tu empresa no tiene un sitio web
+                            o crees que necesita unas mejoras, considera buscar un web developer en
+                            <a href="@Url.Action("Index", "Home")">emplea.do</a>
+                        </span>
                         <br />
-                    @Html.ValidationMessageFor(m => m.CompanyUrl)
-                </div>
-                <div class="form-group" id="company-logo-group">
-                    @Html.LabelFor(m => m.CompanyLogoUrl)
+                        @Html.ValidationMessageFor(m => m.CompanyUrl)
+                    </div>
+                    <div class="form-group" id="company-logo-group">
+                        @Html.LabelFor(m => m.CompanyLogoUrl)
                         @Html.TextBoxFor(m => m.CompanyLogoUrl, new { @class = "form-control", type = "url", @data_parsley_type = "url", placeholder = "http://companyx.com/logo.png" })
                         <span>
                             Asegurate de que el servidor donde est&eacute; alojado el logo acepte hotlinks.
                             Si no sabes que es eso, no te preocupes, sube el logo a <a href="https://imgur.com" target="_blank">imgur</a> y pega la url aqu&iacute;
                         </span>
                         <br />
-                    @Html.ValidationMessageFor(m => m.CompanyLogoUrl)
+                        @Html.ValidationMessageFor(m => m.CompanyLogoUrl)
+                    </div>
+                    <a class="btn-next btn btn-primary btn-lg">Siguiente</a>
                 </div>
-                <a class="btn-next btn btn-primary btn-lg">Siguiente</a>
-            </div>
-            <div class="item" data-parsley-group="job-details">
-                <div class="form-group" id="job-title-group">
-                    @Html.LabelFor(m => m.Title)
+                <div class="item" data-parsley-group="job-details">
+                    <div class="form-group" id="job-title-group">
+                        @Html.LabelFor(m => m.Title)
                         @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "ejemp. Se busca Web Designer", @data_parsley_group = "job-details", required = "" })
-                    @Html.ValidationMessageFor(m => m.Title)
-                </div>
-                <div class="form-group" id="job-category-group">
-                    @Html.LabelFor(m => m.Category)
+                        @Html.ValidationMessageFor(m => m.Title)
+                    </div>
+                    <div class="form-group" id="job-category-group">
+                        @Html.LabelFor(m => m.Category)
                         @Html.EnumDropListFor(e => e.Category, new { @class = "form-control", id = "category", @data_parsley_group = "job-details" })
-                </div>
-                <div class="form-group" id="job-category-group">
-                    @Html.LabelFor(m => m.JobType)
-                    @Html.EnumDropListFor(e => e.JobType, new { @class = "form-control", id = "job-type" })
-                </div>
+                    </div>
+                    <div class="form-group" id="job-category-group">
+                        @Html.LabelFor(m => m.JobType)
+                        @Html.EnumDropListFor(e => e.JobType, new { @class = "form-control", id = "job-type" })
+                    </div>
 
-                <div class="form-group" id="how-apply-group">
-                    @Html.LabelFor(m => m.HowToApply)
-                    @Html.TextAreaFor(m => m.HowToApply, new { @class = "form-control textarea", required = "", @data_parsley_group = "job-details", placeholder = "Agrega los pasos que un candidato debe realizar para aplicar a el puesto, no hay que proporcionar el correo en este campo." })
-                    @Html.ValidationMessageFor(m => m.HowToApply)
-                </div>
+                    <div class="form-group" id="how-apply-group">
+                        @Html.LabelFor(m => m.HowToApply)
+                        @Html.TextAreaFor(m => m.HowToApply, new { @class = "form-control textarea", required = "", @data_parsley_group = "job-details", placeholder = "Agrega los pasos que un candidato debe realizar para aplicar a el puesto, no hay que proporcionar el correo en este campo." })
+                        @Html.ValidationMessageFor(m => m.HowToApply)
+                    </div>
 
-                <div class="form-group" id="job-location-group">
-                    @Html.LabelFor(m => m.LocationName)
-                    @Html.TextBoxFor(m => m.LocationName, new
-                   {
-                       @class = "form-control",
-                       placeholder = "Selecciona una localidad",
-                       id = "location-input",
-                       @data_parsley_group = "job-details",
-                       autocomplete = "off"
-                   })
-                    @Html.HiddenFor(m => m.LocationLatitude, new { id = "location-latitude", @data_parsley_group = "job-details" })
-                    @Html.HiddenFor(m => m.LocationLongitude, new { id = "location-longitude", @data_parsley_group = "job-details" })
-                    @Html.HiddenFor(m => m.LocationPlaceId, new { id = "location-placeid", @data_parsley_group = "job-details" })
+                    <div class="form-group" id="job-location-group">
+                        @Html.LabelFor(m => m.LocationName)
+                        @Html.TextBoxFor(m => m.LocationName, new
+                        {
+                            @class = "form-control",
+                            placeholder = "Selecciona una localidad",
+                            id = "location-input",
+                            @data_parsley_group = "job-details",
+                            autocomplete = "off"
+                        })
+                        @Html.HiddenFor(m => m.LocationLatitude, new { id = "location-latitude", @data_parsley_group = "job-details" })
+                        @Html.HiddenFor(m => m.LocationLongitude, new { id = "location-longitude", @data_parsley_group = "job-details" })
+                        @Html.HiddenFor(m => m.LocationPlaceId, new { id = "location-placeid", @data_parsley_group = "job-details" })
                         @Html.ValidationMessageFor(x => x.LocationName)
-                </div>
-                <div class="form-group">
-                    @Html.CheckBoxFor(m => m.IsRemote)
-                    @Html.LabelFor(m => m.IsRemote)
-                </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.CheckBoxFor(m => m.IsRemote)
+                        @Html.LabelFor(m => m.IsRemote)
+                    </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Description)
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Description)
                         @Html.TextAreaFor(m => m.Description, new { @class = "form-control textarea", @data_parsley_group = "job-details", @data_parsley_errors_container = "#description_errors", required = "" })
-                    @Html.ValidationMessageFor(m => m.Description)
+                        @Html.ValidationMessageFor(m => m.Description)
                         <span>
                             <b>Tip:</b> Se lo mas explicito posible, si eres de recursos humanos consulta con una persona de
                             tecnolog&iacute;a sobre cuales son los requerimientos t&eacute;cnicos.
                         </span>
-                    <span id="description_errors" class="danger"></span>
-                </div>
-                <a class="btn-prev btn btn-warning btn-lg">Anterior</a>
-                <a class="btn-next btn btn-primary btn-lg">Siguiente</a>
+                        <span id="description_errors" class="danger"></span>
+                    </div>
+                    <a class="btn-prev btn btn-warning btn-lg">Anterior</a>
+                    <a class="btn-next btn btn-primary btn-lg">Siguiente</a>
 
-            </div>
-            <div class="item">
+                </div>
+                <div class="item">
                     <p>
                         Si no sabes que es puedes
-                <a href="http://local.joelonsoftware.com/wiki/El_Test_de_Joel:_12_pasos_hacia_un_c%C3%B3digo_mejor" target="_blank">leer aqu&iacute;</a>.
-                    En resumen, es un cuestionario para medir la calidad del equipo de desarrollo de tu empresa. Coteja las opciones que apliquen.
+                        <a href="http://local.joelonsoftware.com/wiki/El_Test_de_Joel:_12_pasos_hacia_un_c%C3%B3digo_mejor" target="_blank">leer aqu&iacute;</a>.
+                        En resumen, es un cuestionario para medir la calidad del equipo de desarrollo de tu empresa. Coteja las opciones que apliquen.
                         <br />**Este paso es opcional y solo aplica para posiciones relacionadas al Desarrollo de Software
                     </p>
-                <div class="form-group">
-                    @Html.CheckBoxFor(m => m.HasSourceControl)
-                    @Html.LabelFor(m => m.HasSourceControl)
-                </div>
-                <div class="form-group">
-                    @Html.CheckBoxFor(m => m.HasOneStepBuilds)
-                    @Html.LabelFor(m => m.HasOneStepBuilds)
-                </div>
-                <div class="form-group">
-                    @Html.CheckBoxFor(m => m.HasDailyBuilds)
-                    @Html.LabelFor(m => m.HasDailyBuilds)
-                </div>
-                <div class="form-group">
-                    @Html.CheckBoxFor(m => m.HasBugDatabase)
-                    @Html.LabelFor(m => m.HasBugDatabase)
-                </div>
-                <div class="form-group">
-                    @Html.CheckBoxFor(m => m.HasBusFixedBeforeProceding)
-                    @Html.LabelFor(m => m.HasBusFixedBeforeProceding)
-                </div>
-                <div class="form-group">
-                    @Html.CheckBoxFor(m => m.HasUpToDateSchedule)
-                    @Html.LabelFor(m => m.HasUpToDateSchedule)
-                </div>
-                <div class="form-group">
-                    @Html.CheckBoxFor(m => m.HasSpec)
-                    @Html.LabelFor(m => m.HasSpec)
-                </div>
-                <div class="form-group">
-                    @Html.CheckBoxFor(m => m.HasQuiteEnvironment)
-                    @Html.LabelFor(m => m.HasQuiteEnvironment)
-                </div>
-                <div class="form-group">
-                    @Html.CheckBoxFor(m => m.HasBestTools)
-                    @Html.LabelFor(m => m.HasBestTools)
-                </div>
-                <div class="form-group">
-                    @Html.CheckBoxFor(m => m.HasTesters)
-                    @Html.LabelFor(m => m.HasTesters)
-                </div>
-                <div class="form-group">
-                    @Html.CheckBoxFor(m => m.HasWrittenTest)
-                    @Html.LabelFor(m => m.HasWrittenTest)
-                </div>
-                <div class="form-group">
-                    @Html.CheckBoxFor(m => m.HasHallwayTests)
-                    @Html.LabelFor(m => m.HasHallwayTests)
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="form-group">
+                    <div class="form-group">
+                        @Html.CheckBoxFor(m => m.HasSourceControl)
+                        @Html.LabelFor(m => m.HasSourceControl)
+                    </div>
+                    <div class="form-group">
+                        @Html.CheckBoxFor(m => m.HasOneStepBuilds)
+                        @Html.LabelFor(m => m.HasOneStepBuilds)
+                    </div>
+                    <div class="form-group">
+                        @Html.CheckBoxFor(m => m.HasDailyBuilds)
+                        @Html.LabelFor(m => m.HasDailyBuilds)
+                    </div>
+                    <div class="form-group">
+                        @Html.CheckBoxFor(m => m.HasBugDatabase)
+                        @Html.LabelFor(m => m.HasBugDatabase)
+                    </div>
+                    <div class="form-group">
+                        @Html.CheckBoxFor(m => m.HasBusFixedBeforeProceding)
+                        @Html.LabelFor(m => m.HasBusFixedBeforeProceding)
+                    </div>
+                    <div class="form-group">
+                        @Html.CheckBoxFor(m => m.HasUpToDateSchedule)
+                        @Html.LabelFor(m => m.HasUpToDateSchedule)
+                    </div>
+                    <div class="form-group">
+                        @Html.CheckBoxFor(m => m.HasSpec)
+                        @Html.LabelFor(m => m.HasSpec)
+                    </div>
+                    <div class="form-group">
+                        @Html.CheckBoxFor(m => m.HasQuiteEnvironment)
+                        @Html.LabelFor(m => m.HasQuiteEnvironment)
+                    </div>
+                    <div class="form-group">
+                        @Html.CheckBoxFor(m => m.HasBestTools)
+                        @Html.LabelFor(m => m.HasBestTools)
+                    </div>
+                    <div class="form-group">
+                        @Html.CheckBoxFor(m => m.HasTesters)
+                        @Html.LabelFor(m => m.HasTesters)
+                    </div>
+                    <div class="form-group">
+                        @Html.CheckBoxFor(m => m.HasWrittenTest)
+                        @Html.LabelFor(m => m.HasWrittenTest)
+                    </div>
+                    <div class="form-group">
+                        @Html.CheckBoxFor(m => m.HasHallwayTests)
+                        @Html.LabelFor(m => m.HasHallwayTests)
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
                                 <input type="hidden" name="ReCaptcha" value="" />
-                            @Html.Recaptcha()
-                            @Html.ValidationMessage("ReCaptcha")
+                                @Html.Recaptcha()
+                                @Html.ValidationMessage("ReCaptcha")
+                            </div>
                         </div>
                     </div>
+                    <a class="btn-prev btn btn-warning btn-lg">Anterior</a>
+                    <button type="submit" class="btn btn-primary btn-lg">Guardar información</button>
                 </div>
-                <a class="btn-prev btn btn-warning btn-lg">Anterior</a>
-                <button type="submit" class="btn btn-primary btn-lg">Guardar información</button>
             </div>
-        </div>
-    }
+        }
     </div>
 </section>
 @section styles{
@@ -225,7 +225,7 @@
     <script type="text/javascript" src="~/Scripts/parsley.min.js"></script>
     <script type="text/javascript" src="~/Scripts/i18n/parsley/es.js"></script>
     <script type="text/javascript" src="~/Scripts/JobOpportunity/Wizard.js"></script>
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=@(Model.MapsApiKey)&libraries=places"></script>
     <script type="text/javascript">
         google.maps.event.addDomListener(window, 'load', function () {
             var places = new google.maps.places.Autocomplete(document.getElementById('location-input'));

@@ -17,6 +17,7 @@ using System.Configuration;
 using EmpleoDotNet.ViewModel.Slack;
 using System.Linq;
 using Newtonsoft.Json;
+using System.Configuration;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -94,6 +95,7 @@ namespace EmpleoDotNet.Controllers
         public ActionResult New()
         {
             var viewModel = new NewJobOpportunityViewModel();
+            viewModel.MapsApiKey = ConfigurationManager.AppSettings["GoogleMapsApiKey"];
 
             return View(viewModel)
                 .WithWarning("Prueba nuestro nuevo proceso guiado de creación de posiciones haciendo <b><a href='" + Url.Action("Wizard") + "'>click aquí</a></b>");
@@ -140,7 +142,7 @@ namespace EmpleoDotNet.Controllers
         public ActionResult Wizard()
         {
             var viewModel = new Wizard();
-
+            viewModel.MapsApiKey = ConfigurationManager.AppSettings["GoogleMapsApiKey"];
             return View(viewModel);
         }
 
