@@ -20,6 +20,7 @@ namespace EmpleoDotNet.ViewModel.JobOpportunity
         public string LocationLatitude { get; set; }
         public string LocationLongitude { get; set; }
         public string LocationPlaceId { get; set; }
+        public string MapsApiKey { get; set; }
 
         [Required(ErrorMessage = "Debes elegir una categoría.")]
         [Display(Name = "Categoría")]
