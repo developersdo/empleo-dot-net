@@ -372,6 +372,7 @@
     <Content Include="Content\IconsSocial\Tumblr.png" />
     <Content Include="Content\IconsSocial\Twitter.png" />
     <Content Include="Content\IconsSocial\Wordpress.png" />
+    <Content Include="Content\img\cdc-banner.png" />
     <Content Include="Content\img\company-logo-placeholder.png" />
     <Content Include="Content\img\pinedax.png" />
     <Content Include="Content\img\find-a-job.jpg" />

@@ -18,7 +18,7 @@
         },
         new
         {
-            Description = "javascript",
+            Description = "Javascript",
             Link = @Url.Action("Index", "JobOpportunity", new { Keyword = "javascript" })
         },
         new
@@ -33,7 +33,7 @@
         },
         new
         {
-            Description = "xamarin",
+            Description = "Xamarin",
             Link = @Url.Action("Index", "JobOpportunity", new { Keyword = "xamarin" })
         }
     };
@@ -44,7 +44,7 @@
 
 <div class="container" style="margin-top: 50px;">
     <div class="row">
-        <div class="col-md-9 col-lg-9">
+        <div class="col-md-8 col-lg-8">
             <p class="search-job-title">Buscar Empleos</p>
             @using (Html.BeginForm("Index", "JobOpportunity", FormMethod.Get))
             {
@@ -98,6 +98,14 @@
                             <span class="search-job-label-item"><a href="@Url.Action("Index", "JobOpportunity", new { category.JobCategory })">@category.JobCategory.ToEnumDescription() <span class="badge">@category.Count</span> </a></span>
                         }
                     </p>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-4">
+            <div class="row">
+                <a href="http://bit.ly/cdcempleado"><img style="margin-top:72px; max-height:310px; max-width: 310px; height: auto; width: auto;" class="img-fluid" src="~/Content/img/cdc-banner.png" /></a>
                 </div>
             </div>
             }
