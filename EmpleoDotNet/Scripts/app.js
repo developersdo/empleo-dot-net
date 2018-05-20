@@ -30,4 +30,12 @@
             .attr("href", $(e.relatedTarget)
             .data("href"));
     });
+
+    if ($(":checkbox").size() > 0) {
+        $(':checkbox').iCheck({
+            checkboxClass: 'icheckbox_flat-green',
+            radioClass: 'iradio_flat'
+        });
+    }
+
 })()
