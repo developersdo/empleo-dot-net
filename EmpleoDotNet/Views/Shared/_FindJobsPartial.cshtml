@@ -64,11 +64,11 @@
                                 <strong>Localidad</strong>
                             </label>
                             @Html.TextBoxFor(m => m.SelectedLocationName, new
-                            {
-                                @class = "form-control",
-                                id = "location-input",
-                                autocomplete = "off"
-                            })
+                        {
+                            @class = "form-control",
+                            id = "location-input",
+                            autocomplete = "off"
+                        })
                             @Html.HiddenFor(m => m.SelectedLocationPlaceId, new { id = "location-placeid" })
                             @Html.HiddenFor(m => m.SelectedLocationLatitude, new { id = "location-latitude" })
                             @Html.HiddenFor(m => m.SelectedLocationLongitude, new { id = "location-longitude" })
@@ -99,16 +99,15 @@
                         }
                     </p>
                 </div>
-                
+
             </div>
+            }
         </div>
 
         <div class="col-md-4 col-lg-4">
-            <div class="row">
+            <div class="row text-center">
                 <a href="http://bit.ly/cdcempleado"><img style="margin-top:72px; max-height:310px; max-width: 310px; height: auto; width: auto;" class="img-fluid" src="~/Content/img/cdc-banner.png" /></a>
-                </div>
             </div>
-            }
         </div>
     </div>
 </div>
