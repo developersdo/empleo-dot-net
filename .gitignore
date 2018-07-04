@@ -19,6 +19,7 @@ bld/
 [Oo]bj/
 Auth.config
 
+.DS_Store
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
