@@ -106,12 +106,29 @@
 
         <div class="col-md-4 col-lg-4">
             <div class="row text-center">
-                @if((DateTime.Now.Millisecond%2) == 0)
-                {            
-                    <a href="http://bit.ly/cdcempleado"><img style="margin-top:72px; max-height:310px; max-width: 310px; height: auto; width: auto;" class="img-fluid" src="~/Content/img/cdc-banner.png" /></a>
-
-                }else{
-                    <a href="http://bit.ly/gbh-empleos"><img style="margin-top:72px; max-height:310px; max-width: 310px; height: auto; width: auto;" class="img-fluid" src="~/Content/img/gbh.gif" /></a>
+                @if((DateTime.UtcNow.Millisecond%2) == 0)
+                {
+                    var toShow = DateTime.UtcNow.Second % 4;
+                    @if(toShow == 0)
+                    {
+                        <a href="https://bit.ly/cdcemplea2"><img style="margin-top:72px; max-height:310px; max-width: 310px; height: auto; width: auto;" class="img-fluid" src="~/Content/img/cdc-banner.png" /></a>
+                    }
+                    @if(toShow == 1)
+                    {
+                        <a href="https://bit.ly/cdcempleabrite"><img style="margin-top:72px; max-height:310px; max-width: 310px; height: auto; width: auto;" class="img-fluid" src="~/Content/img/cdc-allaccess.png" /></a>
+                    }
+                    @if(toShow == 2)
+                    {
+                        <a href="https://bit.ly/cdcemplea2"><img style="margin-top:72px; max-height:310px; max-width: 310px; height: auto; width: auto;" class="img-fluid" src="~/Content/img/cdc-costs.png" /></a>
+                    }
+                    @if(toShow == 3)
+                    {
+                        <a href="https://bit.ly/2N2aLiC"><img style="margin-top:72px; max-height:310px; max-width: 310px; height: auto; width: auto;" class="img-fluid" src="~/Content/img/cdc-speakers.png" /></a>
+                    }
+                }
+                else
+                {
+                    <a href="https://bit.ly/gbh-empleos"><img style="margin-top:72px; max-height:310px; max-width: 310px; height: auto; width: auto;" class="img-fluid" src="~/Content/img/gbh.gif" /></a>
                 }
             </div>
         </div>

@@ -373,6 +373,9 @@
     <Content Include="Content\IconsSocial\Twitter.png" />
     <Content Include="Content\IconsSocial\Wordpress.png" />
     <Content Include="Content\img\cdc-banner.png" />
+    <Content Include="Content\img\cdc-allaccess.png" />
+    <Content Include="Content\img\cdc-costs.png" />
+    <Content Include="Content\img\cdc-speakers.png" />
     <Content Include="Content\img\gbh.gif" />
     <Content Include="Content\img\company-logo-placeholder.png" />
     <Content Include="Content\img\pinedax.png" />
