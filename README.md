@@ -1,5 +1,11 @@
 Emplea.do
 ==============
+## THIS REPOISITORY IS NO LONGER BEING MAINTAINED
+### In an effort to have a clean start with a new codebase (in .net core) and avoid old issues, this repo has been archieved. 
+### We started a new repository [here](https://github.com/developersdo/emplea_do)
+
+## ESTE REPOSITORIO NO ESTA SIENDO MANTENIDO
+### En un esfuerzo por comenzar desde cero con una nueva base (en .net core), evitar viejos problemas y tener un roadmap consistente. Creamos un nuevo repositorio [Aquí](https://github.com/developersdo/emplea_do)
 
 ### What is this ?
 
