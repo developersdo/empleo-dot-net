@@ -108,7 +108,14 @@
             <div class="row text-center">	
                 @if((DateTime.UtcNow.Millisecond%2) == 0)	
                 {	
+                    if((DateTime.UtcNow.Seconds%2) == 0)
+                    {
                     <a href="https://cdc.dev/"><img style="margin-top:72px; max-height:310px; max-width: 310px; height: auto; width: auto;" class="img-fluid" src="~/Content/img/cdc.png" /></a>	
+                    }
+                    else
+                    {
+                    <a href="https://codecampsdq.com"><img style="margin-top:72px; max-height:310px; max-width: 310px; height: auto; width: auto;" class="img-fluid" src="~/Content/img/codecampsdq.png" /></a>	
+                    }
                 }	
                 else	
                 {	

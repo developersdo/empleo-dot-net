@@ -374,6 +374,7 @@
     <Content Include="Content\IconsSocial\Wordpress.png" />
     <Content Include="Content\img\cdc-banner.png" />
     <Content Include="Content\img\cdc.png" />
+    <Content Include="Content\img\codecampsdq.png" />
     <Content Include="Content\img\cdc-allaccess.png" />
     <Content Include="Content\img\cdc-costs.png" />
     <Content Include="Content\img\cdc-speakers.png" />
