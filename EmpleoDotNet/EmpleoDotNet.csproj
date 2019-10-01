@@ -28,6 +28,8 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <Use64BitIISExpress />
+    <ApplicationInsightsResourceId>/subscriptions/d579980f-0244-4e9f-a5d9-ea618d3bbc28/resourcegroups/emplea-do-us-east2/providers/microsoft.insights/components/empleadoprod</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/d579980f-0244-4e9f-a5d9-ea618d3bbc28/resourcegroups/emplea-do-us-east2/providers/microsoft.insights/components/empleadoprod</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -310,6 +312,7 @@
     <Compile Include="Controllers\UnderMaintenanceController.cs" />
     <Compile Include="Code\EmpleoDotNetHttpContext.cs" />
     <Compile Include="Code\TrimModelBinder.cs" />
+    <Compile Include="ErrorHandler\AiHandleErrorAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
