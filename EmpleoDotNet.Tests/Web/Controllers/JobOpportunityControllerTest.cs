@@ -37,7 +37,7 @@ namespace EmpleoDotNet.Tests.Web.Controllers
         {
             _jobOpportunityService = Substitute.For<IJobOpportunityService>();
             _twitterService = Substitute.For<ITwitterService>();
-            _sut = new JobOpportunityController(_jobOpportunityService, _twitterService);
+            _sut = new JobOpportunityController(_jobOpportunityService,null, _twitterService);
         }
 
         #region Index
