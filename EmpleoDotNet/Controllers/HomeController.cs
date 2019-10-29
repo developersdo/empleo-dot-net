@@ -18,12 +18,18 @@ namespace EmpleoDotNet.Controllers
                 CategoriesCount = _jobOpportunityRepository.GetMainJobCategoriesCount()
             };
 
-            var model = _jobOpportunityRepository.GetLatestJobOpportunity(7);
+            int howMany=7; 
+            int.TryParse(ConfigurationManager.AppSettings["HomeController:RecentJobCount"], out howMany);
+                        
+H           var model = _jobOpportunityRepository.GetLatestJobOpportunity(howMany);
             return View(model);
         }
 
         public ActionResult Rss()
         {         
+             int howMany=7; 
+            int.TryParse(ConfigurationManager.AppSettings["HomeController:RecentJobCount"], out howMany);
+
             var model = _jobOpportunityRepository.GetLatestJobOpportunity(7);
             return new RssResult(Constants.RssTitle, Constants.RssDescription, model.ToSyndicationList());
         }
