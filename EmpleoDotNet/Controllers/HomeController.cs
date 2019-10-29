@@ -7,6 +7,8 @@ using EmpleoDotNet.Services;
 using EmpleoDotNet.ViewModel;
 using System.Collections.Generic;
 using EmpleoDotNet.Helpers;
+using System.Configuration;
+using EmpleoDotNet.Core.Domain;
 
 namespace EmpleoDotNet.Controllers
 {
@@ -18,14 +20,26 @@ namespace EmpleoDotNet.Controllers
                 CategoriesCount = _jobOpportunityRepository.GetMainJobCategoriesCount()
             };
 
-            var model = _jobOpportunityRepository.GetLatestJobOpportunity(7);
-            return View(model);
+            return View(GetRecentJobs());
         }
 
         public ActionResult Rss()
         {         
-            var model = _jobOpportunityRepository.GetLatestJobOpportunity(7);
+            var model = GetRecentJobs();
             return new RssResult(Constants.RssTitle, Constants.RssDescription, model.ToSyndicationList());
+        }
+
+        private IList<JobOpportunity> GetRecentJobs()
+        {
+            int howMany;
+            int defaultCount = 7;
+            if (int.TryParse(ConfigurationManager.AppSettings["HomeController:RecentJobCount"], out howMany))
+            {
+                defaultCount = howMany;
+            }
+
+            var model = _jobOpportunityRepository.GetLatestJobOpportunity(defaultCount);
+            return model;
         }
 
         public HomeController(IJobOpportunityRepository jobOpportunityRepository)
