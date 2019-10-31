@@ -14,7 +14,7 @@ namespace EmpleoDotNet.WebApi
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
-                defaults: new { controller = "Jobs", action = "Index", id = RouteParameter.Optional }
+                defaults: new { controller = "Jobs", action = "Get", id = RouteParameter.Optional }
             );
         }
     }
