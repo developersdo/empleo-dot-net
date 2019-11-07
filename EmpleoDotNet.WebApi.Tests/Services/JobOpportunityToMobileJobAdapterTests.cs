@@ -36,8 +36,8 @@ namespace EmpleoDotNet.WebAPI.Tests.Services
             var jobCard = _adapter.GetJobCard(_jobOpportunity);
 
             // Assert
-            jobCard.Employee.Should().NotBeNullOrWhiteSpace();
-            jobCard.Job.Should().NotBeNullOrWhiteSpace();
+            jobCard.CompanyName.Should().NotBeNullOrWhiteSpace();
+            jobCard.Description.Should().NotBeNullOrWhiteSpace();
             jobCard.JobType.Should().NotBeNullOrWhiteSpace();
             jobCard.Link.Should().NotBeNullOrWhiteSpace();
             jobCard.Location.Should().NotBeNullOrWhiteSpace();
