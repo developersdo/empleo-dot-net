@@ -15,12 +15,21 @@ namespace EmpleoDotNet.WebAPI.Services
         public JobCardDTO GetJobCard(JobOpportunity jobOpportunity)
         {
             var jobCard = new JobCardDTO();
-            jobCard.Employee = jobOpportunity.CompanyName;
+            jobCard.CompanyLogoUrl = jobOpportunity.CompanyLogoUrl;
+            jobCard.CompanyName = jobOpportunity.CompanyName;
+            jobCard.Title = jobOpportunity.Title;
+            // Maybe this should be left to the UI
+            jobCard.PublishedDate = jobOpportunity.PublishedDate.GetValueOrDefault();
             jobCard.IsRemote = jobOpportunity.IsRemote;
-            jobCard.Job = jobOpportunity.Description;
+            jobCard.Description = jobOpportunity.Description;
+            jobCard.HowToApply = jobOpportunity.HowToApply;
             jobCard.JobType = jobOpportunity.JobType.GetDisplayName();
             jobCard.Link = jobOpportunity.Id.ToString();
+            jobCard.ViewCount = jobOpportunity.ViewCount;
+            jobCard.Likes = jobOpportunity.Likes;
+
             jobCard.Location = jobOpportunity.Location != null ? jobOpportunity.Location.Name : "N/A";
+            
 
             return jobCard;
         }
