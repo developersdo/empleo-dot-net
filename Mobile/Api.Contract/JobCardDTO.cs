@@ -6,7 +6,6 @@ namespace Api.Contract
 	{
 		public string Link{ get; set; }
 
-		public string Description{ get; set; }
 		public string CompanyName{ get; set; }
         public string Title { get; set; }
 		public string JobType{ get; set; }
