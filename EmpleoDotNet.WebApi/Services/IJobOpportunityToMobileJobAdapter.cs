@@ -27,26 +27,33 @@ namespace EmpleoDotNet.WebAPI.Services
             jobCard.Link = jobOpportunity.Id.ToString();
             jobCard.ViewCount = jobOpportunity.ViewCount;
             jobCard.Likes = jobOpportunity.Likes;
-            jobCard.Location = jobOpportunity.Location != null ? jobOpportunity.Location.Name : "N/A";
+            jobCard.Location = jobOpportunity.JobOpportunityLocation != null ? jobOpportunity.JobOpportunityLocation.Name : "N/A";
             
 
             return jobCard;
         }
 
-        public JobDetailResponse GetJobDetails(JobOpportunity jobOpportunity)
+        public JobDetailResponse GetJobDetails(JobOpportunity j)
         {
-            var jobDetails = new JobDetailResponse();
-            jobDetails.CompanyName = jobOpportunity.CompanyName;
-            jobDetails.CompanyEmail = jobOpportunity.CompanyEmail;
-            jobDetails.IsRemote = jobOpportunity.IsRemote;
-            jobDetails.JobDescription = jobOpportunity.Description;
-            jobDetails.JobTitle = jobOpportunity.Title;
-            jobDetails.JobType = jobOpportunity.JobType.GetDisplayName();
-            jobDetails.Link = jobOpportunity.Id.ToString();
-            jobDetails.Location = jobOpportunity.Location != null ? jobOpportunity.Location.Name : "N/A";
-            jobDetails.Visits = jobOpportunity.ViewCount;
+            var jd = new JobDetailResponse();
+            jd.IsRemote = j.IsRemote;
+            jd.JobDescription = j.Description;
+            jd.JobTitle = j.Title;
+            jd.JobType = j.JobType.GetDisplayName();
+            jd.Link = j.Id.ToString();
+            jd.Location = j.JobOpportunityLocation != null ? j.JobOpportunityLocation.Name: "N/A";
+            jd.Visits = j.ViewCount;
+            jd.HowToApply = j.HowToApply;
+            jd.Company = new JobDetailResponse.JobDetailCompany()
+            {
+                Name = j.CompanyName,
+                Email = j.CompanyEmail,
+                LogoUrl = j.CompanyLogoUrl,
+                Url = j.CompanyUrl
+            };
+            
 
-            return jobDetails;
+            return jd;
         }
     }
 }

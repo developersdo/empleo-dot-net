@@ -13,7 +13,7 @@ namespace EmpleoDotNet.WebApi
             routes.MapRoute(
                 name: "Default",
                 url: "api/{controller}/{action}/{id}",
-                defaults: new { controller = "Jobs", action = "Index", id = RouteParameter.Optional }
+                defaults: new { id = RouteParameter.Optional }
             );
         }
     }

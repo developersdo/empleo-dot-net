@@ -19,6 +19,7 @@ namespace EmpleoDotNet.WebAPI.Controllers
             _adapter = adapter;
         }
 
+        [Route("api/jobs/")]
         public IHttpActionResult Get(int page = 1, int pageSize = 25)
         {
             var jobCards = GetJobCards(page, pageSize).ToList();
@@ -26,8 +27,9 @@ namespace EmpleoDotNet.WebAPI.Controllers
 
             return Json(response);
         }
-
-        public IHttpActionResult GetJobDetails(string id)
+        [Route("api/jobs/detail/{id}")]
+        [HttpGet]
+        public IHttpActionResult Detail(string id)
         {
             int jobId = 0;
             int.TryParse(id, out jobId);
@@ -43,7 +45,9 @@ namespace EmpleoDotNet.WebAPI.Controllers
             pagingParameters.Page = page;
             pagingParameters.PageSize = pageSize;
 
+            // We should really take advantage of the fact that we have a PagedList
             var opportunities = _jobsService.GetAllJobOpportunitiesPagedByFilters(pagingParameters);
+           
             var jobCards = opportunities.Select(x => _adapter.GetJobCard(x));
             return jobCards;
         }
