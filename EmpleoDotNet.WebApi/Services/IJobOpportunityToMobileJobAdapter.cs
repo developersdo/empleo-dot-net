@@ -27,7 +27,7 @@ namespace EmpleoDotNet.WebAPI.Services
             jobCard.Link = jobOpportunity.Id.ToString();
             jobCard.ViewCount = jobOpportunity.ViewCount;
             jobCard.Likes = jobOpportunity.Likes;
-            jobCard.Location = jobOpportunity.Location != null ? jobOpportunity.Location.Name : "N/A";
+            jobCard.Location = jobOpportunity.JobOpportunityLocation != null ? jobOpportunity.JobOpportunityLocation.Name : "N/A";
             
 
             return jobCard;
