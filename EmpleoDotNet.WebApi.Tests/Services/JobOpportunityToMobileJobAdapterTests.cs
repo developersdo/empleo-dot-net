@@ -79,8 +79,8 @@ namespace EmpleoDotNet.WebAPI.Tests.Services
             var jobDetails = _adapter.GetJobDetails(_jobOpportunity);
 
             // Assert
-            jobDetails.CompanyEmail.Should().NotBeNullOrWhiteSpace();
-            jobDetails.CompanyName.Should().NotBeNullOrWhiteSpace();
+            jobDetails.Company.Email.Should().NotBeNullOrWhiteSpace();
+            jobDetails.Company.Name.Should().NotBeNullOrWhiteSpace();
             jobDetails.JobDescription.Should().NotBeNullOrWhiteSpace();
             jobDetails.JobTitle.Should().NotBeNullOrWhiteSpace();
             jobDetails.JobType.Should().NotBeNullOrWhiteSpace();
