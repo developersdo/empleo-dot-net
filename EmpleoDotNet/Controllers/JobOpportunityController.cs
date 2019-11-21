@@ -60,7 +60,7 @@ namespace EmpleoDotNet.Controllers
 
             if (jobOpportunity.Approved == false)
                 return View(nameof(Detail))
-                    .WithInfo("Esta vacante no ha sido aprobada todavia. Si la acaba de someter, por favor revise de nuevo más tarde.");
+                    .WithInfo("Esta vacante no ha sido aprobada todavia. Si la acaba de someter, por favor revise de nuevo más tarde. Nuestros moderadores estarán revisando su solicitud en breve.");
 
             var expectedUrl = UrlHelperExtensions.SeoUrl(jobOpportunityId, jobOpportunity.Title.SanitizeUrl());
 
