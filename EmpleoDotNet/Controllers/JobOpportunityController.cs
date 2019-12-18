@@ -60,7 +60,9 @@ namespace EmpleoDotNet.Controllers
 
             if (jobOpportunity.Approved == false)
                 return View(nameof(Detail))
-                    .WithInfo("Esta vacante no ha sido aprobada. Revise de nuevo más tarde.");
+                    .WithSuccess("Esta vacante no ha sido aprobada todavia. Si la acaba de someter, por favor revise de nuevo más tarde. Nuestros moderadores estarán revisando su solicitud en breve." +
+                    "Mientras tanto, puedes te sugerimos que contemples convertirte en un backer de nuestra plataforma. Más detalles en https://opencollective.com/emplea_do" +
+                    "");
 
             var expectedUrl = UrlHelperExtensions.SeoUrl(jobOpportunityId, jobOpportunity.Title.SanitizeUrl());
 
