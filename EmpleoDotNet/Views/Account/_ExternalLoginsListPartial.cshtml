@@ -55,12 +55,7 @@
                                                     <span class="fa fa-twitter"></span> Accede con Twitter
                                                 </button>
                                             }
-                                            else if (p.AuthenticationType == "LinkedIn")
-                                            {
-                                                <button name="provider" value="@p.AuthenticationType" type="submit" class="btn btn-block btn-social btn-linkedin">
-                                                    <span class="fa fa-linkedin"></span> Accede con LinkedIn
-                                                </button>
-                                            }
+                                            
                                             else
                                             {
                                                 <button type="submit" class="btn btn-block btn-social btn-primary" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">
