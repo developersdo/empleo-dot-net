@@ -45,6 +45,39 @@ namespace EmpleoDotNet.WebAPI.Controllers
 
             return Json(response);
         }
+
+
+
+        [Route("api/jobs/search/")]
+        [HttpGet]
+        public IHttpActionResult Search(string keyword = "", bool isRemote = false, int page = 1, int pageSize = 2)
+        {
+
+            var pagingParameters = new JobOpportunityPagingParameter();
+            pagingParameters.Keyword = keyword;
+            pagingParameters.IsRemote = isRemote;
+            pagingParameters.Page = page;
+            pagingParameters.PageSize = pageSize;
+
+            // We should really take advantage of the fact that we have a PagedList
+            var opportunities = _jobsService.GetAllJobOpportunitiesPagedByFilters(pagingParameters);
+
+            var jobCards = GetJobCards(opportunities);
+
+
+            var response = new JobCardListResponse()
+            {
+                Jobs = jobCards,
+                PageSize = opportunities.PageSize,
+                PageNumber = opportunities.PageNumber,
+                PagesCount = opportunities.PageCount,
+                TotalItemCount = opportunities.TotalItemCount
+            };
+
+            return Json(response);
+        }
+
+
         [Route("api/jobs/detail/{id}")]
         [HttpGet]
         public IHttpActionResult Detail(string id)
