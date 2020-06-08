@@ -137,7 +137,7 @@ namespace EmpleoDotNet.Controllers
             }
             catch (Exception ex)
             {
-                //TODO Add Logging 
+                Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
             }
 
             return RedirectToAction(nameof(Detail), new
@@ -220,8 +220,15 @@ namespace EmpleoDotNet.Controllers
             {
                 _jobOpportunityService.UpdateJobOpportunity(model.Id, model.ToEntity());
             }
-            
-            await _slackService.PostNewJobOpportunity(jobOpportunity, Url);
+
+            try
+            {
+                await _slackService.PostNewJobOpportunity(jobOpportunity, Url);
+            }
+            catch (Exception ex)
+            {
+                Elmah.ErrorSignal.FromCurrentContext().Raise(ex);
+            }
 
             return RedirectToAction(nameof(Detail), new
             {
@@ -277,8 +284,10 @@ namespace EmpleoDotNet.Controllers
                 {
                     jobOpportunity.Approved = true;
                     _jobOpportunityService.UpdateJobOpportunity(jobOpportunityId, jobOpportunity);
-                    await _slackService.PostJobOpportunityResponse(jobOpportunity, Url, payload.response_url, payload?.user?.id, true);
-                    await _twitterService.PostNewJobOpportunity(jobOpportunity, Url).ConfigureAwait(false);
+                    await _slackService
+                        .PostJobOpportunityResponse(jobOpportunity, Url, payload.response_url, payload?.user?.id, true);
+                    await _twitterService
+                        .PostNewJobOpportunity(jobOpportunity, Url).ConfigureAwait(false);
                 }
                 else if (isTokenValid && isJobRejected)
                 {
