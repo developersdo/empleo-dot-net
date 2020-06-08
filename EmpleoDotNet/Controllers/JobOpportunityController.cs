@@ -121,7 +121,7 @@ namespace EmpleoDotNet.Controllers
                 return View(model).WithError("Debe seleccionar una Localidad.");
             }
 
-            if (!string.IsNullOrWhiteSpace(model.CompanyLogoUrl) && !UrlHelperExtensions.IsImageAvailable(model.CompanyLogoUrl))
+            if (!string.IsNullOrWhiteSpace(model.CompanyLogoUrl) && UrlHelperExtensions.IsValidImageUrl(model.CompanyLogoUrl))
             {
                 return View(model).WithError("La url del logo debe ser a una imagen en formato png o jpg");
             }
@@ -131,8 +131,14 @@ namespace EmpleoDotNet.Controllers
             jobOpportunity.Approved = false;        // new jobs unapproved by default
 
             _jobOpportunityService.CreateNewJobOpportunity(jobOpportunity, userId);
-
-            await _slackService.PostNewJobOpportunity(jobOpportunity, Url).ConfigureAwait(false);
+            try
+            {
+                await _slackService.PostNewJobOpportunity(jobOpportunity, Url).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                //TODO Add Logging 
+            }
 
             return RedirectToAction(nameof(Detail), new
             {
