@@ -377,15 +377,8 @@
     <Content Include="Content\IconsSocial\Tumblr.png" />
     <Content Include="Content\IconsSocial\Twitter.png" />
     <Content Include="Content\IconsSocial\Wordpress.png" />
-    <Content Include="Content\img\cdc-banner.png" />
-    <Content Include="Content\img\cdc.png" />
-    <Content Include="Content\img\banner-codecamp.png" />
-    <Content Include="Content\img\codecampsdq.png" />
-    <Content Include="Content\img\cdc-allaccess.png" />
-    <Content Include="Content\img\cdc-costs.png" />
-    <Content Include="Content\img\cdc-speakers.png" />
-    <Content Include="Content\img\gbh.gif" />
-    <Content Include="Content\img\software_development.gif2.gif" />
+    <Content Include="Content\img\banners\megsoft-job.png" />
+    <Content Include="Content\img\banners\subscribe-banner.gif" />
     <Content Include="Content\img\company-logo-placeholder.png" />
     <Content Include="Content\img\pinedax.png" />
     <Content Include="Content\img\find-a-job.jpg" />
