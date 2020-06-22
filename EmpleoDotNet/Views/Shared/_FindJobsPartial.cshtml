@@ -106,13 +106,32 @@
 
         <div class="col-md-4 col-lg-4">	
             <div class="row text-center">	
+                @{
+                    var randomGenerator = new Random();
+                }
                 @if((DateTime.UtcNow.Millisecond%2) == 0)	
                 {
                     <a href="http://bit.ly/streamelopersub"><img style="margin-top:72px; max-height:310px; max-width: 310px; height: auto; width: auto;" class="img-fluid" src="~/Content/img/banners/subscribe-banner.gif" /></a>	
                 }	
                 else	
                 {	
-                    <a href="https://bit.ly/xam-dev"><img style="margin-top:72px; max-height:310px; max-width: 310px; height: auto; width: auto;" class="img-fluid" src="~/Content/img/banners/megsoft-job.png" /></a>	
+                    var selector = (randomGenerator.Next()%4) + 1;
+
+                    switch(selector)
+                    {
+                        case 1:
+                            <a href="https://bit.ly/xam-dev"><img style="margin-top:72px; max-height:310px; max-width: 310px; height: auto; width: auto;" class="img-fluid" src="~/Content/img/banners/megsoft-job.png" /></a>	
+                            break;
+                        case 2:
+                            <a href="http://devhiring.com/qa-automation-engineer/"><img style="margin-top:72px; max-height:310px; max-width: 310px; height: auto; width: auto;" class="img-fluid" src="~/Content/img/banners/devhire3.png" /></a>	
+                            break;
+                        case 3:
+                            <a href="http://devhiring.com/asp-net-mvc-developer/"><img style="margin-top:72px; max-height:310px; max-width: 310px; height: auto; width: auto;" class="img-fluid" src="~/Content/img/banners/devhire1.png" /></a>	
+                            break;
+                        case 4:
+                            <a href="http://devhiring.com/js-web-developer/"><img style="margin-top:72px; max-height:310px; max-width: 310px; height: auto; width: auto;" class="img-fluid" src="~/Content/img/banners/devhire2.png" /></a>	
+                            break;
+                    }
                 }	
             </div>	
         </div>
