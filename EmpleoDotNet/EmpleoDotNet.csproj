@@ -382,6 +382,7 @@
     <Content Include="Content\img\banners\devhire1.png" />
     <Content Include="Content\img\banners\devhire2.png" />
     <Content Include="Content\img\banners\devhire3.png" />
+    <Content Include="Content\img\banners\newtech.png" />
     <Content Include="Content\img\company-logo-placeholder.png" />
     <Content Include="Content\img\pinedax.png" />
     <Content Include="Content\img\find-a-job.jpg" />
