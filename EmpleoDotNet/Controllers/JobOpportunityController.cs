@@ -93,9 +93,9 @@ namespace EmpleoDotNet.Controllers
 
         [HttpGet]
 
-        [Authorize]
         public ActionResult New()
         {
+            return Redirect("https://beta.emplea.do");
             var viewModel = new NewJobOpportunityViewModel();
             viewModel.MapsApiKey = ConfigurationManager.AppSettings["GoogleMapsApiKey"];
 
@@ -149,6 +149,7 @@ namespace EmpleoDotNet.Controllers
         [HttpGet]
         public ActionResult Wizard()
         {
+            return Redirect("https://beta.emplea.do");
             var viewModel = new Wizard();
             viewModel.MapsApiKey = ConfigurationManager.AppSettings["GoogleMapsApiKey"];
             return View(viewModel);
