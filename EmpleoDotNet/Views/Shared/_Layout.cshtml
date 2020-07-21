@@ -102,8 +102,10 @@
         <!-- Content -->
         <main class="layout__content">
             @Html.Partial("_Alerts")
-            <div class="alert alert-info">
-                Esta versión del portal va a ser reemplazada muy pronto. Visita la nueva versión en <a href="https://beta.emplea.do">beta.emplea.do</a>
+            <div class="container padding-top-80">
+                <div class="alert alert-info">
+                    Esta versión del portal va a ser reemplazada muy pronto. Visita la nueva versión en <a href="https://beta.emplea.do">beta.emplea.do</a>
+                </div>            
             </div>
             @RenderBody()
         </main>
